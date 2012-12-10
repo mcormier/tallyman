@@ -14,6 +14,7 @@ require "curses"
 require "sqlite3"
 include Curses
 
+load 'config.properties'
 
 init_screen
 begin
@@ -25,7 +26,7 @@ begin
   start_color
 
 
-  db = SQLite3::Database.open "myData2013.db"
+  db = SQLite3::Database.open @dbName
 
   liftRepMenu = RadioMenu.new( [ "1RM", "3RM", "5RM" ], nil )
 
