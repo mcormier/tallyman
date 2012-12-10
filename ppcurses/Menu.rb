@@ -50,8 +50,13 @@ class Menu < BaseMenu
     end
 
    @win.refresh
+
+   @subMenu.show() if @subMenu      
   end
 
+  def setGlobalAction(action)
+    @gAction = action
+  end
 
   def getMenuSelection()
 
@@ -89,10 +94,16 @@ class Menu < BaseMenu
     end
 
     if c == 10 then # ENTER
+
+      unless @gAction.nil?
+        @gAction.execute()
+      end
+
       unless @actions.nil?
         @actions[@selection].execute()
-        self.show()
       end
+
+      self.show()
       return true
     end
 

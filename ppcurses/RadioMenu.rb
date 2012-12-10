@@ -39,7 +39,7 @@ class RadioMenu  < BaseMenu
     @win.clear
     @win.box("|", "-")
     y = 1
-    x = 1
+    x = 2
 
     @win.setpos(y, x)
 

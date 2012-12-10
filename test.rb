@@ -26,14 +26,17 @@ begin
 
   db = SQLite3::Database.open "myData2013.db"
 
-  liftFreqMenu = RadioMenu.new( [ "1RM", "3RM", "5RM" ], nil )
+  liftRepMenu = RadioMenu.new( [ "1RM", "3RM", "5RM" ], nil )
 
   liftTypeMenu = Menu.new( [ "Back Squat","Clean", "Squat Clean", "Clean & Jerk",
                           "Deadlift", "Front Squat", "Overhead Squat",
                           "Push Jerk", "Push Press", "Shoulder Press",
                           "Snatch", "Squat Snatch", "Sots Press" ], nil )
 
-  liftsMenu = CompositeMenu.new( liftTypeMenu, liftFreqMenu )
+  liftsMenu = CompositeMenu.new( liftTypeMenu, liftRepMenu )
+  addLiftAction = LiftAction.new( liftTypeMenu, liftRepMenu, db )
+
+  liftTypeMenu.setGlobalAction(addLiftAction)
 
   bookAction = InsertSQLDataAction.new( [GetStringAction.new("Book name: "), 
                                    GetIntegerAction.new("Number of pages: ") ], 
@@ -42,7 +45,7 @@ begin
 
   liftsAction = ShowMenuAction.new(liftsMenu)  
 
-  mainMenu = Menu.new( [ "Book","Lifts"], [ bookAction, liftsAction ] )
+  mainMenu = Menu.new( [ "Add Book","Add Lift"], [ bookAction, liftsAction ] )
 
   mainMenu.show()
   mainMenu.getMenuSelection() 

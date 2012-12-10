@@ -1,6 +1,12 @@
 require "curses"
 
 class BaseAction
+
+  def printLine(string)
+    @win.addstr(string)
+    @win.setpos(@win.cury() + 1, 0)
+  end
+
 end
 
 class PromptAction < BaseAction
@@ -80,11 +86,6 @@ class GetDataAction < BaseAction
   end
 
 
-  def printLine(string)
-    @win.addstr(string)
-    @win.setpos(@win.cury() + 1, 0)
-  end
-
 
   def printSuccessLine(string)
     init_pair(1, COLOR_GREEN, COLOR_BLACK)
@@ -100,7 +101,84 @@ class GetDataAction < BaseAction
     @win.attroff(color_pair(1))
   end
 
+  def promptToChangeData(preparedSQL)
+    self.printLine(preparedSQL)
+
+    @win.addstr("Proceed? ")
+    echo
+    c = @win.getch()
+    noecho
+
+    if c == "y" or c == "Y" then
+      self.printLine("")
+      begin
+        @db.execute preparedSQL
+        self.printSuccessLine("Execution successful")
+      rescue SQLite3::Exception => e
+        self.printErrorLine("Exception occurred")
+        self.printErrorLine(e.message)
+      ensure
+        self.printLine("")
+        self.printLine("< Press any key to continue > ")
+        @win.getch()
+      end
+      
+    end
+
+
+  end
+
 end
+
+
+class LiftAction < GetDataAction 
+
+  def initialize(nameMenu, repMenu, db)
+    @nameMenu = nameMenu
+    @repMenu = repMenu
+    @db = db
+
+    @win = Window.new(0,0,0,0)
+    
+    @prompt  = GetIntegerAction.new("Weight (pounds) : ") 
+    @prompt.setWindow(@win)
+
+    @sql = "INSERT into LIFTS(name, weight, reps) values ('%s', %s, %s)"                 
+
+  end
+
+
+  def translateRepToInteger(repString)
+    return Integer(repString.chars.first).to_s
+  end
+
+  def execute()
+    @win.clear 
+    @win.refresh
+
+    liftName = @nameMenu.getSelectedMenuName() 
+    repName = @repMenu.getSelectedMenuName()
+
+
+    self.printLine("Input data for " + repName + " " + liftName )
+    echo 
+    @prompt.execute()
+    noecho
+ 
+    preparedSql = @sql.sub("%s", liftName)
+    preparedSql = preparedSql.sub("%s", @prompt.data() )
+    repCount = self.translateRepToInteger(repName)
+    preparedSql = preparedSql.sub("%s", repCount )
+
+    self.promptToChangeData(preparedSql)
+
+    @win.clear 
+    @win.refresh
+  end
+
+end
+
+
 
 class ShowMenuAction < BaseAction
 
