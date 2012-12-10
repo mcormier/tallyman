@@ -48,10 +48,37 @@
      </xsl:for-each>
      </ul></div>
 
+     <!-- name, onerm, threerm, fiverm -->
+
+     <div id="lifts" >
+        <xsl:apply-templates select="lifts"/>
+     </div>
+
      </div>
 
      </body>
    </html>
+ </xsl:template>
+
+
+ <xsl:template match="lifts">
+     <table>
+     <tr><th>Lift</th><th>1RM</th><th>3RM</th><th>5RM</th></tr>
+     <xsl:for-each select="lift">
+       <tr>
+         <xsl:if test="position() mod 2 = 0">
+           <xsl:attribute name="class">even</xsl:attribute>
+         </xsl:if>
+         <xsl:if test="position() mod 2 = 1">
+           <xsl:attribute name="class">odd</xsl:attribute>
+         </xsl:if>
+        <td><xsl:value-of select="name"/></td>
+        <td><xsl:value-of select="onerm"/></td>
+        <td><xsl:value-of select="threerm"/></td>
+        <td><xsl:value-of select="fiverm"/></td>
+       </tr> 
+     </xsl:for-each>
+     </table>
  </xsl:template>
 
  <xsl:template match="value">
