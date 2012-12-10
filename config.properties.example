@@ -1,0 +1,9 @@
+@dbName = 'myData2013.db'
+
+@outputQueries= [ [ "SELECT COUNT(*) FROM books", "Books Read" ], 
+                  [ "SELECT SUM(pages) FROM books", "Pages Read" ] ]
+
+#@outputFile = "/home/mcormier/sites/stats/blah.html"
+@outputFile = "data.xml"
+
+@xmlEncoding = "ASCII"
