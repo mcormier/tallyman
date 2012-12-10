@@ -64,6 +64,7 @@
  <xsl:template match="lifts">
      <table>
      <tr><th>Lift</th><th>1RM</th><th>3RM</th><th>5RM</th></tr>
+     <tfoot><th>Lift</th><th>1RM</th><th>3RM</th><th>5RM</th></tfoot>
      <xsl:for-each select="lift">
        <tr>
          <xsl:if test="position() mod 2 = 0">
