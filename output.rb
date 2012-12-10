@@ -27,8 +27,7 @@ begin
 
   File.open( @outputFile, 'w' ) do |out|
 
-  #out.puts x.data {
-  puts x.data {
+  out.puts x.data {
     @outputQueries.each do |queryInfo|
       begin
         stm = db.prepare queryInfo[0]
