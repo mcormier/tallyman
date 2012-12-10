@@ -3,7 +3,7 @@
 @outputQueries= [ [ "SELECT COUNT(*) FROM books", "Books Read" ], 
                   [ "SELECT SUM(pages) FROM books", "Pages Read" ] ]
 
-@liftQuery = "SELECT MAX(weight) FROM lifts WHERE name ='?' "
+@liftQuery = "SELECT MAX(weight) FROM lifts WHERE name=? and reps=? "
 
 @lifts = [ "Back Squat","Clean", "Squat Clean", "Clean & Jerk",
          "Deadlift", "Front Squat", "Overhead Squat",
