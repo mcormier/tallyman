@@ -30,10 +30,7 @@ begin
 
   liftRepMenu = RadioMenu.new( [ "1RM", "3RM", "5RM" ], nil )
 
-  liftTypeMenu = Menu.new( [ "Back Squat","Clean", "Squat Clean", "Clean & Jerk",
-                          "Deadlift", "Front Squat", "Overhead Squat",
-                          "Push Jerk", "Push Press", "Shoulder Press",
-                          "Snatch", "Squat Snatch", "Sots Press" ], nil )
+  liftTypeMenu = Menu.new( @lifts, nil )
 
   liftsMenu = CompositeMenu.new( liftTypeMenu, liftRepMenu )
   addLiftAction = LiftAction.new( liftTypeMenu, liftRepMenu, db )
