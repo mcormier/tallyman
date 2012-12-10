@@ -9,8 +9,15 @@
        <Link rel="stylesheet" type="text/css" href="css/style.css" title="stylin"></Link>
      </head>
      <body>
-     <ul id="left_col">
-     <xsl:for-each select="item">
+
+     <div class="wrapper">
+
+     <div id="left_col">
+       <ul id="left_data">
+
+     <!-- Odd item entries go in left column -->
+
+     <xsl:for-each select="item[position() mod 2 = 1] ">
        <li class="display">
          <div class="big_display">
            <div class="top"></div> 
@@ -21,7 +28,28 @@
          </div>
        </li>
      </xsl:for-each>
-     </ul>
+     </ul></div>
+
+     <div id="right_col">
+       <ul id="right_data">
+
+     <!-- Even item entries go in right column -->
+
+     <xsl:for-each select="item[position() mod 2 = 0] ">
+       <li class="display">
+         <div class="big_display">
+           <div class="top"></div> 
+           <div class="center">
+             <xsl:apply-templates/>
+           </div>
+           <div class="bottom"></div> 
+         </div>
+       </li>
+     </xsl:for-each>
+     </ul></div>
+
+     </div>
+
      </body>
    </html>
  </xsl:template>
