@@ -36,7 +36,6 @@ class Menu < BaseMenu
   end
 
   def show()
-    @win.clear
     @win.box("|", "-")
     y = 2
     x = 2

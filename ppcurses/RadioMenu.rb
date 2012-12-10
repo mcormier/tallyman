@@ -36,7 +36,6 @@ class RadioMenu  < BaseMenu
   end
 
   def show()
-    @win.clear
     @win.box("|", "-")
     y = 1
     x = 2

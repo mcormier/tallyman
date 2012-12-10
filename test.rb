@@ -1,5 +1,4 @@
-#!/Users/mcormier/.rvm/rubies/ruby-1.9.2-p136/bin/ruby
-
+#!/usr/bin/ruby
 
 # Curses reference:
 # http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
@@ -9,6 +8,8 @@ require './ppcurses/RadioMenu.rb'
 require './ppcurses/CompositeMenu.rb'
 require './ppcurses/Actions.rb'
 
+
+require 'rubygems'
 require "curses"
 require "sqlite3"
 include Curses
