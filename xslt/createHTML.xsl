@@ -60,27 +60,20 @@
    </html>
  </xsl:template>
 
-
  <xsl:template match="lifts">
-     <table>
-     <tr><th>Lift</th><th>1RM</th><th>3RM</th><th>5RM</th></tr>
-     <tfoot><th>Lift</th><th>1RM</th><th>3RM</th><th>5RM</th></tfoot>
+
      <xsl:for-each select="lift">
-       <tr>
-         <xsl:if test="position() mod 2 = 0">
-           <xsl:attribute name="class">even</xsl:attribute>
-         </xsl:if>
-         <xsl:if test="position() mod 2 = 1">
-           <xsl:attribute name="class">odd</xsl:attribute>
-         </xsl:if>
-        <td><xsl:value-of select="name"/></td>
-        <td><xsl:value-of select="onerm"/></td>
-        <td><xsl:value-of select="threerm"/></td>
-        <td><xsl:value-of select="fiverm"/></td>
-       </tr> 
+        <div>
+          <div class="divide_line"></div>
+          <div class="liftName"><xsl:value-of select="name"/> </div>
+          <div class="liftValue"><xsl:value-of select="onerm"/><p class="vertText">1RM</p></div>
+          <div class="liftValue"><xsl:value-of select="threerm"/><p class="vertText">3RM</p></div>
+          <div class="liftValue"><xsl:value-of select="fiverm"/><p class="vertText">5RM</p></div>
+        </div>
+        <div class="clear"></div>
      </xsl:for-each>
-     </table>
  </xsl:template>
+
 
  <xsl:template match="value">
    <div class="value"><span><xsl:apply-templates/></span></div>
