@@ -1,7 +1,7 @@
 @dbName = 'myData2013.db'
 
 @outputQueries= [ [ "SELECT COUNT(*) FROM books", "Books Read" ], 
-                  [ "SELECT SUM(pages) FROM books", "Pages Read" ] ]
+                  [ "SELECT SUM(pages) FROM books", "Total Pages Read" ] ]
 
 @liftQuery = "SELECT MAX(weight) FROM lifts WHERE name=? and reps=? "
 
@@ -10,7 +10,6 @@
          "Push Jerk", "Push Press", "Shoulder Press",
          "Snatch", "Squat Snatch", "Sots Press" ]
 
-#@outputFile = "/home/mcormier/sites/stats/blah.html"
-@outputFile = "data.xml"
+@outputFile = "./xslt/data.xml"
 
 @xmlEncoding = "ASCII"

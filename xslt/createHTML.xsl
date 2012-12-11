@@ -87,8 +87,8 @@
  </xsl:template>
 
  <xsl:template match="title">
-   <h2><span><xsl:apply-templates/></span></h2>
    <div class="divide_line"></div>
+   <h2><span><xsl:apply-templates/></span></h2>
  </xsl:template>
 
 
