@@ -66,9 +66,9 @@
         <div>
           <div class="divide_line"></div>
           <div class="liftName"><xsl:value-of select="name"/> </div>
-          <div class="liftValue"><xsl:value-of select="onerm"/><p class="vertText">1RM</p></div>
-          <div class="liftValue"><xsl:value-of select="threerm"/><p class="vertText">3RM</p></div>
-          <div class="liftValue"><xsl:value-of select="fiverm"/><p class="vertText">5RM</p></div>
+          <div class="liftValue"><p class="value"><xsl:value-of select="onerm"/></p><p class="vertText">1RM</p></div>
+          <div class="liftValue"><p class="value"><xsl:value-of select="threerm"/></p><p class="vertText">3RM</p></div>
+          <div class="liftValue"><p class="value"><xsl:value-of select="fiverm"/></p><p class="vertText">5RM</p></div>
         </div>
         <div class="clear"></div>
      </xsl:for-each>
