@@ -6,6 +6,6 @@ echo $SCRIPTLOC
 cd $SCRIPTLOC
 
 # get user input
-${SCRIPTLOC}/input.rb
+${SCRIPTLOC}/adminInterface
 
 ${SCRIPTLOC}/generateWebsite.sh
