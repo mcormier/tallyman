@@ -14,7 +14,7 @@ require "curses"
 require "sqlite3"
 include Curses
 
-load 'config.properties'
+load '../config/config.properties'
 
 init_screen
 begin

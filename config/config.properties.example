@@ -1,13 +1,13 @@
-@dbName = 'myData2013.db'
+@dbName = '/home/mcormier/sites/tallyman/myData2013.db'
 
 @outputQueries= [ [ "SELECT COUNT(*) FROM books", "Books Read" ], 
                   [ "SELECT SUM(pages) FROM books", "Total Pages Read" ] ]
 
 @liftQuery = "SELECT MAX(weight) FROM lifts WHERE name=? and reps=? "
 
-@lifts = [ "Back Squat","Clean", "Squat Clean", "Clean & Jerk",
-         "Deadlift", "Front Squat", "Overhead Squat",
+@lifts = [ "Deadlift", "Back Squat","Clean", "Front Squat", "Clean & Jerk", "Squat Clean",
          "Push Jerk", "Push Press", "Shoulder Press",
+         "Overhead Squat",
          "Snatch", "Squat Snatch", "Sots Press" ]
 
 @outputFile = "./xslt/data.xml"

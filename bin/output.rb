@@ -4,7 +4,7 @@ require 'rubygems'
 require 'builder'
 require "sqlite3"
 
-load 'config.properties'
+load '../config/config.properties'
 
 def queryLiftData( db, query, liftname, rep)
   retVal = "0"
