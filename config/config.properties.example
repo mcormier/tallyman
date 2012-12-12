@@ -1,4 +1,4 @@
-@dbName = '/home/mcormier/sites/tallyman/myData2013.db'
+@dbName = '/home/mcormier/sites/tallyman/data/myData2013.db'
 
 @outputQueries= [ [ "SELECT COUNT(*) FROM books", "Books Read" ], 
                   [ "SELECT SUM(pages) FROM books", "Total Pages Read" ] ]

@@ -1,1 +1,1 @@
-sqlite3 ../myData2013.db < createDatabase.sql
+sqlite3 myData2013.db < createDatabase.sql
