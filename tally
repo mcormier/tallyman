@@ -1,6 +1,11 @@
 #!/bin/bash
 
-# get user input
-./input.rb
+# Get the path that this script is located
+SCRIPTLOC=`dirname $0`
+echo $SCRIPTLOC
+cd $SCRIPTLOC
 
-./generateWebsite.sh
+# get user input
+${SCRIPTLOC}/input.rb
+
+${SCRIPTLOC}/generateWebsite.sh
