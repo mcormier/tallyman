@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SCRIPTLOC=`dirname $0`
+cd $SCRIPTLOC
+
+# generatex xml data in the xslt directory
+${SCRIPTLOC}/extractDBDataToXMLFile
+
+cd xslt
+
+#TODO -- make the output file a configuration item
+# Transform  the XML data to an HTML file with an XML style sheet
+xsltproc createHTML.xsl data.xml > /home/mcormier/sites/stats/index.html

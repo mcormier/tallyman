@@ -2,10 +2,12 @@
 
 # Get the path that this script is located
 SCRIPTLOC=`dirname $0`
-echo $SCRIPTLOC
+# Move to the directory of this script so
+# that path relative configuration works
 cd $SCRIPTLOC
 
 # get user input
 ${SCRIPTLOC}/adminInterface
 
-${SCRIPTLOC}/generateWebsite.sh
+# regenerate website
+${SCRIPTLOC}/generateWebsite
