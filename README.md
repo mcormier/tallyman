@@ -18,7 +18,7 @@ This concern was compounded by the fact that some of the main bench mark names c
 
 ![Cindy with a twist] (http://mcormier.github.com/tallyman/images/cindy.gif )
 
-I sent an email to the owner of the site which eventually got the deadlift data fixed.
+I sent an email to the owner of the site which eventually got the deadlift data fixed, but never bothered to get the name of Cindy fixed.
 
 ![Cindy with a twist] (http://mcormier.github.com/tallyman/images/Cindy2.gif )
 
@@ -26,13 +26,11 @@ But this begged the question as to how the data got changed in the first place? 
 
 The issue of not being able to export your data is an intentional design to retain users and create a lock-in. Theoretically you have access to all your data so you can copy it manually, however, the more data you've input into a site, the more monumental a task this becomes to move.
 
-There has been a creeping awareness of this issue of data ownership as we continue to input more and more of our lives into these web applications.  Google has a [data liberation](http://www.dataliberation.org/) website.  [App.net](https://join.app.net/) although not free, is a reaction to twitter changing their API rules.  One of their core values is "You own your content".
+There has been a creeping awareness of this issue of data ownership as we continue to input more and more of our lives into these web applications.  Google has a [data liberation](http://www.dataliberation.org/) website.  [App.net](https://join.app.net/) although not free, is a reaction to twitter changing their API rules.  One of their core values is "You own your content". 
 
-Sometimes your data isn't important, like many of the banal things posted on facebook and twitter.
+Sometimes your data isn't important, like many of the banal things posted on facebook and twitter, but you should own the data that is important to you.
 
-But you should own the data that is important to you.
-
-
+My workout data is important to me so I've decided to write some software and retain ownership of my data. 
 
 Technical Details
 --------------
@@ -42,6 +40,7 @@ Tallyman consists of a simple curses interface to an sqlite database.
 
 Ruby + curses => sqlite => Ruby => xml data => xsltproc => html page
 
+![Admin Interface] (http://mcormier.github.com/tallyman/images/ncurses.gif )
 
 Why static?  PHP security holes/ Why regenerate the website if no data has changed?
 
@@ -51,6 +50,7 @@ Requirements
 1. Ruby 1.9.1 or greater
 2. SQLite 3
 3. xsltcproc
+4. A unix based operating system (works with OS X)
 
 
 Configuration
