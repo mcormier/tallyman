@@ -3,20 +3,22 @@ Tallyman
 ========
 ---
 
-Tallyman gathers data and generates a static website. It was built to generate [stats.preenandprune.com](http://stats.preenandprune.com) but it can be easily customized to generate your own page.
+Tallyman gathers data and generates a static website. It was built to generate [stats.preenandprune.com](http://stats.preenandprune.com) but it can be easily customized to generate your own page of [statistics porn](http://chartporn.com).
 
-To generate the page you use an admin interface to a database which then generates or regenerates a webpage.
+To generate the page you use a simple interface to a database which then generates the webpage on exit.
 
 Admin Interface => Database => Website 
 
 Why?
 -----------------------
 
-I have been using [wodHub](http://wodhub.com/profiles/6534) for a while now to track my exercise data.  It's a free site for individuals and has expanded as a product sold to people running gyms. It helped me track my gym benchmarks but like all free web applications it has a major issue.  You don't control your data, the person that is paying to run that site owns your data.  It's free to use but the hidden cost is that you lose control of your data.  If the individual who is running wodHub goes bankrupt tomorrow then I lose all my data.
+I have been using [wodHub](http://wodhub.com/profiles/6534) for a while now to track my exercise data.  It's a free site and has expanded as a product sold to people running gyms. It's helped me track my gym benchmarks and keep me motivated to go to workout, but like all many free web applications it has a subtle issue.  You don't own your data, the person that is paying to run that site and letting you use it owns your data.  It's free to use but the hidden cost is that you lose ownership of your data.  If the individual who is running wodHub goes bankrupt tomorrow and the server gets shut down then all the data that you've input over time disappers.
 
-This concern was compounded by the fact that some of the main bench mark names changed unexpectedly.  There is a Crossfit benchmark called Cindy which was unexplicably renamed to "Cindy with a twist" for several months now.
+This concern was compounded by the fact that some of the main bench mark names changed unexpectedly.  A benchmark workout called Cindy which was unexplicably renamed to "Cindy with a twist", and the "Max Deadlift" benchmark got renamed to "Deadlift Couplet".  The deadlift data also got reinterpreted as a timed workout instead of a max load workout so my data no longer made any sense. 
 
 ![Cindy with a twist] (http://mcormier.github.com/tallyman/images/cindy.gif )
+
+I sent an email to the owner of the site which eventually got the deadlift data fixed.
 
 ![Cindy with a twist] (http://mcormier.github.com/tallyman/images/Cindy2.gif )
 
