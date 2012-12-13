@@ -43,6 +43,7 @@ Ruby + curses => SQLite => Ruby => XML data => xsltproc => HTML page
 
 
 A curses interface was chosen to: 
+
 1. Avoid creating a web-based CGI admin interface 
 2. Keep the project spoke small
 3. Make rapid interface development possible

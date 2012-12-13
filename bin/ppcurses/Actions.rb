@@ -206,10 +206,6 @@ class InsertSQLDataAction < GetDataAction
   def execute()
     super()
 
-    if has_colors? then
-      self.printLine("Has Colors")
-    end
-
     preparedSQL = @sql
     @actions.each do |action|
       preparedSQL = preparedSQL.sub("%s", action.data)
