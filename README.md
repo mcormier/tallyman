@@ -45,12 +45,10 @@ Ruby + curses => SQLite => Ruby => XML data => xsltproc => HTML page
 A curses interface was chosen to: 
 
 1. Avoid creating a web-based CGI admin interface 
-2. Keep the project spoke small
+2. Keep the project scope small
 3. Make rapid interface development possible
-4. It's smoking fast.
 
 Theoretically no admin interface is necessary, you could simply connect to the database manually and insert the data by handcrafting SQL, and then run a script to regenerate the website. This isn't convenient though, and eventually even the most determined user would mostly forgoe such a process due to the inconvenience of contintually handcrafting SQL.
-
 
 The final implementation is smoking fast.
 
