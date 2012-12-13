@@ -12,7 +12,7 @@ Admin Interface => Database => Website
 Why?
 -----------------------
 
-I have been using [wodHub](http://wodhub.com/profiles/6534) for a while now to track my exercise data.  It's a free site and has expanded as a product sold to people running gyms. It's helped me track my gym benchmarks and keep me motivated to go to workout, but like all many free web applications it has a subtle issue.  You don't own your data, the person that is paying to run that site and letting you use it owns your data.  It's free to use but the hidden cost is that you lose ownership of your data.  If the individual who is running wodHub goes bankrupt tomorrow and the server gets shut down then all the data that you've input over time disappers.
+I have been using [wodHub](http://wodhub.com/profiles/6534) for a while now to track my exercise data.  It's a free site and has expanded as a product sold to people running gyms. It's helped me track my gym benchmarks and kept me motivated to workout, and for that I am thankful. But like many free web applications it has a subtle issue.  You don't own your data. The person that is paying to run that site and letting you use it owns your data.  It's free to use but the hidden cost is that you lose ownership of your data.  If the individual who is running wodHub goes bankrupt tomorrow and the server gets shut down then all the data that you've input over time disappers.
 
 This concern was compounded by the fact that some of the main bench mark names changed unexpectedly.  A benchmark workout called Cindy which was unexplicably renamed to "Cindy with a twist", and the "Max Deadlift" benchmark got renamed to "Deadlift Couplet".  The deadlift data also got reinterpreted as a timed workout instead of a max load workout so my data no longer made any sense. 
 
@@ -22,9 +22,12 @@ I sent an email to the owner of the site which eventually got the deadlift data 
 
 ![Cindy with a twist] (http://mcormier.github.com/tallyman/images/Cindy2.gif )
 
+So this begs the question as to how the data got changed in the first place.  Obviously the change was not intentional.  Most likely it is a side effect of giving paying gym owners higher admin privileges to edit workout names which unintentionally allowed someone to accidently modify workouts globally. Worst case is that someone found a bug in the web application and maliciously changed the data through a security hole.
+
 There has been a slow change in the tech industry to make users data available to them and not keep it locked in to the website.
 
 Google has a [data liberation](http://www.dataliberation.org/) website.
+
 
 [App.net](https://join.app.net/) is a reaction to twitter changing their API rules.  One of their core values is "You own your content".
 
