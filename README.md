@@ -17,6 +17,10 @@ I have been using [wodhub](http://wodhub.com/profiles/6534) for a while now to t
 
 Own your data.
 
+![Cindy with a twist] (http://mcormier.github.com/tallyman/images/cindy.gif )
+
+
+
 Why static?  PHP security holes/ Why regenerate the website if no data has changed?
 
 Technical Details
