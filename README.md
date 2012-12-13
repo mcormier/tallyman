@@ -84,10 +84,15 @@ Configuration
 -------------
 1. Create your SQLite database with data/createDatabase.sh
 2. Copy config/config.properties.example to config.properties
+3. Modify the filenames in the configuration file as appropriate
+4. Run the command main bin/tallyman command
 
 
 --------------------------------------------------------------------
-http://feltron.com/ar06_01.html  + http://daytum.com/ + http://wodhub.com/profiles/6534
+The current look of http://stats.preenandprune.com was heavily influenced, pretty much a direct copy of, Nicholas Feltron's [2006 annual report](http://feltron.com/ar06_01.html).
+
+An alternative to setting up your own tallyman is to use [Daytum](http://daytum.com/) which does allow you to export your data as a CSV.  Daytum is free for the first 1000 items you log, they charge $4 a month if you require more space.
+
 
 --------------------------------------------------------------------
 Come, Mister tally man, tally me banana
