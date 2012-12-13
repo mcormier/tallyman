@@ -1,4 +1,6 @@
 @dbName = '/home/mcormier/sites/tallyman/data/myData2013.db'
+@outputHTMLFile = '/home/mcormier/sites/stats/index.html'
+@outputFile = "./xslt/data.xml"
 
 @outputQueries= [ [ "SELECT COUNT(*) FROM books", "Books Read" ], 
                   [ "SELECT SUM(pages) FROM books", "Total Pages Read" ] ]
@@ -10,6 +12,5 @@
          "Overhead Squat",
          "Snatch", "Squat Snatch", "Sots Press" ]
 
-@outputFile = "./xslt/data.xml"
 
 @xmlEncoding = "ASCII"

@@ -6,8 +6,9 @@ cd $SCRIPTLOC
 # generatex xml data in the xslt directory
 ${SCRIPTLOC}/extractDBDataToXMLFile
 
+HTMLOUTPUT_LOC=`${SCRIPTLOC}/getProperty outputHTMLFile`
+
 cd xslt
 
-#TODO -- make the output file a configuration item
-# Transform  the XML data to an HTML file with an XML style sheet
-xsltproc createHTML.xsl data.xml > /home/mcormier/sites/stats/index.html
+# Transform the XML data to an HTML file with an XML style sheet
+xsltproc createHTML.xsl data.xml > $HTMLOUTPUT_LOC

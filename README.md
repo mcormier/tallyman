@@ -35,43 +35,54 @@ My workout data is important to me so I've decided to write some software and re
 Technical Details
 --------------
 
-Tallyman consists of a simple curses interface to an sqlite database and a script to extract the data to an XML format.  The XML is then converted to HTML with an XML style sheet (XSL).
+Tallyman consists of a simple curses interface to an sqlite database and a script to extract that data to an XML format.  The XML is then converted to HTML with an XML style sheet (XSL).
 
 ![Admin Interface] (http://mcormier.github.com/tallyman/images/ncurses.gif )
 
-Ruby + curses => sqlite => Ruby => XML data => xsltproc => HTML page
+Ruby + curses => SQLite => Ruby => XML data => xsltproc => HTML page
+
+
+A curses interface was chosen to: 
+1. Avoid creating a web-based CGI admin interface 
+2. Keep the project spoke small
+3. Make rapid interface development possible
+4. It's smoking fast.
+
+Theoretically no admin interface is necessary, you could simply connect to the database manually and insert the data by handcrafting SQL, and then run a script to regenerate the website. This isn't convenient though, and eventually even the most determined user would mostly forgoe such a process due to the inconvenience of contintually handcrafting SQL.
+
+
+The final implementation is smoking fast.
 
 
 
-Why static?  PHP security holes/ Why regenerate the website if no data has changed?
+Design Pros and Cons
+====================
 
 Pros
 ----
-1. You own your own data
-2. You can format the presentation of the data any way you like
-3. Log anything you want, number of coffees per day if that's what floats your boat
-4. No possibility of a CGI based security expoit
+1. You own your own data.
+2. You can format the presentation of the data any way you like.
+3. Log anything you want. Number of coffees per day if that's what floats your boat.
+4. No possibility of a CGI security exploit since there is no web-based form interface.
 
 
 Cons
 ----
-1. Requires an intial investment to setup and configure
+1. Requires an intial investment to setup and configure.  It's not as simple as filling out a web from with your name and email address.
 2. User must be comfortable with running a command line interface to input their data
 3. Custom formating the webpage requires knowledge of HTML and CSS
 4. Customization requires knowledge of SQL and basic scripting
-
+5. Technical nature of the design limits it to intermediate to advance users.
 
 Requirements
 --------------
 1. Ruby 1.9.1 or greater
 2. SQLite 3
 3. xsltcproc
-4. A unix based operating system (works with OS X)
 
 
 Configuration
 -------------
----
 1. Create your SQLite database with data/createDatabase.sh
 2. Copy config/config.properties.example to config.properties
 

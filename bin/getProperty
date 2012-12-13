@@ -1,0 +1,13 @@
+#!/usr/bin/ruby
+#
+# Gets property defined in ruby style config file
+# so that the variable can be used in a bash shell script
+#
+
+load '../config/config.properties'
+
+begin
+  varName= "@"+ARGV[0]
+  print self.instance_variable_get(varName)
+  STDOUT.flush
+end
