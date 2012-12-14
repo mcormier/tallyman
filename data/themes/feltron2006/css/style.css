@@ -7,7 +7,6 @@ div#lifts {
  float:left;
  width: 790px;
  margin: 0, auto;
- /*background-color: #dedede; */
  padding-left: 60px;
 }
 
@@ -131,10 +130,7 @@ div.wrapper {
   width: 850px;
 }
 
-div.top {
-  /* background-image: url(../images/top.jpg); 
-  height:24px; */
-}
+div.top { }
 
 div.top, div.bottom, div.center {
   width:374px;
@@ -157,10 +153,7 @@ div.top, div.bottom, div.center {
   padding-top: 20px;
 }
 
-div.bottom {
-  /*background-image: url(../images/bottom.jpg);
-  height:7px; */
-}
+div.bottom { }
 
 div.big_display {
   text-transform: uppercase;
@@ -168,9 +161,7 @@ div.big_display {
   width:374px;
 }
 
-div.center {
-  /* background-image: url(../images/center.jpg); */
-}
+div.center { }
 
 div.center h2 {
   font-size:11px;
