@@ -98,7 +98,7 @@ class Menu < BaseMenu
         @gAction.execute()
       end
 
-      unless @actions.nil?
+      unless @actions.nil? or @actions[@selection].nil?
         @actions[@selection].execute()
       end
 
