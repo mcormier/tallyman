@@ -15,4 +15,4 @@ if [ -e $DATABASE_LOC ] ; then
 fi
 
 sqlite3 $DATABASE_LOC < ../config/createDatabase.sql
-
+echo "Created $DATABASE_LOC"
