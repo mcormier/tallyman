@@ -5,6 +5,8 @@ Tallyman
 
 Tallyman gathers data and generates a static website. It was built to generate [stats.preenandprune.com](http://stats.preenandprune.com) but it can be easily customized to generate your own page of [statistics porn](http://chartporn.com).
 
+![Website example] (http://mcormier.github.com/tallyman/images/previewSmall.gif )
+
 To generate the page you use a simple interface to a database which then generates the webpage.
 
 Admin Interface => Database => Website 
