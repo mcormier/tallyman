@@ -87,9 +87,9 @@ Requirements
 
 Configuration
 -------------
-1. Create your SQLite database with data/createDatabase.sh
-2. Copy config/config.properties.example to config.properties
-3. Modify the filenames in the configuration file as appropriate
+1. Copy config/config.properties.example to config.properties
+2. Modify the filenames in the configuration file as appropriate
+3. Create your SQLite database with data/createDatabase.sh
 4. Examine the themes under data/themes and copy the resources to your website directory
 5. Run the command main bin/tallyman command
 
