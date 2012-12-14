@@ -28,8 +28,7 @@ begin
 
   db = SQLite3::Database.open @dbName
 
-  liftRepMenu = RadioMenu.new( [ "1RM", "3RM", "5RM" ], nil )
-
+  liftRepMenu = RadioMenu.new( @liftReps , nil )
   liftTypeMenu = Menu.new( @lifts, nil )
 
   liftsMenu = CompositeMenu.new( liftTypeMenu, liftRepMenu )
@@ -44,7 +43,7 @@ begin
 
   liftsAction = ShowMenuAction.new(liftsMenu)  
 
-  mainMenu = Menu.new( [ "Add Book","Add Lift"], [ bookAction, liftsAction ] )
+  mainMenu = Menu.new( @mainMenuValues , [ bookAction, liftsAction ] )
 
   mainMenu.show()
   mainMenu.getMenuSelection() 

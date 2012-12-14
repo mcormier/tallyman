@@ -12,5 +12,8 @@
          "Overhead Squat",
          "Snatch", "Squat Snatch", "Sots Press" ]
 
+@liftReps =  [ "1RM", "3RM", "5RM" ]
+
+@mainMenuValues = [ "Add Book","Add Lift"]
 
 @xmlEncoding = "ASCII"
