@@ -27,13 +27,13 @@ But this begged the question as to how the data got changed in the first place? 
 The issue of not being able to export your data is an intentional design to retain users and create lock-in. Theoretically you have access to all your data so you can copy it manually, however, the more data you've input into a site, the more monumental a task this becomes to move. The web was not always a place where companies creating walled gardens was so common and accepted.
 
 > "In the early part of this century, if you made a service that let users create or share content, the expectation was that they could easily download a full-fidelity copy of their data, or import that data into other competitive services, with no restrictions. Vendors spent years working on interoperability around data exchange purely for the benefit of their users, despite theoretically lowering the barrier to entry for competitors."
-> - [Anil Dash](http://dashes.com/anil/2012/12/the-web-we-lost.html)
+> - [Anil Dash - The Web We Lost](http://dashes.com/anil/2012/12/the-web-we-lost.html)
 
 There has been a creeping awareness of this issue of data ownership as we continue to input more and more of our lives into these web applications.  Google has a [data liberation](http://www.dataliberation.org/) website.  [App.net](https://join.app.net/) although not free, is a reaction to twitter changing their API rules.  One of their core values is "You own your content". 
 
 Sometimes your data isn't important, like many of the banal things posted on facebook and twitter, but you should own the data that is important to you.
 
-My workout data is important to me so I've decided to write some software and retain ownership of my data. 
+My workout data is important to me so I've decided to write some software and retain ownership. 
 
 Technical Details
 --------------
