@@ -2,11 +2,6 @@ require "curses"
 
 class BaseAction
 
-  def printLine(string)
-    @win.addstr(string)
-    @win.setpos(@win.cury() + 1, 0)
-  end
-
 end
 
 class PromptAction < BaseAction
@@ -17,6 +12,15 @@ class PromptAction < BaseAction
 
   def setWindow(win)
     @win = win
+  end
+
+  def setParentAction(action)
+    @parent = action
+  end
+
+  def printPrompt()
+    @win.setpos(@win.cury(), @parent.winPadding())
+    @win.addstr(@prompt)
   end
  
   def data
@@ -37,7 +41,7 @@ end
 class GetStringAction < PromptAction
 
   def execute()
-    @win.addstr(@prompt)
+    printPrompt()
     @data = @win.getstr()
   end
 
@@ -46,7 +50,7 @@ end
 class GetIntegerAction < PromptAction
 
   def execute()
-   x = @win.curx()
+   x = @parent.winPadding()
    y = @win.cury()
    begin 
      @win.setpos(y,x)
@@ -58,20 +62,16 @@ class GetIntegerAction < PromptAction
 
 end
 
-
-
 class GetDataAction < BaseAction
 
   def initialize( actions )
     @actions = actions
-    @win = Window.new(0,0,0,0)
-
-    unless actions.nil?
+    unless @actions.nil?
       @actions.each  do |action|
-         action.setWindow(@win)
+         action.setParentAction(self)
       end
     end
-
+ 
   end
 
   def beforeActions()
@@ -82,14 +82,45 @@ class GetDataAction < BaseAction
     # Stub for classes that extend
   end
 
-  def execute()
-    echo
+  def winPadding()
+    return 2
+  end
+
+  def winWidth()
+    Curses.cols - winPadding()
+  end
+
+  def winHeight()
+    Curses.lines - winPadding()
+  end
+
+  def createWindow()
+    @win = Window.new( winHeight(), winWidth(), 
+                       winPadding()/2, winPadding()/2)
+
+    # Assign window to actions
+    unless @actions.nil?
+      @actions.each  do |action|
+         action.setWindow(@win)
+      end
+    end
     @win.clear
+    @win.box("|", "-")
+  end
+
+  def execute()
+    createWindow()
+    echo
+
+    y = @win.cury + 1
+    @win.setpos(y,winPadding())
 
     self.beforeActions()
-
+    
     @actions.each  do |action|
-       action.execute
+      action.execute
+      #y = @win.cury + 1
+      #@win.setpos(y,winPadding())
     end
 
     self.afterActions()
@@ -97,9 +128,14 @@ class GetDataAction < BaseAction
     noecho
     @win.clear 
     @win.refresh
+    @win.close
   end
 
-
+  def printLine(string)
+    @win.setpos(@win.cury(), winPadding())
+    @win.addstr(string)
+    @win.setpos(@win.cury() + 1, winPadding())
+  end
 
   def printSuccessLine(string)
     init_pair(1, COLOR_GREEN, COLOR_BLACK)
@@ -144,7 +180,6 @@ class GetDataAction < BaseAction
 
 end
 
-
 class LiftAction < GetDataAction 
 
   def initialize(nameMenu, repMenu, db)
@@ -159,6 +194,10 @@ class LiftAction < GetDataAction
 
   end
 
+  def winHeight()
+     return 9
+  end
+ 
   def liftName()
     @nameMenu.getSelectedMenuName()
   end
@@ -183,11 +222,7 @@ class LiftAction < GetDataAction
     self.promptToChangeData(preparedSql)
   end
 
-
-
 end
-
-
 
 class ShowMenuAction < BaseAction
 
@@ -203,7 +238,6 @@ class ShowMenuAction < BaseAction
 
 end
 
-
 class InsertSQLDataAction < GetDataAction
 
   def initialize( actions , sql, db )
@@ -212,18 +246,17 @@ class InsertSQLDataAction < GetDataAction
     @db = db
   end
 
-  def afterActions()
+  def winHeight()
+     return 9
+  end
 
+  def afterActions()
     preparedSql = @sql
     @actions.each do |action|
       preparedSql = preparedSql.sub("%s", action.data)
     end
 
     self.promptToChangeData(preparedSql)
-
-    @win.clear 
-    @win.refresh
-
   end
 
 end
