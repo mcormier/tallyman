@@ -66,19 +66,33 @@ class GetDataAction < BaseAction
     @actions = actions
     @win = Window.new(0,0,0,0)
 
-    @actions.each  do |action|
-       action.setWindow(@win)
+    unless actions.nil?
+      @actions.each  do |action|
+         action.setWindow(@win)
+      end
     end
 
+  end
+
+  def beforeActions()
+    # Stub for classes that extend
+  end
+
+  def afterActions()
+    # Stub for classes that extend
   end
 
   def execute()
     echo
     @win.clear
 
+    self.beforeActions()
+
     @actions.each  do |action|
        action.execute
     end
+
+    self.afterActions()
 
     noecho
     @win.clear 
@@ -137,10 +151,9 @@ class LiftAction < GetDataAction
     @nameMenu = nameMenu
     @repMenu = repMenu
     @db = db
-
-    @win = Window.new(0,0,0,0)
     
     @prompt  = GetIntegerAction.new("Weight (pounds) : ") 
+    super( [ @prompt ] )
     @prompt.setWindow(@win)
 
     @sql = "INSERT into LIFTS(name, weight, reps) values ('%s', %s, %s)"                 
@@ -152,29 +165,24 @@ class LiftAction < GetDataAction
     return Integer(repString.chars.first).to_s
   end
 
-  def execute()
-    @win.clear 
-    @win.refresh
-
+  def beforeActions()
     liftName = @nameMenu.getSelectedMenuName() 
     repName = @repMenu.getSelectedMenuName()
-
-
     self.printLine("Input data for " + repName + " " + liftName )
-    echo 
-    @prompt.execute()
-    noecho
- 
+  end
+
+  def afterActions()
+    liftName = @nameMenu.getSelectedMenuName() 
+    repName = @repMenu.getSelectedMenuName()
     preparedSql = @sql.sub("%s", liftName)
     preparedSql = preparedSql.sub("%s", @prompt.data() )
     repCount = self.translateRepToInteger(repName)
     preparedSql = preparedSql.sub("%s", repCount )
 
     self.promptToChangeData(preparedSql)
-
-    @win.clear 
-    @win.refresh
   end
+
+
 
 end
 
@@ -203,36 +211,14 @@ class InsertSQLDataAction < GetDataAction
     @db = db
   end
 
-  def execute()
-    super()
+  def afterActions()
 
-    preparedSQL = @sql
+    preparedSql = @sql
     @actions.each do |action|
-      preparedSQL = preparedSQL.sub("%s", action.data)
+      preparedSql = preparedSql.sub("%s", action.data)
     end
 
-    self.printLine(preparedSQL)
-
-    @win.addstr("Proceed? ")
-    echo
-    c = @win.getch()
-    noecho
-
-    if c == "y" or c == "Y" then
-      self.printLine("")
-      begin
-        @db.execute preparedSQL
-        self.printSuccessLine("Execution successful")
-      rescue SQLite3::Exception => e
-        self.printErrorLine("Exception occurred")
-        self.printErrorLine(e.message)
-      ensure
-        self.printLine("")
-        self.printLine("< Press any key to continue > ")
-        @win.getch()
-      end
-      
-    end
+    self.promptToChangeData(preparedSql)
 
     @win.clear 
     @win.refresh
