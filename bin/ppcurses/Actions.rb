@@ -154,30 +154,31 @@ class LiftAction < GetDataAction
     
     @prompt  = GetIntegerAction.new("Weight (pounds) : ") 
     super( [ @prompt ] )
-    @prompt.setWindow(@win)
 
     @sql = "INSERT into LIFTS(name, weight, reps) values ('%s', %s, %s)"                 
 
   end
 
-
-  def translateRepToInteger(repString)
-    return Integer(repString.chars.first).to_s
+  def liftName()
+    @nameMenu.getSelectedMenuName()
+  end
+  
+  def repsName()
+    @repMenu.getSelectedMenuName()
+  end
+  
+  def repsInteger()
+    return Integer(repsName().chars.first).to_s
   end
 
   def beforeActions()
-    liftName = @nameMenu.getSelectedMenuName() 
-    repName = @repMenu.getSelectedMenuName()
-    self.printLine("Input data for " + repName + " " + liftName )
+    self.printLine("Input data for " + repsName() + " " + liftName() )
   end
 
   def afterActions()
-    liftName = @nameMenu.getSelectedMenuName() 
-    repName = @repMenu.getSelectedMenuName()
-    preparedSql = @sql.sub("%s", liftName)
+    preparedSql = @sql.sub("%s", liftName() )
     preparedSql = preparedSql.sub("%s", @prompt.data() )
-    repCount = self.translateRepToInteger(repName)
-    preparedSql = preparedSql.sub("%s", repCount )
+    preparedSql = preparedSql.sub("%s", repsInteger() )
 
     self.promptToChangeData(preparedSql)
   end
