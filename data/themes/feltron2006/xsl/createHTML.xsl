@@ -1,4 +1,5 @@
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0" 
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
 <xsl:output method="html" indent="yes"/>
 
@@ -62,13 +63,72 @@
 
  <xsl:template match="lifts">
 
+     <xsl:variable name="leftArrow"><span class="arrow"> &#8592; </span></xsl:variable>
+     <xsl:variable name="rightArrow"><span class="arrow"> &#8594; </span></xsl:variable>
+
      <xsl:for-each select="lift">
         <div>
           <div class="divide_line"></div>
           <div class="liftName"><xsl:value-of select="name"/> </div>
-          <div class="liftValue"><p class="value"><xsl:value-of select="onerm"/></p><p class="vertText">1RM</p></div>
-          <div class="liftValue"><p class="value"><xsl:value-of select="threerm"/></p><p class="vertText">3RM</p></div>
-          <div class="liftValue"><p class="value"><xsl:value-of select="fiverm"/></p><p class="vertText">5RM</p></div>
+
+          <div class="liftValue">
+            <p class="value">
+              <xsl:value-of select="onerm"/> 
+            </p>
+            <p class="vertText">1RM</p>
+            <xsl:if test="number(onerm) != 0">
+              <!-- Estimate 3RM and 5RM to nearest 5 pounds -->
+              <p class="estimates">
+                <span class="actual">
+                  <xsl:value-of select="onerm"/>
+                </span> 
+                <xsl:copy-of select="$rightArrow"/>
+                <xsl:value-of select="round(onerm * 0.9 div 5) * 5"/> 
+                <xsl:copy-of select="$rightArrow"/>
+                <xsl:value-of select="round(onerm * 0.86 div 5) * 5"/> 
+              </p>
+            </xsl:if>
+          </div>
+
+          <div class="liftValue">
+            <p class="value">
+              <xsl:value-of select="threerm"/>
+            </p>
+            <p class="vertText">3RM</p>
+            <xsl:if test="number(threerm) != 0">
+              <p class="estimates">
+                <!-- Estimate 1RM and 5RM to nearest 5 pounds -->
+                <xsl:value-of select="round(threerm div 0.9 div 5) * 5"/> 
+                <xsl:copy-of select="$leftArrow"/>
+                <span class="actual">
+                  <xsl:value-of select="threerm"/>
+                </span> 
+                <xsl:copy-of select="$rightArrow"/>
+                <xsl:value-of select="round(threerm div 0.9 * 0.86 div 5) * 5"/> 
+              </p>
+            </xsl:if>
+          </div>
+          <div class="liftValue">
+            <p class="value">
+              <xsl:value-of select="fiverm"/>
+            </p>
+            <p class="vertText">5RM</p>
+
+            <xsl:if test="number(fiverm) != 0">
+              <p class="estimates">
+                <!-- Estimate 1RM and 3RM to nearest 5 pounds -->
+                <xsl:value-of select="round(fiverm div 0.86 div 5) * 5"/>
+                <xsl:copy-of select="$leftArrow"/>
+                <xsl:value-of select="round(fiverm div 0.86 * 0.9 div 5) * 5"/>
+                <xsl:copy-of select="$leftArrow"/>
+                <span class="actual">
+                  <xsl:value-of select="fiverm"/>
+                </span>
+              </p>
+            </xsl:if>
+ 
+
+          </div>
         </div>
         <div class="clear"></div>
      </xsl:for-each>

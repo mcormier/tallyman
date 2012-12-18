@@ -32,7 +32,7 @@ div#lifts div div.liftName {
   clear: left;
   text-transform: uppercase;
   font-size:11px;
-  line-height: 1.4em;
+  line-height: 1em;
   font-family: Georgia, serif;
   font-weight: bold;
   margin-top: 10px;
@@ -43,6 +43,7 @@ div#lifts div div.liftValue {
   font-family: Helvetica, Arial, sans-serif;
   font-weight: bold;
   text-align: center;
+  height: 145px;
 }
 
 div#lifts div div.liftValue p {
@@ -68,6 +69,36 @@ div#lifts div div.liftValue p.value {
   width:150px;
 }
 
+div#lifts div div.liftValue p.estimates {
+  font-size:15px;
+  font-family: Georgia, serif;
+  float:left;
+  z-index:10; 
+  text-align:center;
+  position:relative;
+  left:0px;
+  top:-15px;
+  width:200px;
+  margin-bottom:0px;
+  margin-top:0px;
+  font-weight:bold;
+}
+div#lifts div div.liftValue p.vertText {
+  position:relative;
+  top:10px;
+  right:0px;
+}
+
+div#lifts div div.liftValue p.estimates span.actual {
+  color:#888888; 
+  font-size:18px;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+div#lifts div div.liftValue p.estimates span.arrow {
+  color:#aaaaaa; 
+  font-size:18px;
+}
 .vertText {
   writing-mode:tb-rl;
   -webkit-transform:rotate(90deg);
