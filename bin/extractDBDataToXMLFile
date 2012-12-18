@@ -25,7 +25,7 @@ begin
   db = SQLite3::Database.open @dbName
   x.instruct! :xml, :encoding => @xmlEncoding
 
-  File.open( @outputFile, 'w' ) do |out|
+  File.open( @xmlDataFile, 'w' ) do |out|
 
   out.puts x.data {
     @outputQueries.each do |queryInfo|

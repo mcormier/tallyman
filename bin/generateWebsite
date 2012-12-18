@@ -7,8 +7,12 @@ cd $SCRIPTLOC
 ${SCRIPTLOC}/extractDBDataToXMLFile
 
 HTMLOUTPUT_LOC=`${SCRIPTLOC}/getProperty outputHTMLFile`
+THEME=`${SCRIPTLOC}/getProperty theme`
+XML_DATA=`${SCRIPTLOC}/getProperty xmlDataFile`
 
-cd xslt
+#cd xslt
 
 # Transform the XML data to an HTML file with an XML style sheet
-xsltproc createHTML.xsl data.xml > $HTMLOUTPUT_LOC
+#xsltproc createHTML.xsl data.xml > $HTMLOUTPUT_LOC
+
+xsltproc ${SCRIPTLOC}/../data/themes/${THEME}/xsl/createHTML.xsl ${XML_DATA} > $HTMLOUTPUT_LOC

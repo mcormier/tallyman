@@ -1,11 +1,15 @@
 # An absolute path to the database file is required
 @dbName = '/home/mcormier/sites/tallyman/data/tallyMan2013.db'
-
+#
 # Where bin/backupData will copy a backup file
 @backupDir = '/home/mcormier/data/tallyman'
 
-@outputHTMLFile = '/home/mcormier/sites/stats/index.html'
-@outputFile = "./xslt/data.xml"
+@webRoot= '/home/mcormier/sites/stats/'
+@outputHTMLFile = @webRoot + 'index.html'
+
+@theme='daytum'
+
+@xmlDataFile= "../data/data.xml"
 
 @outputQueries= [ [ "SELECT COUNT(*) FROM books", "Books Read" ], 
                   [ "SELECT SUM(pages) FROM books", "Total Pages Read" ] ]
@@ -22,3 +26,7 @@
 @mainMenuValues = [ "Add Book","Add Lift", "Add Music"]
 
 @xmlEncoding = "ASCII"
+#
+# Sets up proper syntax highlighting in vim
+# vim: set syntax=ruby:
+#
