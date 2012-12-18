@@ -1,13 +1,12 @@
 # An absolute path to the database file is required
 @dbName = '/home/mcormier/sites/tallyman/data/tallyMan2013.db'
-#
 # Where bin/backupData will copy a backup file
 @backupDir = '/home/mcormier/data/tallyman'
 
 @webRoot= '/home/mcormier/sites/stats/'
 @outputHTMLFile = @webRoot + 'index.html'
 
-@theme='daytum'
+@theme='feltron2006'
 
 @xmlDataFile= "../data/data.xml"
 

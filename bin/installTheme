@@ -1,0 +1,31 @@
+#!/bin/bash
+
+SCRIPTLOC=`dirname $0`
+cd $SCRIPTLOC
+
+WEB_ROOT=`${SCRIPTLOC}/getProperty webRoot`
+THEME=`${SCRIPTLOC}/getProperty theme`
+
+THEME_ROOT="../data/themes/"
+IMAGE_DIR="${THEME_ROOT}/${THEME}/images"
+
+
+function copyThemeDirToWebRoot {
+
+
+THEME_DIR="${THEME_ROOT}${THEME}/${1}"
+WEB_DIR="${WEB_ROOT}/${1}"
+
+  if [ -d ${THEME_DIR} ] ; then
+    # Create image directory if it does not exist
+    if [ ! -d "${WEB_DIR}" ] ; then
+      mkdir -v ${WEB_DIR}
+    fi
+
+    cp -rv ${THEME_DIR} ${WEB_ROOT}
+  fi
+}
+
+copyThemeDirToWebRoot "images"
+copyThemeDirToWebRoot "css"
+

@@ -10,9 +10,8 @@ HTMLOUTPUT_LOC=`${SCRIPTLOC}/getProperty outputHTMLFile`
 THEME=`${SCRIPTLOC}/getProperty theme`
 XML_DATA=`${SCRIPTLOC}/getProperty xmlDataFile`
 
-#cd xslt
+XSL_LOC=${SCRIPTLOC}/../data/themes/${THEME}/xsl/createHTML.xsl 
 
-# Transform the XML data to an HTML file with an XML style sheet
-#xsltproc createHTML.xsl data.xml > $HTMLOUTPUT_LOC
-
-xsltproc ${SCRIPTLOC}/../data/themes/${THEME}/xsl/createHTML.xsl ${XML_DATA} > $HTMLOUTPUT_LOC
+# Transform the XML data to an HTML file with the XML style sheet
+# for the current theme
+xsltproc ${XSL_LOC} ${XML_DATA} > $HTMLOUTPUT_LOC
