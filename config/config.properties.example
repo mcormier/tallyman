@@ -1,4 +1,9 @@
-@dbName = '/home/mcormier/sites/tallyman/data/myData2013.db'
+# An absolute path to the database file is required
+@dbName = '/home/mcormier/sites/tallyman/data/tallyMan2013.db'
+
+# Where bin/backupData will copy a backup file
+@backupDir = '/home/mcormier/data/tallyman'
+
 @outputHTMLFile = '/home/mcormier/sites/stats/index.html'
 @outputFile = "./xslt/data.xml"
 
@@ -14,6 +19,6 @@
 
 @liftReps =  [ "1RM", "3RM", "5RM" ]
 
-@mainMenuValues = [ "Add Book","Add Lift" ]
+@mainMenuValues = [ "Add Book","Add Lift", "Add Music"]
 
 @xmlEncoding = "ASCII"

@@ -1,0 +1,15 @@
+#!/bin/bash
+
+STAMP=`date +%a_%b_%d_%Y`
+
+#Get the path that this script is located
+SCRIPTLOC=`dirname $0`
+cd $SCRIPTLOC
+
+
+DATABASE_FILE=`${SCRIPTLOC}/getProperty dbName`
+BACKUP_DIR=`${SCRIPTLOC}/getProperty backupDir`
+
+echo "Copying database file"
+echo "---------------------"
+cp -v ${DATABASE_FILE}  ${BACKUP_DIR}/tallyMan_${STAMP}.db
