@@ -8,6 +8,8 @@
      <head>
        <title></title>
        <Link rel="stylesheet" type="text/css" href="css/style.css" title="stylin"></Link>
+       <script src="js/PPUtils.js" type="text/javascript"></script>
+       <script src="js/main.js" type="text/javascript"></script>
      </head>
      <body>
 

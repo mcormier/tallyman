@@ -28,4 +28,5 @@ WEB_DIR="${WEB_ROOT}/${1}"
 
 copyThemeDirToWebRoot "images"
 copyThemeDirToWebRoot "css"
+copyThemeDirToWebRoot "js"
 
