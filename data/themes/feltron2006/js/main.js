@@ -1,27 +1,37 @@
-  function init() { }
 
+  var cookieName = "feltron2006";
+  var settings = new Object();
+  settings.estimatesOn = false;
 
-  function toggleEstimateVisibility() {
-    var estimates = $className('estimates');
-    var count = 10;
-    var opacity;
-    var delta;
+  function saveSettings() {
+    var str = JSON.stringify(settings);
+    PPUtils.setCookie(cookieName, str, 20*365);
+  }
 
-    if ( estimates[0].style.opacity == "" ) {
-      opacity = 0.9;
-    } else {
-      opacity = estimates[0].style.opacity;
-      if ( opacity < 0 ) { opacity = 0; } else { opacity = 0.9 }
+  function loadSettings() {
+    var c = PPUtils.getCookie(cookieName);
+    if (c != null) { 
+      settings = JSON.parse(c);
+      var estimates = $className('estimates');
+      toggleVisibility(estimates, settings.estimatesOn); 
     }
-    if ( opacity == 0 ) { delta = 0.1; } else { delta = -0.1; }
+  }
+
+  function init() { loadSettings(); }
+
+  function toggleVisibility(elements, visible) {
+    var count = 10;
+    var e = elements;
+    var delta = visible == true ? 0.1 : -0.1;
+    var opacity = e[0].style.opacity <= 0 ? 0 : 0.9;
 
     var interval = window.setInterval( function()
     {
      count--;
      opacity = opacity + delta;
 
-     for (var i = 0; i < estimates.length; i++ ) {
-       estimates[i].style.opacity = opacity
+     for (var i = 0; i < e.length; i++ ) {
+       e[i].style.opacity = opacity
      }
 
      if ( count == 0 ) {
@@ -31,6 +41,14 @@
     }, 30);
 
 
+  }
+
+  function toggleEstimateVisibility() {
+    var estimates = $className('estimates');
+
+    settings.estimatesOn = !settings.estimatesOn;
+    toggleVisibility(estimates, settings.estimatesOn); 
+    saveSettings();
   }
    
 

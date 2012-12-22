@@ -82,6 +82,7 @@ div#lifts div div.liftValue p.estimates {
   margin-bottom:0px;
   margin-top:0px;
   font-weight:bold;
+  opacity:0;
 }
 div#lifts div div.liftValue p.vertText {
   position:relative;
