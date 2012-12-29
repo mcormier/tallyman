@@ -51,13 +51,34 @@
      </xsl:for-each>
      </ul></div>
 
+    </div> <!-- end wrapper -->
+    <div class="clear"></div>
+
+<div id="macro">
+
+  <div class="featureRow">
+  <div id="macroShowDiv">
+    <a href="#macroInfo" id="macroShow">
+       <span class="mega-icon mega-icon-history lift-shortcuts">Annual Training Data ...</span></a>
+  </div>
+  </div>
+
+  <div id="macroHistoryDrawer" class="fullWidthWrapper shadow">
+   <div id="macroHistory"></div>
+  </div>
+</div>
+
+
+<div class="wrapper">
      <!-- name, onerm, threerm, fiverm -->
 
      <div id="lifts" >
         <xsl:apply-templates select="lifts"/>
      </div>
 
-     </div>
+</div>
+
+<div class="clear"></div>
 
      </body>
    </html>

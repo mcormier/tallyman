@@ -17,9 +17,23 @@
     }
   }
 
-  function init() { loadSettings(); }
+  function init() { 
+    loadSettings(); 
+    elem = $('macroShow');    
+    PPUtils.bind("click", elem, toggleMacroWorkoutData );
+  }
+
+  function toggleMacroWorkoutData() {
+    elem = $('macroHistory');
+    height = elem.style.height;
+    elem.style.height = height == '0px' || height == ''
+                      ? '500px' : '0px';
+    return false;
+  }
 
   function toggleVisibility(elements, visible) {
+    if ( elements.length == 0 ) return;
+
     var count = 10;
     var e = elements;
     var delta = visible == true ? 0.1 : -0.1;
