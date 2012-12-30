@@ -59,7 +59,7 @@
   <div class="featureRow">
   <div id="macroShowDiv">
     <a href="#macroInfo" id="macroShow">
-       <span class="mega-icon mega-icon-history lift-shortcuts">Annual Training Data ...</span></a>
+       <span class="mega-icon mega-icon-history lift-shortcuts">Annual Workout  Data ...</span></a>
   </div>
   </div>
 
