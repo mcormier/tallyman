@@ -113,8 +113,8 @@
 
  <xsl:template match="lifts">
 
-     <xsl:variable name="leftArrow"><span class="arrow"> &#8592; </span></xsl:variable>
-     <xsl:variable name="rightArrow"><span class="arrow"> &#8594; </span></xsl:variable>
+     <xsl:variable name="leftArrow"><span class="mega-icon mega-icon-arr-left"></span></xsl:variable>
+     <xsl:variable name="rightArrow"><span class="mega-icon mega-icon-arr-right"></span></xsl:variable>
 
      <xsl:for-each select="lift">
         <div>

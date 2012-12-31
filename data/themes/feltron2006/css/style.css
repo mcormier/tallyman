@@ -8,6 +8,42 @@
  font-weight:normal;
  font-style:normal;
 }
+.mini-icon:before, .mega-icon:before {
+  font-family:'Octicons Regular';
+  font-weight:normal;
+  font-style:normal;
+  display:inline-block;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+  text-decoration:none;
+  font-size:16px;
+  width:16px;
+  height:16px
+}
+
+.mega-icon { 
+  vertical-align:middle; 
+  font-size:32px;
+  width:32px;
+  height:32px; 
+}
+.mega-icon:before { font-size:32px;width:32px;height:32px; }
+
+/* Only define the icons begin used. 
+ * https://github.com/styleguide/css/7.0
+ */
+.mini-icon-keyboard:before{content:"\f00d"}
+.mega-icon-keyboard:before{content:"\f20d"}
+.mini-icon-history:before{content:"\f07e"}
+.mega-icon-history:before{content:"\f27e"}
+
+.mini-icon-arr-right:before{content:"\f03e"}
+.mega-icon-arr-right:before{content:"\f23e"}
+
+.mini-icon-arr-left:before{content:"\f040"}
+.mega-icon-arr-left:before{content:"\f240"}
+
+/* end of font stuff */
 
 body, ul, div {}
 
@@ -104,35 +140,6 @@ a:active, a:link, a:hover, a:visited {
  margin: 0 auto;
 }
 
-.mini-icon:before, .mega-icon:before {
-  font-family:'Octicons Regular';
-  font-weight:normal;
-  font-style:normal;
-  display:inline-block;
-  line-height:1;
-  -webkit-font-smoothing:antialiased;
-  text-decoration:none;
-  font-size:16px;
-  width:16px;
-  height:16px
-}
-
-.mega-icon { 
-  vertical-align:middle; 
-  font-size:32px;
-  width:32px;
-  height:32px; 
-}
-
-
-.mega-icon:before { font-size:32px;width:32px;height:32px; }
-
-.mini-icon-keyboard:before{content:"\f00d"}
-.mega-icon-keyboard:before{content:"\f20d"}
-
-.mini-icon-history:before{content:"\f07e"}
-.mega-icon-history:before{content:"\f27e"}
-
 .drawer-toggle {
   color:#999;
   margin-top: 0px;
@@ -207,7 +214,7 @@ div#lifts div div.liftValue p.value {
 }
 
 div#lifts div div.liftValue p.estimates {
-  font-size:15px;
+  font-size:18px;
   font-family: Georgia, serif;
   float:left;
   z-index:10; 
