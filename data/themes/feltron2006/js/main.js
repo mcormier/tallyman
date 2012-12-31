@@ -21,7 +21,19 @@
     loadSettings(); 
     elem = $('macroShow');    
     PPUtils.bind("click", elem, toggleMacroWorkoutData );
+
+    elem = $('shortcuts');    
+    PPUtils.bind("click", elem, toggleShortcutDrawer);
   }
+
+  function toggleShortcutDrawer() {
+    elem = $('shortcutsDrawer');
+    height = elem.style.height;
+    elem.style.height = height == '0px' || height == ''
+                      ? '175px' : '0px';
+    return false;
+  }
+
 
   function toggleMacroWorkoutData() {
     elem = $('macroHistory');

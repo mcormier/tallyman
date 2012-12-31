@@ -13,6 +13,37 @@
      </head>
      <body>
 
+
+<div id="shortcuts">
+
+  <div class="featureRow">
+    <div id="shortcutsToggle">
+      <a href="#shortcutsInfo" id="showShortcuts"><span class="mega-icon mega-icon-keyboard drawer-toggle"></span> Keyboard shortcuts available</a>
+    </div>
+  </div>
+
+  <div id="shortcutsDrawer" class="fullWidthWrapper shadow">
+    <div id="shortcutsContent">
+        <h2>Keyboard Shortcuts</h2>
+        <div class="divide_line light-line"></div>
+        <div class="columns threecols">
+          <div class="column first">
+            <h3>Lift shortcuts</h3>
+            <dl class="keyboard-mappings">
+              <dt>e</dt>
+              <dd>Toggle estimates</dd>
+            </dl>
+          </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+     
+
      <div class="wrapper">
 
      <div id="left_col">
@@ -23,11 +54,9 @@
      <xsl:for-each select="item[position() mod 2 = 1] ">
        <li class="display">
          <div class="big_display">
-           <div class="top"></div> 
            <div class="center">
              <xsl:apply-templates/>
            </div>
-           <div class="bottom"></div> 
          </div>
        </li>
      </xsl:for-each>
@@ -41,11 +70,9 @@
      <xsl:for-each select="item[position() mod 2 = 0] ">
        <li class="display">
          <div class="big_display">
-           <div class="top"></div> 
            <div class="center">
              <xsl:apply-templates/>
            </div>
-           <div class="bottom"></div> 
          </div>
        </li>
      </xsl:for-each>
@@ -59,7 +86,7 @@
   <div class="featureRow">
   <div id="macroShowDiv">
     <a href="#macroInfo" id="macroShow">
-       <span class="mega-icon mega-icon-history lift-shortcuts">Annual Workout  Data ...</span></a>
+       <span class="mega-icon mega-icon-history lift-shortcuts"></span> Annual Workout  Data ...</a>
   </div>
   </div>
 
