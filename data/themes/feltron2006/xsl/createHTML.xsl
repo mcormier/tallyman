@@ -22,7 +22,7 @@
     </div>
   </div>
 
-  <div id="shortcutsDrawer" class="fullWidthWrapper shadow">
+  <div id="shortcutsDrawer" class="fullWidthWrapper shadow drawer">
     <div id="shortcutsContent">
         <h2>Keyboard Shortcuts</h2>
         <div class="divide_line light-line"></div>
@@ -90,8 +90,8 @@
   </div>
   </div>
 
-  <div id="macroHistoryDrawer" class="fullWidthWrapper shadow">
-   <div id="macroHistory"></div>
+  <div id="macroHistoryDrawer" class="fullWidthWrapper shadow drawer">
+   <div id="macroHistoryContent"></div>
   </div>
 </div>
 

@@ -50,16 +50,7 @@ a:active, a:link, a:hover, a:visited {
 }
 
 
-#shortcutsDrawer { 
-  height: 0px;
-  overflow:hidden;
-  transition:           height 500ms ease-in-out;
-    -moz-transition:    height 500ms ease-in-out;
-    -ms-transition:     height 500ms ease-in-out;
-    -o-transition:      height 500ms ease-in-out;
-    -webkit-transition: height 500ms ease-in-out;
-}
-
+#shortcutsDrawer { }
 #shortcutsContent {
   margin: 0 auto;
   padding-top:20px;
@@ -67,22 +58,25 @@ a:active, a:link, a:hover, a:visited {
   width: 790px;
 }
 
+.drawer { 
+  height: 0px;
+  overflow: hidden;
+   transition:          height 500ms ease-in-out;
+    -moz-transition:    height 500ms ease-in-out;
+    -ms-transition:     height 500ms ease-in-out;
+    -o-transition:      height 500ms ease-in-out;
+    -webkit-transition: height 500ms ease-in-out;
+}
 
-#macroHistoryDrawer { }
-#macroHistory {
+#macroHistoryContent {
   margin: 0 auto;
   padding-top:0px;
-  height:0px;
+  height:500px;
   /* Don't use background: since it's not supported by Firefox. */
   background-image: url('../images/monthlyTrainingData.jpg'); 
   background-repeat: no-repeat;
   background-position: 0 20px;
   width: 790px;
-  transition:           height 500ms ease-in-out;
-    -moz-transition:    height 500ms ease-in-out;
-    -ms-transition:     height 500ms ease-in-out;
-    -o-transition:      height 500ms ease-in-out;
-    -webkit-transition: height 500ms ease-in-out;
 }
 
 #macroShowDiv , #shortcutsToggle {

@@ -26,22 +26,16 @@
     PPUtils.bind("click", elem, toggleShortcutDrawer);
   }
 
-  function toggleShortcutDrawer() {
-    elem = $('shortcutsDrawer');
-    height = elem.style.height;
-    elem.style.height = height == '0px' || height == ''
-                      ? '175px' : '0px';
+  function toggleDrawer( drawerName, openHeight ) {
+    drawer = $(drawerName);
+    currHeight = drawer.style.height;
+    drawer.style.height = currHeight == '0px' || currHeight == ''
+                        ? openHeight : '0px';
     return false;
   }
 
-
-  function toggleMacroWorkoutData() {
-    elem = $('macroHistory');
-    height = elem.style.height;
-    elem.style.height = height == '0px' || height == ''
-                      ? '500px' : '0px';
-    return false;
-  }
+  function toggleShortcutDrawer() { return toggleDrawer( 'shortcutsDrawer', '175px'); }
+  function toggleMacroWorkoutData() { return toggleDrawer('macroHistoryDrawer', '500px'); }
 
   function toggleVisibility(elements, visible) {
     if ( elements.length == 0 ) return;
@@ -61,8 +55,6 @@
     saveSettings();
   }
    
-
-
   function handleKeyEvent(evt) {
     if ( String.fromCharCode(evt.keyCode) == 'e' ) {
       toggleEstimateVisibility();
