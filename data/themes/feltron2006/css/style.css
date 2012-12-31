@@ -84,12 +84,19 @@ a:active, a:link, a:hover, a:visited {
   width: 790px;
 }
 
+
 #macroShow , #showShortcuts {
   width: 400px;
   height: 30px;
   padding-left:0px;
   display:block;
   background-color:transparent;
+}
+
+#showShortcuts {
+  text-align: right;
+  vertical-align: right;
+  width: 790px;
 }
 
 #macro, #shortcuts  {

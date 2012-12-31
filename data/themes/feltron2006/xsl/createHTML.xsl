@@ -18,7 +18,7 @@
 
   <div class="featureRow">
     <div id="shortcutsToggle">
-      <a href="#shortcutsInfo" id="showShortcuts"><span class="mega-icon mega-icon-keyboard drawer-toggle"></span> Keyboard shortcuts available</a>
+      <a href="#shortcutsInfo" id="showShortcuts">Keyboard shortcuts available <span class="mega-icon mega-icon-keyboard drawer-toggle"></span></a>
     </div>
   </div>
 
