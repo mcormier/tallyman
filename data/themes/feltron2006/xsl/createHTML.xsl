@@ -1,29 +1,29 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-
 <xsl:output method="html" indent="yes"/>
 
- <xsl:template match="data">
-   <html>
+<xsl:template match="data">
+
+  <html>
      <head>
-       <title></title>
+       <title>-</title>
        <Link rel="stylesheet" type="text/css" href="css/style.css" title="stylin"></Link>
        <script src="js/PPUtils.js" type="text/javascript"></script>
        <script src="js/main.js" type="text/javascript"></script>
      </head>
-     <body>
 
+<body>
 
-<div id="shortcuts">
+  <div id="shortcuts">
 
-  <div class="featureRow">
-    <div id="shortcutsToggle">
-      <a href="#shortcutsInfo" id="showShortcuts">Keyboard shortcuts available <span class="mega-icon mega-icon-keyboard drawer-toggle"></span></a>
+    <div class="featureRow">
+      <div id="shortcutsToggle">
+        <a href="#shortcutsInfo" id="showShortcuts">Keyboard shortcuts available <span class="mega-icon mega-icon-keyboard drawer-toggle"></span></a>
+      </div>
     </div>
-  </div>
 
-  <div id="shortcutsDrawer" class="fullWidthWrapper shadow drawer">
-    <div id="shortcutsContent">
+    <div id="shortcutsDrawer" class="fullWidthWrapper shadow drawer">
+      <div id="shortcutsContent">
         <h2>Keyboard Shortcuts</h2>
         <div class="divide_line light-line"></div>
         <div class="columns threecols">
@@ -33,18 +33,18 @@
               <dt>e</dt>
               <dd>Toggle estimates</dd>
             </dl>
+            <dl class="keyboard-mappings">
+              <dt>v</dt>
+              <dd>Toggle volume recommendations</dd>
+            </dl>
           </div>
         </div>
+      </div>
     </div>
-  </div>
 
-</div>
+  </div> <!-- end shortcuts -->
 
-
-
-     
-
-     <div class="wrapper">
+  <div class="wrapper">
 
      <div id="left_col">
        <ul id="left_data">
@@ -109,43 +109,42 @@
 
      </body>
    </html>
- </xsl:template>
+</xsl:template>
 
- <xsl:template match="lifts">
 
-     <xsl:variable name="leftArrow"><span class="mega-icon mega-icon-arr-left"></span></xsl:variable>
-     <xsl:variable name="rightArrow"><span class="mega-icon mega-icon-arr-right"></span></xsl:variable>
 
-     <xsl:for-each select="lift">
-        <div>
-          <div class="divide_line"></div>
-          <div class="liftName"><xsl:value-of select="name"/> </div>
+<xsl:template match="lifts">
 
-          <div class="liftValue">
-            <p class="value">
-              <xsl:value-of select="onerm"/> 
-            </p>
-            <p class="vertText">1RM</p>
-            <xsl:if test="number(onerm) != 0">
-              <!-- Estimate 3RM and 5RM to nearest 5 pounds -->
-              <p class="estimates">
-                <span class="actual">
-                  <xsl:value-of select="onerm"/>
-                </span> 
-                <xsl:copy-of select="$rightArrow"/>
-                <xsl:value-of select="round(onerm * 0.9 div 5) * 5"/> 
-                <xsl:copy-of select="$rightArrow"/>
-                <xsl:value-of select="round(onerm * 0.86 div 5) * 5"/> 
-              </p>
-            </xsl:if>
-          </div>
+  <xsl:variable name="leftArrow"><span class="mega-icon mega-icon-arr-left"></span></xsl:variable>
+  <xsl:variable name="rightArrow"><span class="mega-icon mega-icon-arr-right"></span></xsl:variable>
 
-          <div class="liftValue">
-            <p class="value">
-              <xsl:value-of select="threerm"/>
-            </p>
-            <p class="vertText">3RM</p>
-            <xsl:if test="number(threerm) != 0">
+  <xsl:for-each select="lift">
+  <div>
+    <div class="divide_line"></div>
+    <div class="liftName"><xsl:value-of select="name"/> </div>
+
+    <div class="liftValue">
+      <p class="value"><xsl:value-of select="onerm"/></p>
+      <p class="vertText">1RM</p>
+      <xsl:if test="number(onerm) != 0">
+      <!-- Estimate 3RM and 5RM to nearest 5 pounds -->
+      <p class="estimates">
+        <span class="actual"><xsl:value-of select="onerm"/></span> 
+        <xsl:copy-of select="$rightArrow"/>
+        <xsl:value-of select="round(onerm * 0.9 div 5) * 5"/> 
+        <xsl:copy-of select="$rightArrow"/>
+        <xsl:value-of select="round(onerm * 0.86 div 5) * 5"/> 
+      </p>
+      <p class="volumeEstimate">Recommended volume training: 
+        <strong>6 sets of 5 reps at 
+        <xsl:value-of select="round(onerm * 0.80 div 5) * 5"/></strong> with a 2 minute break in between each set.</p>
+      </xsl:if>
+    </div>
+
+    <div class="liftValue">
+      <p class="value"><xsl:value-of select="threerm"/></p>
+      <p class="vertText">3RM</p>
+      <xsl:if test="number(threerm) != 0">
               <p class="estimates">
                 <!-- Estimate 1RM and 5RM to nearest 5 pounds -->
                 <xsl:value-of select="round(threerm div 0.9 div 5) * 5"/> 
