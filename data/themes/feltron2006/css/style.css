@@ -219,6 +219,13 @@ div#lifts div div.liftValue p.estimates {
   margin-top:0px;
   font-weight:bold;
   opacity:0;
+
+  transition:           opacity 500ms ease-in-out;
+    -moz-transition:    opacity 500ms ease-in-out;
+    -ms-transition:     opacity 500ms ease-in-out;
+    -o-transition:      opacity 500ms ease-in-out;
+    -webkit-transition: opacity 250ms ease-in-out;
+
 }
 div#lifts div div.liftValue p.vertText {
   position:relative;

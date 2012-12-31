@@ -45,27 +45,11 @@
 
   function toggleVisibility(elements, visible) {
     if ( elements.length == 0 ) return;
+    var opacity = visible == true ? 1 : 0;
 
-    var count = 10;
-    var e = elements;
-    var delta = visible == true ? 0.1 : -0.1;
-    var opacity = e[0].style.opacity <= 0 ? 0 : 0.9;
-
-    var interval = window.setInterval( function()
-    {
-     count--;
-     opacity = opacity + delta;
-
-     for (var i = 0; i < e.length; i++ ) {
-       e[i].style.opacity = opacity
-     }
-
-     if ( count == 0 ) {
-       clearInterval(interval);
-     }
-
-    }, 30);
-
+    for (var i = 0; i < elements.length; i++ ) {
+       elements[i].style.opacity = opacity
+    }
 
   }
 
@@ -79,11 +63,11 @@
    
 
 
-    function handleKeyEvent(evt) {
-       if ( String.fromCharCode(evt.keyCode) == 'e' ) {
-         toggleEstimateVisibility();
-       }
-    }
+  function handleKeyEvent(evt) {
+    if ( String.fromCharCode(evt.keyCode) == 'e' ) {
+      toggleEstimateVisibility();
+     }
+  }
 
-     PPUtils.bind("load", window, init);
-     PPUtils.bind("keypress", document, handleKeyEvent);
+  PPUtils.bind("load", window, init);
+  PPUtils.bind("keypress", document, handleKeyEvent);
