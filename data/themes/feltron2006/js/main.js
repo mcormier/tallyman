@@ -1,8 +1,8 @@
 
   var cookieName = "feltron2006";
   var settings = new Object();
-  settings.estimatesOn = false;
-  settings.volumeEstimatesOn = false;
+  settings.liftPanel = ''; 
+
 
   function saveSettings() {
     var str = JSON.stringify(settings);
@@ -13,10 +13,10 @@
     var c = PPUtils.getCookie(cookieName);
     if (c != null) { 
       settings = JSON.parse(c);
-      var estimates = $className('estimates');
-      var volumeEstimates = $className('volumeEstimate');
-      toggleVisibility(estimates, settings.estimatesOn); 
-      toggleVisibility(volumeEstimates, settings.volumeEstimatesOn); 
+      if ( settings.liftPanel != '' ) {
+        var panel = $className(settings.liftPanel);
+        toggleVisibility(panel, true);
+      }
     }
   }
 
@@ -37,7 +37,7 @@
     return false;
   }
 
-  function toggleShortcutDrawer() { return toggleDrawer( 'shortcutsDrawer', '200px'); }
+  function toggleShortcutDrawer() { return toggleDrawer( 'shortcutsDrawer', '250px'); }
   function toggleMacroWorkoutData() { return toggleDrawer('macroHistoryDrawer', '500px'); }
 
   function toggleVisibility(elements, visible) {
@@ -50,32 +50,28 @@
 
   }
 
+  function toggle(clazz) {
 
+    var panel = $className(clazz);
 
-  function toggleEstimateVisibility() {
-    if ( settings.volumeEstimatesOn ) { toggleVolumeVisibility(); }
-
-    var estimates = $className('estimates');
-    settings.estimatesOn = !settings.estimatesOn;
-    toggleVisibility(estimates, settings.estimatesOn); 
-    saveSettings();
+    if (settings.liftPanel == clazz ) {
+      settings.liftPanel = ''; 
+      toggleVisibility(panel, false);
+    } else {
+      // Something else is currntly being displayed.
+      var otherPanel = $className(settings.liftPanel);
+      toggleVisibility(otherPanel, false);
+      settings.liftPanel = clazz; 
+      toggleVisibility(panel, true);
+    }
   }
-
-  function toggleVolumeVisibility() {
-    if ( settings.estimatesOn ) { toggleEstimateVisibility(); }
-
-    var volumeEstimates = $className('volumeEstimate');
-    settings.volumeEstimatesOn = !settings.volumeEstimatesOn;
-    toggleVisibility(volumeEstimates, settings.volumeEstimatesOn); 
-    saveSettings();
-  }
- 
    
   function handleKeyEvent(evt) {
     var keyCode = String.fromCharCode(evt.keyCode); 
-
-    if ( keyCode == 'e' ) { toggleEstimateVisibility(); } 
-    if ( keyCode == 'v' ) { toggleVolumeVisibility(); } 
+    if ( keyCode == 'e' ) { toggle('estimates'); } 
+    if ( keyCode == 'v' ) { toggle('volumeEstimate'); } 
+    if ( keyCode == 's' ) { toggle('oneToTenSpread'); } 
+    saveSettings();
   }
 
   PPUtils.bind("load", window, init);

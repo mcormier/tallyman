@@ -216,7 +216,19 @@ div#lifts div div.liftValue p.value {
   width:150px;
 }
 
-div#lifts div div.liftvalue p.volumeEstimate {
+span.spreadValue {
+  display:block;
+  float:left;
+  height: 20px;
+  width: 79px;
+}
+
+span.spreadValue strong {
+  color:#333;
+}
+
+div#lifts div div.liftvalue p.volumeEstimate, 
+div#lifts div div.liftvalue p.oneToTenSpread {
   font-size:15px;
   opacity: 0;
   position: absolute;

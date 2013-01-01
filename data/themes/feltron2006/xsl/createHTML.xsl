@@ -37,6 +37,10 @@
               <dt>v</dt>
               <dd>Toggle volume recommendations</dd>
             </dl>
+            <dl class="keyboard-mappings">
+              <dt>s</dt>
+              <dd>Toggle 1RM to 10RM spread</dd>
+            </dl>
           </div>
         </div>
       </div>
@@ -138,6 +142,20 @@
       <p class="volumeEstimate">Recommended volume training: 
         <strong>6 sets of 5 reps at 
         <xsl:value-of select="round(onerm * 0.80 div 5) * 5"/></strong> with a 2 minute break in between each set.</p>
+
+      <p class="oneToTenSpread" >
+        <span class="spreadValue"><strong><xsl:value-of select="onerm"/></strong><sup>1</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.95 div 5) * 5"/><sup>2</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.90 div 5) * 5"/><sup>3</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.88 div 5) * 5"/><sup>4</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.86 div 5) * 5"/><sup>5</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.83 div 5) * 5"/><sup>6</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.80 div 5) * 5"/><sup>7</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.78 div 5) * 5"/><sup>8</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.76 div 5) * 5"/><sup>9</sup></span>
+        <span class="spreadValue"><xsl:value-of select="round(onerm * 0.75 div 5) * 5"/><sup>10</sup></span>
+      </p>
+
       </xsl:if>
     </div>
 
