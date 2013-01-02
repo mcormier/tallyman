@@ -30,11 +30,11 @@ begin
   out.puts x.data {
     @outputQueries.each do |queryInfo|
       begin
-        stm = db.prepare queryInfo[0]
+        stm = db.prepare queryInfo[1]
         rs = stm.execute
         row = rs.next
         x.item{
-          x.title queryInfo[1]
+          x.title queryInfo[0]
           x.value row.join "\s"
         }
       ensure
