@@ -18,14 +18,14 @@
 
     <div class="featureRow">
       <div id="shortcutsToggle">
-        <a href="#shortcutsInfo" id="showShortcuts">Keyboard shortcuts available <span class="mega-icon mega-icon-keyboard drawer-toggle"></span></a>
+        <a href="#shortcutsInfo" id="showShortcuts">Keyboard shortcuts <span class="mega-icon mega-icon-keyboard drawer-toggle"></span></a>
       </div>
     </div>
 
     <div id="shortcutsDrawer" class="fullWidthWrapper shadow drawer">
       <div id="shortcutsContent">
         <h2>Keyboard Shortcuts</h2>
-        <div class="divide_line light-line"></div>
+        <div class="divide_line"></div>
         <div class="columns threecols">
           <div class="column first">
             <h3>Lift shortcuts</h3>
@@ -132,18 +132,18 @@
       <p class="vertText">1RM</p>
       <xsl:if test="number(onerm) != 0">
       <!-- Estimate 3RM and 5RM to nearest 5 pounds -->
-      <p class="estimates">
+      <p class="estimates fadeIn">
         <span class="actual"><xsl:value-of select="onerm"/></span> 
         <xsl:copy-of select="$rightArrow"/>
         <xsl:value-of select="round(onerm * 0.9 div 5) * 5"/> 
         <xsl:copy-of select="$rightArrow"/>
         <xsl:value-of select="round(onerm * 0.86 div 5) * 5"/> 
       </p>
-      <p class="volumeEstimate">Recommended volume training: 
+      <p class="volumeEstimate fadeIn">Recommended volume training: 
         <strong>6 sets of 5 reps at 
         <xsl:value-of select="round(onerm * 0.80 div 5) * 5"/></strong> with a 2 minute break in between each set.</p>
 
-      <p class="oneToTenSpread" >
+      <p class="oneToTenSpread fadeIn" >
         <span class="spreadValue"><strong><xsl:value-of select="onerm"/></strong><sup>1</sup></span>
         <span class="spreadValue"><xsl:value-of select="round(onerm * 0.95 div 5) * 5"/><sup>2</sup></span>
         <span class="spreadValue"><xsl:value-of select="round(onerm * 0.90 div 5) * 5"/><sup>3</sup></span>

@@ -1,15 +1,25 @@
 @font-face {
+ font-family:'Octicons_IE';
+ src: url(../fonts/octicons-regular-webfont.eot);
+ src: url('../fonts/octicons-regular-webfont.eot#iefix') format("embedded-opentype"); 
+ font-weight:normal;
+ font-style:normal;
+}
+@font-face {
  font-family:'Octicons Regular';
- src: url('../fonts/octicons-regular-webfont.eot');
- src: url('../fonts/octicons-regular-webfont.eot#iefix') format("embedded-opentype"),
-     url('../fonts/octicons-regular-webfont.woff') format("woff"), 
+ src: url('../fonts/octicons-regular-webfont.woff') format("woff"),  
      url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
      url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
  font-weight:normal;
  font-style:normal;
 }
+
+/*
+ * Tested with IE 9, Chrome 23, Safari 6.0.2 ( OS X), iOs 6 Safari
+ */
+
 .mini-icon:before, .mega-icon:before {
-  font-family:'Octicons Regular';
+  font-family:'Octicons Regular', 'Octicons_IE';
   font-weight:normal;
   font-style:normal;
   display:inline-block;
@@ -97,9 +107,9 @@ a:active, a:link, a:hover, a:visited {
 .drawer { 
   height: 0px;
   overflow: hidden;
-   transition:          height 500ms ease-in-out;
+  transition:          height 500ms ease-in-out;
     -moz-transition:    height 500ms ease-in-out;
-    -ms-transition:     height 500ms ease-in-out;
+    -ms-transition:     height 500ms ease-in-out; /* IE 10 and up. */
     -o-transition:      height 500ms ease-in-out;
     -webkit-transition: height 500ms ease-in-out;
 }
@@ -193,7 +203,7 @@ div#lifts div div.liftValue {
   height: 145px;
 }
 
-div#lifts div div.liftValue p {
+div#lifts div div.liftValue p.vertText {
   margin-top:20px;
   margin-bottom:0px;
   font-size:48px;
@@ -227,8 +237,8 @@ span.spreadValue strong {
   color:#333;
 }
 
-div#lifts div div.liftvalue p.volumeEstimate, 
-div#lifts div div.liftvalue p.oneToTenSpread {
+.volumeEstimate ,
+.oneToTenSpread {
   font-size:15px;
   opacity: 0;
   position: absolute;
@@ -237,20 +247,24 @@ div#lifts div div.liftvalue p.oneToTenSpread {
   width: 790px;
   margin: 0px;
   color: #bbb;
-
-  transition:           opacity 250ms ease-in-out;
-    -moz-transition:    opacity 250ms ease-in-out;
-    -ms-transition:     opacity 250ms ease-in-out;
-    -o-transition:      opacity 250ms ease-in-out;
-    -webkit-transition: opacity 250ms ease-in-out;
-
 }
 
-div#lifts div div.liftvalue p.volumeEstimate strong {
+
+
+.volumeEstimate strong {
   color: #333;
 }
 
-div#lifts div div.liftValue p.estimates {
+.fadeIn {
+  transition:           opacity 250ms ease-in-out;
+    -moz-transition:    opacity 250ms ease-in-out;
+    -ms-transition:     opacity 250ms ease-in-out; /* IE 10 and up. */
+    -o-transition:      opacity 250ms ease-in-out;
+    -webkit-transition: opacity 250ms ease-in-out;
+}
+
+
+.estimates {
   font-size:18px;
   font-family: Georgia, serif;
   float:left;
@@ -258,19 +272,13 @@ div#lifts div div.liftValue p.estimates {
   text-align:center;
   position:relative;
   left:0px;
-  top:-15px;
+  top:-20px;
   width:200px;
   margin-bottom:0px;
   margin-top:0px;
   font-weight:bold;
+  color:#CCC; 
   opacity:0;
-
-  transition:           opacity 250ms ease-in-out;
-    -moz-transition:    opacity 250ms ease-in-out;
-    -ms-transition:     opacity 250ms ease-in-out;
-    -o-transition:      opacity 250ms ease-in-out;
-    -webkit-transition: opacity 250ms ease-in-out;
-
 }
 
 
@@ -281,17 +289,17 @@ div#lifts div div.liftValue p.vertText {
 }
 
 div#lifts div div.liftValue p.estimates span.actual {
-  color:#888; 
+  color:#333; 
   font-size:18px;
   font-family: Helvetica, Arial, sans-serif;
 }
+
 
 div#lifts div div.liftValue p.estimates span.arrow {
   color:#aaa; 
   font-size:18px;
 }
 .vertText {
-  writing-mode:tb-rl;
   -webkit-transform:rotate(90deg);
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
