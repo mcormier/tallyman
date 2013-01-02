@@ -1,5 +1,5 @@
 # An absolute path to the database file is required
-@dbName = '/home/mcormier/sites/tallyman/data/tallyMan2013.db'
+@dbName = '/home/mcormier/Dropbox/TallyMan/tallyMan2013.db'
 
 # Where bin/backupData will copy a backup file
 @backupDir = '/home/mcormier/Dropbox/backups/tallyman'
@@ -16,10 +16,12 @@
 # is used to generate the HTML with XSL
 @xmlDataFile= "../data/data.xml"
 
-@outputQueries= [ [ "SELECT COUNT(*) FROM books", "Books Read" ], 
-                  [ "SELECT SUM(pages) FROM books", "Total Pages Read" ], 
-                  [ "SELECT COUNT(*) FROM music", "Albums Purchased" ], 
-                  [ "SELECT COUNT(*) FROM countTable WHERE event='Ripped Skin'", "Skin Rips" ] ]
+@outputQueries= [ 
+  [ "SELECT COUNT(*) FROM books", "Books Read" ], 
+  [ "SELECT SUM(pages) FROM books", "Total Pages Read" ], 
+  [ "SELECT COUNT(*) FROM music", "Albums Purchased" ], 
+  [ "SELECT COUNT(*) FROM countTable WHERE event='Ripped Skin'", "Skin Rips" ] 
+]
 
 @liftQuery = "SELECT MAX(weight) FROM lifts WHERE name=? and reps=? "
 

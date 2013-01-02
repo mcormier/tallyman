@@ -36,9 +36,12 @@ begin
 
   liftTypeMenu.setGlobalAction(addLiftAction)
 
-  bookAction = InsertSQLDataAction.new( [GetStringAction.new("Book name: "), 
-                                   GetIntegerAction.new("Number of pages: ") ], 
-                "INSERT into books(name, pages) values ('%s', %s)", db )
+  bookAction = InsertSQLDataAction.new( [GetStringAction.new("Book title: "), 
+                                   GetStringAction.new("Author: "),
+                                   GetIntegerAction.new("Number of pages: "),
+                                   GetBooleanAction.new("Digital? "),
+                                   ], 
+    "INSERT into books(title, author, pages, digital) values ('%s', '%s', %s, %s)", db )
 
 
   liftsAction = ShowMenuAction.new(liftsMenu)  
