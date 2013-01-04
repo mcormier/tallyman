@@ -36,20 +36,22 @@ begin
 
   liftTypeMenu.setGlobalAction(addLiftAction)
 
-  bookAction = InsertSQLDataAction.new( [GetStringAction.new("Book title: "), 
-                                   GetStringAction.new("Author: "),
-                                   GetIntegerAction.new("Number of pages: "),
-                                   GetBooleanAction.new("Digital? "),
-                                   ], 
-    "INSERT into books(title, author, pages, digital) values ('%s', '%s', %s, %s)", db )
+  bookAction = InsertSQLDataAction.new( 
+                 [GetStringAction.new("Book title: "), 
+                  GetStringAction.new("Author: "),
+                  GetIntegerAction.new("Number of pages: "),
+                  GetBooleanAction.new("Digital? "), ], 
+    "INSERT into books(title, author, pages, digital)" +
+    " values ('%s', '%s', %s, %s)", db )
+
 
   musicAction = InsertSQLDataAction.new( 
-                  [GetEnumeratedStringAction.new("Media Type? ", ["CD", "Vinyl", "MP3"] ), 
+                  [GetEnumeratedStringAction.new("Media Type? ", 
+                                                 ["CD", "Vinyl", "MP3"] ), 
                    GetStringAction.new("Artist: "),
                    GetStringAction.new("Album Title: "),
                    GetIntegerAction.new("Price: "),
-                   GetBooleanAction.new("Used? "),
-                  ], 
+                   GetBooleanAction.new("Used? "), ], 
     "INSERT into music(media, artist, albumTitle, price, used)" +
     " values ('%s', '%s', '%s', %s, %s)", db )
 
