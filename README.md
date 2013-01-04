@@ -3,7 +3,7 @@ Tallyman
 ========
 ---
 
-Tallyman gathers data and generates a static website. It was built to generate [stats.preenandprune.com](http://stats.preenandprune.com) but it can be easily customized to generate your own page of [statistics porn](http://chartporn.com).
+Tallyman gathers data and generates a static website. It was built to generate [stats.preenandprune.com](http://stats.preenandprune.com) but it can be easily customized to generate your own page of [statistics porn](http://chartporn.org).
 
 ![Website example] (http://mcormier.github.com/tallyman/images/previewSmall.png )
 
@@ -103,9 +103,3 @@ An alternative to setting up your own tallyman is to use [Daytum](http://daytum.
 --------------------------------------------------------------------
 Come, Mister tally man, tally me banana
 
-
-#
-# Sets up proper viewing for markdown in vim
-# vim: set wrap:
-# vim: set columns=75:
-#
