@@ -90,7 +90,7 @@ Configuration
 1. Copy *config/config.properties.example* to *config.properties*
 2. Modify the filenames in the configuration file as appropriate
 3. Create your SQLite database with *bin/createDatabase*
-4. Examine the themes under *data/themes* and copy the resources to your website directory
+4. Examine the themes under *data/themes* and copy the resources to your website root manually or with *bin/installTheme* 
 5. Run *bin/tallyman* 
 
 
