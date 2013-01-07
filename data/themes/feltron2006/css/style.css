@@ -18,6 +18,7 @@
  * Tested with IE 9, Chrome 23, Safari 6.0.2 ( OS X), iOs 6 Safari
  */
 
+/* @group Octicon Font Stuff */
 .mini-icon:before, .mega-icon:before {
   font-family:'Octicons Regular', 'Octicons_IE';
   font-weight:normal;
@@ -53,20 +54,22 @@
 .mini-icon-arr-left:before{content:"\f040"}
 .mega-icon-arr-left:before{content:"\f240"}
 
-/* end of font stuff */
+/* @end */
 
-body, ul, div {}
+/* @group Global definitions */
 
-body { 
-  margin-left: 0px; }
-
-
+body { margin-left: 0px; }
 
 ul { 
   list-style-type:none; 
   -webkit-padding-start: 40px;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
+}
+
+h3 {
+  font-size: 14px;
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
 }
 
 a {
@@ -82,105 +85,95 @@ a:active, a:link, a:hover, a:visited {
   background-color:#dedede;
 }
 
-.shadow { box-shadow: inset 0 0 10px #000; }
+/* @end */
 
-.fullWidthWrapper {
-  width: 100%;
-  background: #b7b7b7;
-  padding-left: 40px;
+/* @group Main Sections */
+
+#macro, #shortcuts             { position: relative; margin: 0 auto; }
+  .featureRow                  { padding-left: 70px; height:40px; }
+  .shadow { box-shadow: inset 0 0 10px #000; }
+  .fullWidthWrapper { width:100%;background:#b7b7b7;padding-left:40px; }
+  .drawer { 
+    height: 0px;
+    overflow: hidden;
+    transition:           height 500ms ease-in-out;
+      -moz-transition:    height 500ms ease-in-out;
+      -ms-transition:     height 500ms ease-in-out; /* IE 10 and up. */
+      -o-transition:      height 500ms ease-in-out;
+      -webkit-transition: height 500ms ease-in-out;
+  }
+
+div.wrapper { margin: 0 auto; width: 850px; }
+  div#left_col { float: left; }
+  div#right_col { float: left; clear: right; }
+
+  div#lifts { float:left;width:790px;margin:0, auto;
+              padding-left:70px; padding-top:10px; }
+
+
+/* TODO -- change this to a class instead of 2 ID's */
+#macroShowDiv , #shortcutsToggle { margin: 0 auto; width: 790px; }
+#macroShow , #showShortcuts {width: 400px;height:30px;padding-left:0px;
+  display:block; background-color:transparent; }
+
+div.clear { clear: left; }
+
+/* @end */
+
+/* @group Keyboard Shortcuts */
+
+#shortcutsContent {margin: 0 auto;padding-top:20px;height:0px;width:790px;}
+
+dl.keyboard-mappings dt {
+  display: inline-block;
+  margin: 0;
+  padding: 3px 6px;
+  min-width:10px;
+  text-align: center;
+  font-family: Monaco, "Liberation Mono", Courier, monospace;
+  background: #333;
+  color: #EEE;
+  border-radius: 2px;
+  text-shadow: 1px 1px 0 #000;
 }
 
-.featureRow {
-  padding-left: 70px;
-  height:40px;
+dl.keyboard-mappings dd {
+  display: inline;
+  margin: 0 0 0 5px;
+  color: #666;
 }
 
-
-#shortcutsDrawer { }
-#shortcutsContent {
-  margin: 0 auto;
-  padding-top:20px;
-  height: 0px;
-  width: 790px;
+#shortcutsContent h2 {
+  font-family: Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 16px;
+  margin: 0 0 0px -10px;
+  padding: 0 10px 10px 10px;
 }
 
-.drawer { 
-  height: 0px;
-  overflow: hidden;
-  transition:          height 500ms ease-in-out;
-    -moz-transition:    height 500ms ease-in-out;
-    -ms-transition:     height 500ms ease-in-out; /* IE 10 and up. */
-    -o-transition:      height 500ms ease-in-out;
-    -webkit-transition: height 500ms ease-in-out;
-}
+#showShortcuts { text-align: right; vertical-align: right; width: 790px; }
 
-#macroHistoryContent {
-  margin: 0 auto;
-  padding-top:0px;
-  height:500px;
-  /* Don't use background: since it's not supported by Firefox. */
+/* @end */
+
+
+/* @group Macro Contents */
+
+
+#macroHistoryContent { margin: 0 auto; padding-top:0px; height:500px;
   background-image: url('../images/monthlyTrainingData.jpg'); 
   background-repeat: no-repeat;
   background-position: 0 20px;
   width: 790px;
 }
 
-#macroShowDiv , #shortcutsToggle {
-  margin: 0 auto;
-  width: 790px;
-}
+/* @end */
 
 
-#macroShow , #showShortcuts {
-  width: 400px;
-  height: 30px;
-  padding-left:0px;
-  display:block;
-  background-color:transparent;
-}
 
-#showShortcuts {
-  text-align: right;
-  vertical-align: right;
-  width: 790px;
-}
-
-#macro, #shortcuts  {
- position: relative;
- margin: 0 auto;
-}
-
-.drawer-toggle {
-  color:#999;
-  margin-top: 0px;
-  vertical-align: middle;
-}
-
-div#lifts {
- float:left;
- width: 790px;
- margin: 0, auto;
- padding-left: 70px;
- padding-top:10px;
-}
-
-div.clear {
-  clear: left;
-}
-
-div#lifts div {
-}
+.drawer-toggle { color:#999; margin-top: 0px; vertical-align: middle; }
 
 div#lifts div div:nth-child(3), 
 div#lifts div div:nth-child(4), 
-div#lifts div div:nth-child(5) {
-  width:263px;
-  float:left;
-}
-
-
-div#lifts div div.divide_line {
-}
+div#lifts div div:nth-child(5) { width:263px; float:left; }
 
 div#lifts div div.liftName {
   clear: left;
@@ -233,9 +226,7 @@ span.spreadValue {
   width: 79px;
 }
 
-span.spreadValue strong {
-  color:#333;
-}
+span.spreadValue strong { color:#333; }
 
 .volumeEstimate ,
 .oneToTenSpread {
@@ -249,11 +240,7 @@ span.spreadValue strong {
   color: #bbb;
 }
 
-
-
-.volumeEstimate strong {
-  color: #333;
-}
+.volumeEstimate strong { color: #333; }
 
 .fadeIn {
   transition:           opacity 250ms ease-in-out;
@@ -262,7 +249,6 @@ span.spreadValue strong {
     -o-transition:      opacity 250ms ease-in-out;
     -webkit-transition: opacity 250ms ease-in-out;
 }
-
 
 .estimates {
   font-size:18px;
@@ -281,7 +267,6 @@ span.spreadValue strong {
   opacity:0;
 }
 
-
 div#lifts div div.liftValue p.vertText {
   position:relative;
   top:10px;
@@ -299,13 +284,13 @@ div#lifts div div.liftValue p.estimates span.arrow {
   color:#aaa; 
   font-size:18px;
 }
+
 .vertText {
   -webkit-transform:rotate(90deg);
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   -o-transform: rotate(90deg);
   transform: rotate(90deg);
-
 
   -webkit-transform-origin: 50% 50%;
   -moz-transform-origin: 50% 50%;
@@ -314,52 +299,6 @@ div#lifts div div.liftValue p.estimates span.arrow {
   transform-origin: 50% 50%;
 
 }
-
-div#lifts table tr td {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 30px;
-  font-weight: bold;
-  color: #333;
-}
-
-div#lifts table tr:nth-child(odd) {
-  background-color: #dedede;
-}
-
-div#lifts table tr td {
-  text-align: center;
-}
-
-div#lifts table tr td:nth-child(1) {
-  font-size: 20px;
-  color: #333;
-  text-align: right;
-  padding-right:10px;
-  font-family: Georgia, serif;
-}
-
-div#lifts table {
-}
-
-div#lifts table th {
-  background-color: #A1A1A1;
-  color: #FFF;
-}
-
-div#left_col {
-  float: left;
-}
-
-div#right_col {
-  float: left;
-  clear: right;
-}
-
-div.wrapper {
-  margin: 0 auto;
-  width: 850px;
-}
-
 
 div.top, div.bottom, div.center {
   width:374px;
@@ -413,38 +352,7 @@ div.value span {
   padding: 1px;
 }
 
-/* styles for the shortcuts drawer */
 
-dl.keyboard-mappings dt {
-  display: inline-block;
-  margin: 0;
-  padding: 3px 6px;
-  min-width:10px;
-  text-align: center;
-  font-family: Monaco, "Liberation Mono", Courier, monospace;
-  background: #333;
-  color: #EEE;
-  border-radius: 2px;
-  text-shadow: 1px 1px 0 #000;
-}
-
-dl.keyboard-mappings dd {
-  display: inline;
-  margin: 0 0 0 5px;
-  color: #666;
-}
-
-#shortcutsContent h2 {
-  font-family: Helvetica, arial, freesans, clean, sans-serif;
-  font-size: 16px;
-  margin: 0 0 0px -10px;
-  padding: 0 10px 10px 10px;
-}
-
-h3 {
-  font-size: 14px;
-  font-family: Helvetica, arial, freesans, clean, sans-serif;
-}
 
 .light-line {
   border-bottom-color: #ddd;
@@ -479,3 +387,8 @@ only screen
   }
 }
 
+/*
+ vim: set foldmethod=marker:
+ vim: set foldmarker=@group,@end:
+ vim: set nofoldenable:
+*/
