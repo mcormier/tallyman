@@ -1,7 +1,6 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:output method="html" indent="yes"/>
-
 <xsl:template match="data">
 
   <html>
@@ -18,14 +17,14 @@
 
     <div class="featureRow">
       <div id="shortcutsToggle">
-        <a href="#shortcutsInfo" id="showShortcuts">Keyboard shortcuts <span class="mega-icon mega-icon-keyboard drawer-toggle"></span></a>
+        <a href="#shortcutsInfo" id="showShortcuts">Keyboard Shortcuts <span class="mega-icon mega-icon-keyboard"></span></a>
       </div>
     </div>
 
     <div id="shortcutsDrawer" class="fullWidthWrapper shadow drawer">
       <div id="shortcutsContent">
         <h2>Keyboard Shortcuts</h2>
-        <div class="divide_line"></div>
+        <div class="divide-line"></div>
         <div class="columns threecols">
           <div class="column first">
             <h3>Lift shortcuts</h3>
@@ -90,7 +89,7 @@
   <div class="featureRow">
   <div id="macroShowDiv">
     <a href="#macroInfo" id="macroShow">
-       <span class="mega-icon mega-icon-history lift-shortcuts"></span> Annual Workout  Data ...</a>
+       <span class="mega-icon mega-icon-history"></span> Annual Workout Data ...</a>
   </div>
   </div>
 
@@ -123,17 +122,17 @@
   <xsl:variable name="rightArrow"><span class="mega-icon mega-icon-arr-right"></span></xsl:variable>
 
   <xsl:for-each select="lift">
-  <div>
-    <div class="divide_line"></div>
+  <div class="1RM3RM5RM">
+    <div class="divide-line"></div>
     <div class="liftName"><xsl:value-of select="name"/> </div>
 
-    <div class="liftValue">
+    <div class="liftValue 1RM">
       <p class="value"><xsl:value-of select="onerm"/></p>
       <p class="vertText">1RM</p>
       <xsl:if test="number(onerm) != 0">
       <!-- Estimate 3RM and 5RM to nearest 5 pounds -->
       <p class="estimates fadeIn">
-        <span class="actual"><xsl:value-of select="onerm"/></span> 
+        <span class="actual"><strong><xsl:value-of select="onerm"/></strong></span> 
         <xsl:copy-of select="$rightArrow"/>
         <xsl:value-of select="round(onerm * 0.9 div 5) * 5"/> 
         <xsl:copy-of select="$rightArrow"/>
@@ -159,37 +158,35 @@
       </xsl:if>
     </div>
 
-    <div class="liftValue">
+    <div class="liftValue 3RM">
       <p class="value"><xsl:value-of select="threerm"/></p>
       <p class="vertText">3RM</p>
       <xsl:if test="number(threerm) != 0">
-              <p class="estimates">
+              <p class="estimates fadeIn">
                 <!-- Estimate 1RM and 5RM to nearest 5 pounds -->
                 <xsl:value-of select="round(threerm div 0.9 div 5) * 5"/> 
                 <xsl:copy-of select="$leftArrow"/>
-                <span class="actual">
-                  <xsl:value-of select="threerm"/>
-                </span> 
+                <span class="actual"><strong><xsl:value-of select="threerm"/></strong></span> 
                 <xsl:copy-of select="$rightArrow"/>
                 <xsl:value-of select="round(threerm div 0.9 * 0.86 div 5) * 5"/> 
               </p>
             </xsl:if>
           </div>
-          <div class="liftValue">
+          <div class="liftValue 5RM">
             <p class="value">
               <xsl:value-of select="fiverm"/>
             </p>
             <p class="vertText">5RM</p>
 
             <xsl:if test="number(fiverm) != 0">
-              <p class="estimates">
+              <p class="estimates fadeIn">
                 <!-- Estimate 1RM and 3RM to nearest 5 pounds -->
                 <xsl:value-of select="round(fiverm div 0.86 div 5) * 5"/>
                 <xsl:copy-of select="$leftArrow"/>
                 <xsl:value-of select="round(fiverm div 0.86 * 0.9 div 5) * 5"/>
                 <xsl:copy-of select="$leftArrow"/>
                 <span class="actual">
-                  <xsl:value-of select="fiverm"/>
+                  <strong><xsl:value-of select="fiverm"/></strong>
                 </span>
               </p>
             </xsl:if>
@@ -207,7 +204,7 @@
  </xsl:template>
 
  <xsl:template match="title">
-   <div class="divide_line"></div>
+   <div class="divide-line"></div>
    <h2><span><xsl:apply-templates/></span></h2>
  </xsl:template>
 

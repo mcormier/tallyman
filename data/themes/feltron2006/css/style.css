@@ -8,37 +8,29 @@
 @font-face {
  font-family:'Octicons Regular';
  src: url('../fonts/octicons-regular-webfont.woff') format("woff"),  
-     url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
-     url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
+      url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
+      url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
  font-weight:normal;
  font-style:normal;
 }
 
 /*
- * Tested with IE 9, Chrome 23, Safari 6.0.2 ( OS X), iOs 6 Safari
+ * Tested with IE 9, Chrome 23, Safari 6.0.2(OS X), iOs 6 Safari
  */
 
 /* @group Octicon Font Stuff */
 .mini-icon:before, .mega-icon:before {
-  font-family:'Octicons Regular', 'Octicons_IE';
-  font-weight:normal;
-  font-style:normal;
+  font-family:normal normal 'Octicons Regular', 'Octicons_IE';
   display:inline-block;
   line-height:1;
   -webkit-font-smoothing:antialiased;
   text-decoration:none;
   font-size:16px;
-  width:16px;
-  height:16px
+  width:16px; height:16px
 }
 
-.mega-icon { 
-  vertical-align:middle; 
-  font-size:32px;
-  width:32px;
-  height:32px; 
-}
-.mega-icon:before { font-size:32px;width:32px;height:32px; }
+.mega-icon:before {font-size:32px;width:32px;height:32px;}
+.mega-icon {vertical-align:middle;font-size:32px;}
 
 /* Only define the icons begin used. 
  * https://github.com/styleguide/css/7.0
@@ -47,72 +39,57 @@
 .mega-icon-keyboard:before{content:"\f20d"}
 .mini-icon-history:before{content:"\f07e"}
 .mega-icon-history:before{content:"\f27e"}
-
 .mini-icon-arr-right:before{content:"\f03e"}
 .mega-icon-arr-right:before{content:"\f23e"}
-
 .mini-icon-arr-left:before{content:"\f040"}
 .mega-icon-arr-left:before{content:"\f240"}
-
 /* @end */
 
 /* @group Global definitions */
-
-body { margin-left: 0px; }
+body {margin-left:0px; font:11px Georgia, serif; color:#000;
+      text-transform:uppercase; letter-spacing:1px;}
+div {display:block;}
 
 ul { 
   list-style-type:none; 
-  -webkit-padding-start: 40px;
+  -webkit-padding-start: 0px;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
 }
 
-h3 {
-  font-size: 14px;
-  font-family: Helvetica, arial, freesans, clean, sans-serif;
-}
+h2, h3 {text-transform: uppercase;}
+h3 {font-size:14px;}
 
 a {
- text-decoration: none;
- color:#999 !important;;
- font-size: 14px;
+ text-decoration:none;
+ color:#999; font-size:14px;
+ text-transform:none;
+}
+a:hover {text-decoration:underline;}
+
+strong {color:#333;} 
+
+.divide-line {
+  border-top:1px solid #808080;
+  border-bottom:1px solid #B0B0B0;
+  margin-bottom:0px; padding: 1px;
 }
 
-a:hover {
- text-decoration: underline;
-}
-a:active, a:link, a:hover, a:visited {
-  background-color:#dedede;
-}
-
+.value {font:112px Helvetica, Arial, sans-serif; font-weight:bold;}
 /* @end */
 
 /* @group Main Sections */
 
-#macro, #shortcuts             { position: relative; margin: 0 auto; }
-  .featureRow                  { padding-left: 70px; height:40px; }
-  .shadow { box-shadow: inset 0 0 10px #000; }
-  .fullWidthWrapper { width:100%;background:#b7b7b7;padding-left:40px; }
-  .drawer { 
-    height: 0px;
-    overflow: hidden;
-    transition:           height 500ms ease-in-out;
-      -moz-transition:    height 500ms ease-in-out;
-      -ms-transition:     height 500ms ease-in-out; /* IE 10 and up. */
-      -o-transition:      height 500ms ease-in-out;
-      -webkit-transition: height 500ms ease-in-out;
-  }
+#macro, #shortcuts {position:relative; margin:0 auto;}
+  .featureRow {height:40px;}
+  .shadow {box-shadow:inset 0 0 10px #000;}
+  .fullWidthWrapper {width:100%;background:#b7b7b7;padding-left:40px;}
 
-div.wrapper { margin: 0 auto; width: 850px; }
-  div#left_col { float: left; }
-  div#right_col { float: left; clear: right; }
+div.wrapper {margin:0 auto; width:850px; padding:10px 0px 0px 60px;}
+  div.wrapper > div {float:left;}
+  div#right_col {clear:right;}
 
-  div#lifts { float:left;width:790px;margin:0, auto;
-              padding-left:70px; padding-top:10px; }
-
-
-/* TODO -- change this to a class instead of 2 ID's */
-#macroShowDiv , #shortcutsToggle { margin: 0 auto; width: 790px; }
+#macroShowDiv, #shortcutsToggle {margin:0 auto; width:790px;}
 #macroShow , #showShortcuts {width: 400px;height:30px;padding-left:0px;
   display:block; background-color:transparent; }
 
@@ -123,6 +100,7 @@ div.clear { clear: left; }
 /* @group Keyboard Shortcuts */
 
 #shortcutsContent {margin: 0 auto;padding-top:20px;height:0px;width:790px;}
+#shortcutsContent div {text-transform: none; letter-spacing:0px;}
 
 dl.keyboard-mappings dt {
   display: inline-block;
@@ -130,30 +108,25 @@ dl.keyboard-mappings dt {
   padding: 3px 6px;
   min-width:10px;
   text-align: center;
-  font-family: Monaco, "Liberation Mono", Courier, monospace;
-  background: #333;
-  color: #EEE;
+  font: 18px Monaco, "Liberation Mono", Courier, monospace;
+  background: #333; color: #EEE;
   border-radius: 2px;
   text-shadow: 1px 1px 0 #000;
 }
 
 dl.keyboard-mappings dd {
+  font-size: 14px;
+  text-shadow: 1px 1px 0 #FFF;
   display: inline;
   margin: 0 0 0 5px;
-  color: #666;
 }
 
-#shortcutsContent h2 {
-  font-family: Helvetica, arial, freesans, clean, sans-serif;
-  font-size: 16px;
-  margin: 0 0 0px -10px;
-  padding: 0 10px 10px 10px;
-}
+#shortcutsContent h2 { font-size: 16px; margin: 0 0 0px -10px;
+  padding: 0 10px 10px; }
 
-#showShortcuts { text-align: right; vertical-align: right; width: 790px; }
+#showShortcuts {text-align:right; vertical-align:right; width:100%;}
 
 /* @end */
-
 
 /* @group Macro Contents */
 
@@ -167,80 +140,17 @@ dl.keyboard-mappings dd {
 
 /* @end */
 
+/* @group HTML 5 Transform/Transition classes */
 
-
-.drawer-toggle { color:#999; margin-top: 0px; vertical-align: middle; }
-
-div#lifts div div:nth-child(3), 
-div#lifts div div:nth-child(4), 
-div#lifts div div:nth-child(5) { width:263px; float:left; }
-
-div#lifts div div.liftName {
-  clear: left;
-  text-transform: uppercase;
-  font-size:11px;
-  line-height: 1.4em;
-  font-family: Georgia, serif;
-  font-weight: bold;
-  margin-top: 10px;
-  letter-spacing: 1px;
+.drawer { 
+  height: 0px;
+  overflow: hidden;
+  transition:           height 500ms ease-in-out;
+    -moz-transition:    height 500ms ease-in-out;
+    -ms-transition:     height 500ms ease-in-out; /* IE 10 and up. */
+    -o-transition:      height 500ms ease-in-out;
+    -webkit-transition: height 500ms ease-in-out;
 }
-
-
-div#lifts div div.liftValue {
-  position: relative;
-  font-size:112px;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: bold;
-  text-align: center;
-  height: 145px;
-}
-
-div#lifts div div.liftValue p.vertText {
-  margin-top:20px;
-  margin-bottom:0px;
-  font-size:48px;
-  width: 100px;
-  float:right;
-  color: #dedede;
-  text-align:left;
-  z-index:10;
-  position: relative;
-}
-
-div#lifts div div.liftValue p.value {
-  margin: 0px;
-  padding: 0px; 
-  font-size:112px;
-  float:left;
-  color: #000;
-  text-align:center;
-  z-index:9;
-  width:150px;
-}
-
-span.spreadValue {
-  display:block;
-  float:left;
-  height: 20px;
-  width: 79px;
-}
-
-span.spreadValue strong { color:#333; }
-
-.volumeEstimate ,
-.oneToTenSpread {
-  font-size:15px;
-  opacity: 0;
-  position: absolute;
-  bottom: 10px;
-  left: 0px;
-  width: 790px;
-  margin: 0px;
-  color: #bbb;
-}
-
-.volumeEstimate strong { color: #333; }
 
 .fadeIn {
   transition:           opacity 250ms ease-in-out;
@@ -250,116 +160,78 @@ span.spreadValue strong { color:#333; }
     -webkit-transition: opacity 250ms ease-in-out;
 }
 
-.estimates {
-  font-size:18px;
-  font-family: Georgia, serif;
-  float:left;
-  z-index:10; 
-  text-align:center;
-  position:relative;
-  left:0px;
-  top:-20px;
-  width:200px;
-  margin-bottom:0px;
-  margin-top:0px;
-  font-weight:bold;
-  color:#CCC; 
-  opacity:0;
-}
-
-div#lifts div div.liftValue p.vertText {
-  position:relative;
-  top:10px;
-  right:0px;
-}
-
-div#lifts div div.liftValue p.estimates span.actual {
-  color:#333; 
-  font-size:18px;
-  font-family: Helvetica, Arial, sans-serif;
-}
-
-
-div#lifts div div.liftValue p.estimates span.arrow {
-  color:#aaa; 
-  font-size:18px;
-}
-
 .vertText {
-  -webkit-transform:rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
+  transform:           rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform:    rotate(90deg);
+    -ms-transform:     rotate(90deg);
+    -o-transform:      rotate(90deg);
+  transform-origin:           50% 50%;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin:    50% 50%;
+    -ms-transform-origin:     50% 50%;
+    -o-transform-origin:      50% 50%;
+}
+/* @end */
 
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
+/* @group Lifts Content */
+div.liftName { font-weight:bold; margin-top: 10px;}
 
+div.liftValue {
+  position:relative;
+  height:145px; width:263px; 
+  float:left; 
 }
 
-div.top, div.bottom, div.center {
-  width:374px;
-  -webkit-background-clip: border-box;
-  -webkit-background-origin: padding-box;
-  -webkit-background-size: auto;
-  background-attachment: scroll;
-  background-clip: border-box;
-  background-color: transparent;
-  background-origin: padding-box;
-  background-size: auto;
-  display: block;
-  letter-spacing: 1px;
+  div.liftValue p {margin:0px; color:#CCC; 
+                   position:absolute; font-weight:bold;
+                   font-family: Helvetica, Arial, sans-serif; }
+  div.liftValue p.vertText {
+    font-size:48px;
+    float:right;
+    text-align:left;
+    top:30px; right:0px;
+  }
 
-  margin: 0px;
-  padding: 10px 24px 0px 24px;
-}
+  div.liftValue p.value {
+    padding:0px; 
+    float:left;
+    width:150px;
+    color:#000;
+  }
+  
+  div.liftValue p.fadeIn { opacity:0; } 
 
-div.top, div.bottom { padding: 0px; }
+  div.liftValue p.volumeEstimate, 
+  div.liftValue p.oneToTenSpread {
+    font-size:15px;
+    bottom:10px;
+    width:790px;
+    text-transform: none; 
+  }
+  div.liftValue p.oneToTenSpread span.spreadValue { 
+    display:block; 
+    float:left; height:20px; width:79px; }
 
-div.bottom { }
+  div.liftValue p.estimates {font-size:18px; left:20px; bottom:0px;}
+/* @end */
 
-div.big_display {
-  text-transform: uppercase;
-  height:200px;
-  width:374px;
-}
+/* @group Single Value Data */
 
-div.center { }
+div#right_col ul li div.big_display div.center {margin:0px 50px 0px 50px;}
 
-div.center h2 {
-  font-size:11px;
-  line-height: 1.4em;
-  font-family: Georgia, serif;
-  color: #333;
-  margin-top: 5px;
-}
+div.big_display {text-transform: uppercase; height:200px; width:374px;}
 
-div.value span {
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 112px;
-  font-weight: bold;
-  color: #000;
-}
+  div.center {width:100%;}
 
+  div.center h2 {
+    font-size:11px; line-height:1.4em; color:#333; margin-top:5px; 
+  }
 
-.divide_line {
-  border-top: 1px solid gray;
-  border-bottom: 1px solid gray;
-  margin-bottom: 0px;
-  padding: 1px;
-}
+  div.center div.value span {font-weight:bold;}
+/* @end */
 
-
-
-.light-line {
-  border-bottom-color: #ddd;
-  border-top-color: #ddd;
-}
-
-
+/* @group device specific styles */
 
 /* The box shadow on the iPad is not cleared during
  * the drawer animation.  This is an iOS bug so
@@ -387,8 +259,9 @@ only screen
   }
 }
 
-/*
- vim: set foldmethod=marker:
- vim: set foldmarker=@group,@end:
- vim: set nofoldenable:
-*/
+/* @end */
+
+/* vim: set foldmethod=marker:
+ * vim: set foldmarker=@group,@end:
+ * vim: set foldlevel=1:
+ * vim: set nofoldenable: */
