@@ -6,18 +6,10 @@
 <xsl:template match="/">
   <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html></xsl:text>
   <html>
-
-    <head>
-      <title>-</title>
-      <Link rel="stylesheet" type="text/css" href="css/style.css"></Link>
-      <script src="js/PPUtils.js" type="text/javascript"></script>
-      <script src="js/main.js" type="text/javascript"></script>
-    </head>
-
+    <xsl:copy-of select="document('head.xml')/." />
     <body>
       <xsl:apply-templates/>
     </body>
-
   </html>
 </xsl:template>
 
