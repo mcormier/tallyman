@@ -14,109 +14,56 @@
 </xsl:template>
 
 <xsl:template match="data">
-  <div id="shortcuts">
-    <div class="featureRow">
-      <div id="shortcutsToggle">
-        <a href="#shortcutsInfo" id="showShortcuts">Keyboard Shortcuts <span class="mega-icon mega-icon-keyboard"></span></a>
-      </div>
-    </div>
 
-    <div id="shortcutsDrawer" class="fullWidthWrapper shadow drawer">
-      <div id="shortcutsContent">
-        <h2>Keyboard Shortcuts</h2>
-        <div class="divide-line"></div>
-        <div class="columns threecols">
-          <div class="column first">
-            <h3>Lift shortcuts</h3>
-            <dl class="keyboard-mappings">
-              <dt>e</dt>
-              <dd>Toggle estimates</dd>
-            </dl>
-            <dl class="keyboard-mappings">
-              <dt>v</dt>
-              <dd>Toggle volume recommendations</dd>
-            </dl>
-            <dl class="keyboard-mappings">
-              <dt>s</dt>
-              <dd>Toggle 1RM to 10RM spread</dd>
-            </dl>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div> <!-- end shortcuts -->
+  <xsl:copy-of select="document('shortcuts.xml')/." />
 
   <div class="wrapper assortedData">
 
      <div id="left_col">
        <ul id="left_data">
-
-     <!-- Odd item entries go in left column -->
-
-     <xsl:for-each select="item[position() mod 2 = 1] ">
-       <li class="display">
-         <div class="big_display">
-           <div class="center">
-             <xsl:apply-templates/>
+         <!-- Odd item entries go in left column -->
+         <xsl:for-each select="item[position() mod 2 = 1] ">
+         <li class="display">
+           <div class="big_display">
+             <div class="center"><xsl:apply-templates/></div>
            </div>
-         </div>
-       </li>
-     </xsl:for-each>
-     </ul></div>
+         </li>
+         </xsl:for-each>
+       </ul>
+     </div>
+
+
 
      <div id="right_col">
        <ul id="right_data">
-
-     <!-- Even item entries go in right column -->
-
-     <xsl:for-each select="item[position() mod 2 = 0] ">
-       <li class="display">
-         <div class="big_display">
-           <div class="center">
-             <xsl:apply-templates/>
+         <!-- Even item entries go in right column -->
+         <xsl:for-each select="item[position() mod 2 = 0] ">
+         <li class="display">
+           <div class="big_display">
+             <div class="center"><xsl:apply-templates/></div>
            </div>
-         </div>
-       </li>
-     </xsl:for-each>
-     </ul></div>
+         </li>
+         </xsl:for-each>
+       </ul>
+    </div>
 
-    </div> <!-- end wrapper -->
-    <div class="clear"></div>
+  </div> <!-- end wrapper -->
+  
+  <div class="clear"></div>
 
-<div id="macro">
+  <xsl:copy-of select="document('macroData.xml')/." />
 
-  <div class="featureRow">
-  <div id="macroShowDiv">
-    <a href="#macroInfo" id="macroShow">
-       <span class="mega-icon mega-icon-history"></span> Annual Workout Data ...</a>
+  <div class="wrapper liftData">
+     <div id="lifts" ><xsl:apply-templates select="lifts"/></div>
   </div>
-  </div>
-
-  <div id="macroHistoryDrawer" class="fullWidthWrapper shadow drawer">
-   <div id="macroHistoryContent">
-     <img src="images/monthlyTrainingData.jpg" />
-   </div>
-  </div>
-</div>
-
-
-<div class="wrapper liftData">
-     <!-- name, onerm, threerm, fiverm -->
-
-     <div id="lifts" >
-        <xsl:apply-templates select="lifts"/>
-     </div>
-
-</div>
 
 <div class="clear"></div>
 </xsl:template>
 
 <xsl:template match="lifts">
 
-  <xsl:variable name="leftArrow"><span class="mega-icon mega-icon-arr-left"></span></xsl:variable>
-  <xsl:variable name="rightArrow"><span class="mega-icon mega-icon-arr-right"></span></xsl:variable>
+  <xsl:variable name="leftArrow"><span class="mega-icon mega-icon-arr-left"/></xsl:variable>
+  <xsl:variable name="rightArrow"><span class="mega-icon mega-icon-arr-right"></xsl:variable>
 
   <xsl:for-each select="lift">
   <div class="1RM3RM5RM">

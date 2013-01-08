@@ -1,0 +1,30 @@
+<div id="shortcuts">
+
+  <div class="featureRow">
+    <div id="shortcutsToggle">
+      <a href="#shortcutsInfo" id="showShortcuts">Keyboard Shortcuts <span class="mega-icon mega-icon-keyboard"/></a>
+    </div>
+  </div>
+
+  <div id="shortcutsDrawer" class="fullWidthWrapper shadow drawer">
+    <div id="shortcutsContent">
+      <h2>Keyboard Shortcuts</h2>
+      <div class="divide-line"></div>
+      <div class="columns threecols">
+        <div class="column first">
+          <h3>Lift shortcuts</h3>
+          <dl class="keyboard-mappings">
+            <dt>e</dt><dd>Toggle estimates</dd>
+          </dl>
+          <dl class="keyboard-mappings">
+            <dt>v</dt><dd>Toggle volume recommendations</dd>
+          </dl>
+          <dl class="keyboard-mappings">
+            <dt>s</dt><dd>Toggle 1RM to 10RM spread</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div> 
