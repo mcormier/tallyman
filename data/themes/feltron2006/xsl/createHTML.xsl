@@ -3,13 +3,13 @@
 <xsl:output method="html" indent="yes"/>
 <xsl:template match="data">
 
-  <html>
-     <head>
-       <title>-</title>
-       <Link rel="stylesheet" type="text/css" href="css/style.css"></Link>
-       <script src="js/PPUtils.js" type="text/javascript"></script>
-       <script src="js/main.js" type="text/javascript"></script>
-     </head>
+<html>
+   <head>
+     <title>-</title>
+     <Link rel="stylesheet" type="text/css" href="css/style.css"></Link>
+     <script src="js/PPUtils.js" type="text/javascript"></script>
+     <script src="js/main.js" type="text/javascript"></script>
+   </head>
 
 <body>
 
@@ -47,7 +47,7 @@
 
   </div> <!-- end shortcuts -->
 
-  <div class="wrapper">
+  <div class="wrapper assortedData">
 
      <div id="left_col">
        <ul id="left_data">
@@ -94,12 +94,14 @@
   </div>
 
   <div id="macroHistoryDrawer" class="fullWidthWrapper shadow drawer">
-   <div id="macroHistoryContent"></div>
+   <div id="macroHistoryContent">
+     <img src="images/monthlyTrainingData.jpg" />
+   </div>
   </div>
 </div>
 
 
-<div class="wrapper">
+<div class="wrapper liftData">
      <!-- name, onerm, threerm, fiverm -->
 
      <div id="lifts" >
