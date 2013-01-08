@@ -1,20 +1,28 @@
 <xsl:stylesheet version="1.0" 
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<xsl:output method="html" indent="yes"/>
+<xsl:output method="html" indent="no"/>
+
+<!-- Creates an HTML 5 document -->
+<xsl:template match="/">
+  <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html></xsl:text>
+  <html>
+
+    <head>
+      <title>-</title>
+      <Link rel="stylesheet" type="text/css" href="css/style.css"></Link>
+      <script src="js/PPUtils.js" type="text/javascript"></script>
+      <script src="js/main.js" type="text/javascript"></script>
+    </head>
+
+    <body>
+      <xsl:apply-templates/>
+    </body>
+
+  </html>
+</xsl:template>
+
 <xsl:template match="data">
-
-<html>
-   <head>
-     <title>-</title>
-     <Link rel="stylesheet" type="text/css" href="css/style.css"></Link>
-     <script src="js/PPUtils.js" type="text/javascript"></script>
-     <script src="js/main.js" type="text/javascript"></script>
-   </head>
-
-<body>
-
   <div id="shortcuts">
-
     <div class="featureRow">
       <div id="shortcutsToggle">
         <a href="#shortcutsInfo" id="showShortcuts">Keyboard Shortcuts <span class="mega-icon mega-icon-keyboard"></span></a>
@@ -111,12 +119,7 @@
 </div>
 
 <div class="clear"></div>
-
-     </body>
-   </html>
 </xsl:template>
-
-
 
 <xsl:template match="lifts">
 
@@ -199,7 +202,6 @@
         <div class="clear"></div>
      </xsl:for-each>
  </xsl:template>
-
 
  <xsl:template match="value">
    <div class="value"><span><xsl:apply-templates/></span></div>
