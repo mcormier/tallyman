@@ -46,7 +46,7 @@
 /* @end */
 
 /* @group Global definitions */
-body {margin-left:0px; font:11px Georgia, serif; color:#000;
+body {margin:0px; font:11px Georgia, serif; color:#000;
       text-transform:uppercase; letter-spacing:1px;}
 div {display:block;}
 
