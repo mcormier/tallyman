@@ -98,42 +98,37 @@ div.clear { clear: left; }
 /* @end */
 
 /* @group Keyboard Shortcuts */
-
-#shortcutsContent {margin: 0 auto;padding-top:20px;height:0px;width:790px;}
-#shortcutsContent div {text-transform: none; letter-spacing:0px;}
+#shortcutsContent {margin:0 auto;padding-top:20px;height:0px;width:790px;}
+#shortcutsContent div {text-transform:none; letter-spacing:0px;}
 
 dl.keyboard-mappings dt {
-  display: inline-block;
-  margin: 0;
-  padding: 3px 6px;
+  display:inline-block;
+  margin:0px;
+  padding:3px 6px;
   min-width:10px;
-  text-align: center;
-  font: 18px Monaco, "Liberation Mono", Courier, monospace;
-  background: #333; color: #EEE;
-  border-radius: 2px;
-  text-shadow: 1px 1px 0 #000;
+  text-align:center;
+  font:18px Monaco, "Liberation Mono", Courier, monospace;
+  background:#333; color: #EEE;
+  border-radius:2px;
+  text-shadow:1px 1px 0 #000;
 }
 
 dl.keyboard-mappings dd {
-  font-size: 14px;
-  text-shadow: 1px 1px 0 #FFF;
-  display: inline;
-  margin: 0 0 0 5px;
+  font-size:14px;
+  text-shadow:1px 1px 0 #FFF;
+  display:inline;
+  margin:0 0 0 5px;
 }
 
 #shortcutsContent h2 {font-size:16px; margin:0 0 0px -10px;
   padding:0 10px 10px;}
 
 #showShortcuts {text-align:right; vertical-align:right; width:100%;}
-
 /* @end */
 
 /* @group Macro Contents */
-
-
 #macroHistoryContent {margin:0 auto; padding-top:20px; height:500px;
   width: 790px;}
-
 /* @end */
 
 /* @group HTML 5 Transform/Transition classes */
@@ -162,41 +157,25 @@ dl.keyboard-mappings dd {
     -moz-transform:    rotate(90deg);
     -ms-transform:     rotate(90deg);
     -o-transform:      rotate(90deg);
-  transform-origin:           50% 50%;
-    -webkit-transform-origin: 50% 50%;
-    -moz-transform-origin:    50% 50%;
-    -ms-transform-origin:     50% 50%;
-    -o-transform-origin:      50% 50%;
 }
 /* @end */
 
 /* @group Lifts Content */
-div.liftName { font-weight:bold; margin-top: 10px;}
+div.liftName {font-weight:bold; margin-top: 10px;}
 
-div.liftValue {
-  position:relative;
-  height:145px; width:263px; 
-  float:left; 
-}
+div.liftValue {position:relative; height:145px; width:263px; float:left;}
 
   div.liftValue p {margin:0px; color:#CCC; 
                    position:absolute; font-weight:bold;
-                   font-family: Helvetica, Arial, sans-serif; }
+                   font-family:Helvetica, Arial, sans-serif; }
   div.liftValue p.vertText {
-    font-size:48px;
-    float:right;
-    text-align:left;
-    top:30px; right:0px;
-  }
+    font-size:48px; top:55px; right:-50px; width:145px; height:50px; }
 
   div.liftValue p.value {
-    padding:0px; 
-    float:left;
-    width:150px;
-    color:#000;
-  }
+    padding:0px 0px 0px 15px; 
+    float:left; width:150px; color:#000; }
   
-  div.liftValue p.fadeIn { opacity:0; } 
+  div.liftValue p.fadeIn {opacity:0;} 
 
   div.liftValue p.volumeEstimate, 
   div.liftValue p.oneToTenSpread {
@@ -207,9 +186,11 @@ div.liftValue {
   }
   div.liftValue p.oneToTenSpread span.spreadValue { 
     display:block; 
-    float:left; height:20px; width:79px; }
+    float:left; height:20px; width:79px;}
 
-  div.liftValue p.estimates {font-size:18px; left:20px; bottom:0px;}
+  div.liftValue p.estimates {font-size:18px; left:35px; bottom:0px;}
+
+  .oneToTenSpread {left:20px;}
 /* @end */
 
 /* @group Single Value Data */
