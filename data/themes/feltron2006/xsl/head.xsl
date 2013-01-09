@@ -12,11 +12,7 @@
                 select="concat('Updated: ', 
                 date:format-date(date:date-time(), 'd MMM yyyy') )"/>
     </title>
-    <Link rel="stylesheet" type="text/css">
-      <xsl:attribute name="href">
-        <xsl:value-of select="$stylesheet"/> 
-      </xsl:attribute>
-    </Link>
+    <Link rel="stylesheet" type="text/css" href="{$stylesheet}"></Link>
     <script src="js/PPUtils.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
   </head>
