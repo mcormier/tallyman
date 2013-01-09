@@ -9,14 +9,7 @@ This extension library was initially added so that the function date:date-time()
 
 ### Changes ###
 1. The version downloaded was modified slightly. It contained spaces
-in the namespace definition, which may be a build bug.  So
-
-xmlns:date="http://exslt.org/dates and times"
-
-was changed to 
-
-xmlns:date="http://exslt.org/dates-and-times"
-
+in the namespace definition, which may be a build bug.  So **xmlns:date="http://exslt.org/dates and times"** was changed to **xmlns:date="http://exslt.org/dates-and-times"**
 
 2. The format-date() function depend on a couple of xsl files from the EXSTL Strings package.  They have been copied into the directory functions/format-date/ instead of including two libraries.
 
