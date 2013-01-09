@@ -3,7 +3,7 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
                 extension-element-prefixes="date"
 >
-<xsl:import href="date.xsl" />
+<xsl:import href="../../../xsl_lib/date/date.xsl" />
 <xsl:import href="head.xsl" />
 
 <xsl:output method="html" indent="no"/>

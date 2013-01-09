@@ -23,8 +23,8 @@
    <import href="../../../xsl_lib/date/functions/hour-in-day/date.hour-in-day.xsl"/>
    <import href="../../../xsl_lib/date/functions/minute-in-hour/date.minute-in-hour.xsl"/>
    <import href="../../../xsl_lib/date/functions/second-in-minute/date.second-in-minute.xsl"/>
-<!--
    <import href="../../../xsl_lib/date/functions/format-date/date.format-date.xsl"/>
+<!--
 -->
    <import href="../../../xsl_lib/date/functions/parse-date/date.parse-date.xsl"/>
    <import href="../../../xsl_lib/date/functions/week-in-month/date.week-in-month.xsl"/>
