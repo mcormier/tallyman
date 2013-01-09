@@ -3,14 +3,20 @@
                 extension-element-prefixes="date"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 
-<!-- TODO use parameters for css and javascript -->
+<!-- TODO use parameters for and javascript -->
 <xsl:template name="htmlHeader">
+  <xsl:param name="stylesheet"/>
+
   <head>
     <title><xsl:value-of 
                 select="concat('Updated: ', 
                 date:format-date(date:date-time(), 'd MMM yyyy') )"/>
     </title>
-    <Link rel="stylesheet" type="text/css" href="css/style.css"></Link>
+    <Link rel="stylesheet" type="text/css">
+      <xsl:attribute name="href">
+        <xsl:value-of select="$stylesheet"/> 
+      </xsl:attribute>
+    </Link>
     <script src="js/PPUtils.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
   </head>

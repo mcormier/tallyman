@@ -13,7 +13,9 @@
 <xsl:template match="/">
   <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html></xsl:text>
   <html>
-    <xsl:call-template name="htmlHeader"/>
+    <xsl:call-template name="htmlHeader">
+      <xsl:with-param name="stylesheet">css/style.css</xsl:with-param> 
+    </xsl:call-template>
     <body>
       <xsl:apply-templates/>
     </body>
