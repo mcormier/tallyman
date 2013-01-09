@@ -1,12 +1,19 @@
 <xsl:stylesheet version="1.0" 
-                xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+                xmlns:date="http://exslt.org/dates-and-times"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                extension-element-prefixes="date"
+>
+<xsl:import href="date.xsl" />
+<xsl:import href="head.xsl" />
+
 <xsl:output method="html" indent="no"/>
+
 
 <!-- Creates an HTML 5 document -->
 <xsl:template match="/">
   <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html></xsl:text>
   <html>
-    <xsl:copy-of select="document('head.xml')/." />
+    <xsl:call-template name="htmlHeader"/>
     <body>
       <xsl:apply-templates/>
     </body>
