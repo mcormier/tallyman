@@ -7,7 +7,8 @@
 <xsl:template name="htmlHeader">
   <head>
     <title><xsl:value-of 
-                select="concat('Last update: ', date:month-name() )"/>
+                select="concat('Updated: ', 
+                date:format-date(date:date-time(), 'd MMM yyyy') )"/>
     </title>
     <Link rel="stylesheet" type="text/css" href="css/style.css"></Link>
     <script src="js/PPUtils.js" type="text/javascript"></script>
