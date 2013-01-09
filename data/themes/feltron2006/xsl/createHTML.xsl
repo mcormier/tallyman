@@ -1,9 +1,11 @@
 <xsl:stylesheet version="1.0" 
+                xmlns:str="http://exslt.org/strings" 
                 xmlns:date="http://exslt.org/dates-and-times"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                extension-element-prefixes="date"
+                extension-element-prefixes="date str"
 >
 <xsl:import href="../../../xsl_lib/date/date.xsl" />
+<xsl:import href="../../../xsl_lib/str/str.xsl" />
 <xsl:import href="head.xsl" />
 
 <xsl:output method="html" indent="no"/>
@@ -15,6 +17,7 @@
   <html>
     <xsl:call-template name="htmlHeader">
       <xsl:with-param name="stylesheet">css/style.css</xsl:with-param> 
+      <xsl:with-param name="javascript">js/PPUtils.js,js/main.js</xsl:with-param> 
     </xsl:call-template>
     <body>
       <xsl:apply-templates/>
