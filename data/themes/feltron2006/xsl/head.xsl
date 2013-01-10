@@ -4,23 +4,30 @@
                 xmlns:str="http://exslt.org/strings" 
                 extension-element-prefixes="str date"
 >
+<xsl:import href="../../../xsl_lib/date/date.xsl" />
+<xsl:import href="../../../xsl_lib/str/str.xsl" />
 
 <xsl:template name="htmlHeader">
   <xsl:param name="stylesheet"/>
   <xsl:param name="javascript"/>
 
+  <xsl:variable name="vDoc" select="/"/>
+
   <head>
+    <!-- prints out a title in the form: "Updated 10 Jan 2013" -->
     <title><xsl:value-of 
                 select="concat('Updated: ', 
                 date:format-date(date:date-time(), 'd MMM yyyy') )"/>
     </title>
-    <Link rel="stylesheet" type="text/css" href="{$stylesheet}"></Link>
 
+    <xsl:for-each select="str:tokenize($stylesheet,',')">
+       <xsl:variable name ="filename" select="."/>
+       <Link rel="stylesheet" type="text/css" href="css/{$filename}"></Link>
+    </xsl:for-each> 
 
-    <xsl:variable name="vDoc" select="/"/>
     <xsl:for-each select="str:tokenize($javascript,',')">
        <xsl:variable name ="filename" select="."/>
-       <script src="{$filename}" type="text/javascript"></script>
+       <script src="js/{$filename}" type="text/javascript"></script>
     </xsl:for-each> 
 
   </head>
