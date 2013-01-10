@@ -6,7 +6,7 @@
                 xmlns:func="http://exslt.org/functions"
                 extension-element-prefixes="date str func">
 
-<xsl:import href="str.padding.function.xsl" />
+<xsl:import href="../../../str/functions/padding/str.padding.function.xsl" />
 
 <date:months>
    <date:month length="31" abbr="Jan">January</date:month>

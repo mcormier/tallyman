@@ -5,7 +5,7 @@
                 xmlns:str="http://exslt.org/strings"
                 extension-element-prefixes="date str">
 
-<xsl:import href="str.padding.template.xsl" />
+<xsl:import href="../../../str/functions/padding/str.padding.template.xsl" />
 
 <date:months>
    <date:month length="31" abbr="Jan">January</date:month>
