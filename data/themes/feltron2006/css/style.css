@@ -1,7 +1,7 @@
 @font-face {
  font-family:'Octicons Regular';
-     src: url('octicons-regular-webfont.eot');
-     src: url('octicons-regular-webfont.eot#iefix') format("eot"), 
+     src: url('../fonts/octicons-regular-webfont.eot');
+     src: url('../fonts/octicons-regular-webfont.eot#iefix') format("eot"), 
           url('../fonts/octicons-regular-webfont.woff') format("woff"),  
       url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
       url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
@@ -37,8 +37,7 @@
 /* @group Global definitions */
 
 body {margin:0px; font:11px Georgia, serif; color:#000;
-      text-transform:uppercase; letter-spacing:1px; background:#FFF;
-      }
+      text-transform:uppercase; letter-spacing:1px; background:#FFF;}
 div {display:block;}
 
 ul { 
@@ -117,7 +116,6 @@ div.clear { clear: left; }
     margin:auto;
     bottom:-10px;
     left:36px;
-    /*-webkit-transition: opacity 0ms 0ms;*/
     -webkit-mask-image : 
         -webkit-gradient(linear, left top, right bottom, 
             from(#000000), 
@@ -135,12 +133,11 @@ div.clear { clear: left; }
     width:17px;
     height:17px;
     position:relative;
-    box-shadow:inset 1px 1px 5px #000;
-    /* box-shadow:3px 3px 3px rgba(0,0,0,0.8)inset; */
+    box-shadow:3px 3px 3px rgba(0,0,0,0.8)inset; 
     content:' ';
     display:block;
-
 }
+
 .inside-arrow.top {
     -webkit-transform: rotateZ(-45deg);
     background-image:url('../images/drawerBG.png');
@@ -149,50 +146,10 @@ div.clear { clear: left; }
     position:relative;
     top:-15px;
     left:-15px;
-
-}
-.arrow.bottom {
-    width:15px;
-    height:15px;
-    -webkit-transform: rotateZ(45deg);
-    position:absolute;
-    margin:auto;
-    top:-10px;
-    left:36px;
-    -webkit-mask-image : 
-        -webkit-gradient(linear, left top, right bottom, 
-            from(#000000), 
-            color-stop(0.7,#000000), 
-            color-stop(0.7, transparent), 
-            to(transparent));
-    border: 2px solid rgba(255,255,255,0.0);
-    border-bottom:0;
-    border-right:0;
-    overflow:hidden;
-    opacity:0;
-}
-.inside-arrow.bottom {
-    -webkit-transform: rotateZ(-45deg);
-    background-image:url('color-rainbow-retina.png');
-    background-size: 320px 480px;
-    background-position: -32px -461px;
-    width:25px;
-    height:25px;
-    position:relative;
-    top:-10px;
-    left:-10px;
-
 }
 
-.arrow.bottom.down {
-    -webkit-animation : openfolder-arrowbottom 1000ms linear; }
-.arrow.bottom.up {
-    -webkit-animation : closefolder-arrowbottom 2000ms linear; }
 .arrow.top.down {
     -webkit-animation : openfolder-arrowtop 1000ms linear; }
-.arrow.top.up {
-    -webkit-animation : closefolder-arrowtop 2000ms linear; }
-
 /* @end */
 
 /* @group Keyboard Shortcuts */
