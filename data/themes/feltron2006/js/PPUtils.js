@@ -2,7 +2,6 @@
 
 function $(id){ return document.getElementById(id); }
 
-
 function showElement( e ) { e.style.visibility = "visible"; }
 function hideElement( e ) { e.style.visibility = "hidden"; }
 
@@ -52,6 +51,19 @@ PPUtils.getElementsByClassName=function(cn) {
     a.className==cn?allCN[allCN.length]=a:null;
   }
   return allCN
+}
+// returns an array instead of a nodeSet
+function $classNameArray(className) { 
+  var set = $className(className);
+  return Array.prototype.slice.call(set);
+}
+
+function $getClasses(classNamesArray) {
+  var allClasses = [];
+  for (var i = 0; i < classNamesArray.length; i++) {
+    allClasses = allClasses.concat($classNameArray(classNamesArray[i])); 
+  }
+  return allClasses;
 }
 
 function $className(className) { 
