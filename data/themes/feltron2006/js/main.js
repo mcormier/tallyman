@@ -1,44 +1,117 @@
+"use strict";
 
-  var cookieName = "feltron2006";
-  var settings = new Object();
-  settings.liftPanel = ''; 
+var cookieName = "feltron2006";
+var settings = new Object();
+settings.liftPanel = ''; 
+var closeDrawer = null;
 
 
-  function saveSettings() {
-    var str = JSON.stringify(settings);
-    PPUtils.setCookie(cookieName, str, 20*365);
+function saveSettings() {
+  var str = JSON.stringify(settings);
+  PPUtils.setCookie(cookieName, str, 20*365);
+}
+
+function loadSettings() {
+  var c = PPUtils.getCookie(cookieName);
+  if (c != null) { 
+    settings = JSON.parse(c);
+    if ( settings.liftPanel != '' ) {
+      var panel = $className(settings.liftPanel);
+      toggleVisibility(panel, true);
+    }
+  }
+}
+
+function init() { 
+  loadSettings(); 
+
+  PPUtils.bind("click", $('macroHistoryLink'), toggleMacroWorkoutData );
+  PPUtils.bind("click", $('shortcutsToggle'), toggleShortcutDrawer);
+  PPUtils.bind("click", $('drawer-overlay'), overlayClicked);
+}
+
+  // TODO -- move to utils
+function getViewPortOffset( elementID ) {
+  var e = $(elementID);
+  var offset = {x:0, y:0};
+
+  while (e) {
+    offset.x += e.offsetLeft;
+    offset.y += e.offsetTop;
+    e = e.offsetParent;
   }
 
-  function loadSettings() {
-    var c = PPUtils.getCookie(cookieName);
-    if (c != null) { 
-      settings = JSON.parse(c);
-      if ( settings.liftPanel != '' ) {
-        var panel = $className(settings.liftPanel);
-        toggleVisibility(panel, true);
-      }
+  var docElem = document.documentElement;
+
+  if (docElem && ( docElem.scrollTop || docElem.scrollLeft) ) {
+    offset.x -= docElem.scrollLeft;
+    offset.y -= docElem.scrollTop;
+  } 
+  else if (document.body && (document.body.scrollTop || document.body.scrollLeft))
+  {
+    offset.x -= document.body.scrollLeft;
+    offset.y -= document.body.scrollTop;
+  }
+  else if (window.pageXOffset || window.pageYOffset)
+  {
+    offset.x -= window.pageXOffset;
+    offset.y -= window.pageYOffset;
+  }
+
+  return offset;
+}
+
+  // TODO -- cleanup - make helper methods.
+function toggleDrawer( name, openHeight, transY ) {
+  var drawerName = name + "Drawer";
+  var drawer = $(drawerName);
+  var drawerArrow = $(drawerName+"Arrow");
+  var overlay = $("drawer-overlay");
+  var link = $(name + "Link");
+
+  var currHeight = drawer.style.height;
+  var isClosed = currHeight == '0px' || currHeight == '';
+
+  // show or hide drawer
+  drawer.style.height = isClosed ? openHeight : '0px';
+  // hide or display arrow
+  drawerArrow.style.opacity = isClosed ? 1 : 0;
+ 
+  // Fade surrounding elements
+  var elemsToFade = $getClasses( ["drawerButton", "wrapper"] );
+
+  for(var i=0; i < elemsToFade.length; i++) {
+    // Fade everything but the current drawerButton
+    if ( elemsToFade[i].id != link.id ) {
+      elemsToFade[i].style.opacity = isClosed ? 0.2 : 1;
     }
   }
 
-  function init() { 
-    loadSettings(); 
-    elem = $('macroShow');    
-    PPUtils.bind("click", elem, toggleMacroWorkoutData );
+  // Get the location of the drawer on the screen
+  // don't perform a translate if the top of the drawer
+  // will disappear off screen
+  var offset = getViewPortOffset(drawerName);
 
-    elem = $('shortcuts');    
-    PPUtils.bind("click", elem, toggleShortcutDrawer);
+  if (transY && offset.y > transY) { 
+    var container = $("contentContainer");
+    container.style.webkitTransform =  isClosed ? "translateY(-"+transY+"px)"
+                                                : "translateY(0px)";
   }
 
-  function toggleDrawer( drawerName, openHeight ) {
-    drawer = $(drawerName);
-    currHeight = drawer.style.height;
-    drawer.style.height = currHeight == '0px' || currHeight == ''
-                        ? openHeight : '0px';
-    return false;
-  }
+  // show/hideoverlay folder
+  overlay.style.display = isClosed ? "block" : "none" ;
 
-  function toggleShortcutDrawer() { return toggleDrawer( 'shortcutsDrawer', '250px'); }
-  function toggleMacroWorkoutData() { return toggleDrawer('macroHistoryDrawer', '500px'); }
+  return false;
+}
+
+  function overlayClicked() { closeDrawer(); }
+
+  function toggleShortcutDrawer() { 
+    closeDrawer = toggleShortcutDrawer;
+    return toggleDrawer( 'shortcuts', '250px', '125'); }
+  function toggleMacroWorkoutData() { 
+    closeDrawer = toggleMacroWorkoutData;
+    return toggleDrawer('macroHistory', '520px','250'); }
 
   function toggleVisibility(elements, visible) {
     if ( elements.length == 0 ) return;

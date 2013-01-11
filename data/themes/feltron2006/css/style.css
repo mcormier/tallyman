@@ -1,26 +1,15 @@
 @font-face {
- font-family:'Octicons_IE';
- src: url(../fonts/octicons-regular-webfont.eot);
- src: url('../fonts/octicons-regular-webfont.eot#iefix') format("embedded-opentype"); 
- font-weight:normal;
- font-style:normal;
-}
-@font-face {
  font-family:'Octicons Regular';
- src: url('../fonts/octicons-regular-webfont.woff') format("woff"),  
+     src: url('octicons-regular-webfont.eot');
+     src: url('octicons-regular-webfont.eot#iefix') format("eot"), 
+          url('../fonts/octicons-regular-webfont.woff') format("woff"),  
       url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
       url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
- font-weight:normal;
- font-style:normal;
 }
-
-/*
- * Tested with IE 9, Chrome 23, Safari 6.0.2(OS X), iOs 6 Safari
- */
 
 /* @group Octicon Font Stuff */
 .mini-icon:before, .mega-icon:before {
-  font-family:normal normal 'Octicons Regular', 'Octicons_IE';
+  font-family:normal normal 'Octicons Regular';
   display:inline-block;
   line-height:1;
   -webkit-font-smoothing:antialiased;
@@ -46,8 +35,10 @@
 /* @end */
 
 /* @group Global definitions */
+
 body {margin:0px; font:11px Georgia, serif; color:#000;
-      text-transform:uppercase; letter-spacing:1px;}
+      text-transform:uppercase; letter-spacing:1px; background:#FFF;
+      }
 div {display:block;}
 
 ul { 
@@ -79,8 +70,7 @@ strong {color:#333;}
 /* @end */
 
 /* @group Main Sections */
-
-#macro, #shortcuts {position:relative; margin:0 auto;}
+#drawers {position:relative; margin:0 auto;}
   .featureRow {height:40px;}
   .shadow {box-shadow:inset 0 0 10px #000;}
   .fullWidthWrapper {width:100%;background:#b7b7b7;}
@@ -89,17 +79,136 @@ div.wrapper {margin:0 auto; width:850px; padding:10px 0px 0px 60px;}
   div.wrapper > div {float:left;}
   div#right_col {clear:right;}
 
-#macroShowDiv, #shortcutsToggle {margin:0 auto; width:790px;}
-#macroShow , #showShortcuts {width: 400px;height:30px;padding-left:0px;
+#drawerButtons { margin:0 auto; width: 790px; position:relative}
+#macroShowDiv, #shortcutsToggle {width:395px; position:absolute;}
+#macroShowDiv {top:0px;left:0px;}
+#shortcutsToggle {top:0px;right:0px;}
+
+#macroHistoryLink , #showShortcuts {width: 400px;height:30px;padding-left:0px;
   display:block; background-color:transparent; }
 
+#contentContainer { position:relative; }
+
+#drawer-overlay { 
+  position:fixed; display:none;  
+  height:100%; width:100%;
+  top:0px; left:0px;
+}
+
 div.clear { clear: left; }
+
+.imageloader {background-image: url('../images/drawerBG.png'), 
+                                url('../images/monthlyTrainingData.jpg');
+  display:none;position:fixed;height:0;width:0;overflow:hidden;left:-1000px;top:-1000px;
+}
+
+/* @end */
+
+/* @group Drawer Arrows */
+
+.arrow.top {
+    width:15px;
+    height:15px;
+    -webkit-transform: rotateZ(45deg);
+    border: 2px solid rgba(255,255,255,0.0);
+    border-bottom: 0;
+    border-right: 0;
+    position:absolute;
+    margin:auto;
+    bottom:-10px;
+    left:36px;
+    /*-webkit-transition: opacity 0ms 0ms;*/
+    -webkit-mask-image : 
+        -webkit-gradient(linear, left top, right bottom, 
+            from(#000000), 
+            color-stop(0.8,#000000), 
+            color-stop(0.8, transparent), 
+            to(transparent));
+    opacity:0;
+    overflow:hidden;
+}
+.inside-arrow.top:before {
+    -webkit-transform: rotateZ(45deg);
+    background:none;
+    top:17px;
+    left:6px;
+    width:17px;
+    height:17px;
+    position:relative;
+    box-shadow:inset 1px 1px 5px #000;
+    /* box-shadow:3px 3px 3px rgba(0,0,0,0.8)inset; */
+    content:' ';
+    display:block;
+
+}
+.inside-arrow.top {
+    -webkit-transform: rotateZ(-45deg);
+    background-image:url('../images/drawerBG.png');
+    width:30px;
+    height:30px;
+    position:relative;
+    top:-15px;
+    left:-15px;
+
+}
+.arrow.bottom {
+    width:15px;
+    height:15px;
+    -webkit-transform: rotateZ(45deg);
+    position:absolute;
+    margin:auto;
+    top:-10px;
+    left:36px;
+    -webkit-mask-image : 
+        -webkit-gradient(linear, left top, right bottom, 
+            from(#000000), 
+            color-stop(0.7,#000000), 
+            color-stop(0.7, transparent), 
+            to(transparent));
+    border: 2px solid rgba(255,255,255,0.0);
+    border-bottom:0;
+    border-right:0;
+    overflow:hidden;
+    opacity:0;
+}
+.inside-arrow.bottom {
+    -webkit-transform: rotateZ(-45deg);
+    background-image:url('color-rainbow-retina.png');
+    background-size: 320px 480px;
+    background-position: -32px -461px;
+    width:25px;
+    height:25px;
+    position:relative;
+    top:-10px;
+    left:-10px;
+
+}
+
+.arrow.bottom.down {
+    -webkit-animation : openfolder-arrowbottom 1000ms linear; }
+.arrow.bottom.up {
+    -webkit-animation : closefolder-arrowbottom 2000ms linear; }
+.arrow.top.down {
+    -webkit-animation : openfolder-arrowtop 1000ms linear; }
+.arrow.top.up {
+    -webkit-animation : closefolder-arrowtop 2000ms linear; }
 
 /* @end */
 
 /* @group Keyboard Shortcuts */
-#shortcutsContent {margin:0 auto;padding-top:20px;height:0px;width:790px;}
+#shortcutsContent {
+  margin:10px auto 0px; padding:20px 10px 0px;
+  height:210px;width:790px;
+  border-radius:4px;
+  background:#b7b7b7;
+}
+#shortcutsLink { position:absolute; top: 0px; right:0px; height:40px; }
+
 #shortcutsContent div {text-transform:none; letter-spacing:0px;}
+
+#shortcutsDrawer {
+ background-image: url(../images/drawerBG.png); 
+}
 
 dl.keyboard-mappings dt {
   display:inline-block;
@@ -127,26 +236,34 @@ dl.keyboard-mappings dd {
 /* @end */
 
 /* @group Macro Contents */
-#macroHistoryContent {margin:0 auto; padding-top:20px; height:500px;
-  width: 790px;}
+#macroShowDiv { height: 40px; }
+
+#macroHistoryContent {margin: 10px auto; padding:10px; height:470px;
+  width: 790px;background:#b7b7b7;border-radius:4px; }
+
+#macroHistoryDrawer {
+ background-image: url(../images/drawerBG.png);
+}
 /* @end */
 
 /* @group HTML 5 Transform/Transition classes */
+
+  /* -ms-transition: works for IE 10 and up. */
 
 .drawer { 
   height: 0px;
   overflow: hidden;
   transition:           height 500ms ease-in-out;
     -moz-transition:    height 500ms ease-in-out;
-    -ms-transition:     height 500ms ease-in-out; /* IE 10 and up. */
+    -ms-transition:     height 500ms ease-in-out; 
     -o-transition:      height 500ms ease-in-out;
-    -webkit-transition: height 500ms ease-in-out;
+    -webkit-transition: height 500ms;
 }
 
 .fadeIn {
   transition:           opacity 250ms ease-in-out;
     -moz-transition:    opacity 250ms ease-in-out;
-    -ms-transition:     opacity 250ms ease-in-out; /* IE 10 and up. */
+    -ms-transition:     opacity 250ms ease-in-out;
     -o-transition:      opacity 250ms ease-in-out;
     -webkit-transition: opacity 250ms ease-in-out;
 }
@@ -158,6 +275,25 @@ dl.keyboard-mappings dd {
     -ms-transform:     rotate(90deg);
     -o-transform:      rotate(90deg);
 }
+
+/* removes flicker in safari 
+ *
+ * http://stackoverflow.com/questions/2946748/iphone-webkit-css-animations-cause-flicker
+ * http://stackoverflow.com/questions/3461441/prevent-flicker-on-webkit-transition-of-webkit-transform
+ */
+.no-flick{
+  /*-webkit-backface-visibility: hidden; */ 
+  -webkit-transform:translate3d(0,0,0);
+}
+
+#contentContainer {
+  transition:           transform        500ms;
+    -webkit-transition: -webkit-transform 500ms; 
+    -moz-transition:    -moz-transform    500ms;
+    -ms-transition:     -ms-transform     500ms; 
+    -o-transition:      -o-transform      500ms;
+}
+
 /* @end */
 
 /* @group Lifts Content */

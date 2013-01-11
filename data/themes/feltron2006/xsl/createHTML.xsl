@@ -22,49 +22,51 @@
 
 <xsl:template match="data">
 
-  <xsl:copy-of select="document('shortcuts.xml')/." />
+  <div class="imageloader"/>
 
-  <div class="wrapper assortedData">
+  <div id="contentContainer" class="no-flick">
 
-     <div id="left_col">
-       <ul id="left_data">
-         <!-- Odd item entries go in left column -->
-         <xsl:for-each select="item[position() mod 2 = 1] ">
-         <li class="display">
-           <div class="big_display">
-             <div class="center"><xsl:apply-templates/></div>
-           </div>
-         </li>
-         </xsl:for-each>
-       </ul>
-     </div>
+    <div class="wrapper assortedData fadeIn">
 
+       <div id="left_col">
+         <ul id="left_data">
+           <!-- Odd item entries go in left column -->
+           <xsl:for-each select="item[position() mod 2 = 1] ">
+           <li class="display">
+             <div class="big_display">
+               <div class="center"><xsl:apply-templates/></div>
+             </div>
+           </li>
+           </xsl:for-each>
+         </ul>
+       </div>
 
+       <div id="right_col">
+         <ul id="right_data">
+           <!-- Even item entries go in right column -->
+           <xsl:for-each select="item[position() mod 2 = 0] ">
+           <li class="display">
+             <div class="big_display">
+               <div class="center"><xsl:apply-templates/></div>
+             </div>
+           </li>
+           </xsl:for-each>
+         </ul>
+      </div>
 
-     <div id="right_col">
-       <ul id="right_data">
-         <!-- Even item entries go in right column -->
-         <xsl:for-each select="item[position() mod 2 = 0] ">
-         <li class="display">
-           <div class="big_display">
-             <div class="center"><xsl:apply-templates/></div>
-           </div>
-         </li>
-         </xsl:for-each>
-       </ul>
+    </div> <!-- end wrapper -->
+  
+    <div class="clear"/>
+    <xsl:copy-of select="document('drawers.xml')/." />
+    <div class="wrapper liftData fadeIn">
+       <div id="lifts" ><xsl:apply-templates select="lifts"/></div>
     </div>
 
-  </div> <!-- end wrapper -->
-  
-  <div class="clear"></div>
+     <div class="clear"/>
+   </div>
 
-  <xsl:copy-of select="document('macroData.xml')/." />
+  <div id="drawer-overlay"/>
 
-  <div class="wrapper liftData">
-     <div id="lifts" ><xsl:apply-templates select="lifts"/></div>
-  </div>
-
-<div class="clear"></div>
 </xsl:template>
 
 <xsl:template match="lifts">
