@@ -321,10 +321,12 @@ only screen
   and (max-device-width: 480px)
   
 {
+  /* makes rendering easier on touch devices */
+  .shadow {box-shadow:inset 0 0 0px #FFFFFF;}
+  
+  /* Hide keyboard shortcuts from touch devices. */ 
+  #shortcutsToggle {display:none;overflow:hidden;}
 
-  .shadow {
-    box-shadow:         inset 0 0 0px #FFFFFF;
-  }
 }
 
 /* @end */
