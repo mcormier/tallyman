@@ -45,6 +45,25 @@ PPUtils.bind = function(event, element, callback) {
   }
 }
 
+PPUtils.bindOnTouchHold = function( element, callback, holdTimeReqMs ) {
+  var timeout;
+  var shouldTrigger = false;
+
+  PPUtils.bind("touchstart", element, 
+   function startWaitForHold(e) {
+     shouldTrigger = true;
+     timeout = setTimeout(function() {callback();}, holdTimeReqMs); 
+   });
+
+  PPUtils.bind("touchmove", element, 
+   function youMoved(e) {shouldTrigger=false; clearTimeout(timeout);});
+
+  PPUtils.bind("touchend", element, 
+   function youLetGo(e) {shouldTrigger=false; clearTimeout(timeout);});
+
+
+}
+
 PPUtils.getElementsByClassName=function(cn) {
   var allT=document.getElementsByTagName('*'), allCN=[], i=0, a;
   while(a=allT[i++]){

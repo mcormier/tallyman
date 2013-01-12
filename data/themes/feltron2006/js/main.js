@@ -3,8 +3,9 @@
 var cookieName = "feltron2006";
 var settings = new Object();
 settings.liftPanel = ''; 
-var closeDrawer = null;
-
+var doNothing = function doNothing() {}
+var closeDrawer = doNothing;
+var onTouchHold = false;
 
 function saveSettings() {
   var str = JSON.stringify(settings);
@@ -28,6 +29,8 @@ function init() {
   PPUtils.bind("click", $('macroHistoryLink'), toggleMacroWorkoutData );
   PPUtils.bind("click", $('shortcutsToggle'), toggleShortcutDrawer);
   PPUtils.bind("click", $('drawer-overlay'), overlayClicked);
+
+  PPUtils.bindOnTouchHold($('lifts'), ontouchHold, 750);
 }
 
   // TODO -- move to utils
@@ -61,7 +64,6 @@ function getViewPortOffset( elementID ) {
   return offset;
 }
 
-  // TODO -- cleanup - make helper methods.
 function toggleDrawer( name, openHeight, transY ) {
   var drawerName = name + "Drawer";
   var drawer = $(drawerName);
@@ -104,7 +106,8 @@ function toggleDrawer( name, openHeight, transY ) {
   return false;
 }
 
-  function overlayClicked() { closeDrawer(); }
+  function overlayClicked() { console.log("overlay clicked");
+    closeDrawer(); closeDrawer = doNothing; }
 
   function toggleShortcutDrawer() { 
     closeDrawer = toggleShortcutDrawer;
@@ -147,5 +150,9 @@ function toggleDrawer( name, openHeight, transY ) {
     saveSettings();
   }
 
-  PPUtils.bind("load", window, init);
-  PPUtils.bind("keypress", document, handleKeyEvent);
+function ontouchHold(evt) {
+//  console.log("inside on touch hold");
+}
+
+PPUtils.bind("load", window, init);
+PPUtils.bind("keypress", document, handleKeyEvent);
