@@ -38,7 +38,12 @@
 
 body {margin:0px; font:11px Georgia, serif; color:#000;
       text-transform:uppercase; letter-spacing:1px; background:#FFF;}
-div {display:block;}
+
+div {display:block;
+  -webkit-backface-visibility: hidden;  
+  -webkit-transform:translate3d(0,0,0);
+  -webkit-perspective: 1000;
+}
 
 ul { 
   list-style-type:none; 
@@ -97,7 +102,7 @@ div.wrapper {margin:0 auto; width:850px; padding:10px 0px 0px 60px;}
 div.clear { clear: left; }
 
 .imageloader {background-image: url('../images/drawerBG.png'), 
-                                url('../images/monthlyTrainingData.jpg');
+                                url('../images/monthlyTrainingDataWhiteBG.png');
   display:none;position:fixed;height:0;width:0;overflow:hidden;left:-1000px;top:-1000px;
 }
 
@@ -196,7 +201,10 @@ dl.keyboard-mappings dd {
 #macroShowDiv { height: 40px; }
 
 #macroHistoryContent {margin: 10px auto; padding:10px; height:470px;
-  width: 790px;background:#b7b7b7;border-radius:4px; }
+  width: 790px;
+/*background:#b7b7b7;*/
+background:#FFF;
+border-radius:4px; }
 
 #macroHistoryDrawer {
  background-image: url(../images/drawerBG.png);
@@ -239,8 +247,9 @@ dl.keyboard-mappings dd {
  * http://stackoverflow.com/questions/3461441/prevent-flicker-on-webkit-transition-of-webkit-transform
  */
 .no-flick{
-  /*-webkit-backface-visibility: hidden; */ 
+  -webkit-backface-visibility: hidden;  
   -webkit-transform:translate3d(0,0,0);
+  -webkit-perspective: 1000;
 }
 
 #contentContainer {
