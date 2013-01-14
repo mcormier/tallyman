@@ -1,7 +1,5 @@
 
-Tallyman
-========
----
+# Tallyman #
 
 Tallyman gathers data and generates a static website. It was built to generate [stats.preenandprune.com](http://stats.preenandprune.com) but it can be easily customized to generate your own page of [statistics porn](http://chartporn.org).
 
@@ -9,10 +7,9 @@ Tallyman gathers data and generates a static website. It was built to generate [
 
 To generate the page you use a simple interface to a database which then generates the webpage.
 
-Admin Interface => Database => Website 
+![Admin Interface => Database => Website] (http://mcormier.github.com/tallyman/images/tallymanArch.jpg )
 
-Why?
------------------------
+## Why? ##
 
 I have been using [wodHub](http://wodhub.com/profiles/6534) for a while now to track my exercise data.  It's a free site and has expanded as a product sold to people running gyms. It's helped me track my gym benchmarks and kept me motivated to workout, and for that I am thankful. But like many free web applications it has a subtle issue.  You don't own your data. The person that is paying to run that site and letting you use it owns your data.  It's free to use but the hidden cost is that you lose ownership of your data.  If the individual who is running wodHub goes bankrupt tomorrow and the server gets shut down then all the data that you've input over time disappears.
 
@@ -37,8 +34,7 @@ Sometimes your data isn't important, like many of the banal things posted on far
 
 My workout data is important to me so I've decided to write some software and retain ownership. 
 
-Technical Details
---------------
+## Technical Details ##
 
 Tallyman consists of a simple curses interface to an sqlite database and a script to extract that data to an XML format.  The XML is then converted to HTML with an XML style sheet (XSL).
 
@@ -59,34 +55,29 @@ The final implementation is smoking fast.
 
 
 
-Design Pros and Cons
-====================
+## Design Pros and Cons ##
 
-Pros
-----
+### Pros ###
 1. You own your own data.
 2. You can format the presentation of the data any way you like.
 3. Log anything you want. Number of coffees per day if that's what floats your boat.
 4. No possibility of a CGI security exploit since there is no web-based form interface.
 
 
-Cons
-----
+### Cons ###
 1. Requires an intial investment to setup and configure.  It's not as simple as filling out a web from with your name and email address.
 2. User must be comfortable with running a command line interface to input their data
 3. Custom formating the webpage requires knowledge of HTML and CSS
 4. Customization requires knowledge of SQL and basic scripting
 5. Technical nature of the design limits it to intermediate to advance users.
 
-Requirements
---------------
+## Requirements ##
 1. Ruby 1.9.1 or greater
 2. SQLite 3
 3. xsltcproc
 
 
-Configuration
--------------
+## Configuration ##
 1. Copy *config/config.properties.example* to *config.properties*
 2. Modify the filenames in the configuration file as appropriate
 3. Create your SQLite database with *bin/createDatabase*
