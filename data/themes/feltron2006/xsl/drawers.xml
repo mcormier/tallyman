@@ -22,7 +22,9 @@
   </div>
 
   <div id="macroHistoryDrawer" class="fullWidthWrapper shadow drawer">
-    <div id="macroHistoryContent"><img width="790" height="460" src="images/monthlyTrainingData.jpg"/></div>
+    <div id="macroHistoryContent">
+      <img width="790" height="460" src="images/annualWorkoutData.png"/>
+    </div>
   </div>
 
 

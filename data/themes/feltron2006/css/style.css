@@ -102,7 +102,7 @@ div.wrapper {margin:0 auto; width:850px; padding:10px 0px 0px 60px;}
 div.clear { clear: left; }
 
 .imageloader {background-image: url('../images/drawerBG.png'), 
-                                url('../images/monthlyTrainingDataWhiteBG.png');
+                                url('../images/annualWorkoutData.png');
   display:none;position:fixed;height:0;width:0;overflow:hidden;left:-1000px;top:-1000px;
 }
 
