@@ -1,4 +1,26 @@
 CACHE MANIFEST
-# Cache manifest version 0.0.1
+# Cache manifest version 0.0.2
+# To clear the cache in chrome use
+# chrome://appcache-internals/
 
+# Explicitly cached 'master entries'.
+CACHE:
 /images/drawerBG.png
+/images/annualWorkoutData.png
+/fonts/octicons-regular-webfont.eot
+/fonts/octicons-regular-webfont.ttf
+/fonts/octicons-regular-webfont.svg  
+/fonts/octicons-regular-webfont.woff
+
+# Resources that require the user to be online
+#
+# This stuff will change alot so don't cache 
+# by default
+#
+# NETWORK:
+/css/style.css
+/js/main.js
+/js/PPUtils.js
+
+# Format= onlineURL offlineURL
+# FALLBACK:
