@@ -15,6 +15,7 @@ NETWORK:
 #
 http://stats.preenandprune.com/css/
 http://stats.preenandprune.com/js/
+http://stats.preenandprune.com/test.html
 
 # Format= onlineURL offlineURL
 # FALLBACK:
