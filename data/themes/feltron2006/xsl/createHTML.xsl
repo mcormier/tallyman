@@ -9,7 +9,7 @@
   <!-- Specifies an HTML 5 document -->
   <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html></xsl:text>
 
-  <html>
+  <html manifest="cache.manifest">
     <xsl:call-template name="htmlHeader">
       <xsl:with-param name="stylesheet">style.css</xsl:with-param> 
       <xsl:with-param name="javascript">PPUtils.js,main.js</xsl:with-param> 
