@@ -106,8 +106,7 @@ function toggleDrawer( name, openHeight, transY ) {
   return false;
 }
 
-  function overlayClicked() { console.log("overlay clicked");
-    closeDrawer(); closeDrawer = doNothing; }
+  function overlayClicked() { closeDrawer(); closeDrawer = doNothing; }
 
   function toggleShortcutDrawer() { 
     closeDrawer = toggleShortcutDrawer;
