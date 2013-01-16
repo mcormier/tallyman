@@ -2,14 +2,28 @@
 
 function $(id){ return document.getElementById(id); }
 
-function showElement( e ) { e.style.visibility = "visible"; }
-function hideElement( e ) { e.style.visibility = "hidden"; }
+function showElement(e) { e.style.visibility = "visible"; }
+function hideElement(e) { e.style.visibility = "hidden"; }
 
-function toggleElementVisibility( e ) { 
-  if (e.style.visibility == "hidden") {
-    showElement(e); 
-  } else {
-    hideElement(e);
+function toggleElementVisibility(e) { 
+  e.style.visibility == "hidden" ? showElement(e) : hideElement(e);
+}
+
+if (typeof HTMLElement.prototype.removeClass !== "function") {
+  HTMLElement.prototype.removeClass = function(toRemove) {
+    var newClassName = "";
+    var classes = this.className.split(" ");
+    for(var i = 0; i < classes.length; i++) {
+      if( classes[i] !== toRemove ) { newClassName += classes[i] + " "; }
+    }
+    this.className = newClassName;
+
+  }
+}
+
+if (typeof HTMLElement.prototype.addClass !== "function") {
+  HTMLElement.prototype.addClass = function(toAdd) {
+    this.className += " " + toAdd;
   }
 }
 
@@ -18,6 +32,7 @@ if (typeof String.prototype.trimLeft !== "function") {
     return this.replace(/^\s+/, "");
   };
 }
+
 if (typeof String.prototype.trimRight !== "function") {
   String.prototype.trimRight = function() {
     return this.replace(/\s+$/, "");
