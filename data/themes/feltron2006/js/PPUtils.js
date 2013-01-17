@@ -16,7 +16,7 @@ if (typeof HTMLElement.prototype.removeClass !== "function") {
     for(var i = 0; i < classes.length; i++) {
       if( classes[i] !== toRemove ) { newClassName += classes[i] + " "; }
     }
-    this.className = newClassName;
+    this.className = newClassName.trimRight();
 
   }
 }
