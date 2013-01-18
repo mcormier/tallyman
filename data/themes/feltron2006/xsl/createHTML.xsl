@@ -14,7 +14,14 @@
       <xsl:with-param name="stylesheet">style.css</xsl:with-param> 
       <xsl:with-param name="javascript">PPUtils,fastclick,main</xsl:with-param> 
     </xsl:call-template>
-    <body>
+
+    <!--
+       Applying an empty ontouchstart fixes iOS from ignoring 
+       a:active style definitions.
+
+       Reference: http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari
+    -->
+    <body ontouchstart="">
       <xsl:apply-templates/>
     </body>
   </html>
