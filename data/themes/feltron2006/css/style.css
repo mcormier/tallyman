@@ -45,8 +45,7 @@ div {display:block;
   -webkit-perspective: 1000;
 }
 
-ul { 
-  list-style-type:none; 
+ul { list-style-type:none; 
   -webkit-padding-start: 0px;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
@@ -55,12 +54,8 @@ ul {
 h2, h3 {text-transform: uppercase;}
 h3 {font-size:1em;}
 
-a {
- text-decoration:none;
- color:#999; font-size:0.8em;
- text-transform:none;
-}
-a:hover {text-decoration:underline;}
+a { text-decoration:none; color:#999; font-size:0.8em; text-transform:none; }
+a:hover {text-decoration:none;}
 
 strong {color:#333;} 
 
@@ -212,9 +207,8 @@ border-radius:4px; }
 }
 /* @end */
 
-/* @group HTML 5 Transform/Transition classes */
-
-  /* -ms-transition: works for IE 10 and up. */
+/* @group HTML 5 Transform/Transition classes 
+   -ms-transition: works for IE 10 and up. */
 
 .drawer { 
   height: 0px;
@@ -242,11 +236,7 @@ border-radius:4px; }
     -o-transform:      rotate(90deg);
 }
 
-/* removes flicker in safari 
- *
- * http://stackoverflow.com/questions/2946748/iphone-webkit-css-animations-cause-flicker
- * http://stackoverflow.com/questions/3461441/prevent-flicker-on-webkit-transition-of-webkit-transform
- */
+/* removes transformation flicker in safari */
 .no-flick{
   -webkit-backface-visibility: hidden;  
   -webkit-transform:translate3d(0,0,0);
@@ -301,9 +291,8 @@ div.big_display {text-transform: uppercase; height:200px; width:374px;}
 
   div.center {width:100%;}
 
-  div.center h2 {
-    font-size:0.7em; line-height:1.4em; color:#333; margin-top:5px; 
-  }
+  div.center h2 {font-size:0.7em; line-height:1.4em; 
+                 color:#333; margin-top:5px;}
 
   div.center div.value span {font-weight:bold;}
 /* @end */
@@ -359,12 +348,9 @@ div.big_display {text-transform: uppercase; height:200px; width:374px;}
 
 /* @end */
 
-/* @group iPhone action sheet */
-
-/* Thanks to Kevin Andersson 
- * http://cssuikit.com/ios/examples/action-sheet/ 
- *
- */ 
+/* @group iPhone action sheet 
+  Thanks to Kevin Andersson for building
+  http://cssuikit.com/ios/examples/action-sheet/ */ 
 
 .PPActionSheet-overlay {
   background: rgba(0,0,0,0.4);
@@ -374,8 +360,6 @@ div.big_display {text-transform: uppercase; height:200px; width:374px;}
   position: fixed;
   overflow:hidden;
   display:none; 
-
-  -webkit-transform: translateZ(0);
 }
 
 .PPActionSheet {
@@ -395,7 +379,6 @@ div.big_display {text-transform: uppercase; height:200px; width:374px;}
 
 .PPActionSheet h2 {
  color:#FFF; text-align:center; font-size:1em;
- font-family: HelveticaNeue-Bold, HelveticaNeue, Helvetia, Arial;
  text-transform: none;  
 }
 
@@ -434,7 +417,6 @@ div.big_display {text-transform: uppercase; height:200px; width:374px;}
   display: block;
   box-shadow: 0px 100px 100px rgba(0,0,0,0.0) inset,0px 1px 2px rgba(0,0,0,0.8),0px 1px 0px rgba(255,255,255,0.2) inset;
   border-radius: 12px;
-  font-family: HelveticaNeue-Bold, HelveticaNeue, Helvetia, Arial;
   text-decoration:none;
   text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
 }
@@ -449,7 +431,6 @@ div.big_display {text-transform: uppercase; height:200px; width:374px;}
 ul.PPtableview { 
   width:100%;
   font-size: 17px;
-  font-family: 'HelveticaNeue-Bold', 'HelveticaNeue', Helvetia, Arial;
   border: 1px solid rgba(0,0,0,0.3);
   box-shadow: 0px 2px 0px rgba(255,255,255,0.2),
               0px 1px 0px rgba(0,0,0,0.1) inset;
@@ -487,13 +468,12 @@ ul.PPtableview li .cell span { display:none;}
 ul.PPtableview li .cell span.selected { display:inline;}
 
 ul.PPtableview li .cell .right { text-align:right; position:absolute;
- right:8%; top: 12px; font-size:20px; }
+  right:8%; top: 12px; font-size:20px; }
 
 
 
 ul.PPtableview li a.cell { 
- color:#000; 
-  font-family: HelveticaNeue-Bold, HelveticaNeue, Helvetia, Arial;
+  color:#000; 
   text-decoration:none;
 }
 
@@ -517,18 +497,18 @@ ul.PPtableview li a.cell:active {
   padding-bottom:2px;
 }
 .ui-header h1 { color: #FFF; font-size:20px; line-height:30px; 
-  font-family: 'HelveticaNeue-Bold', 'HelveticaNeue', Helvetia, Arial;
 text-align: center; text-overflow:ellipsis; margin:0px;font-weight:normal;
+}
+
+/***************** Fonts ***********/
+ul.PPtableview, ul.PPtableview li a.cell, 
+.button-inset a, .PPActionSheet h2, .ui-header h1 { 
+  font-family: 'HelveticaNeue-Bold', 'HelveticaNeue', Helvetia, Arial; 
 }
 
 /* @end */
 
-/* @group device specific styles */
-
-/* The box shadow on the iPad is not cleared during
- * the drawer animation.  This is an iOS bug so
- * remove the shadow for these devices.
- */
+/* @group iOS device specific styles */
 @media
 /* iPad 1 and 2  */
 only screen  
@@ -542,9 +522,12 @@ only screen
   and (-webkit-min-device-pixel-ratio: 2), 
 /* The iPhones */
 only screen  
-  and (max-device-width: 480px)
-  
-{
+  and (max-device-width: 480px) {
+
+/* The box shadow on the iPad is not cleared during
+ * the drawer animation.  This is an iOS bug so
+ * remove the shadow for these devices.
+ */
   /* makes rendering easier on touch devices */
   .shadow {box-shadow:inset 0 0 0px #FFFFFF;}
   
@@ -554,8 +537,8 @@ only screen
   /* Disable text select so that onTouchHold events 
      works seemlessly */
   * { -webkit-user-select: none; 
-      -webkit-tap-highlight-color: rgba(0,0,0,0);
-  }
+     /* Removes default click hightlight box */ 
+      -webkit-tap-highlight-color: rgba(0,0,0,0); }
 
 }
 
