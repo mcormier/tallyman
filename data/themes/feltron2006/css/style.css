@@ -619,50 +619,49 @@ only screen
   /******** Element sizes *************/
   div.assortedData { width:320px; overflow:hidden;}
 
-  div.wrapper { width: 300px; padding: 5px 5px 0px 5px; }
+  div.wrapper {width: 300px; padding: 5px 5px 0px 5px;}
   div#right_col ul li div.big_display div.center { 
-    margin: 0px 5px 0px 15px; }
-  div.center .divide-line { width: 135px; }
+    margin:0px 5px 0px 15px;}
+  div.center .divide-line {width:135px;}
 
-  div.big_display { width: 145px; height: 140px; }
+  div.big_display {width:145px; height:140px;}
 
 
-  div.liftValue { width: 100px; height: 75px; }
-  div.liftValue p.value { width: 100px; }
-  div.liftValue p.vertText { width: 100px; }
+  div.liftValue {width:100px; height:75px;}
+  div.liftValue p.value {width:100px; }
+  div.liftValue p.vertText {width:100px;}
 
   
-  div.liftValue p.estimates { height: 20px; }
-  .mega-icon::before { width: 16px; }
-  div.liftValue p.volumeEstimate { width: 260px;} 
-  div.liftValue p.oneToTenSpread { width: 300px; }
-  div.liftValue p.oneToTenSpread span.spreadValue { width:30px }
+  div.liftValue p.estimates {height:20px;}
+  .mega-icon::before {width:16px;}
+  div.liftValue p.volumeEstimate {width:260px;} 
+  div.liftValue p.oneToTenSpread {width:300px;}
+  div.liftValue p.oneToTenSpread span.spreadValue {width:30px;}
 
-  /***************** Font Sizes ***********/
-  .value { font-size: 5em;}
-  div.liftValue p.value { font-size: 3em; }
-  div.center h2 { font-size: 0.6em; }
-  div.liftValue p.vertText{ font-size: 20px; }
+  /***************** Fonts ***********/
+  .value {font-size: 5em;}
+  div.liftValue p.value {font-size:3em;}
+  div.center h2 {font-size:0.6em;}
+  div.liftValue p.vertText{font-size:12px; letter-spacing:6px;}
 
-  div.liftValue p.estimates { font-size: 10px; }
+  div.liftValue p.estimates {font-size:10px;}
 
-  div.liftValue p.oneToTenSpread { font-size: 10px; }
-  div.liftValue p.volumeEstimate { font-size: 10px; font-weight:normal;
-    letter-spacing:0px; 
-  }
+  div.liftValue p.oneToTenSpread {font-size:10px;}
+  div.liftValue p.volumeEstimate {font-size:10px; font-weight:normal;
+    letter-spacing:0px;}
   
 
   /********** Change position of some elements **********/
-  div.liftValue p.vertText{ right: 0px; top: -5px;}
-  div.liftValue p.estimates { left: 0px;}
-  div.liftValue p.oneToTenSpread { bottom:5px; left:0px; }
-  div.liftValue p.volumeEstimate { bottom:3px; left:20px; }
+  div.liftValue p.vertText {left:30px; top:-3px;}
+  div.liftValue p.estimates {left:0px;}
+  div.liftValue p.oneToTenSpread {bottom:5px; left:0px;}
+  div.liftValue p.volumeEstimate {bottom:3px; left:20px;}
 
   /************ override transformations ************/
-  .vertText { -webkit-transform: none; }
+  .vertText {-webkit-transform:none;}
 
   /********* hide some stuff **************/
-  div#drawers { display:none; }
+  div#drawers {display:none;}
 
 }
 /* @end */
