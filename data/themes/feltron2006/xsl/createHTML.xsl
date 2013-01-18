@@ -12,7 +12,7 @@
   <html manifest="cache.manifest">
     <xsl:call-template name="htmlHeader">
       <xsl:with-param name="stylesheet">style.css</xsl:with-param> 
-      <xsl:with-param name="javascript">PPUtils.js,main.js</xsl:with-param> 
+      <xsl:with-param name="javascript">PPUtils.js,fastclick.js,main.js</xsl:with-param> 
     </xsl:call-template>
     <body>
       <xsl:apply-templates/>
