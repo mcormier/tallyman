@@ -1,11 +1,13 @@
 CACHE MANIFEST
-# Cache manifest version 0.0.2
+# Version:
 # 
+# Generate the version number with ...
+# NOW=`date +"%s"` ; sed "2 s/.*/#\ Version:$NOW/" cache.manifest
+#
 # To clear the cache in chrome use
 # chrome://appcache-internals/
 # Explicitly cached 'master entries'.
 
-index.html
 
 NETWORK:
 # Resources that require the user to be online
@@ -15,6 +17,8 @@ NETWORK:
 #
 http://stats.preenandprune.com/css/
 http://stats.preenandprune.com/js/
+http://stats.preenandprune.com/index.html
+http://stats.preenandprune.com
 http://stats.preenandprune.com/test.html
 
 # Format= onlineURL offlineURL
@@ -22,10 +26,9 @@ http://stats.preenandprune.com/test.html
 
 CACHE:
 /images/drawerBG.png
+/images/stripes.png
 /images/annualWorkoutData.png
 /fonts/octicons-regular-webfont.eot
 /fonts/octicons-regular-webfont.ttf
 /fonts/octicons-regular-webfont.svg  
 /fonts/octicons-regular-webfont.woff
-
-
