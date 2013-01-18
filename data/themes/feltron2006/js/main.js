@@ -23,7 +23,21 @@ function loadSettings() {
   }
 }
 
+function handleUpdateReady(e) {
+  var appCache = window.applicationCache;
+  if (appCache.status == appCache.UPDATEREADY ) {
+    console.log("update ready occurred");
+    appCache.swapCache();
+    if ( confirm('New version available. Load?') ) {
+      window.location.reload();
+    }
+  } 
+}
+
 function init() { 
+
+  window.applicationCache.addEventListener('updateready', handleUpdateReady);
+
   loadSettings(); 
 
   PPUtils.bind("click", $('macroHistoryLink'), toggleMacroWorkoutData );
@@ -31,6 +45,9 @@ function init() {
   PPUtils.bind("click", $('drawer-overlay'), overlayClicked);
 
   PPUtils.bindOnTouchHold($('lifts'), ontouchHold, 750);
+
+  
+
 }
 
   // TODO -- move to utils
