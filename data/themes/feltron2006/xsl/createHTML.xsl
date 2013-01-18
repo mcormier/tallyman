@@ -72,6 +72,8 @@
      <div class="clear"/>
    </div>
 
+  <xsl:copy-of select="document('alertSheet.xml')/." />
+
   <div id="drawer-overlay"/>
 
 </xsl:template>
