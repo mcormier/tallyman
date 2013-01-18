@@ -9,6 +9,37 @@ function toggleElementVisibility(e) {
   e.style.visibility == "hidden" ? showElement(e) : hideElement(e);
 }
 
+function getViewPortOffset( elementID ) {
+  var e = $(elementID);
+  var offset = {x:0, y:0};
+
+  while (e) {
+    offset.x += e.offsetLeft;
+    offset.y += e.offsetTop;
+    e = e.offsetParent;
+  }
+
+  var docElem = document.documentElement;
+
+  if (docElem && ( docElem.scrollTop || docElem.scrollLeft) ) {
+    offset.x -= docElem.scrollLeft;
+    offset.y -= docElem.scrollTop;
+  } 
+  else if (document.body && (document.body.scrollTop || document.body.scrollLeft))
+  {
+    offset.x -= document.body.scrollLeft;
+    offset.y -= document.body.scrollTop;
+  }
+  else if (window.pageXOffset || window.pageYOffset)
+  {
+    offset.x -= window.pageXOffset;
+    offset.y -= window.pageYOffset;
+  }
+
+  return offset;
+}
+
+
 if (typeof HTMLElement.prototype.removeClass !== "function") {
   HTMLElement.prototype.removeClass = function(toRemove) {
     var newClassName = "";

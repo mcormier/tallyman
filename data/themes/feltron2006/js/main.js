@@ -25,61 +25,39 @@ function loadSettings() {
 
 function handleUpdateReady(e) {
   var appCache = window.applicationCache;
-  if (appCache.status == appCache.UPDATEREADY ) {
-    console.log("update ready occurred");
-    appCache.swapCache();
-    if ( confirm('New version available. Load?') ) {
-      window.location.reload();
-    }
-  } 
+  appCache.swapCache();
+  if ( confirm('New version available. Load?') ) {
+    window.location.reload();
+  }
 }
 
 function init() { 
-
   window.applicationCache.addEventListener('updateready', handleUpdateReady);
 
   loadSettings(); 
 
-  PPUtils.bind("click", $('macroHistoryLink'), toggleMacroWorkoutData );
-  PPUtils.bind("click", $('shortcutsToggle'), toggleShortcutDrawer);
-  PPUtils.bind("click", $('drawer-overlay'), overlayClicked);
-
-  PPUtils.bindOnTouchHold($('lifts'), ontouchHold, 750);
-
-  
+  if (PPUtils.isiPhone() ) { 
+    bindLiftAlertSheet(); 
+  } else {
+    new FastClick( document.querySelector("#macroShowDiv"));
+    new FastClick( document.querySelector("#drawer-overlay"));
+    PPUtils.bind("click", $('macroHistoryLink'), toggleMacroWorkoutData );
+    PPUtils.bind("click", $('shortcutsToggle'), toggleShortcutDrawer);
+    PPUtils.bind("click", $('drawer-overlay'), overlayClicked);
+  }
 
 }
 
-  // TODO -- move to utils
-function getViewPortOffset( elementID ) {
-  var e = $(elementID);
-  var offset = {x:0, y:0};
-
-  while (e) {
-    offset.x += e.offsetLeft;
-    offset.y += e.offsetTop;
-    e = e.offsetParent;
-  }
-
-  var docElem = document.documentElement;
-
-  if (docElem && ( docElem.scrollTop || docElem.scrollLeft) ) {
-    offset.x -= docElem.scrollLeft;
-    offset.y -= docElem.scrollTop;
-  } 
-  else if (document.body && (document.body.scrollTop || document.body.scrollLeft))
-  {
-    offset.x -= document.body.scrollLeft;
-    offset.y -= document.body.scrollTop;
-  }
-  else if (window.pageXOffset || window.pageYOffset)
-  {
-    offset.x -= window.pageXOffset;
-    offset.y -= window.pageYOffset;
-  }
-
-  return offset;
+function bindLiftAlertSheet() {
+  PPUtils.bindOnTouchHold($('lifts'), ontouchHoldLifts, 750);
+  PPUtils.bind("click", $('liftSheetestimatesOpt'), handleLiftSheetSelection);
+  PPUtils.bind("click", $('liftSheetoneToTenSpreadOpt'), handleLiftSheetSelection);
+  PPUtils.bind("click", $('liftSheetvolumeEstimateOpt'), handleLiftSheetSelection);
+  PPUtils.bind("click", $('liftSheetnoneOpt'), handleLiftSheetSelection);
+  PPUtils.bind("click", $('cancelLiftSheet'), cancelLiftSheet);
+  new FastClick( document.querySelector(".PPActionSheet"));
 }
+
 
 function toggleDrawer( name, openHeight, transY ) {
   var drawerName = name + "Drawer";
@@ -117,20 +95,18 @@ function toggleDrawer( name, openHeight, transY ) {
                                                 : "translateY(0px)";
   }
 
-  // show/hideoverlay folder
+  // show/hide overlay folder
   overlay.style.display = isClosed ? "block" : "none" ;
-
-  return false;
 }
 
   function overlayClicked() { closeDrawer(); closeDrawer = doNothing; }
 
   function toggleShortcutDrawer() { 
     closeDrawer = toggleShortcutDrawer;
-    return toggleDrawer( 'shortcuts', '250px', '125'); }
+    toggleDrawer( 'shortcuts', '250px', '125'); }
   function toggleMacroWorkoutData() { 
     closeDrawer = toggleMacroWorkoutData;
-    return toggleDrawer('macroHistory', '520px','250'); }
+    toggleDrawer('macroHistory', '520px','250'); }
 
   function toggleVisibility(elements, visible) {
     if ( elements.length == 0 ) return;
@@ -150,7 +126,7 @@ function toggleDrawer( name, openHeight, transY ) {
       settings.liftPanel = ''; 
       toggleVisibility(panel, false);
     } else {
-      // Something else is currntly being displayed.
+      // Something else is currently being displayed.
       var otherPanel = $className(settings.liftPanel);
       toggleVisibility(otherPanel, false);
       settings.liftPanel = clazz; 
@@ -166,9 +142,68 @@ function toggleDrawer( name, openHeight, transY ) {
     saveSettings();
   }
 
-function ontouchHold(evt) {
-//  console.log("inside on touch hold");
+function ontouchHoldLifts(evt) {
+
+  var sheet = $('liftOptionsSheet');
+  var checkmarkSpan = checkSpanForLiftSheet(settings.liftPanel);
+
+  checkmarkSpan.addClass("selected");
+
+  if ( sheet.style.display == 'none' 
+    || sheet.style.display == '' ) { sheet.style.display = 'block'; } 
+  
+  sheet.removeClass("slide-down");
+  sheet.addClass("slide-up");
+ }
+
+function getLiftSheetOptionFrom(optionName) {
+  // 'estimates' = 'liftSheetestimatesOpt'
+  //  and
+  // ''          = 'liftSheetnoneOpt'
+  var option = "liftSheet" + (optionName == '' ? 'none' : optionName) 
+                + "Opt";
+
+  return $(option); 
 }
+
+function checkSpanForLiftSheet(optionName) {
+  var option = getLiftSheetOptionFrom(optionName);
+  return option.getElementsByClassName("checked")[0];
+}
+
+function handleLiftSheetSelection(evt) {
+  //Switch checkmark before closing sheet
+  var originalCheckMark = checkSpanForLiftSheet(settings.liftPanel);
+  originalCheckMark.removeClass("selected");
+  var option = evt.srcElement;
+  option.childNodes[1].addClass("selected");
+
+
+  //Change display after sheet closes
+  setTimeout( function() {
+      var globalSetting = settings.liftPanel;
+      if (settings.liftPanel == '') { globalSetting = 'none'; }
+
+      // liftSheetestimatesOpt -> estimates
+      var optionSetting = option.id.replace(/(liftSheet)|(Opt)/g,"") ;
+   
+      if ( globalSetting != optionSetting) {
+        toggle(optionSetting);
+      }
+    }, 500);
+
+  closeLiftSheet();
+}
+
+function closeLiftSheet() {
+  var sheet = $('liftOptionsSheet');
+  sheet.removeClass("slide-up");
+  sheet.addClass("slide-down");
+}
+
+// Function synonym
+var cancelLiftSheet = closeLiftSheet;
+
 
 PPUtils.bind("load", window, init);
 PPUtils.bind("keypress", document, handleKeyEvent);
