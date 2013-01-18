@@ -4,14 +4,14 @@
     <div id="drawerButtons">
 
       <div id="macroShowDiv">
-        <a href="#macroInfo" id="macroHistoryLink" class="drawerButton">
+        <a href="javascript:void(0)" id="macroHistoryLink" class="drawerButton">
            <span class="mega-icon mega-icon-history"/> Annual Workout Data ...</a>
         <div id="macroHistoryDrawerArrow" class="arrow top down"><div class="inside-arrow top"></div></div>
       </div>
 
     <div id="shortcutsToggle">
       <div id="shortcutsLink" class="drawerButton" >
-        <a href="#shortcutsInfo" id="showShortcuts">Keyboard Shortcuts <span class="mega-icon mega-icon-keyboard"></span></a>
+        <a href="javascript:void(0)" id="showShortcuts">Keyboard Shortcuts <span class="mega-icon mega-icon-keyboard"></span></a>
         <div id="shortcutsDrawerArrow" class="arrow top down"><div class="inside-arrow top"></div></div>
       </div>
     </div>
