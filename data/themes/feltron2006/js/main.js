@@ -49,7 +49,7 @@ function init() {
 }
 
 function bindLiftAlertSheet() {
-  PPUtils.bindOnTouchHold($('lifts'), ontouchHoldLifts, 750);
+  PPUtils.bindOnTouchHold($('lifts'), ontouchHoldLifts, 500);
   PPUtils.bind("click", $('liftSheetestimatesOpt'), handleLiftSheetSelection);
   PPUtils.bind("click", $('liftSheetoneToTenSpreadOpt'), handleLiftSheetSelection);
   PPUtils.bind("click", $('liftSheetvolumeEstimateOpt'), handleLiftSheetSelection);
