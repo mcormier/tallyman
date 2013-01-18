@@ -14,29 +14,39 @@
   line-height:1;
   -webkit-font-smoothing:antialiased;
   text-decoration:none;
-  font-size:16px;
+  font-size:1em;
   width:16px; height:16px
 }
 
-.mega-icon:before {font-size:32px;width:32px;height:32px;}
-.mega-icon {vertical-align:middle;font-size:32px;}
+.mega-icon:before {font-size:1.2em;width:32px;height:32px;}
+.mega-icon {vertical-align:middle;font-size:1.2em;}
 
 /* Only define the icons begin used. 
  * https://github.com/styleguide/css/7.0
  */
 .mini-icon-keyboard:before{content:"\f00d"}
-.mega-icon-keyboard:before{content:"\f20d"}
+.mega-icon-keyboard:before{content:"\f20d"; font-size:1.9em;}
 .mini-icon-history:before{content:"\f07e"}
-.mega-icon-history:before{content:"\f27e"}
+.mega-icon-history:before{content:"\f27e"; font-size:1.9em;}
 .mini-icon-arr-right:before{content:"\f03e"}
 .mega-icon-arr-right:before{content:"\f23e"}
 .mini-icon-arr-left:before{content:"\f040"}
 .mega-icon-arr-left:before{content:"\f240"}
 /* @end */
 
+/* 
+ * Font size: 1em = 12pt = 16px = 100% 
+ *
+ * References: 
+ * http://kyleschaeffer.com/user-experience/css-font-size-em-vs-px-vs-pt-vs/
+ * http://css-tricks.com/css-font-size/
+ * http://stackoverflow.com/questions/6389914/pixels-vs-points-in-html
+ *
+ */
+
 /* @group Global definitions */
 
-body {margin:0px; font:11px Georgia, serif; color:#000;
+body {margin:0px; font:1em Georgia, serif; color:#000;
       text-transform:uppercase; letter-spacing:1px; background:#FFF;}
 
 div {display:block;
@@ -53,11 +63,11 @@ ul {
 }
 
 h2, h3 {text-transform: uppercase;}
-h3 {font-size:14px;}
+h3 {font-size:1em;}
 
 a {
  text-decoration:none;
- color:#999; font-size:14px;
+ color:#999; font-size:0.8em;
  text-transform:none;
 }
 a:hover {text-decoration:underline;}
@@ -70,7 +80,7 @@ strong {color:#333;}
   margin-bottom:0px; padding: 1px;
 }
 
-.value {font:112px Helvetica, Arial, sans-serif; font-weight:bold;}
+.value {font:7em Helvetica, Arial, sans-serif; font-weight:bold;}
 /* @end */
 
 /* @group Main Sections */
@@ -259,11 +269,10 @@ border-radius:4px; }
     -ms-transition:     -ms-transform     500ms; 
     -o-transition:      -o-transform      500ms;
 }
-
 /* @end */
 
 /* @group Lifts Content */
-div.liftName {font-weight:bold; margin-top: 10px;}
+div.liftName {font-weight:bold; margin-top: 10px; font-size:0.7em;}
 
 div.liftValue {position:relative; height:145px; width:263px; float:left;}
 
@@ -288,7 +297,7 @@ div.liftValue {position:relative; height:145px; width:263px; float:left;}
     display:block; 
     float:left; height:20px; width:79px;}
 
-  div.liftValue p.estimates {font-size:18px; left:35px; bottom:0px;}
+  div.liftValue p.estimates {font-size:1.2em; left:35px; bottom:0px;}
 
   .oneToTenSpread {left:20px;}
 /* @end */
@@ -302,10 +311,263 @@ div.big_display {text-transform: uppercase; height:200px; width:374px;}
   div.center {width:100%;}
 
   div.center h2 {
-    font-size:11px; line-height:1.4em; color:#333; margin-top:5px; 
+    font-size:0.7em; line-height:1.4em; color:#333; margin-top:5px; 
   }
 
   div.center div.value span {font-weight:bold;}
+/* @end */
+
+/* @group iPhone action sheet animation classes */
+
+@-webkit-keyframes slidedown {
+  0% { -webkit-transform: translateY(0%); }
+  100% { -webkit-transform: translateY(100%); }
+}
+
+@-webkit-keyframes fadein {
+  0% { opacity:0.0 }
+  100% { opacity:1; }
+}
+
+@-webkit-keyframes fadeout {
+  0% { visibility:visible; opacity:1; }
+  40%{  opacity:1 }
+  100% { opacity:0; visibility:hidden; }
+}
+
+@-webkit-keyframes slideup {
+  0% { -webkit-transform: translateY(100%); }
+  100% { -webkit-transform: translateY(0%); }
+}
+
+.slide-down.PPActionSheet-overlay {
+  -webkit-animation: fadeout 400ms linear;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: 100ms;
+}
+
+.slide-up.PPActionSheet-overlay {
+  -webkit-animation:fadein 400ms linear;
+  -webkit-animation-fill-mode: forwards;
+  visibility:visible;
+}
+
+.slide-up.PPActionSheet-overlay .PPActionSheet {
+  -webkit-animation:slideup 300ms;
+  -webkit-animation-timing-function:linear;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-transform: translateY(100%);  
+}
+
+.slide-down.PPActionSheet-overlay .PPActionSheet {
+  -webkit-animation:slidedown 300ms;
+  -webkit-animation-timing-function:ease-in;
+  -webkit-animation-fill-mode: forwards;
+}
+
+
+/* @end */
+
+/* @group iPhone action sheet */
+
+/* Thanks to Kevin Andersson 
+ * http://cssuikit.com/ios/examples/action-sheet/ 
+ *
+ */ 
+
+.PPActionSheet-overlay {
+  background: rgba(0,0,0,0.4);
+  height: 480px; width: 320px;
+  margin: 0;
+  bottom: 0px;
+  position: fixed;
+  overflow:hidden;
+  display:none; 
+
+  -webkit-transform: translateZ(0);
+}
+
+.PPActionSheet {
+  display:block;
+  width: 280px;
+  padding: 52px 20px 20px 20px; 
+  border-top: 1px solid rgba(0,0,0,0.7);
+  box-shadow: 0px 1px 0px rgba(255,255,255,0.4) inset,0px -2px 16px rgba(0,0,0,0.2);
+  position: absolute;
+  bottom: 0px;
+
+  /*background-image:-webkit-gradient( linear, left bottom, left top, 
+                                     color-stop(0,    rgba(96,101,111,0.8)), 
+                                     color-stop(0.9,  rgba(96,101,111,0.8)), 
+                                     color-stop(0.9,  rgba(123,128,136,0.8)), 
+                                     color-stop(0.99, rgba(166,169,175,0.8)), 
+                                     color-stop(1,    rgba(200,203,210,0.8)) ); */
+
+  text-transform:none;
+  background-position:top;
+  background-attachment:fixed;
+  background-size: 320px 490px;
+  background-image: url(../images/stripes.png);
+}
+
+.PPActionSheet h2 {
+ color:#FFF; text-align:center; font-size:1em;
+ font-family: HelveticaNeue-Bold, HelveticaNeue, Helvetia, Arial;
+ text-transform: none;  
+}
+
+.button-inset {
+  background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(3,3,3,0.8)), to(rgba(42,42,42,0.5)));
+  box-shadow:0px 1px 0px rgba(255,255,255,0.1), 0px -1px 0px rgba(0,0,0,0.1),0px 1px 2px rgba(0,0,0,0.1); 
+  width: 100%;
+  height: 42px;
+  border-radius: 12px;
+  padding: 3px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.button-inset a.button.grey {
+  background-image:-webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(190,192,195)), color-stop(0.5, rgb(190,191,194)), color-stop(0.5, rgb(207,208,210)), color-stop(0.88, rgb(235,236,236)) ); 
+  color: #000;
+  text-shadow: 0px 1px 0px rgba(255,255,255,0.5);
+}
+
+.button-inset a.button.dark-grey {
+  background-image:-webkit-gradient(linear, left bottom, left top, 
+                                   color-stop(0, rgb(68,74,83)), 
+                                   color-stop(0.5, rgb(43,50,59)), 
+                                   color-stop(0.5, rgb(54,62,70)), 
+                                   color-stop(1, rgb(106,112,118)) );
+}
+
+.button-inset a {
+  width:100%;
+  height: 32px;
+  padding-top: 10px;
+  text-align: center; 
+  font-size: 22px; 
+  color: #FFF;
+  display: block;
+  box-shadow: 0px 100px 100px rgba(0,0,0,0.0) inset,0px 1px 2px rgba(0,0,0,0.8),0px 1px 0px rgba(255,255,255,0.2) inset;
+  border-radius: 12px;
+  font-family: HelveticaNeue-Bold, HelveticaNeue, Helvetia, Arial;
+  text-decoration:none;
+  text-shadow: 0px -1px 0px rgba(0,0,0,0.4);
+}
+
+.button-inset a.grey:active, .button-inset a.dark-grey:active { 
+  color:#fff;
+  text-shadow:0px -1px 0px rgba(0,0,0,0.5);
+  background-image: -webkit-linear-gradient(bottom, rgb(56,115,224) 0%, rgb(27,59,188) 50%, rgb(60,85,197) 50%, rgb(142,157,221) 88%);
+
+}
+
+ul.PPtableview { 
+  width:100%;
+  font-size: 17px;
+  font-family: 'HelveticaNeue-Bold', 'HelveticaNeue', Helvetia, Arial;
+  border: 1px solid rgba(0,0,0,0.3);
+  box-shadow: 0px 2px 0px rgba(255,255,255,0.2),
+              0px 1px 0px rgba(0,0,0,0.1) inset;
+  border-radius: 10px;
+  background: rgba(247,247,247,1);
+  list-style:none;
+  overflow: hidden;
+  margin-bottom: 20px;
+  margin-left:3px;
+  margin-right:3px;
+}
+
+li.cell {
+  padding: 16px;
+  height: 100%;
+  display:block;
+}
+
+ul.PPtableview li { position: relative; margin:0; 
+                  padding: 0; border:0;  
+                  display: block;
+                  border-bottom: 1px solid rgba(170,170,170,1);
+                  height:42px;
+                  width:100%;
+}
+
+
+
+ul.PPtableview li .cell { padding-left: 10px;  padding-top:15px; 
+  display:block; height:32px;
+  width:100%; 
+  }
+
+ul.PPtableview li .cell span { display:none;}
+ul.PPtableview li .cell span.selected { display:inline;}
+
+ul.PPtableview li .cell .right { text-align:right; position:absolute;
+ right:8%; top: 12px; font-size:20px; }
+
+
+
+ul.PPtableview li a.cell { 
+ color:#000; 
+  font-family: HelveticaNeue-Bold, HelveticaNeue, Helvetia, Arial;
+  text-decoration:none;
+}
+
+ul.PPtableview li a.cell:active { 
+  color:#fff;
+  text-shadow:0px -1px 0px rgba(0,0,0,0.5);
+  background-image: -webkit-linear-gradient(bottom, rgb(56,115,224) 0%, rgb(27,59,188) 50%, rgb(60,85,197) 50%, rgb(142,157,221) 88%);
+}
+
+
+/*
+  
+ ul.PPtableview li a.cell:active { 
+ box-shadow:0px 1px 0px rgba(255,255,255,0.5), 
+            0px 0px 1px rgba(255,255,255,0.2), 
+            0px 1px 1px rgba(0,0,0,0.2) inset,
+            0px 100px 100px rgba(0,0,0,0.2) inset;
+}
+
+
+ul.PPtableview li:first-child a:active{border-radius:9px 9px 0px 0px;}
+ul.PPtableview li:last-child a:active{border-radius:0px 0px 9px 9px;}
+
+ul.PPtableview li a:active {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, 
+                from(rgba(5,140,245,1.0)), 
+                to(rgba(0,95,230,1.0)), 
+                color-stop(.6, rgba(0,110,230,1.0)));
+  color:#fff;
+  box-shadow:0px -1px 0px rgba(0,0,0,0.2) inset;
+  text-shadow:0px 1px 1px rgba(0,0,0,0.1);
+}
+
+ul.PPtableview li a.cell:active span{
+  color:#fff;
+  text-shadow:0px 1px 1px rgba(0,0,0,0.1);
+}
+*/
+
+.ui-header {
+  width: 100%; height:32px;
+  position:absolute; left:0px; top:0px;
+  background-image: -webkit-gradient( linear, left bottom, left top,
+                     color-stop(0, rgb(111,133,162)),
+                     color-stop(0.5, rgb(127,148,176)),
+                     color-stop(0.5, rgb(137,155,178)),
+                     color-stop(0.95, rgb(179,190,204)));
+  border-top: 1px solid rgba(255,255,255,0.35);
+  border-bottom: 1px solid rgba(0,0,0,0.60);
+  padding-top:6px;
+  padding-bottom:2px;
+}
+.ui-header h1 { color: #FFF; font-size:20px; line-height:30px; 
+  font-family: 'HelveticaNeue-Bold', 'HelveticaNeue', Helvetia, Arial;
+text-align: center; text-overflow:ellipsis; margin:0px;font-weight:normal;
+}
+
 /* @end */
 
 /* @group device specific styles */
@@ -336,8 +598,72 @@ only screen
   /* Hide keyboard shortcuts from touch devices. */ 
   #shortcutsToggle {display:none;overflow:hidden;}
 
+  /* Disable text select so that onTouchHold events 
+     works seemlessly */
+  * { -webkit-user-select: none; 
+      -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+
 }
 
+/* @end */
+
+
+/* @group iphone specific style 
+ * Assumes portrait mode 
+ * iPhone 4 is 480px x 320px
+ * */
+@media only screen and (max-device-width: 480px) {
+
+  /******** Element sizes *************/
+  div.assortedData { width:320px; overflow:hidden;}
+
+  div.wrapper { width: 300px; padding: 5px 5px 0px 5px; }
+  div#right_col ul li div.big_display div.center { 
+    margin: 0px 5px 0px 15px; }
+  div.center .divide-line { width: 135px; }
+
+  div.big_display { width: 145px; height: 140px; }
+
+
+  div.liftValue { width: 100px; height: 75px; }
+  div.liftValue p.value { width: 100px; }
+  div.liftValue p.vertText { width: 100px; }
+
+  
+  div.liftValue p.estimates { height: 20px; }
+  .mega-icon::before { width: 16px; }
+  div.liftValue p.volumeEstimate { width: 260px;} 
+  div.liftValue p.oneToTenSpread { width: 300px; }
+  div.liftValue p.oneToTenSpread span.spreadValue { width:30px }
+
+  /***************** Font Sizes ***********/
+  .value { font-size: 5em;}
+  div.liftValue p.value { font-size: 3em; }
+  div.center h2 { font-size: 0.6em; }
+  div.liftValue p.vertText{ font-size: 20px; }
+
+  div.liftValue p.estimates { font-size: 10px; }
+
+  div.liftValue p.oneToTenSpread { font-size: 10px; }
+  div.liftValue p.volumeEstimate { font-size: 10px; font-weight:normal;
+    letter-spacing:0px; 
+  }
+  
+
+  /********** Change position of some elements **********/
+  div.liftValue p.vertText{ right: 0px; top: -5px;}
+  div.liftValue p.estimates { left: 0px;}
+  div.liftValue p.oneToTenSpread { bottom:5px; left:0px; }
+  div.liftValue p.volumeEstimate { bottom:3px; left:20px; }
+
+  /************ override transformations ************/
+  .vertText { -webkit-transform: none; }
+
+  /********* hide some stuff **************/
+  div#drawers { display:none; }
+
+}
 /* @end */
 
 /* vim: set foldmethod=marker:
