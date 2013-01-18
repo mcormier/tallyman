@@ -27,7 +27,7 @@
 
     <xsl:for-each select="str:tokenize($javascript,',')">
        <xsl:variable name ="filename" select="."/>
-       <script src="js/{$filename}" type="text/javascript"></script>
+       <script src="js/{$filename}.js" type="text/javascript"></script>
     </xsl:for-each> 
 
   </head>
