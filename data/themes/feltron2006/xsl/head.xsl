@@ -14,6 +14,11 @@
   <xsl:variable name="vDoc" select="/"/>
 
   <head>
+
+    <!-- prevent user from scaling webpage in iPhone -->
+    <meta name="viewport" id="viewport" 
+          content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+
     <!-- prints out a title in the form: "Updated 10 Jan 2013" -->
     <title><xsl:value-of 
                 select="concat('Updated: ', 
