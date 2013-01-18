@@ -629,7 +629,7 @@ only screen
 
   div.liftValue {width:100px; height:75px;}
   div.liftValue p.value {width:100px; }
-  div.liftValue p.vertText {width:100px;}
+  div.liftValue p.vertText {width:60px;}
 
   
   div.liftValue p.estimates {height:20px;}
