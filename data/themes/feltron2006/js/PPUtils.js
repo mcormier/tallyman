@@ -60,6 +60,8 @@ PPUtils.bind = function(event, element, callback) {
   }
 }
 
+PPUtils.isiPhone = function () { return navigator.userAgent.indexOf("iPhone") > -1 ; }
+
 PPUtils.bindOnTouchHold = function( element, callback, holdTimeReqMs ) {
   var timeout;
   var shouldTrigger = false;
