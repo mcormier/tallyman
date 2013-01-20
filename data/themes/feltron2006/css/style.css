@@ -508,20 +508,22 @@ ul.PPtableview, ul.PPtableview li a.cell,
 
 /* @end */
 
+
 /* @group iOS device specific styles */
 @media
 /* iPad 1 and 2  */
 only screen  
-  and (device-width: 768px)
-  and (device-height: 1024px)
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
   and (-webkit-min-device-pixel-ratio: 1), 
 /* iPad 3 and 4 */ 
 only screen  
-  and (device-width: 768px)
-  and (device-height: 1024px)
+  and (min-device-width: 768px)
+  and (max-device-height: 1024px)
   and (-webkit-min-device-pixel-ratio: 2), 
 /* The iPhones */
 only screen  
+  and (min-device-width: 320px) 
   and (max-device-width: 480px) {
 
 /* The box shadow on the iPad is not cleared during
@@ -544,12 +546,32 @@ only screen
 
 /* @end */
 
+/* @group iPad specific styles */
+
+@media
+/* iPad 1 and 2 in portait mode*/
+only screen  
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1), 
+/* iPad 3 and 4 */ 
+only screen  
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 2) 
+{
+
+  /********* hide some stuff **************/
+  div#shortcutsToggle {display:none;}
+} 
+/* @end */
 
 /* @group iphone specific style 
- * Assumes portrait mode 
+ * 
  * iPhone 4 is 480px x 320px
- * */
-@media only screen and (max-device-width: 480px) {
+ */
+@media only screen and (min-device-width: 320px) 
+                   and (max-device-width: 480px) {
 
   /******** Element sizes *************/
   div.assortedData { width:320px; overflow:hidden;}
