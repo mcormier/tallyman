@@ -54,7 +54,11 @@ if (typeof HTMLElement.prototype.removeClass !== "function") {
 
 if (typeof HTMLElement.prototype.addClass !== "function") {
   HTMLElement.prototype.addClass = function(toAdd) {
-    this.className += " " + toAdd;
+    var classes = this.className.split(" ");
+    // don't add if it is already on the element
+    if ( classes.indexOf(toAdd) == -1 ) {
+      this.className += " " + toAdd;
+    }
   }
 }
 
@@ -101,7 +105,7 @@ PPUtils.bindOnTouchHold = function( element, callback, holdTimeReqMs ) {
   PPUtils.bind("touchstart", element, 
    function startWaitForHold(e) {
      shouldTrigger = true;
-     timeout = setTimeout(function() {callback();}, holdTimeReqMs); 
+     timeout = setTimeout(function() {callback(e);}, holdTimeReqMs); 
    });
 
   PPUtils.bind("touchmove", element, 
