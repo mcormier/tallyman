@@ -1,11 +1,14 @@
- <div id="liftOptionsSheet" class="PPActionSheet-overlay slide-down">
-  <div class="PPActionSheet">
+ <div id="liftOptionsSheet" 
+      class="PPActionSheet-overlay slide-down PPPopOver">
+  <div class="PPActionSheet PPPopOver-Content">
 
     <div class="ui-header">
       <h1>Lift Display</h1>
     </div>
+    <div id="popoverArrow" class="arrow"><span></span></div>
 
-    <ul class="PPtableview">
+    <div class="popover-body">
+    <ul class="PPtableview PPPopupTableView">
       <li class="cell">
           <a id="liftSheetestimatesOpt" href="javascript:void(0)" 
              class="cell">Show Estimates
@@ -27,9 +30,9 @@
         <span class="checked right">&#x2713;</span></a>
       </li>
     </ul>
+    </div>
 
     <span class="button-inset"><a href="javascript:void(0)" id="cancelLiftSheet" class="button dark-grey">Cancel</a></span>
   </div>
 </div>
-
 

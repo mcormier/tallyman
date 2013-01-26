@@ -75,6 +75,7 @@
   <xsl:copy-of select="document('alertSheet.xml')/." />
 
   <div id="drawer-overlay"/>
+  <div id="popover-overlay"/>
 
 </xsl:template>
 
