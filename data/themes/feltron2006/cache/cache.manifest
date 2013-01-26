@@ -17,6 +17,8 @@ NETWORK:
 # by default for now
 #
 http://stats.preenandprune.com/test.html
+http://stats.preenandprune.com/js/test.js
+http://stats.preenandprune.com/css/test.css
 
 CACHE:
 /js/main.js
