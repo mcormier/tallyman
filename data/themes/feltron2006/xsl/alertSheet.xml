@@ -11,17 +11,17 @@
     <ul class="PPtableview PPPopupTableView">
       <li class="cell">
           <a id="liftSheetestimatesOpt" href="javascript:void(0)" 
-             class="cell">Show Estimates
+             class="cell">Estimates
           <span class="checked right">&#x2713;</span></a>
       </li>
       <li class="cell">
         <a id="liftSheetoneToTenSpreadOpt" href="javascript:void(0)" 
-           class="cell">Show 1-10 Spread
+           class="cell">1-10 Spread
         <span class="checked right">&#x2713;</span></a>
       </li>
       <li class="cell">
         <a id="liftSheetvolumeEstimateOpt" href="javascript:void(0)" 
-           class="cell">Show Volume Info
+           class="cell">Volume Info
         <span class="checked right">&#x2713;</span></a>
       </li>
       <li class="cell">
