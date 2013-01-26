@@ -6,6 +6,97 @@ settings.liftPanel = '';
 var doNothing = function doNothing() {}
 var closeDrawer = doNothing;
 var onTouchHold = false;
+var iPadPopover = null;
+var liftSheetIds = ["liftSheetestimatesOpt",
+                    "liftSheetoneToTenSpreadOpt",
+                    "liftSheetvolumeEstimateOpt", 
+                    "liftSheetnoneOpt"];
+
+// Assumes that the overlay has a fixed position 
+// and height + width = 100%
+function PPPopOver( ID, arrowID, overlayID ) {
+  this.rootPane = $(ID);
+  this.arrow    = $(arrowID);
+  this.overlay  = $(overlayID);
+
+  // Listen for overlay clicks 
+  var me = this;
+  new FastClick( document.querySelector("#"+overlayID));
+  PPUtils.bind("click", this.overlay, function(){ me.hide(); } );
+
+  // TODO -- magic number....
+  this.touchOffset = 25;
+  // default arrow position
+  this.setArrowPosition("top");
+}
+
+PPPopOver.prototype.setArrowPosition = function(position) {
+  if (this.arrowPosition == position) { return;}
+
+  // Remove old position style
+  this.arrow.removeClass(this.arrowPosition);
+  this.arrowPosition = position;
+  // Add new position style
+  this.arrow.addClass(this.arrowPosition);
+}
+
+PPPopOver.prototype.setTouchCoords = function(xTouchPos, yTouchPos) {
+  var width     = this.rootPane.offsetWidth;
+  var height    = this.rootPane.offsetHeight;
+  var winWidth  = window.innerWidth;
+  var winHeight = window.innerHeight;
+
+  var arrowPosition = "top";
+
+  // Arrow on top is the default
+  // Centre PopOver
+  var x = xTouchPos - width/2;
+  // Assuming top arrow.  Move the PopOver just below the finger
+  var y = yTouchPos + this.touchOffset;
+
+  // Check popover is fully displayed on window
+
+  // Finger is really close to right side of window
+  if ( x + width > winWidth ) {
+    // Shift to the right
+    x -= width/2 + this.touchOffset;
+    // Centre PopOver
+    y = yTouchPos - height/2;
+    arrowPosition = "right";
+  }
+
+  // Finger is close to left side of window
+  if ( x < 0 ) {
+    x = xTouchPos + this.touchOffset;
+    y = yTouchPos - width/2;
+    arrowPosition = "left";
+  }
+
+
+  // Finger is too close to bottom of window
+  if ( yTouchPos + this.touchOffset + height > winHeight ) {
+    y  = yTouchPos - height - this.touchOffset;
+    arrowPosition = "bottom";
+  }
+
+  this.setArrowPosition(arrowPosition);
+  this.rootPane.style.top = y + "px";
+  this.rootPane.style.left = x + "px";
+}
+
+PPPopOver.prototype.show = function() {
+  this.overlay.style.display = "block";
+  this.rootPane.style.display = "block";
+  this.rootPane.removeClass("fadeout");
+  this.rootPane.addClass("fadein");   
+}
+
+PPPopOver.prototype.hide = function() {
+  this.overlay.style.display = "none";
+  this.rootPane.addClass("fadeout");
+  this.rootPane.removeClass("fadein");
+}
+
 
 function saveSettings() {
   var str = JSON.stringify(settings);
@@ -34,6 +125,7 @@ function handleUpdateReady(e) {
 function init() { 
   window.applicationCache.addEventListener('updateready', handleUpdateReady);
 
+
   loadSettings(); 
 
   if (PPUtils.isiPhone() ) { 
@@ -46,14 +138,25 @@ function init() {
     PPUtils.bind("click", $('drawer-overlay'), overlayClicked);
   }
 
+  if (PPUtils.isiPad() ) { 
+    iPadPopover  = new PPPopOver("liftOptionsSheet", "popoverArrow",
+                                 "popover-overlay");
+    PPUtils.bindOnTouchHold($('lifts'), iPadOntouchHoldLifts, 500);
+    bindIDArrayToClick( liftSheetIds, handleLiftPopOverSelection );
+
+  }
 }
+
+function bindIDArrayToClick( idArray, callback) {
+  for(var i=0; i < idArray.length; i++) {
+    PPUtils.bind("click", $(idArray[i]), callback);
+  }
+}
+
 
 function bindLiftAlertSheet() {
   PPUtils.bindOnTouchHold($('lifts'), ontouchHoldLifts, 500);
-  PPUtils.bind("click", $('liftSheetestimatesOpt'), handleLiftSheetSelection);
-  PPUtils.bind("click", $('liftSheetoneToTenSpreadOpt'), handleLiftSheetSelection);
-  PPUtils.bind("click", $('liftSheetvolumeEstimateOpt'), handleLiftSheetSelection);
-  PPUtils.bind("click", $('liftSheetnoneOpt'), handleLiftSheetSelection);
+  bindIDArrayToClick( liftSheetIds, handleLiftSheetSelection);
   PPUtils.bind("click", $('cancelLiftSheet'), cancelLiftSheet);
   new FastClick( document.querySelector(".PPActionSheet"));
 }
@@ -101,9 +204,11 @@ function toggleDrawer( name, openHeight, transY ) {
 
   function overlayClicked() { closeDrawer(); closeDrawer = doNothing; }
 
+  function popOverlayClicked() { iPadPopover.hide(); }
+
   function toggleShortcutDrawer() { 
     closeDrawer = toggleShortcutDrawer;
-    toggleDrawer( 'shortcuts', '250px', '125'); }
+    toggleDrawer( 'shortcuts', '270px', '135'); }
   function toggleMacroWorkoutData() { 
     closeDrawer = toggleMacroWorkoutData;
     toggleDrawer('macroHistory', '520px','250'); }
@@ -142,8 +247,23 @@ function toggleDrawer( name, openHeight, transY ) {
     saveSettings();
   }
 
-function ontouchHoldLifts(evt) {
+function iPadOntouchHoldLifts(evt) {
+  var yPos = evt.touches[0].clientY; 
+  var xPos = evt.touches[0].clientX; 
+  
+  iPadPopover.setTouchCoords(xPos,yPos);
+  iPadPopover.show();
+  return;
 
+
+  if ( yPos + popOverHeight > document.body.offsetWidth ) {
+    yPos -= popOverHeight + touchOffset*2;
+    popoverArrow.addClass("bottom");
+  }
+
+}
+
+function ontouchHoldLifts(evt) {
   var sheet = $('liftOptionsSheet');
   var checkmarkSpan = checkSpanForLiftSheet(settings.liftPanel);
 
@@ -171,28 +291,39 @@ function checkSpanForLiftSheet(optionName) {
   return option.getElementsByClassName("checked")[0];
 }
 
+function handleLiftPopOverSelection(evt) {
+  var option = evt.srcElement;
+  iPadPopover.hide();
+  // Change display after PopOver disappears
+  setTimeout( function(){parseTouchOption(option);}, 500);
+}
+
 function handleLiftSheetSelection(evt) {
-  //Switch checkmark before closing sheet
+  // Switch checkmark before closing sheet
   var originalCheckMark = checkSpanForLiftSheet(settings.liftPanel);
   originalCheckMark.removeClass("selected");
   var option = evt.srcElement;
   option.childNodes[1].addClass("selected");
 
-
-  //Change display after sheet closes
-  setTimeout( function() {
-      var globalSetting = settings.liftPanel;
-      if (settings.liftPanel == '') { globalSetting = 'none'; }
-
-      // liftSheetestimatesOpt -> estimates
-      var optionSetting = option.id.replace(/(liftSheet)|(Opt)/g,"") ;
-   
-      if ( globalSetting != optionSetting) {
-        toggle(optionSetting);
-      }
-    }, 500);
-
   closeLiftSheet();
+
+  // Change display after sheet closes
+  setTimeout( function(){parseTouchOption(option);}, 500);
+}
+
+// Used by iPhone.alertSheet and iPad.popOver for parsing
+// a users selection.
+function parseTouchOption(option) {
+  var globalSetting = settings.liftPanel;
+  if (settings.liftPanel == '') { globalSetting = 'none'; }
+
+  // liftSheetestimatesOpt -> estimates
+  var optionSetting = option.id.replace(/(liftSheet)|(Opt)/g,"") ;
+
+  if (globalSetting != optionSetting) { 
+    toggle(optionSetting); 
+    saveSettings();
+  }
 }
 
 function closeLiftSheet() {
@@ -207,3 +338,4 @@ var cancelLiftSheet = closeLiftSheet;
 
 PPUtils.bind("load", window, init);
 PPUtils.bind("keypress", document, handleKeyEvent);
+
