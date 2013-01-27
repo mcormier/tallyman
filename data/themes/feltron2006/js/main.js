@@ -11,6 +11,7 @@ var liftSheetIds = ["liftSheetestimatesOpt",
                     "liftSheetoneToTenSpreadOpt",
                     "liftSheetvolumeEstimateOpt", 
                     "liftSheetnoneOpt"];
+var loadTime = null;
 
 // Assumes that the overlay has a fixed position 
 // and height + width = 100%
@@ -117,12 +118,22 @@ function loadSettings() {
 function handleUpdateReady(e) {
   var appCache = window.applicationCache;
   appCache.swapCache();
-  if ( confirm('New version available. Load?') ) {
+  var now = new Date();
+  var diffInMillSeconds = now.getTime() - loadTime.getTime();
+
+  // If the user is on a fast connection and the cache was 
+  // reloaded and swapped in less than a second then reload
+  // the page without asking.  If the connection/machine is
+  // is slower then ask if they want to reload the page.
+  if ( diffInMillSeconds < 1000 || 
+       confirm('New version available. Load?') ) {
     window.location.reload();
   }
+
 }
 
 function init() { 
+  loadTime = new Date();
   window.applicationCache.addEventListener('updateready', handleUpdateReady);
 
 
