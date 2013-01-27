@@ -1,7 +1,8 @@
 /**
  * FastClick: Set up handling of fast clicks
  *
- * See ./fastclick.md for full license and description.
+ * See https://raw.github.com/mcormier/tallyman/master/data/themes/feltron2006/js/fastclick.md 
+ * for full license and description.
  * 
  * @licence MIT License 
  * @copyright (c) 2011 Assanka Limited
