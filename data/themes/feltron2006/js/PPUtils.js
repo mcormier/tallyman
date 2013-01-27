@@ -87,9 +87,13 @@ function PPUtils() {}
 
 PPUtils.log = function ( output ) { if (window.console)  console.log(output); }
 
-PPUtils.bind = function(event, element, callback) {
+// useCapture (optional)
+PPUtils.bind = function(event, element, callback, useCapture) {
+  
+  var capture = arguments.length == 3 ? false : useCapture;
+
   if ( typeof element.addEventListener != "undefined" ) {
-    element.addEventListener(event, callback, false);
+    element.addEventListener(event, callback, capture);
   } else if ( typeof element.attachEvent != "undefined" ) { // Supports IE < 9
     element.attachEvent(event, callback);
   }
