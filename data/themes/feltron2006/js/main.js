@@ -255,8 +255,21 @@ function toggleDrawer( name, openHeight, transY ) {
     if ( keyCode == 'e' ) { toggle('estimates'); } 
     if ( keyCode == 'v' ) { toggle('volumeEstimate'); } 
     if ( keyCode == 's' ) { toggle('oneToTenSpread'); } 
+    if ( keyCode == 'f' ) { toggleFullScreen(); } 
     saveSettings();
   }
+
+
+function toggleFullScreen() {
+  var element = document.documentElement;
+  var requestMethod = element.requestFullScreen || 
+                      element.webkitRequestFullScreen || 
+                      element.mozRequestFullScreen || 
+                      element.msRequestFullScreen;
+  if (requestMethod) {
+    requestMethod.call(element, Element.ALLOW_KEYBOARD_INPUT);
+  }
+}
 
 function iPadOntouchHoldLifts(evt) {
   var yPos = evt.touches[0].clientY; 
