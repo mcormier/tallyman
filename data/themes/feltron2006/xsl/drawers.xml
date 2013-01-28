@@ -36,15 +36,22 @@
         <div class="column first">
           <h3>Lift shortcuts</h3>
           <dl class="keyboard-mappings">
-            <dt>e</dt><dd>Toggle estimates</dd>
+            <dt>e</dt><dd>Toggle Estimates</dd>
           </dl>
           <dl class="keyboard-mappings">
-            <dt>v</dt><dd>Toggle volume recommendations</dd>
+            <dt>v</dt><dd>Toggle Volume Recommendations</dd>
           </dl>
           <dl class="keyboard-mappings">
-            <dt>s</dt><dd>Toggle 1RM to 10RM spread</dd>
+            <dt>s</dt><dd>Toggle 1RM to 10RM Spread</dd>
           </dl>
         </div>
+        <div class="column second">
+          <h3>General shortcuts</h3>
+          <dl class="keyboard-mappings">
+            <dt>f</dt><dd>View Fullscreen</dd>
+          </dl>
+        </div>
+ 
       </div>
     </div>
   </div>

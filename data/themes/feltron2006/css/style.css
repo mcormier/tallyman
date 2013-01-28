@@ -171,6 +171,8 @@ div.clear { clear: left; }
  background-image: url(../images/drawerBG.png); 
 }
 
+.column { float:left; margin-right:50px;}
+
 dl.keyboard-mappings dt {
   display:inline-block;
   margin:0;
