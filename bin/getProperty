@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 #
 # Gets property defined in ruby style config file
 # so that the variable can be used in a bash shell script

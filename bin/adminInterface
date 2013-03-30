@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 # Curses reference:
 # http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
