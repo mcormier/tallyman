@@ -26,6 +26,7 @@ WEB_DIR="${WEB_ROOT}/${1}"
   fi
 }
 
+copyThemeDirToWebRoot "fonts"
 copyThemeDirToWebRoot "images"
 copyThemeDirToWebRoot "css"
 copyThemeDirToWebRoot "js"
