@@ -1,17 +1,17 @@
 
 # Tallyman #
 
-Tallyman gathers data and generates a static website. It was built to generate [stats.preenandprune.com](http://stats.preenandprune.com) but it can be easily customized to generate your own page of [statistics porn](http://chartporn.org).
+Tallyman gathers data and generates a static website. It was built to collect personal data and can be easily customized to generate your own page of [statistics porn](http://chartporn.org). To see Tallyman in action check out the [demo page](http://mcormier.github.com/tallyman/).
 
 ![Website example] (http://mcormier.github.com/tallyman/images/previewSmall.png )
 
-To generate the page you use a simple interface to a database which then generates the webpage.
+To generate the page you use a simple curses based interface to a database which then generates the webpage.
 
 ![Admin Interface => Database => Website] (http://mcormier.github.com/tallyman/images/tallymanArch.jpg )
 
-## Why? ##
+## Original Motivation ##
 
-I have been using [wodHub](http://wodhub.com/profiles/6534) for a while now to track my exercise data.  It's a free site and has expanded as a product sold to people running gyms. It's helped me track my gym benchmarks and kept me motivated to workout, and for that I am thankful. But like many free web applications it has a subtle issue.  You don't own your data. The person that is paying to run that site and letting you use it owns your data.  It's free to use but the hidden cost is that you lose ownership of your data.  If the individual who is running wodHub goes bankrupt tomorrow and the server gets shut down then all the data that you've input over time disappears.
+I used to use [wodHub](http://wodhub.com/profiles/6534) to track my exercise data.  It's a free site and has expanded as a product sold to people running gyms. It helped me track my gym benchmarks and kept me motivated to workout, and for that I am thankful. But like many free web applications it has a subtle issue.  You don't own your data. The person that is paying to run that site and letting you use it owns your data.  It's free to use but the hidden cost is that you lose ownership of your data.  If the individual who is running wodHub goes bankrupt tomorrow and the server gets shut down then all the data that you've input over time disappears.
 
 This concern was compounded by the fact that some of the main bench mark names changed unexpectedly.  A benchmark workout called Cindy was unexplicably renamed to "Cindy with a twist", and the "Max Deadlift" benchmark got renamed to "Deadlift Couplet".  The deadlift data also got reinterpreted as a timed workout instead of a max load workout so my data no longer made any sense. 
 
@@ -32,7 +32,7 @@ Whether the above statement is made with rose-coloured glasses or not, there has
 
 Sometimes your data isn't important, like many of the banal things posted on fartbook and tweeter, but you should own the data that is important to you.
 
-My workout data is important to me so I've decided to write some software and retain ownership. 
+Long story, long, my workout data is important to me so I wrote some software so I can geek out on the data. 
 
 ## Technical Details ##
 
@@ -86,7 +86,7 @@ The final implementation is smoking fast.
 
 
 --------------------------------------------------------------------
-The current look of http://stats.preenandprune.com was heavily influenced, pretty much a direct copy of, Nicholas Feltron's [2006 annual report](http://feltron.com/ar06_01.html).
+The feltron theme was heavily influenced, pretty much a direct copy of, Nicholas Feltron's [2006 annual report](http://feltron.com/ar06_01.html).
 
 An alternative to setting up your own tallyman is to use [Daytum](http://daytum.com/) which does allow you to export your data as a CSV.  Daytum is free for the first 1000 items you log, they charge $4 a month if you require more space.
 
