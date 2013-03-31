@@ -1,0 +1,572 @@
+
+
+/* @group CSS Reset */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+* :link,:visited {
+	text-decoration: none
+}
+
+
+* h1,h2,h3,h4,h5,h6,pre,code {
+	font-size: 1em;
+}
+
+* a img,:link img,:visited img {
+	border: none
+}
+
+a {
+	outline: none;
+}
+
+table {
+	border-spacing: 0;
+}
+
+img {
+	vertical-align: middle;
+}
+
+
+
+/* @group Basics */
+
+body {
+	background-color: #fff;
+	color: #444;
+	font-family: Baskerville, "Palatino Linotype", Times, "Times New Roman", serif;
+	width: 40em;
+	margin: 1em auto;
+}
+
+a:link {
+	color: #b63;
+	text-decoration: none;
+/*	border-bottom: 1px solid #ddd;*/
+}
+
+a:visited {
+	color: #888;
+	text-decoration: none;
+	border-bottom: 1px solid #ddd;
+}
+
+a:active {
+	color: #888;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #888;
+	text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	text-align: center;
+	font-style: italic;
+	font-weight: normal;
+	line-height: 1.1em;
+}
+
+h1 a,h2 a,h3 a,h4 a,h5 a,h6 a {
+	border-bottom: none !important;
+}
+
+h1, h2 {
+	letter-spacing: -1px;
+}
+h1 {
+	font-size: 2.5em;
+}
+h2 {
+	font-size: 2em;
+}
+h3 {
+	font-size: 1.75em;
+}
+h4 {
+	font-size: 1.5em; 
+}
+h5 {
+	font-size: 1.25em;
+}
+h6 {
+	font-size: 1em;
+}
+
+h2 + p:first-line,
+p.documentDescription + p:first-line,
+hr + p:first-line {
+    font-variant: small-caps;
+letter-spacing: 0.1em;
+}
+h2 + p,
+p.documentDescription + p,
+hr + p {
+	text-indent: 0;
+}
+
+p {
+	font-size: 1.25em;
+	text-align: justify;
+	line-height: 1.5em;
+	text-indent: 1em;
+	margin: 0.5em 0;
+}
+
+ul,ol {
+    padding-left: 1em;
+}
+
+ul,ol, dl {
+    line-height: 1.5em;
+	font-size: 1.25em;
+	margin: 0.5em 0;
+}
+
+ul ul,
+ul ol,
+ol ul {
+	font-size: 1em !important;
+}
+
+dt { 
+	font-style: italic;
+}
+
+dd { 
+	margin: 0em 0 0.5em 1em;
+}
+
+
+strong {
+	font-weight: normal;
+	font-style: italic;
+}
+
+blockquote {
+    font-variant: small-caps;
+    letter-spacing: 0.1em;
+
+    border: 1px solid #ccc;
+    border-style: solid none;
+    padding: 0 1em;
+    margin: 0;
+}
+
+q {
+    quotes: "â€œ" "â€" "â€˜" "â€™"
+}
+
+textarea {
+	width: 100%;
+}
+
+pre {
+	background-color: #222;
+	color: #fff;
+	font-family: Monaco, Consolas, Inconsolata, "Courier New", monospace;
+	padding: 2em;
+	overflow-x: auto;
+	font-size: 0.8em;
+	margin-bottom: 1em;
+	line-height: 1.3em;
+}
+
+code {
+	font-family: "American Typewriter", Consolas, Inconsolata, "Courier New", monospace;
+  font-size: 90%;
+}
+
+hr { 
+    height: 1px; 
+    border: 0; 
+    color: #ccc; 
+    background-color: #ccc; 
+    width: 40%; 
+    margin: 2em auto; 
+}
+
+sup { 
+    font-size: 60%; 
+}
+
+abbr,
+acronym,
+.name {
+    font-variant: small-caps;
+    text-transform: lowercase;
+    font-style: normal;
+    border: none;
+    letter-spacing: 0.1em;
+    font-size: 90%;
+
+}
+
+abbr[title='and'] {
+    font-style: italic;
+    font-size: 100%;
+}
+
+kbd {
+    font-family: Baskerville, "Palatino Linotype", Times, "Times New Roman", serif;
+    font-variant: small-caps;
+    text-transform: lowercase;
+    font-weight: bold
+}
+
+legend {display: none;}
+fieldset {border: none;}
+/* @end */
+
+/* @group Site-specific */
+
+h1.banner {
+	font-style: normal;
+	letter-spacing: .1em;
+	text-transform: uppercase;
+	margin-top: 1em;
+}
+
+h1.banner a {
+	color: #b63;	
+}
+h1.banner a:hover {
+	color: #888;	
+}
+
+h2.banner {
+	font-size: 1.375em;
+	padding-bottom: 1em;
+	border-bottom: 1px solid #ccc;
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: lowercase;
+}
+
+p.documentDescription {
+    text-align: center;
+    padding-bottom: 1em;
+    border-bottom: 1px solid #ccc;
+	font-variant: small-caps;
+    margin-bottom: 1em;
+    text-transform: lowercase;
+    text-indent: 0;
+letter-spacing: 0.1em;
+}
+
+p.documentByLine { 
+    color: #888; 
+    font-variant: small-caps; 
+    display: block; 
+    text-align: center; 
+    letter-spacing:0.3em;
+	text-transform: lowercase;
+}
+
+.discreet {
+    color: #888;
+    font-size: 95%;
+}
+
+
+
+.sidenote { 
+	float: right;
+	display: block;
+	margin: 0.5em -8em 0.5em 1em;
+    width: 10em; 
+    padding: 0.5em 1em; 
+    border: 1px solid #888;
+    text-indent: 0;
+    text-align: left;
+	font-style: italic;
+}
+
+.image-right {
+	float: right;
+        clear: right;
+	display: block;
+	margin: 0.25em -8em 0.5em 1em;
+    border: 1px solid #888;	
+}
+
+.image-left {
+	float: left;
+        clear: left;
+	display: block;
+	margin: 0.25em 1em 0.5em -8em;
+    border: 1px solid #888;	
+}
+
+.image-center {
+	display: block;
+	margin: 0.25em auto 0.5em auto;
+    border: 1px solid #888;	
+}
+
+.image-inline {
+    border: 1px solid #888;	
+}
+
+.endMarker {
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+}
+
+#portrait {
+	border: 1px solid #444; 
+	float: left; 
+	margin: 1em 1em 0.5em 0;
+}
+
+#colophon {
+	border: 1px solid #ccc;
+	border-style: solid none;
+	margin: 1em 0;
+	padding: 1em 0;
+}
+#colophon p {
+	font-style: italic;
+	text-indent: 0;
+}
+
+#colophon-footer {
+	color: #888;
+	display: block;
+	margin: 0 0 2em 0;
+font-size: 1em;
+text-align: center;
+}
+#colophon-footer li {
+	display: inline;
+	margin: 0 0.25em 0 0; 
+}
+
+#meta {
+	margin-bottom: 3em;
+	font-variant: small-caps;
+	text-transform: lowercase;
+	clear: both;
+}
+
+#meta p {
+	text-indent: 0;
+	text-align: center;
+}
+/* @end */
+
+/* @group Listings */
+
+ul.news {
+	list-style: none;
+	font-size: 1em;
+	padding: 0 !important;
+}
+
+ul.news li {
+	display: inline-block;
+	width: 49%;
+	margin: 1em 0;
+	vertical-align: top;
+	text-align: center;	
+}
+
+ul.news li:first-child {
+	width: 100%;
+	margin-bottom: 1em;
+	padding-bottom: 2em;
+	border-bottom: 1px solid #ccc;	
+}
+
+ul.news li h2 {
+	padding: 0 1em;
+}
+
+ul.news li p {
+	text-indent: 0;
+	text-align: center;
+	padding: 0 1em;
+}
+ul.news li p:first-line {
+	font-variant: normal;
+        letter-spacing: 0;
+        
+}
+
+ul.news li p.documentByLine:first-line {
+	font-variant: small-caps;
+        letter-spacing: 0.2em;
+}
+
+
+ul.news li p.documentByLine {
+	font-size: 1.1em;
+	letter-spacing: 0.2em;
+}
+
+ul.news li.update {
+	display: block;
+	width: 100%;
+}
+
+
+/*
+ul.news li.update:nth-child(even) {
+	border-top: 1px solid #ccc;
+}
+ul.news li.update:nth-child(odd) {
+	border-bottom: 1px solid #ccc;
+}
+*/
+
+/* @end */
+
+
+/* @group Batch nav */
+
+div.listingBar {
+	font-size: 1em;	
+	margin: 1em 0;
+	padding: 1em 0 0 0;
+	text-align: center;
+	border-top: 1px solid #ccc;	
+}
+
+div.listingBar .next {
+	display: inline-block;
+	float: right;
+}
+
+div.listingBar .previous {
+	display: inline-block;
+	float: left;
+}
+div.listingBar .current {
+	padding: 0 0.25em;
+}
+div.listingBar a {
+	display: inline-block;
+	padding: 0.25em 0.5em;
+	border: 1px solid #ccc;
+	color: #b63;	
+}
+
+div.listingBar a:hover {
+	color: White !important;
+	background-color: #ccc !important;
+	border-color: #ccc !important;
+}
+
+
+/* @end */
+
+/* @group iPhone */
+
+@media handheld, screen and (max-device-width: 480px) {
+
+body {
+	width: 440px;
+	margin: 20px;
+	padding: 0;
+	font-size: 140%;
+}	
+
+p {
+	text-align: left;
+	text-indent: 0;
+}
+ul.news {
+	margin: 0;
+	padding: 0;
+}
+ul.news li {
+	border-top: 1px solid #ccc;	
+	margin: 2em 0 !important;
+	width: 100%;
+	display: block;
+}
+ul.news li:first-child {
+	border-bottom: none;
+}
+div.listingBar {
+	border-top: none;
+}
+.sidenote,
+img.image-right,
+img.image-inline {
+	float: none;
+	display: block;
+	margin: 1em auto;
+    width: 90%;
+}
+#portrait {
+	float: none;
+	margin: 0.5em;
+}
+#colophon,
+#colophon p,
+#colophon-footer {
+	text-align: center;
+}
+
+#colophon-footer {
+	margin-top: 0.5em;
+}
+
+}
+
+/* @end */
+
+/* @group Data tables */
+
+table.listing {
+	border-spacing: 0; 
+}
+
+table strong {
+	font-weight: bold;
+	font-style: normal;
+}
+
+table.listing td, 
+table.listing th {
+	padding: 1em;
+	vertical-align: top;
+	text-align: center;
+}
+
+table.listing td.listingCheckbox, 
+table.listing th.listingCheckbox {
+	text-align: center;
+}
+
+table.listing th {
+	text-align: left;
+	border-bottom: 1px solid #e7e7e7;
+	white-space: nowrap;
+}
+table.listing tbody th {
+	font-weight: bold;
+}
+table.listing tbody tr {
+	text-align:left;
+}
+table.listing tbody tr:nth-child(even) { 
+	background: #f9f9f9;
+}
+
+
+/* @end */
+
+div.sequence {
+  width: 448px;
+  overflow:auto;
+  margin-bottom:20px;
+}
