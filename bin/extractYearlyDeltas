@@ -1,0 +1,64 @@
+#!/usr/bin/env ruby
+#
+# Generates a data.xml that compares maximum lift info from year to year
+#
+
+
+require 'rubygems'
+require 'builder'
+require "sqlite3"
+
+load '../config/config.properties'
+
+def queryMaxLiftForYear( db, liftname, year)
+  retVal = "0"
+  query ="SELECT MAX(weight), day  FROM lifts WHERE name=? and reps=1 and date(day) < date(?);"
+  yearStr = year.to_s + '-12-31'
+
+  value = db.get_first_value query, liftname, yearStr 
+  if not value.nil? then
+    retVal = value
+  end
+
+  return retVal
+end
+
+
+
+
+begin
+  x = Builder::XmlMarkup.new( :indent => 2 )
+  db = SQLite3::Database.open @dbName
+  x.instruct! :xml, :encoding => @xmlEncoding
+
+  File.open( @xmlDataFile, 'w' ) do |out|
+
+  out.puts x.data {
+
+    x.lifts {
+    @lifts.each do |lift|
+      begin
+        
+        x.lift {
+          x.name lift
+          x.max2012 queryMaxLiftForYear( db, lift, 2012)
+          x.max2013 queryMaxLiftForYear( db, lift, 2013)
+        }
+      ensure
+        #stm.close
+      end
+    end
+    }
+  }
+
+ 
+
+  end
+
+rescue SQLite3::Exception => e
+  puts "Exception occurred"
+  puts e.message
+
+ensure
+  db.close if db
+end
