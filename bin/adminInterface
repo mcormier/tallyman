@@ -1,76 +1,63 @@
 #!/usr/bin/env ruby
 
-# Curses reference:
-# http://www.ruby-doc.org/stdlib-1.9.3/libdoc/curses/rdoc/Curses.html
-
-require './ppcurses/Menu.rb'
-require './ppcurses/RadioMenu.rb'
-require './ppcurses/CompositeMenu.rb'
-require './ppcurses/Actions.rb'
-
-
+require 'ppcurses'
 require 'rubygems'
-require "curses"
 require "sqlite3"
-include Curses
+require_relative 'LiftAction.rb'
 
 load '../config/config.properties'
 
-init_screen
-begin
-  Curses.raw
-  clear
-  curs_set(0) # Makes cursor invisible
-  noecho
-  cbreak
-  start_color
 
 
-  db = SQLite3::Database.open @dbName
 
-  liftRepMenu = RadioMenu.new( @liftReps , nil )
-  liftTypeMenu = Menu.new( @lifts, nil )
+def getData(db)
+  liftRepMenu = PPCurses::RadioMenu.new( @liftReps , nil )
+  liftTypeMenu = PPCurses::Menu.new( @lifts, nil )
 
-  liftsMenu = CompositeMenu.new( liftTypeMenu, liftRepMenu )
+  liftsMenu = PPCurses::CompositeMenu.new( liftTypeMenu, liftRepMenu )
   addLiftAction = LiftAction.new( liftTypeMenu, liftRepMenu, db )
 
   liftTypeMenu.setGlobalAction(addLiftAction)
 
-  bookAction = InsertSQLDataAction.new( 
-                 [GetStringAction.new("Book title: "), 
-                  GetStringAction.new("Author: "),
-                  GetIntegerAction.new("Number of pages: "),
-                  GetBooleanAction.new("Digital? "), ], 
+  bookAction = PPCurses::InsertSQLDataAction.new( 
+                 [PPCurses::GetStringAction.new("Book title: "), 
+                  PPCurses::GetStringAction.new("Author: "),
+                  PPCurses::GetIntegerAction.new("Number of pages: "),
+                  PPCurses::GetBooleanAction.new("Digital? "), ], 
     "INSERT into books(title, author, pages, digital)" +
     " values ('%s', '%s', %s, %s)", db )
 
 
-  musicAction = InsertSQLDataAction.new( 
-                  [GetEnumeratedStringAction.new("Media Type? ", 
+  musicAction = PPCurses::InsertSQLDataAction.new( 
+                  [PPCurses::GetEnumeratedStringAction.new("Media Type? ", 
                                                  ["CD", "Vinyl", "MP3"] ), 
-                   GetStringAction.new("Artist: "),
-                   GetStringAction.new("Album Title: "),
-                   GetIntegerAction.new("Price: "),
-                   GetBooleanAction.new("Used? "), ], 
+                   PPCurses::GetStringAction.new("Artist: "),
+                   PPCurses::GetStringAction.new("Album Title: "),
+                   PPCurses::GetIntegerAction.new("Price: "),
+                   PPCurses::GetBooleanAction.new("Used? "), ], 
     "INSERT into music(media, artist, albumTitle, price, used)" +
     " values ('%s', '%s', '%s', %s, %s)", db )
 
 
 
-  liftsAction = ShowMenuAction.new(liftsMenu)  
+  liftsAction = PPCurses::ShowMenuAction.new(liftsMenu)  
 
-  mainMenu = Menu.new( @mainMenuValues , 
+  mainMenu = PPCurses::Menu.new( @mainMenuValues , 
                        [ bookAction, liftsAction, musicAction ] )
 
   mainMenu.show()
   mainMenu.getMenuSelection() 
   
   mainMenu.close()
+end
 
+begin
+  db = SQLite3::Database.open @dbName
+  screen = PPCurses::Screen.new()
+  screen.run { getData(db) }
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
   # a stack trace when CTRL-C is used
 ensure
-  close_screen
   db.close if db
 end
