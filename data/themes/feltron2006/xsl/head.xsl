@@ -25,6 +25,11 @@
                 date:format-date(date:date-time(), 'd MMM yyyy') )"/>
     </title>
 
+    <link rel="apple-touch-icon" href="/images/touch-icon-iphone.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/images/touch-icon-ipad.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/images/touch-icon-iphone-retina.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/images/touch-icon-ipad-retina.png" />
+
     <xsl:for-each select="str:tokenize($stylesheet,',')">
        <xsl:variable name ="filename" select="."/>
        <Link rel="stylesheet" type="text/css" href="css/{$filename}"></Link>
