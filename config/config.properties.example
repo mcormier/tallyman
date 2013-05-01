@@ -32,7 +32,7 @@
 
 @liftReps =  [ "1RM", "3RM", "5RM" ]
 
-@mainMenuValues = [ "Add Book","Add Lift", "Add Music"]
+@mainMenuValues = ["Add Lift", "Add Music", "Add Book", "Add Misc"]
 
 @xmlEncoding = "ASCII"
 #

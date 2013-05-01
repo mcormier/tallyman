@@ -4,11 +4,9 @@ require 'ppcurses'
 require 'rubygems'
 require "sqlite3"
 require_relative 'LiftAction.rb'
+require_relative 'CountAction.rb'
 
 load '../config/config.properties'
-
-
-
 
 def getData(db)
   liftRepMenu = PPCurses::RadioMenu.new( @liftReps , nil )
@@ -39,11 +37,12 @@ def getData(db)
     " values ('%s', '%s', '%s', %s, %s)", db )
 
 
-
   liftsAction = PPCurses::ShowMenuAction.new(liftsMenu)  
+  countAction = CountAction.new(db)
+  countMenuAction = PPCurses::ShowMenuAction.new(countAction.menu)  
 
   mainMenu = PPCurses::Menu.new( @mainMenuValues , 
-                       [ bookAction, liftsAction, musicAction ] )
+                       [ liftsAction, musicAction, bookAction, countMenuAction] )
 
   mainMenu.show()
   mainMenu.getMenuSelection() 
