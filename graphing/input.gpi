@@ -1,8 +1,8 @@
 set terminal svg size 350,262 fname 'Verdana' fsize 10
-set style data lines
+set style data linespoints
 set datafile separator ","
 
-set style line 2 lc rgb '#4572a7' 
+set style line 2 lc rgb '#4572a7' pt 4 ps 1 linewidth 2 
 
 unset title
 unset key
@@ -17,7 +17,7 @@ do for [name in "deadlift backsquat overheadsquat cleanandjerk snatch clean fron
     filename = 'data/' . fullname . ".dat"
     outfile = 'svg/' . fullname . ".svg"
     set output outfile
-    plot filename using 2:xtic(3) 
+    plot filename using 2:xtic(3) with linespoints ls 2
  }
 }
 
