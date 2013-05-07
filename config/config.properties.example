@@ -4,6 +4,10 @@
 # Where bin/backupData will copy a backup file
 @backupDir = '/home/mcormier/Dropbox/backups/tallyman'
 
+# Specify whether SVG graph data should be generated
+# and included
+@enableGraphs = false
+
 # Where the generated index.html will go
 @webRoot= '/home/mcormier/sites/stats/'
 @outputHTMLFile = @webRoot + 'index.html'

@@ -4,8 +4,11 @@
 
 <xsl:output method="html" indent="no"/>
 
+<xsl:variable name="enableGraphs" select="/data/settings/enableGraphs" />
 
 <xsl:template match="/">
+
+
   <!-- Specifies an HTML 5 document -->
   <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html></xsl:text>
 
@@ -90,9 +93,11 @@
 
     <div  style="position:relative">
       <div class="liftName"><xsl:value-of select="name"/> </div>
+      <xsl:if test="$enableGraphs='true'">
       <div class="toggler">
         <span class="mini-icon mini-icon-graph" onClick="toggleFlip(this)"></span>  
       </div>
+      </xsl:if>
     </div>
 
 
@@ -171,6 +176,7 @@
 
        </div>
 
+      <xsl:if test="$enableGraphs='true'">
        <div class="back">
           <div class="repLegend"> 
             <div class="repLabel">1RM</div> 
@@ -189,6 +195,7 @@
           </iframe>
 
        </div>
+       </xsl:if>
 
        </div>
 

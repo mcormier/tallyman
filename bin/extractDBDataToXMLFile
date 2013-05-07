@@ -33,6 +33,11 @@ begin
   File.open( @xmlDataFile, 'w' ) do |out|
 
   out.puts x.data {
+    x.settings {
+      x.enableGraphs @enableGraphs
+    }
+
+
     @outputQueries.each do |queryInfo|
       begin
         stm = db.prepare queryInfo[1]

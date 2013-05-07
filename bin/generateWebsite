@@ -10,6 +10,7 @@ WEB_ROOT=`${SCRIPTLOC}/getProperty webRoot`
 HTMLOUTPUT_LOC=`${SCRIPTLOC}/getProperty outputHTMLFile`
 THEME=`${SCRIPTLOC}/getProperty theme`
 XML_DATA=`${SCRIPTLOC}/getProperty xmlDataFile`
+ENABLE_GRAPHS=`${SCRIPTLOC}/getProperty enableGraphs`
 
 XSL_LOC=${SCRIPTLOC}/../data/themes/${THEME}/xsl/createHTML.xsl 
 
@@ -17,15 +18,15 @@ XSL_LOC=${SCRIPTLOC}/../data/themes/${THEME}/xsl/createHTML.xsl
 # for the current theme
 xsltproc ${XSL_LOC} ${XML_DATA} > $HTMLOUTPUT_LOC
 
-
-${SCRIPTLOC}/../graphing/createGraphs
+if [ $ENABLE_GRAPHS = "true" ]; then
+  ${SCRIPTLOC}/../graphing/createGraphs
+fi
 
 
 # update the manifest
 CACHE_MANIFEST=${SCRIPTLOC}/../data/themes/${THEME}/cache/cache.manifest
 
-if [ -e ${CACHE_MANIFEST} ] 
-then
+if [ -e ${CACHE_MANIFEST} ]; then
   NOW=`date +"%s"` ; sed "2 s/.*/#\ Version:$NOW/" \
   ${CACHE_MANIFEST} > $WEB_ROOT/cache.manifest
 fi
