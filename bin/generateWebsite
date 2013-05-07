@@ -18,6 +18,9 @@ XSL_LOC=${SCRIPTLOC}/../data/themes/${THEME}/xsl/createHTML.xsl
 xsltproc ${XSL_LOC} ${XML_DATA} > $HTMLOUTPUT_LOC
 
 
+${SCRIPTLOC}/../graphing/createGraphs
+
+
 # update the manifest
 CACHE_MANIFEST=${SCRIPTLOC}/../data/themes/${THEME}/cache/cache.manifest
 

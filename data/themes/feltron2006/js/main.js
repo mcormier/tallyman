@@ -356,6 +356,12 @@ function closeLiftSheet() {
   sheet.addClass("slide-down");
 }
 
+function toggleFlip(divFlipper) {
+  divFlipper.parentNode.parentNode.parentNode.classList.toggle('flip');
+}
+
+
+
 // Function synonym
 var cancelLiftSheet = closeLiftSheet;
 

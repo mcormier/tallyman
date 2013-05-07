@@ -1,4 +1,4 @@
-set terminal svg size 350,262 fname 'Verdana' fsize 10
+set terminal svg size 250,230 fname 'Verdana' fsize 9 
 set style data linespoints
 set datafile separator ","
 
@@ -11,7 +11,7 @@ set xtics rotate by -90
 set boxwidth 0.9
 set auto x
 
-do for [name in "deadlift backsquat overheadsquat cleanandjerk snatch clean frontsquat shoulderpress pushpress sotspress pushjerk"] {
+do for [name in "deadlift backsquat overheadsquat cleanandjerk snatch clean frontsquat shoulderpress pushpress sotspress pushjerk squatsnatch squatclean"] {
   do for [reps in "1RM 3RM 5RM"] {
     fullname = name . reps
     filename = 'data/' . fullname . ".dat"

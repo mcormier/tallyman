@@ -85,9 +85,21 @@
   <xsl:variable name="rightArrow"><span class="mega-icon mega-icon-arr-right"/></xsl:variable>
 
   <xsl:for-each select="lift">
-  <div class="1RM3RM5RM">
+  <div class="1RM3RM5RM flip-container">
     <div class="divide-line"></div>
-    <div class="liftName"><xsl:value-of select="name"/> </div>
+
+    <div  style="position:relative">
+      <div class="liftName"><xsl:value-of select="name"/> </div>
+      <div class="toggler">
+        <span class="mini-icon mini-icon-graph" onClick="toggleFlip(this)"></span>  
+      </div>
+    </div>
+
+
+    <div class="flipper">
+
+    <div class="front"> 
+
 
     <div class="liftValue 1RM">
       <p class="value"><xsl:value-of select="onerm"/></p>
@@ -156,6 +168,30 @@
  
 
           </div>
+
+       </div>
+
+       <div class="back">
+          <div class="repLegend"> 
+            <div class="repLabel">1RM</div> 
+            <div class="repLabel">3RM</div> 
+            <div class="repLabel">5RM</div> 
+          </div>
+
+          <iframe width="250" height="260">
+            <xsl:attribute name="src">svg/<xsl:value-of select="svgname"/>1RM.svg</xsl:attribute>
+          </iframe>
+          <iframe width="250" height="260">
+            <xsl:attribute name="src">svg/<xsl:value-of select="svgname"/>3RM.svg</xsl:attribute>
+          </iframe>
+          <iframe width="250" height="260">
+            <xsl:attribute name="src">svg/<xsl:value-of select="svgname"/>5RM.svg</xsl:attribute>
+          </iframe>
+
+       </div>
+
+       </div>
+
         </div>
         <div class="clear"></div>
      </xsl:for-each>

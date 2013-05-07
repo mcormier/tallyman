@@ -32,6 +32,7 @@
 .mega-icon-arr-right:before{content:"\f23e"}
 .mini-icon-arr-left:before{content:"\f040"}
 .mega-icon-arr-left:before{content:"\f240"}
+.mini-icon-graph:before{content:"\f043"}
 /* @end */
 
 /* @group Global definitions */
@@ -106,6 +107,47 @@ div.clear { clear: left; }
 #liftOptionsSheet {display:none;}
 
 /* @end */
+
+/* @group Flip Animation */
+  .flip-container { -webkit-perspective: 1000; }
+
+  .flip-container, .front, .back {
+    width: 789px;
+    height: 180px;
+    -webkit-transition: height 0.6s;
+  }
+
+  .flip {
+    height: 300px;
+  }
+ 
+  .flip .flipper {
+    -webkit-transform: rotateY(180deg);
+  }
+
+  iframe { border:0; }
+
+  .front, .back {
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .flipper {-webkit-transition: 1.6s; 
+            position: relative; 
+            -webkit-transform-style: preserve-3d;}
+
+  .back { height: 300px; -webkit-transform: rotateY(180deg); }
+  .front { z-index: 2; }
+
+  .repLabel { font-size:36px; color:#CCC; float:left; width:250px;  text-align:center;  font-family:Helvetica, Arial, sans-serif; font-weight:bold; padding-left:9px;}
+
+  .back iframe { margin-top:-30px; }
+
+/* @end */
+
+
+
 
 /* @group Drawer Arrows */
 
@@ -258,7 +300,7 @@ border-radius:4px; }
 /* @end */
 
 /* @group Lifts Content */
-div.liftName {font-weight:bold; margin-top: 10px; font-size:0.7em;}
+div.liftName {width:50%;font-weight:bold; margin-top: 10px; font-size:0.7em;}
 
 div.liftValue {position:relative; height:145px; width:263px; float:left;}
 
@@ -286,6 +328,8 @@ div.liftValue {position:relative; height:145px; width:263px; float:left;}
   div.liftValue p.estimates {font-size:1.2em; left:35px; bottom:0;}
 
   .oneToTenSpread {left:20px;}
+
+  .toggler {position:absolute; top:0; right:0;}
 /* @end */
 
 /* @group Single Value Data */

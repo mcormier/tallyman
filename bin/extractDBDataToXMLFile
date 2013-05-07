@@ -18,6 +18,11 @@ def queryLiftData( db, query, liftname, rep)
 end
 
 
+def getSVGLiftName( name )
+  lower = name.downcase
+  repAmper = lower.gsub(/&/,"and")
+  return repAmper.gsub(/\s+/,"")
+end
 
 
 begin
@@ -48,6 +53,7 @@ begin
         
         x.lift {
           x.name lift
+          x.svgname getSVGLiftName(lift)
 
           x.onerm queryLiftData( db, @liftQuery, lift, 1)
           x.threerm queryLiftData( db, @liftQuery, lift, 3)  
