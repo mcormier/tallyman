@@ -357,7 +357,7 @@ function closeLiftSheet() {
 }
 
 function toggleFlip(divFlipper) {
-  divFlipper.parentNode.parentNode.parentNode.classList.toggle('flip');
+  divFlipper.parentNode.parentNode.classList.toggle('flip');
 }
 
 
