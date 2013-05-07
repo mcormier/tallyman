@@ -1,0 +1,950 @@
+@font-face {
+ font-family:'Octicons Regular';
+     src: url('../fonts/octicons-regular-webfont.eot');
+     src: url('../fonts/octicons-regular-webfont.eot#iefix') format("eot"), 
+          url('../fonts/octicons-regular-webfont.woff') format("woff"),  
+      url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
+      url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
+}
+
+/* @group Octicon Font Stuff */
+.mini-icon:before, .mega-icon:before {
+  font-family:normal normal 'Octicons Regular';
+  display:inline-block;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+  text-decoration:none;
+  font-size:1em;
+  width:16px; height:16px
+}
+
+.mega-icon:before {font-size:1.2em;width:32px;height:32px;}
+.mega-icon {vertical-align:middle;font-size:1.2em;}
+
+/* Only define the icons begin used. 
+ * https://github.com/styleguide/css/7.0
+ */
+.mini-icon-keyboard:before{content:"\f00d"}
+.mega-icon-keyboard:before{content:"\f20d"; font-size:1.9em;}
+.mini-icon-history:before{content:"\f07e"}
+.mega-icon-history:before{content:"\f27e"; font-size:1.9em;}
+.mini-icon-arr-right:before{content:"\f03e"}
+.mega-icon-arr-right:before{content:"\f23e"}
+.mini-icon-arr-left:before{content:"\f040"}
+.mega-icon-arr-left:before{content:"\f240"}
+.mini-icon-graph:before{content:"\f043"}
+/* @end */
+
+/* @group Global definitions */
+
+body {margin:0; font:1em Georgia, serif; color:#000;
+      text-transform:uppercase; letter-spacing:1px; background:#FFF;}
+
+div {display:block;
+  -webkit-backface-visibility: hidden;  
+  -webkit-transform:translate3d(0,0,0);
+  -webkit-perspective: 1000;
+}
+
+ul { list-style-type:none; 
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
+h2, h3 {text-transform: uppercase;}
+h3 {font-size:1em;}
+
+a { text-decoration:none; color:#999; font-size:0.8em; text-transform:none; }
+a:hover {text-decoration:none;}
+
+strong {color:#333;} 
+
+.divide-line {
+  border-top:1px solid #808080;
+  border-bottom:1px solid #B0B0B0;
+  margin-bottom:0; padding: 1px;
+}
+
+.value {font:7em Helvetica, Arial, sans-serif; font-weight:bold;}
+/* @end */
+
+/* @group Main Sections */
+#drawers {position:relative; margin:0 auto;}
+  .featureRow {height:40px;}
+  .shadow {box-shadow:inset 0 0 10px #000;}
+  .fullWidthWrapper {width:100%;background:#b7b7b7;}
+
+div.wrapper {margin:0 auto; width:850px; padding:10px 0 0 60px;}
+  div.wrapper > div {float:left;}
+  div#right_col {clear:right;}
+
+#drawerButtons { margin:0 auto; width: 790px; position:relative}
+#macroShowDiv, #shortcutsToggle {width:395px; position:absolute;}
+#macroShowDiv {top:0;left:0;}
+#shortcutsToggle {top:0;right:0;}
+
+#macroHistoryLink , #showShortcuts {width:400px;height:30px;padding-left:0;
+  display:block; background-color:transparent; }
+
+#contentContainer { position:relative; }
+
+#drawer-overlay , #popover-overlay{ 
+  position:fixed; display:none;  
+  height:100%; width:100%;
+  top:0; left:0;
+}
+
+div.clear { clear: left; }
+
+.imageloader {background-image: url('../images/drawerBG.png'), 
+                                url('../images/stripes.png'),
+                                url('../images/annualWorkoutData.png');
+  display:none;position:fixed;height:0;width:0;overflow:hidden;
+  left:-1000px;top:-1000px;
+}
+
+#liftOptionsSheet {display:none;}
+
+/* @end */
+
+/* @group Flip Animation */
+  .flip-container { -webkit-perspective: 1000; }
+
+  .flip-container, .front, .back {
+    width: 789px;
+    height: 180px;
+    -webkit-transition: height 0.6s;
+  }
+
+  .flip {
+    height: 300px;
+  }
+ 
+  .flip .flipper {
+    -webkit-transform: rotateY(180deg);
+  }
+
+  iframe { border:0; }
+
+  .front, .back {
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .flipper {-webkit-transition: 1.6s; 
+            position: relative; 
+            -webkit-transform-style: preserve-3d;}
+
+  .back { height: 300px; -webkit-transform: rotateY(180deg); }
+  .front { z-index: 2; }
+
+  .repLabel { font-size:36px; color:#CCC; float:left; width:250px;  text-align:center;  font-family:Helvetica, Arial, sans-serif; font-weight:bold; padding-left:9px;}
+
+  .back iframe { margin-top:-30px; }
+
+/* @end */
+
+
+
+
+/* @group Drawer Arrows */
+
+.featureRow .arrow.top {
+    width:15px;
+    height:15px;
+    -webkit-transform: rotateZ(45deg);
+    border: 2px solid rgba(255,255,255,0.0);
+    border-bottom: 0;
+    border-right: 0;
+    position:absolute;
+    margin:auto;
+    bottom:-10px;
+    left:36px;
+    -webkit-mask-image : 
+        -webkit-gradient(linear, left top, right bottom, 
+            from(#000000), 
+            color-stop(0.8,#000000), 
+            color-stop(0.8, transparent), 
+            to(transparent));
+    opacity:0;
+    overflow:hidden;
+}
+.inside-arrow.top:before {
+    -webkit-transform: rotateZ(45deg);
+    background:none;
+    top:17px;
+    left:6px;
+    width:17px;
+    height:17px;
+    position:relative;
+    box-shadow:3px 3px 3px rgba(0,0,0,0.8)inset; 
+    content:' ';
+    display:block;
+}
+
+.inside-arrow.top {
+    -webkit-transform: rotateZ(-45deg);
+    background-image:url('../images/drawerBG.png');
+    width:30px;
+    height:30px;
+    position:relative;
+    top:-15px;
+    left:-15px;
+}
+
+.arrow.top.down {
+    -webkit-animation : openfolder-arrowtop 1000ms linear; }
+/* @end */
+
+/* @group Keyboard Shortcuts Drawer */
+#shortcutsContent {
+  margin:10px auto 0; padding:20px 30px 0;
+  height:230px;width:790px;
+  border-radius:4px;
+  background:#EEE;
+}
+#shortcutsLink { position:absolute; top:0; right:0; height:40px; }
+
+#shortcutsContent div {text-transform:none; letter-spacing:0;}
+
+#shortcutsDrawer {
+ background-image: url(../images/drawerBG.png); 
+}
+
+.column { float:left; margin-right:50px;}
+
+dl.keyboard-mappings dt {
+  display:inline-block;
+  margin:0;
+  padding:3px 6px;
+  min-width:15px;
+  text-align:center;
+  font:18px Monaco, "Liberation Mono", Courier, monospace;
+  background:#777; color: #EEE;
+  border-radius:2px;
+  text-shadow:2px 2px 0 #000;
+}
+
+dl.keyboard-mappings dd {
+  font-size:14px;
+  text-shadow:1px 1px 0 #DDD;
+  display:inline;
+  margin:0 0 0 5px;
+}
+
+#shortcutsContent h2 {font-size:16px; margin:0 0 0 -10px;
+  padding:0 10px 10px;}
+
+#showShortcuts {text-align:right; vertical-align:right; width:100%;}
+/* @end */
+
+/* @group Macro Contents */
+#macroShowDiv { height: 40px; }
+
+#macroHistoryContent {margin: 10px auto; padding:10px; height:470px;
+  width: 790px;
+/*background:#b7b7b7;*/
+background:#FFF;
+border-radius:4px; }
+
+#macroHistoryDrawer {
+ background-image: url(../images/drawerBG.png);
+}
+/* @end */
+
+/* @group HTML 5 Transform/Transition classes 
+   -ms-transition: works for IE 10 and up. */
+
+.drawer { 
+  height: 0;
+  overflow: hidden;
+  transition:           height 500ms ease-in-out;
+    -moz-transition:    height 500ms ease-in-out;
+    -ms-transition:     height 500ms ease-in-out; 
+    -o-transition:      height 500ms ease-in-out;
+    -webkit-transition: height 500ms;
+}
+
+.fadeIn {
+  transition:           opacity 250ms ease-in-out;
+    -moz-transition:    opacity 250ms ease-in-out;
+    -ms-transition:     opacity 250ms ease-in-out;
+    -o-transition:      opacity 250ms ease-in-out;
+    -webkit-transition: opacity 250ms ease-in-out;
+}
+
+.vertText {
+  transform:           rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform:    rotate(90deg);
+    -ms-transform:     rotate(90deg);
+    -o-transform:      rotate(90deg);
+}
+
+/* removes transformation flicker in safari */
+.no-flick{
+  -webkit-backface-visibility: hidden;  
+  -webkit-transform:translate3d(0,0,0);
+  -webkit-perspective: 1000;
+}
+
+#contentContainer {
+  transition:           transform        500ms;
+    -webkit-transition: -webkit-transform 500ms; 
+    -moz-transition:    -moz-transform    500ms;
+    -ms-transition:     -ms-transform     500ms; 
+    -o-transition:      -o-transform      500ms;
+}
+/* @end */
+
+/* @group Lifts Content */
+div.liftName {width:50%;font-weight:bold; margin-top: 10px; font-size:0.7em;}
+
+div.liftValue {position:relative; height:145px; width:263px; float:left;}
+
+  div.liftValue p {margin:0; color:#CCC; 
+                   position:absolute; font-weight:bold;
+                   font-family:Helvetica, Arial, sans-serif; }
+  div.liftValue p.vertText {
+    font-size:48px; top:55px; right:-50px; width:145px; height:50px; }
+
+  div.liftValue p.value {text-align:center;float:left;width:220px;color:#000;}
+  
+  div.liftValue p.fadeIn {opacity:0;} 
+
+  div.liftValue p.volumeEstimate, 
+  div.liftValue p.oneToTenSpread {
+    font-size:15px;
+    bottom:10px;
+    width:790px;
+    text-transform: none; 
+  }
+  div.liftValue p.oneToTenSpread span.spreadValue { 
+    display:block; 
+    float:left; height:20px; width:79px;}
+
+  div.liftValue p.estimates {font-size:1.2em; left:35px; bottom:0;}
+
+  .oneToTenSpread {left:20px;}
+
+  .toggler {position:absolute; top:0; right:0;}
+/* @end */
+
+/* @group Single Value Data */
+
+div#right_col ul li div.big_display div.center {margin:0 50px 0 50px;}
+
+div.big_display {text-transform: uppercase; height:200px; width:374px;}
+
+  div.center {width:100%;}
+
+  div.center h2 {font-size:0.7em; line-height:1.4em; 
+                 color:#333; margin-top:5px;}
+
+  div.center div.value span {font-weight:bold;}
+/* @end */
+
+/* @group iPhone action sheet animation classes */
+
+@media only screen and (min-device-width: 320px) 
+                   and (max-device-width: 480px) {
+
+@-webkit-keyframes slidedown {
+  0% { -webkit-transform: translateY(0%); }
+  100% { -webkit-transform: translateY(100%); }
+}
+
+@-webkit-keyframes fadein {
+  0% { opacity:0.0 }
+  100% { opacity:1; }
+}
+
+@-webkit-keyframes fadeout {
+  0% { visibility:visible; opacity:1; }
+  40%{  opacity:1 }
+  100% { opacity:0; visibility:hidden; }
+}
+
+@-webkit-keyframes slideup {
+  0% { -webkit-transform: translateY(100%); }
+  100% { -webkit-transform: translateY(0%); }
+}
+
+.slide-down.PPActionSheet-overlay {
+  -webkit-animation: fadeout 400ms linear;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-animation-delay: 100ms;
+}
+
+.slide-up.PPActionSheet-overlay {
+  -webkit-animation:fadein 400ms linear;
+  -webkit-animation-fill-mode: forwards;
+  visibility:visible;
+}
+
+.slide-up.PPActionSheet-overlay .PPActionSheet {
+  -webkit-animation:slideup 300ms;
+  -webkit-animation-timing-function:linear;
+  -webkit-animation-fill-mode: forwards;
+  -webkit-transform: translateY(100%);  
+}
+
+.slide-down.PPActionSheet-overlay .PPActionSheet {
+  -webkit-animation:slidedown 300ms;
+  -webkit-animation-timing-function:ease-in;
+  -webkit-animation-fill-mode: forwards;
+}
+
+}
+
+/* @end */
+
+/* @group iPhone action sheet 
+  Thanks to Kevin Andersson for building
+  http://cssuikit.com/ios/examples/action-sheet/ */ 
+
+@media only screen and (min-device-width: 320px) 
+                   and (max-device-width: 480px) {
+.PPActionSheet-overlay {
+  background: rgba(0,0,0,0.4);
+  height:480px; width:320px;
+  margin:0;
+  bottom:0;
+  position:fixed;
+  overflow:hidden;
+  display:none; 
+}
+
+.PPActionSheet {
+  display:block;
+  width:280px;
+  padding:52px 20px 20px 20px; 
+  border-top:1px solid rgba(0,0,0,0.7);
+  box-shadow:0 1px 0 rgba(255,255,255,0.4) inset,0 -2px 16px rgba(0,0,0,0.2);
+  position:absolute;
+  bottom:0;
+  text-transform:none;
+  background-position:top;
+  background-attachment:fixed;
+  background-size: 320px 490px;
+  background-image: url(../images/stripes.png);
+}
+
+.PPActionSheet h2 {
+ color:#FFF; text-align:center; font-size:1em;
+ text-transform: none;  
+}
+
+.button-inset {
+  background-image:-webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(3,3,3,0.8)), to(rgba(42,42,42,0.5)));
+  box-shadow:0 1px 0 rgba(255,255,255,0.1), 0 -1px 0 rgba(0,0,0,0.1),0 1px 2px rgba(0,0,0,0.1); 
+  width:100%;
+  height:42px;
+  border-radius: 12px;
+  padding:3px;
+  display:block;
+  margin-bottom:10px;
+}
+
+.button-inset a.button.grey {
+  background-image:-webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(190,192,195)), color-stop(0.5, rgb(190,191,194)), color-stop(0.5, rgb(207,208,210)), color-stop(0.88, rgb(235,236,236)) ); 
+  color:#000;
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+}
+
+.button-inset a.button.dark-grey {
+  background-image:-webkit-gradient(linear, left bottom, left top, 
+                                   color-stop(0, rgb(68,74,83)), 
+                                   color-stop(0.5, rgb(43,50,59)), 
+                                   color-stop(0.5, rgb(54,62,70)), 
+                                   color-stop(1, rgb(106,112,118)) );
+}
+
+.button-inset a {
+  width:100%;
+  height:32px;
+  padding-top:10px;
+  text-align:center; 
+  font-size:22px; 
+  color:#FFF;
+  display:block;
+  box-shadow:0 100px 100px rgba(0,0,0,0.0) inset,0 1px 2px rgba(0,0,0,0.8),0 1px 0 rgba(255,255,255,0.2) inset;
+  border-radius: 12px;
+  text-decoration:none;
+  text-shadow:0 -1px 0 rgba(0,0,0,0.4);
+}
+
+.button-inset a.grey:active, .button-inset a.dark-grey:active { 
+  color:#fff;
+  text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+  background-image: -webkit-linear-gradient(bottom, rgb(56,115,224) 0%, rgb(27,59,188) 50%, rgb(60,85,197) 50%, rgb(142,157,221) 88%);
+
+}
+
+ul.PPtableview { 
+  width:100%;
+  font-size:17px;
+  border:1px solid rgba(0,0,0,0.3);
+  box-shadow:0 2px 0 rgba(255,255,255,0.2),
+              0 1px 0 rgba(0,0,0,0.1) inset;
+  border-radius:10px;
+  background:rgba(247,247,247,1);
+  list-style:none;
+  overflow:hidden;
+  margin-bottom:20px;
+  margin-left:3px;
+  margin-right:3px;
+}
+
+li.cell { padding:16px; height:100%; display:block; }
+
+ul.PPtableview li { position:relative; margin:0; 
+                  padding:0; border:0;  
+                  display:block;
+                  border-bottom: 1px solid rgba(170,170,170,1);
+                  height:42px;
+                  width:100%;
+}
+
+
+
+ul.PPtableview li .cell {padding-left:10px; padding-top:15px; 
+  display:block; height:32px; width:100%; }
+
+ul.PPtableview li .cell span {display:none;}
+ul.PPtableview li .cell span.selected {display:inline;}
+
+ul.PPtableview li .cell .right {text-align:right; position:absolute;
+  right:8%; top: 12px; font-size:20px; }
+
+
+
+ul.PPtableview li a.cell {color:#000; text-decoration:none;}
+
+ul.PPtableview li a.cell:active { 
+  color:#fff;
+  text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+  background-image: -webkit-linear-gradient(bottom, rgb(56,115,224) 0%, rgb(27,59,188) 50%, rgb(60,85,197) 50%, rgb(142,157,221) 88%);
+}
+
+.ui-header {
+  width:100%; height:32px;
+  position:absolute; left:0; top:0;
+  background-image: -webkit-gradient( linear, left bottom, left top,
+                     color-stop(0, rgb(111,133,162)),
+                     color-stop(0.5, rgb(127,148,176)),
+                     color-stop(0.5, rgb(137,155,178)),
+                     color-stop(0.95, rgb(179,190,204)));
+  border-top:1px solid rgba(255,255,255,0.35);
+  border-bottom:1px solid rgba(0,0,0,0.60);
+  padding-top:6px;
+  padding-bottom:2px;
+}
+.ui-header h1 { color: #FFF; font-size:20px; line-height:30px; 
+text-align: center; text-overflow:ellipsis; margin:0;font-weight:normal;
+}
+
+/***************** Fonts ***********/
+ul.PPtableview, ul.PPtableview li a.cell, 
+.button-inset a, .PPActionSheet h2, .ui-header h1 { 
+  font-family: 'HelveticaNeue-Bold', 'HelveticaNeue', Helvetia, Arial; 
+}
+}
+/* @end */
+
+/* @group iPad Popover */
+@media
+/* iPad 1 and 2 in portait mode*/
+only screen  
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1), 
+/* iPad 3 and 4 */ 
+only screen  
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 2) 
+{
+
+/* TODO -- move to keyframe animation group don't repeat */
+@-webkit-keyframes fadein {
+  0% { opacity:0.0 }
+  100% { opacity:1; }
+}
+
+@-webkit-keyframes fadeout {
+  0% { visibility:visible; opacity:1; }
+  40%{  opacity:1 }
+  100% { opacity:0; visibility:hidden; }
+}
+
+
+.fadeout.PPPopOver {
+  -webkit-animation: fadeout 400ms linear;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.fadein.PPPopOver {
+  -webkit-animation:fadein 400ms linear;
+  -webkit-animation-fill-mode: forwards;
+  visibility:visible;
+}
+
+#popover-overlay{ z-index:10; }
+.PPPopOver { 
+  top:40px; left:40px; position:fixed;
+  opacity:0; z-index:12;
+}
+
+.PPPopOver .PPPopOver-Content {
+  background-image: 
+    -webkit-gradient(linear, left top, left bottom, 
+                     from(#575757), to(#373737));
+    -webkit-border-radius:11px;
+  border:1px solid #000;
+  padding:5px;
+  position:relative;
+  background-color: #575757;
+  -webkit-box-shadow:0 6px 18px 0 rgba(0, 0, 0, 0.95);
+}
+
+
+
+.PPPopOver .arrow { position:absolute; overflow:hidden;}
+
+.PPPopOver 
+  .arrow.top,     
+.PPPopOver 
+  .arrow.bottom 
+                {top:-10px;    width:100%; height:10px; left:0;}
+.PPPopOver 
+  .arrow.bottom {top:auto; 
+                 bottom:-10px; }
+.PPPopOver 
+  .arrow.right,  
+.PPPopOver 
+  .arrow.left   {top:-7px;     width:14px; height:100%; right:-14px; } 
+
+.PPPopOver 
+  .arrow.left   {right:auto; left:-14px; }
+
+.PPPopOver .arrow span {
+  -webkit-transform: rotate(45deg) skew(-10deg, -10deg);
+  -webkit-transform-origin: 7px 7px; 
+  display:block;
+  width:14px; height:14px;
+  border-style:solid; border-color:#000;
+  position:relative;
+}
+.PPPopOver .arrow.top span { 
+  border-width: 1px 0 0 1px;
+  background:#575757;
+  margin:1px auto; 
+}
+
+.PPPopOver .arrow.right span, .PPPopOver .arrow.left span {
+  -webkit-transform: rotate(45deg) skew(10deg, 10deg);  
+  background:#454545; top:50%;
+}
+
+.PPPopOver .arrow.right span {border-width:1px 1px 0 0; left:-7px;}
+.PPPopOver .arrow.left span  {border-width:0 0 1px 1px; left:7px;}
+
+.PPPopOver .arrow.bottom span {
+   background:#373737;
+   border-width:0 1px 1px 0;
+   margin:1px auto;
+   bottom:7px;
+}
+
+.PPPopOver .popover-body ul { 
+  margin:0;
+  padding:0;
+}
+
+.PPPopOver .popover-body ul li { 
+  text-align:center;
+  list-style-type:none;
+  margin:0;
+  font-weight:bold;
+  font-size:1.5em;
+  line-height:46px;
+  font-family:arial;
+  padding:0;
+  margin-bottom: 5px;
+  border:1px solid #000;
+}
+
+.PPPopOver .popover-body ul li:last-child {
+  border-bottom:0;
+  margin:0;
+}
+
+.PPPopOver .popover-body ul li a { 
+  color:#000;
+  padding:0 15px 0 15px;
+  background-image:-webkit-gradient( linear, left bottom, left top, color-stop(0, rgb(190,192,195)), color-stop(0.5, rgb(190,191,194)), color-stop(0.5, rgb(207,208,210)), color-stop(0.88, rgb(235,236,236)) );
+  text-shadow:0 1px 0 rgba(255,255,255,0.5);
+  font-family:'HelveticaNeue-Bold', 'HelveticaNeue', Helvetia, Arial;
+}
+
+.PPPopOver .popover-body ul li a.cell:active { 
+  color:#fff;
+  text-shadow:0 -1px 0 rgba(0,0,0,0.5);
+  background-image:-webkit-linear-gradient(bottom, rgb(56,115,224) 0%, rgb(27,59,188) 50%, rgb(60,85,197) 50%, rgb(142,157,221) 88%);
+}
+
+.PPPopOver .popover-body .cell { 
+  display:block;-webkit-border-radius:5px;
+  }
+
+  /** Hide stuff **/
+  .button-inset, .ui-header, .checked { display:none; overflow:hidden;}
+}
+/* @end */
+
+/* @group iOS device specific styles */
+@media
+/* iPad 1 and 2  */
+only screen  
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1), 
+/* iPad 3 and 4 */ 
+only screen  
+  and (min-device-width: 768px)
+  and (max-device-height: 1024px)
+  and (-webkit-min-device-pixel-ratio: 2), 
+/* The iPhones */
+only screen  
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px) {
+
+/* The box shadow on the iPad is not cleared during
+ * the drawer animation.  This is an iOS bug so
+ * remove the shadow for these devices.
+ */
+  /* makes rendering easier on touch devices */
+  .shadow {box-shadow:inset 0 0 0 #FFFFFF;}
+  
+  /* Hide keyboard shortcuts from touch devices. */ 
+  #shortcutsToggle {display:none;overflow:hidden;}
+
+  /* Disable text select so that onTouchHold events 
+     works seemlessly */
+  * { -webkit-user-select: none; 
+     /* Removes default click hightlight box */ 
+      -webkit-tap-highlight-color: rgba(0,0,0,0); }
+}
+
+/* @end */
+
+/* @group iPad specific styles */
+
+@media
+/* iPad 1 and 2 */
+only screen  
+  and (min-device-width: 768px) and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1), 
+/* iPad 3 and 4 */ 
+only screen  
+  and (min-device-width: 768px) and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 2) 
+{
+
+  /********* hide some stuff **************/
+  div#shortcutsToggle {display:none;}
+
+  div#contentContainer {margin-top:20px; }
+
+} 
+/* @end */
+
+/* @group iPad (landscape) */
+@media
+/* iPad 1 and 2 */
+only screen  
+  and (min-device-width: 768px) and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) and (orientation:landscape), 
+/* iPad 3 and 4 */ 
+only screen  
+  and (min-device-width: 768px) and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 2) and (orientation:landscape)
+{
+  /******** Element sizes *************/
+  div.assortedData {width:1024px; overflow:hidden;}
+
+  div.wrapper {width: 994px; padding: 0px 10px 0px 10px;}
+  div.center .divide-line {width:440px;}
+  div.big_display {width:495px; height:170px;}
+
+  div#drawerButtons {width:1024px;}
+  div#macroShowDiv {margin-left:15px;}
+
+  div.liftValue {width:330px; height:145px;}
+  div.liftValue p.value {width:290px; }
+  div.liftValue p.estimates {left:0; width:290px; text-align:center;} 
+  div.liftValue p.volumeEstimate {width:894px; left:55px; text-align:center;} 
+  div.liftValue p.oneToTenSpread {width:1024px; left:0;}
+  div.liftValue p.oneToTenSpread span.spreadValue {
+   width:105px; text-align:right;}
+  div.liftValue p.oneToTenSpread span.spreadValue:first-child {
+  width:40px; }
+}
+/* @end */
+
+/* @group iPad (portrait) */
+@media
+/* iPad 1 and 2 */
+only screen  
+  and (min-device-width: 768px) and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 1) and (orientation:portrait), 
+/* iPad 3 and 4 */ 
+only screen  
+  and (min-device-width: 768px) and (max-device-width: 1024px)
+  and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait)
+{
+  div.assortedData {width:748px; overflow:hidden;}
+  div.wrapper {width: 748px; padding: 0px 10px 0px 10px;}
+
+  div.center .divide-line {width:350px;}
+  div.big_display {width:350px; height:170px;}
+
+  div#drawerButtons {width:768px;} 
+  div#macroShowDiv  {margin-left:10px;}
+
+  div#macroHistoryContent { width:728px; }
+  div#macroHistoryContent img { width:728px; height:424px;}
+
+  div.liftValue {width:245px; height:145px;}
+  div.liftValue p.value {width:200px; }
+  div.liftValue p.estimates {left:0; width:200px; text-align:center;} 
+  div.liftValue p.volumeEstimate {width:740px; left:0px;} 
+  div.liftValue p.oneToTenSpread {width:740px; left:0;}
+  div.liftValue p.oneToTenSpread span.spreadValue {width:77px;
+  text-align:right;}
+
+  div.liftValue p.oneToTenSpread span.spreadValue:first-child {
+   width:40px;}
+
+  /***************** Fonts ***********/
+  div.liftValue p.volumeEstimate {letter-spacing:0; text-align:center;} 
+}
+/* @end */
+
+/* @group iphone 
+ * 
+ * iPhone 4 is 480px x 320px
+ */
+@media only screen and (min-device-width: 320px) 
+                   and (max-device-width: 480px) {
+
+  /******** Element sizes *************/
+  div.assortedData {width:320px; overflow:hidden;}
+
+  div.wrapper {width: 300px; padding: 5px 5px 0px 5px;}
+  div#right_col ul li div.big_display div.center { 
+    margin:0 5px 0px 15px;}
+  div.center .divide-line {width:135px;}
+
+  div.big_display {width:145px; height:140px;}
+
+
+  div.liftValue {width:100px; height:75px;}
+  div.liftValue p.value {width:100px; }
+
+  
+  div.liftValue p.estimates {height:20px;}
+  .mega-icon::before {width:16px;}
+  div.liftValue p.volumeEstimate {width:260px;} 
+  div.liftValue p.oneToTenSpread {width:300px;}
+  div.liftValue p.oneToTenSpread span.spreadValue {width:30px;}
+
+  /***************** Fonts ***********/
+  .value {font-size: 5em;}
+  div.liftValue p.value {font-size:3em;}
+  div.center h2 {font-size:0.6em;}
+  div.liftValue p.vertText{font-size:12px; letter-spacing:6px;}
+
+  div.liftValue p.estimates {font-size:10px;}
+
+  div.liftValue p.oneToTenSpread {font-size:10px;}
+  div.liftValue p.volumeEstimate {font-size:10px; font-weight:normal;
+    letter-spacing:0;}
+  
+
+  /********** Change position of some elements **********/
+  div.liftValue p.estimates {left:0;}
+  div.liftValue p.oneToTenSpread {bottom:5px; left:0;}
+  div.liftValue p.volumeEstimate {bottom:3px; left:20px;}
+
+
+  /********* hide some stuff **************/
+  div#drawers {display:none;}
+
+}
+/* @end */
+
+/* @group iPhone (portrait) */
+@media only screen and (min-device-width: 320px) 
+                   and (max-device-width: 480px) 
+                   and (orientation:portrait) {
+
+  /******** Element sizes *************/
+  div.liftValue p.vertText {width:60px;}
+
+  /********** Change position of some elements **********/
+  div.liftValue p.vertText {left:30px; top:-3px;}
+
+  /************ override transformations ************/
+  .vertText {-webkit-transform:none;}
+}
+/* @group iPhone (landscape) */
+@media only screen and (min-device-width: 320px) 
+                   and (max-device-width: 480px) 
+                   and (orientation:landscape) {
+
+  /******** Element sizes *************/
+  div.assortedData {width:480px;}
+
+  div.wrapper {width: 460px;}
+  div.center .divide-line {width:215px;}
+  div.big_display {width:230px;}
+
+  div.liftValue {width:153px; height:75px;}
+  div.liftValue p.value {width:150px; }
+  div.liftValue p.estimates {width:150px; text-align:center;}
+  div.liftValue p.vertText {width:40px;}
+  div.liftValue p.oneToTenSpread {width:470px}
+  div.liftValue p.volumeEstimate {width:470px}
+  div.liftValue p.oneToTenSpread span.spreadValue {width:48px}
+  div.liftValue p.oneToTenSpread span.spreadValue:first-child {
+   width:30px;}
+
+  .PPActionSheet-overlay{width:480px; height:270px;}
+ 
+  .PPActionSheet{width:440px; padding-bottom:10px;}
+  .button-inset{margin-bottom:0px; padding-bottom:0px; }
+   ul.PPtableview {margin-bottom:10px;}
+   ul.PPtableview li { height:38px; }
+
+
+
+  /******** Element positions  *************/
+  div.liftValue p.vertText { right:0px; top:-10px;}
+  div.liftValue p.oneToTenSpread {bottom:0px;}
+  div.liftValue p.volumeEstimate {left:0px; bottom:5px;}
+  .PPActionSheet-overlay{ }
+
+  /******** Fonts *************/
+  div.liftValue p.vertText { font-size:24px; letter-spacing:3px; }
+  div.liftValue p.oneToTenSpread span.spreadValue {text-align:right;}
+}
+/* @end */
+
+/* vim: set foldmethod=marker:
+ * vim: set foldmarker=@group,@end:
+ * vim: set foldlevel=1:
+ * vim: set nofoldenable: */

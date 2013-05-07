@@ -1,0 +1,37 @@
+CACHE MANIFEST
+# Version:1367944438
+# 
+# Generate the version number with ...
+# NOW=`date +"%s"` ; sed "2 s/.*/#\ Version:$NOW/" cache.manifest
+#
+# To clear the cache in chrome use
+# chrome://appcache-internals/
+# 
+# Explicitly cached 'master entries'.
+
+
+NETWORK:
+# Resources that require the user to be online
+#
+# This stuff will change alot so don't cache 
+# by default for now
+#
+http://stats.preenandprune.com/test.html
+http://stats.preenandprune.com/js/test.js
+http://stats.preenandprune.com/css/test.css
+
+CACHE:
+/js/main.js
+/js/fastclick.js
+/js/PPUtils.js
+/css/style.css
+/images/drawerBG.png
+/images/stripes.png
+/images/annualWorkoutData.png
+/fonts/octicons-regular-webfont.eot
+/fonts/octicons-regular-webfont.ttf
+/fonts/octicons-regular-webfont.svg  
+/fonts/octicons-regular-webfont.woff
+
+# Format= onlineURL offlineURL
+# FALLBACK:
