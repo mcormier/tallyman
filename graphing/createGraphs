@@ -8,15 +8,24 @@ WEB_ROOT=`${SCRIPTLOC}/../bin/getProperty webRoot`
 
 
 function extractData() {
+  OS=`uname`
+  EXT=""
+  if [[ $OS == 'Darwin' ]]; then
+    EXT=".tmp"
+  fi
+
   cp template extractScript
-  sed -i "s/#FILENAME/${1}/g" extractScript
-  sed -i "s/#LIFTNAME/${2}/g" extractScript
-  sed -i "s/#REPS/${3}/g" extractScript
+  sed -i ${EXT} "s/#FILENAME/${1}/g" extractScript
+  sed -i ${EXT} "s/#LIFTNAME/${2}/g" extractScript
+  sed -i ${EXT} "s/#REPS/${3}/g" extractScript
 
   sqlite3 $DB_LOCATION < extractScript
 
   echo "created data/$1"
   rm extractScript
+  if [[ $OS == 'Darwin' ]]; then
+    rm extractScript.tmp
+  fi
 }
 
 function extractLift() {

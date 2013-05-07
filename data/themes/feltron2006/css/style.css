@@ -141,7 +141,6 @@ div.clear { clear: left; }
   .front { z-index: 2; }
 
   .repLabel { font-size:36px; color:#CCC; float:left; width:250px;  text-align:center;  font-family:Helvetica, Arial, sans-serif; font-weight:bold; padding-left:9px;}
-
   .back iframe { margin-top:-30px; }
 
 /* @end */
@@ -776,6 +775,9 @@ only screen
   /******** Element sizes *************/
   div.assortedData {width:1024px; overflow:hidden;}
 
+  .flip-container, .front, .back { width:994px; }
+  .repLabel, .back iframe { margin-right:70px; }
+
   div.wrapper {width: 994px; padding: 0px 10px 0px 10px;}
   div.center .divide-line {width:440px;}
   div.big_display {width:495px; height:170px;}
@@ -806,6 +808,12 @@ only screen
   and (min-device-width: 768px) and (max-device-width: 1024px)
   and (-webkit-min-device-pixel-ratio: 2) and (orientation:portrait)
 {
+
+  .flip-container, .front, .back { width:748px; }
+
+  .repLabel {width:245px; padding-left:0px;}  
+   .back iframe { margin-right:-5px;}
+
   div.assortedData {width:748px; overflow:hidden;}
   div.wrapper {width: 748px; padding: 0px 10px 0px 10px;}
 

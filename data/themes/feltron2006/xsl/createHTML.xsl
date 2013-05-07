@@ -94,8 +94,8 @@
     <div  style="position:relative">
       <div class="liftName"><xsl:value-of select="name"/> </div>
       <xsl:if test="$enableGraphs='true'">
-      <div class="toggler">
-        <span class="mini-icon mini-icon-graph" onClick="toggleFlip(this)"></span>  
+      <div class="toggler" onTouch="toggleFlip(this)" onClick="toggleFlip(this)" >
+        <span class="mini-icon mini-icon-graph" ></span>  
       </div>
       </xsl:if>
     </div>
