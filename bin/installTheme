@@ -11,8 +11,6 @@ IMAGE_DIR="${THEME_ROOT}/${THEME}/images"
 
 
 function copyThemeDirToWebRoot {
-
-
 THEME_DIR="${THEME_ROOT}${THEME}/${1}"
 WEB_DIR="${WEB_ROOT}/${1}"
 
@@ -31,3 +29,4 @@ copyThemeDirToWebRoot "images"
 copyThemeDirToWebRoot "css"
 copyThemeDirToWebRoot "js"
 
+cp ${THEME_ROOT}${THEME}/html/* ${WEB_ROOT}

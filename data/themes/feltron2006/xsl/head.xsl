@@ -35,6 +35,14 @@
        <Link rel="stylesheet" type="text/css" href="css/{$filename}"></Link>
     </xsl:for-each> 
 
+   <xsl:comment>
+    <![CDATA[[if IE]>
+      <script type="text/javascript">
+      window.location = "ieNotSupported.html";
+      </script>
+    <![endif]]]>
+  </xsl:comment>
+
     <xsl:for-each select="str:tokenize($javascript,',')">
        <xsl:variable name ="filename" select="."/>
        <script src="js/{$filename}.js" type="text/javascript"></script>
