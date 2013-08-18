@@ -1,21 +1,19 @@
 require "ppcurses"
 
-class LiftAction < PPCurses::GetDataAction 
+class LiftAction < PPCurses::InsertSQLDataAction
 
   def initialize(nameMenu, repMenu, db)
     @nameMenu = nameMenu
     @repMenu = repMenu
     @db = db
     
-    @prompt  = PPCurses::GetIntegerAction.new("Weight (pounds) : ") 
-    super( [ @prompt ] )
-
-    @sql = "INSERT into LIFTS(name, weight, reps) values ('%s', %s, %s)"                 
+    @prompt  = PPCurses::GetIntegerAction.new("Weight (pounds) : ")
+    super( [ @prompt ], 'INSERT into LIFTS(name, weight, reps) values (?, ?, ?)', @db )
 
   end
 
   def winHeight()
-     return 9
+    9
   end
  
   def liftName()
@@ -27,19 +25,19 @@ class LiftAction < PPCurses::GetDataAction
   end
   
   def repsInteger()
-    return Integer(repsName().chars.first).to_s
+    Integer(repsName().chars.first).to_s
   end
 
   def beforeActions()
-    self.printLine("Input data for " + repsName() + " " + liftName() )
+    self.printLine('Input data for ' + repsName() + ' ' + liftName() )
   end
 
   def afterActions()
-    preparedSql = @sql.sub("%s", liftName() )
-    preparedSql = preparedSql.sub("%s", @prompt.data() )
-    preparedSql = preparedSql.sub("%s", repsInteger() )
+    preparedSql = @sql.sub('%s', liftName() )
+    preparedSql = preparedSql.sub('%s', @prompt.data() )
+    preparedSql = preparedSql.sub('%s', repsInteger() )
 
-    self.promptToChangeData(preparedSql)
+    self.promptToChangeData(preparedSql, [liftName(), @prompt.data(), repsInteger ])
   end
 
 end

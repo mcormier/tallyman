@@ -23,7 +23,7 @@ def getData(db)
                   PPCurses::GetIntegerAction.new("Number of pages: "),
                   PPCurses::GetBooleanAction.new("Digital? "), ], 
     "INSERT into books(title, author, pages, digital)" +
-    " values ('%s', '%s', %s, %s)", db )
+    " values (?, ?, ?, ?)", db )
 
 
   musicAction = PPCurses::InsertSQLDataAction.new( 
@@ -34,7 +34,7 @@ def getData(db)
                    PPCurses::GetIntegerAction.new("Price: "),
                    PPCurses::GetBooleanAction.new("Used? "), ], 
     "INSERT into music(media, artist, albumTitle, price, used)" +
-    " values ('%s', '%s', '%s', %s, %s)", db )
+    " values (?, ?, ?, ?, ?)", db )
 
 
   liftsAction = PPCurses::ShowMenuAction.new(liftsMenu)  
