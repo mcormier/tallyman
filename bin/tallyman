@@ -1,13 +1,20 @@
 #!/bin/bash
 
 # Get the path that this script is located
-SCRIPTLOC=`dirname $0`
+SCRIPT_LOCATION=`dirname $0`
 # Move to the directory of this script so
 # that path relative configuration works
-cd $SCRIPTLOC
+cd ${SCRIPT_LOCATION}
 
 # get user input
-${SCRIPTLOC}/adminInterface
+${SCRIPT_LOCATION}/adminInterface
+RETURN_CODE=$?
 
-# regenerate website
-${SCRIPTLOC}/generateWebsite
+# The exit code for adminInterface returns
+# the number of inserts executed. Only
+# regenerate the website if new data was added.
+#
+if [[ $RETURN_CODE != 0 ]] ; then
+  # regenerate website
+  ${SCRIPT_LOCATION}/generateWebsite
+fi
