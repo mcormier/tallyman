@@ -5,6 +5,7 @@ require 'rubygems'
 require "sqlite3"
 require_relative 'LiftAction.rb'
 require_relative 'CountAction.rb'
+require_relative 'database_proxy'
 
 load '../config/config.properties'
 
