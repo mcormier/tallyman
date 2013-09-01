@@ -1,14 +1,14 @@
 require "ppcurses"
 
-class CountAction < PPCurses::GetDataAction 
+class CountAction < PPCurses::InsertSQLDataAction
 
   def initialize(db)
 
     @db = db
 
     begin
-      statement = @db.prepare"SELECT DISTINCT event FROM countTable ORDER BY event ASC"
-      rs = statement.execute    
+      statement = @db.prepare('SELECT DISTINCT event FROM countTable ORDER BY event ASC')
+      rs = statement.execute()
 
       menuItems = []
       rs.each do |row|
@@ -18,13 +18,12 @@ class CountAction < PPCurses::GetDataAction
       @countMenu = PPCurses::Menu.new( menuItems, nil )
       @countMenu.setGlobalAction(self)
     ensure
-      statement.close
+      statement.close()
     end
-    
-    super( [ ] )
 
-    @sql = "INSERT into COUNTTABLE(event) values ('%s')"                 
+    @sql = 'INSERT into COUNTTABLE(event) values (?)'
 
+    super( [ ], @sql, db )
   end
 
 
@@ -41,7 +40,7 @@ class CountAction < PPCurses::GetDataAction
   end
 
   def winHeight()
-     return 9
+      9
   end
  
   def countName()
@@ -53,10 +52,13 @@ class CountAction < PPCurses::GetDataAction
   end
 
   def afterActions()
-    preparedSql = @sql.sub("%s", countName() )
+    userDisplaySQL = @sql.sub('?', countName() )
+    dataArray = []
+    dataArray.push(countName())
 
-    self.promptToChangeData(preparedSql)
+    self.promptToChangeData(userDisplaySQL, dataArray)
   end
+
 
 end
 
