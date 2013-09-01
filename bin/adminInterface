@@ -17,31 +17,31 @@ def getData(db)
 
   liftTypeMenu.setGlobalAction(addLiftAction)
 
-  bookAction = PPCurses::InsertSQLDataAction.new( 
-                 [PPCurses::GetStringAction.new("Book title: "), 
+  bookAction = PPCurses::InsertSQLDataAction.new(
+                 [PPCurses::GetStringAction.new("Book title: "),
                   PPCurses::GetStringAction.new("Author: "),
                   PPCurses::GetIntegerAction.new("Number of pages: "),
-                  PPCurses::GetBooleanAction.new("Digital? "), ], 
+                  PPCurses::GetBooleanAction.new("Digital? "), ],
     "INSERT into books(title, author, pages, digital)" +
     " values (?, ?, ?, ?)", db )
 
 
-  musicAction = PPCurses::InsertSQLDataAction.new( 
-                  [PPCurses::GetEnumeratedStringAction.new("Media Type? ", 
-                                                 ["CD", "Vinyl", "MP3"] ), 
+  musicAction = PPCurses::InsertSQLDataAction.new(
+                  [PPCurses::GetEnumeratedStringAction.new("Media Type? ",
+                                                 ["CD", "Vinyl", "MP3"] ),
                    PPCurses::GetStringAction.new("Artist: "),
                    PPCurses::GetStringAction.new("Album Title: "),
                    PPCurses::GetIntegerAction.new("Price: "),
-                   PPCurses::GetBooleanAction.new("Used? "), ], 
+                   PPCurses::GetBooleanAction.new("Used? "), ],
     "INSERT into music(media, artist, albumTitle, price, used)" +
     " values (?, ?, ?, ?, ?)", db )
 
 
-  liftsAction = PPCurses::ShowMenuAction.new(liftsMenu)  
+  liftsAction = PPCurses::ShowMenuAction.new(liftsMenu)
   countAction = CountAction.new(db)
-  countMenuAction = PPCurses::ShowMenuAction.new(countAction.menu)  
+  countMenuAction = PPCurses::ShowMenuAction.new(countAction.menu)
 
-  mainMenu = PPCurses::Menu.new( @mainMenuValues , 
+  mainMenu = PPCurses::Menu.new( @mainMenuValues ,
                        [ liftsAction, musicAction, bookAction, countMenuAction] )
 
   mainMenu.show()
@@ -50,8 +50,10 @@ def getData(db)
   mainMenu.close()
 end
 
+db = DatabaseProxy.open( @dbName )
+
 begin
-  db = SQLite3::Database.open @dbName
+
   screen = PPCurses::Screen.new()
   screen.run { getData(db) }
 rescue SystemExit, Interrupt
@@ -60,3 +62,5 @@ rescue SystemExit, Interrupt
 ensure
   db.close if db
 end
+
+exit db.insertCount
