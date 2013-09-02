@@ -3,9 +3,9 @@
 require 'ppcurses'
 require 'rubygems'
 require "sqlite3"
-require_relative 'LiftAction.rb'
-require_relative 'CountAction.rb'
-require_relative 'database_proxy'
+require_relative '../lib/rb/lift_action'
+require_relative '../lib/rb/count_action'
+require_relative '../lib/rb/database_proxy'
 
 load '../config/config.properties'
 
@@ -64,4 +64,10 @@ ensure
   db.close if db
 end
 
-exit db.insertCount
+# adminInterface return values:
+# ----------------------------
+# 0 - interface ran but nothing inserted
+# 1 - an error occurred running the interface
+# 2 - 1 or more insert statements to the database occurred
+#
+exit db.exitCode

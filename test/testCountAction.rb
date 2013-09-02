@@ -3,7 +3,7 @@
 require 'ppcurses'
 require 'rubygems'
 require "sqlite3"
-require_relative '../bin/CountAction.rb'
+require_relative '../lib/rb/count_action'
 
 load '../config/config.properties'
 

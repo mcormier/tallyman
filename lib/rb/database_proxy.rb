@@ -17,6 +17,7 @@ class DatabaseProxy  < SQLite3::Database
   def initialize ( databaseName )
     super(databaseName)
     @insertSqlCount = 0
+    @exitCode = 0
   end
 
 
@@ -37,10 +38,15 @@ class DatabaseProxy  < SQLite3::Database
 
   def incrementInsert
     @insertSqlCount = @insertSqlCount + 1
+    @exitCode = 2
   end
 
   def insertCount
     @insertSqlCount
+  end
+
+  def exitCode
+    @exitCode
   end
 
 end

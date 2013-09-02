@@ -2,7 +2,7 @@
 
 require 'rubygems'
 require 'ppcurses'
-require_relative '../bin/LiftAction.rb'
+require_relative '../bin/lift_action.rb'
 
 begin
   require 'sqlite3'

@@ -10,11 +10,13 @@ cd ${SCRIPT_LOCATION}
 ${SCRIPT_LOCATION}/adminInterface
 RETURN_CODE=$?
 
-# The exit code for adminInterface returns
-# the number of inserts executed. Only
-# regenerate the website if new data was added.
+# adminInterface return values:
+# ----------------------------
+# 0 - interface ran but nothing inserted
+# 1 - an error occurred running the interface
+# 2 - 1 or more insert statements to the database occurred
 #
-if [[ $RETURN_CODE != 0 ]] ; then
+if [[ $RETURN_CODE -gt 1 ]] ; then
   # regenerate website
   ${SCRIPT_LOCATION}/generateWebsite
 fi
