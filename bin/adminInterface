@@ -2,23 +2,23 @@
 
 require 'ppcurses'
 require 'rubygems'
-require "sqlite3"
+require 'sqlite3'
 require_relative '../lib/rb/lift_action'
 require_relative '../lib/rb/count_action'
 require_relative '../lib/rb/database_proxy'
 
 load '../config/config.properties'
 
-def getData(db)
-  liftRepMenu = PPCurses::RadioMenu.new( @liftReps , nil )
-  liftTypeMenu = PPCurses::Menu.new( @lifts, nil )
+def get_data(db)
+  lift_rep_menu = PPCurses::RadioMenu.new( @liftReps , nil )
+  lift_type_menu = PPCurses::Menu.new( @lifts, nil )
 
-  liftsMenu = PPCurses::CompositeMenu.new( liftTypeMenu, liftRepMenu )
-  addLiftAction = LiftAction.new( liftTypeMenu, liftRepMenu, db )
+  lifts_menu = PPCurses::CompositeMenu.new( lift_type_menu, lift_rep_menu )
+  add_lift_action = LiftAction.new( lift_type_menu, lift_rep_menu, db )
 
-  liftTypeMenu.setGlobalAction(addLiftAction)
+  lift_type_menu.setGlobalAction(add_lift_action)
 
-  bookAction = PPCurses::InsertSQLDataAction.new(
+  book_action = PPCurses::InsertSQLDataAction.new(
                  [PPCurses::GetStringAction.new('Book title: '),
                   PPCurses::GetStringAction.new('Author: '),
                   PPCurses::GetIntegerAction.new('Number of pages: '),
@@ -26,7 +26,7 @@ def getData(db)
     'INSERT into books(title, author, pages, digital) values (?, ?, ?, ?)', db )
 
 
-  musicAction = PPCurses::InsertSQLDataAction.new(
+  music_action = PPCurses::InsertSQLDataAction.new(
                   [PPCurses::GetEnumeratedStringAction.new('Media Type? ',
                                                            %w(CD Vinyl MP3)),
                    PPCurses::GetStringAction.new('Artist: '),
@@ -36,17 +36,17 @@ def getData(db)
                   'INSERT into music(media, artist, albumTitle, price, used) values (?, ?, ?, ?, ?)', db )
 
 
-  liftsAction = PPCurses::ShowMenuAction.new(liftsMenu)
-  countAction = CountAction.new(db)
-  countMenuAction = PPCurses::ShowMenuAction.new(countAction.menu)
+  lifts_action = PPCurses::ShowMenuAction.new(lifts_menu)
+  count_action = CountAction.new(db)
+  count_menu_action = PPCurses::ShowMenuAction.new(count_action.menu)
 
-  mainMenu = PPCurses::Menu.new( @mainMenuValues ,
-                       [ liftsAction, musicAction, bookAction, countMenuAction] )
+  main_menu = PPCurses::Menu.new( @mainMenuValues ,
+                       [ lifts_action, music_action, book_action, count_menu_action] )
 
-  mainMenu.show()
-  mainMenu.getMenuSelection() 
+  main_menu.show()
+  main_menu.getMenuSelection()
   
-  mainMenu.close()
+  main_menu.close()
 end
 
 db = DatabaseProxy.open( @dbName )
@@ -54,7 +54,7 @@ db = DatabaseProxy.open( @dbName )
 begin
 
   screen = PPCurses::Screen.new()
-  screen.run { getData(db) }
+  screen.run { get_data(db) }
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
   # a stack trace when CTRL-C is used
