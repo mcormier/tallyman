@@ -19,23 +19,21 @@ def getData(db)
   liftTypeMenu.setGlobalAction(addLiftAction)
 
   bookAction = PPCurses::InsertSQLDataAction.new(
-                 [PPCurses::GetStringAction.new("Book title: "),
-                  PPCurses::GetStringAction.new("Author: "),
-                  PPCurses::GetIntegerAction.new("Number of pages: "),
-                  PPCurses::GetBooleanAction.new("Digital? "), ],
-    "INSERT into books(title, author, pages, digital)" +
-    " values (?, ?, ?, ?)", db )
+                 [PPCurses::GetStringAction.new('Book title: '),
+                  PPCurses::GetStringAction.new('Author: '),
+                  PPCurses::GetIntegerAction.new('Number of pages: '),
+                  PPCurses::GetBooleanAction.new('Digital? '), ],
+    'INSERT into books(title, author, pages, digital) values (?, ?, ?, ?)', db )
 
 
   musicAction = PPCurses::InsertSQLDataAction.new(
-                  [PPCurses::GetEnumeratedStringAction.new("Media Type? ",
-                                                 ["CD", "Vinyl", "MP3"] ),
-                   PPCurses::GetStringAction.new("Artist: "),
-                   PPCurses::GetStringAction.new("Album Title: "),
-                   PPCurses::GetIntegerAction.new("Price: "),
-                   PPCurses::GetBooleanAction.new("Used? "), ],
-    "INSERT into music(media, artist, albumTitle, price, used)" +
-    " values (?, ?, ?, ?, ?)", db )
+                  [PPCurses::GetEnumeratedStringAction.new('Media Type? ',
+                                                           %w(CD Vinyl MP3)),
+                   PPCurses::GetStringAction.new('Artist: '),
+                   PPCurses::GetStringAction.new('Album Title: '),
+                   PPCurses::GetIntegerAction.new('Price: '),
+                   PPCurses::GetBooleanAction.new('Used? '), ],
+                  'INSERT into music(media, artist, albumTitle, price, used) values (?, ?, ?, ?, ?)', db )
 
 
   liftsAction = PPCurses::ShowMenuAction.new(liftsMenu)
