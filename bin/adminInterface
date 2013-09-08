@@ -4,6 +4,7 @@ require 'ppcurses'
 require 'rubygems'
 require 'sqlite3'
 require_relative '../lib/rb/action/book_action'
+require_relative '../lib/rb/action/music_action'
 require_relative '../lib/rb/lift_action'
 require_relative '../lib/rb/count_action'
 require_relative '../lib/rb/database_proxy'
@@ -20,16 +21,7 @@ def get_data(db)
   lift_type_menu.setGlobalAction(add_lift_action)
 
   book_action = BookAction.new(db)
-
-  music_action = PPCurses::InsertSQLDataAction.new(
-                  [PPCurses::GetEnumeratedStringAction.new('Media Type? ',
-                                                           %w(CD Vinyl MP3)),
-                   PPCurses::GetStringAction.new('Artist: '),
-                   PPCurses::GetStringAction.new('Album Title: '),
-                   PPCurses::GetIntegerAction.new('Price: '),
-                   PPCurses::GetBooleanAction.new('Used? '), ],
-                  'INSERT into music(media, artist, albumTitle, price, used) values (?, ?, ?, ?, ?)', db )
-
+  music_action = MusicAction.new(db)
 
   lifts_action = PPCurses::ShowMenuAction.new(lifts_menu)
   count_action = CountAction.new(db)
