@@ -35,8 +35,8 @@ class CountAction < PPCurses::InsertSQLDataAction
     @count_menu.show()
   end
 
-  def getMenuSelection
-    @count_menu.getMenuSelection()
+  def menu_selection
+    @count_menu.menu_selection()
   end
 
   def winHeight

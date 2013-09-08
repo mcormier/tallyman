@@ -28,7 +28,7 @@ def get_data(db)
                        [ lifts_action, music_action, book_action, count_menu_action] )
 
   main_menu.show()
-  main_menu.getMenuSelection()
+  main_menu.menu_selection()
   
   main_menu.close()
 end

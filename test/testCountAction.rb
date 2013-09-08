@@ -10,7 +10,7 @@ load '../config/config.properties'
 def getData(db)
   countAction = CountAction.new(db)
   countAction.show()
-  countAction.getMenuSelection() 
+  countAction.menu_selection()
 end
 
 begin
