@@ -16,7 +16,7 @@ class CountAction < PPCurses::InsertSQLDataAction
       end
 
       @count_menu = PPCurses::Menu.new( menu_items, nil )
-      @count_menu.setGlobalAction(self)
+      @count_menu.set_global_action(self)
     ensure
       statement.close()
     end

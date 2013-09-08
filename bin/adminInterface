@@ -15,7 +15,7 @@ def get_data(db)
   lifts_menu = PPCurses::CompositeMenu.new( lift_type_menu, lift_rep_menu )
   add_lift_action = LiftAction.new( lift_type_menu, lift_rep_menu, db )
 
-  lift_type_menu.setGlobalAction(add_lift_action)
+  lift_type_menu.set_global_action(add_lift_action)
 
   book_action = BookAction.new(db)
   music_action = MusicAction.new(db)
