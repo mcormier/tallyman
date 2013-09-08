@@ -1,15 +1,17 @@
 #!/usr/bin/env ruby
 
+#noinspection RubyResolve
+require 'sqlite3'
 require 'ppcurses'
 require 'rubygems'
-require 'sqlite3'
 
 require_relative '../lib/rb/tallyman'
 
 load '../config/config.properties'
 
+#noinspection RubyResolve
 def get_data(db)
-  lift_rep_menu = PPCurses::RadioMenu.new( @liftReps , nil )
+  lift_rep_menu = PPCurses::RadioMenu.new( @lift_reps , nil )
   lift_type_menu = PPCurses::Menu.new( @lifts, nil )
 
   lifts_menu = PPCurses::CompositeMenu.new( lift_type_menu, lift_rep_menu )

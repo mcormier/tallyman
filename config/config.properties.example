@@ -34,7 +34,7 @@
          "Overhead Squat",
          "Snatch", "Squat Snatch", "Sots Press" ]
 
-@liftReps =  [ "1RM", "3RM", "5RM" ]
+@lift_reps =  [ "1RM", "3RM", "5RM" ]
 
 @mainMenuValues = ["Add Lift", "Add Music", "Add Book", "Add Misc"]
 
