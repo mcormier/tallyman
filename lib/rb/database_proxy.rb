@@ -1,4 +1,5 @@
-require "sqlite3"
+require 'sqlite3'
+require 'set'
 require_relative 'statement_wrapper'
 
 # References
@@ -13,11 +14,15 @@ require_relative 'statement_wrapper'
 class DatabaseProxy  < SQLite3::Database
 
 
+  attr_accessor :modified_table_set
 
-  def initialize ( databaseName )
-    super(databaseName)
-    @insertSqlCount = 0
-    @exitCode = 0
+  def initialize ( database_name )
+    super(database_name)
+    @insert_sql_count = 0
+    @exit_code = 0
+
+    @modified_table_set = Set.new()
+
   end
 
 
@@ -28,7 +33,7 @@ class DatabaseProxy  < SQLite3::Database
   def prepare( sql )
     stmt = super(sql)
 
-    if sql.include? "INSERT"
+    if sql.include? 'INSERT'
       wrapper = StatementWrapper.new(stmt, self)
       return wrapper
     end
@@ -37,16 +42,20 @@ class DatabaseProxy  < SQLite3::Database
   end
 
   def incrementInsert
-    @insertSqlCount = @insertSqlCount + 1
-    @exitCode = 2
+    @insert_sql_count = @insert_sql_count + 1
+    @exit_code = 2
   end
 
   def insertCount
-    @insertSqlCount
+    @insert_sql_count
   end
 
   def exitCode
-    @exitCode
+    @exit_code
+  end
+
+  def data_added_to(table_name)
+    @modified_table_set.add(table_name)
   end
 
 end
