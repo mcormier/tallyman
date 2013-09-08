@@ -3,11 +3,8 @@
 require 'ppcurses'
 require 'rubygems'
 require 'sqlite3'
-require_relative '../lib/rb/action/book_action'
-require_relative '../lib/rb/action/music_action'
-require_relative '../lib/rb/lift_action'
-require_relative '../lib/rb/count_action'
-require_relative '../lib/rb/database_proxy'
+
+require_relative '../lib/rb/tallyman'
 
 load '../config/config.properties'
 
