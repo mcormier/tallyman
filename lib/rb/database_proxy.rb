@@ -41,16 +41,19 @@ class DatabaseProxy  < SQLite3::Database
     stmt
   end
 
-  def incrementInsert
+  def increment_insert
     @insert_sql_count = @insert_sql_count + 1
     @exit_code = 2
   end
 
-  def insertCount
+  def insert_count
     @insert_sql_count
   end
 
-  def exitCode
+
+  # TODO this doesn't belong in a database proxy class
+  # very application specific
+  def exit_code
     @exit_code
   end
 

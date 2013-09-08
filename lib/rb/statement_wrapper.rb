@@ -15,7 +15,7 @@ class StatementWrapper
 
   def execute()
     @delegate.execute()
-    @dbProxy.incrementInsert()
+    @dbProxy.increment_insert()
   end
 
   def close()

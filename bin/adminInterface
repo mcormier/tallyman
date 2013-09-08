@@ -62,10 +62,14 @@ ensure
   db.close if db
 end
 
+print 'Modified tables'
+print db.modified_table_set.to_a().to_s
+
+
 # adminInterface return values:
 # ----------------------------
 # 0 - interface ran but nothing inserted
 # 1 - an error occurred running the interface
 # 2 - 1 or more insert statements to the database occurred
 #
-exit db.exitCode
+exit db.exit_code
