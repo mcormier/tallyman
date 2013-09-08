@@ -37,7 +37,12 @@ class LiftAction < PPCurses::InsertSQLDataAction
     prepared_sql = prepared_sql.sub('%s', @prompt.data() )
     prepared_sql = prepared_sql.sub('%s', reps_integer() )
 
-    self.prompt_to_change_data(prepared_sql, [lift_name(), @prompt.data(), reps_integer() ])
+    new_data_added = self.prompt_to_change_data(prepared_sql, [lift_name(), @prompt.data(), reps_integer() ])
+
+    if new_data_added then
+      @db.data_added_to('lifts')
+    end
+
   end
 
 end
