@@ -17,11 +17,11 @@ class LiftAction < PPCurses::InsertSQLDataAction
   end
  
   def lift_name
-    @name_menu.getSelectedMenuName()
+    @name_menu.selected_menu_name()
   end
   
   def reps_name
-    @rep_menu.getSelectedMenuName()
+    @rep_menu.selected_menu_name()
   end
   
   def reps_integer

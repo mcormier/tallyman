@@ -44,7 +44,7 @@ class CountAction < PPCurses::InsertSQLDataAction
   end
  
   def count_name
-    @count_menu.getSelectedMenuName()
+    @count_menu.selected_menu_name()
   end
 
 
