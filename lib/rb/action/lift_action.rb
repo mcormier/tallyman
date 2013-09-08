@@ -29,7 +29,7 @@ class LiftAction < PPCurses::InsertSQLDataAction
   end
 
   def before_actions
-    self.printLine('Input data for ' + reps_name() + ' ' + lift_name() )
+    self.print_line('Input data for ' + reps_name() + ' ' + lift_name() )
   end
 
   def after_actions
