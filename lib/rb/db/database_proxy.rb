@@ -17,13 +17,12 @@ class DatabaseProxy  < SQLite3::Database
 
 
   attr_accessor :modified_table_set
+  attr_reader :insert_count
 
   def initialize ( database_name )
     super(database_name)
-    @insert_sql_count = 0
-
+    @insert_count = 0
     @modified_table_set = Set.new()
-
   end
 
 
@@ -43,14 +42,8 @@ class DatabaseProxy  < SQLite3::Database
   end
 
   def increment_insert
-    @insert_sql_count = @insert_sql_count + 1
+    @insert_count = @insert_count + 1
   end
-
-  def insert_count
-    @insert_sql_count
-  end
-
-
 
   def data_added_to(table_name)
     @modified_table_set.add(table_name)
