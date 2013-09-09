@@ -6,22 +6,22 @@ require "sqlite3"
 
 load '../config/config.properties'
 
-def queryLiftData( db, query, liftname, rep)
-  retVal = "0"
+def query_lift_data( db, query, lift_name, rep)
+  return_value = "0"
 
-  value = db.get_first_value query, liftname, rep 
-  if not value.nil? then
-    retVal = value
+  value = db.get_first_value query, lift_name, rep
+  unless value.nil? then
+    return_value = value
   end
 
-  return retVal
+  return_value
 end
 
 
-def getSVGLiftName( name )
+def get_svg_lift_name( name )
   lower = name.downcase
   repAmper = lower.gsub(/&/,"and")
-  return repAmper.gsub(/\s+/,"")
+  repAmper.gsub(/\s+/,"")
 end
 
 
@@ -58,11 +58,11 @@ begin
         
         x.lift {
           x.name lift
-          x.svgname getSVGLiftName(lift)
+          x.svgname get_svg_lift_name(lift)
 
-          x.onerm queryLiftData( db, @liftQuery, lift, 1)
-          x.threerm queryLiftData( db, @liftQuery, lift, 3)  
-          x.fiverm  queryLiftData( db, @liftQuery, lift, 5)
+          x.onerm query_lift_data( db, @liftQuery, lift, 1)
+          x.threerm query_lift_data( db, @liftQuery, lift, 3)
+          x.fiverm  query_lift_data( db, @liftQuery, lift, 5)
         }
       ensure
         #stm.close
