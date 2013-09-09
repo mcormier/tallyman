@@ -1,3 +1,4 @@
+#noinspection RubyResolve
 require 'sqlite3'
 require 'set'
 require_relative 'statement_wrapper'
@@ -11,6 +12,7 @@ require_relative 'statement_wrapper'
 #
 # A wrapper that counts the number of SQL statements executed
 #
+#noinspection RubyResolve
 class DatabaseProxy  < SQLite3::Database
 
 
@@ -19,7 +21,6 @@ class DatabaseProxy  < SQLite3::Database
   def initialize ( database_name )
     super(database_name)
     @insert_sql_count = 0
-    @exit_code = 0
 
     @modified_table_set = Set.new()
 
@@ -43,7 +44,6 @@ class DatabaseProxy  < SQLite3::Database
 
   def increment_insert
     @insert_sql_count = @insert_sql_count + 1
-    @exit_code = 2
   end
 
   def insert_count
@@ -51,11 +51,6 @@ class DatabaseProxy  < SQLite3::Database
   end
 
 
-  # TODO this doesn't belong in a database proxy class
-  # very application specific
-  def exit_code
-    @exit_code
-  end
 
   def data_added_to(table_name)
     @modified_table_set.add(table_name)

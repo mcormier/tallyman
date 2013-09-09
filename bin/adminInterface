@@ -35,6 +35,17 @@ def get_data(db)
   main_menu.close()
 end
 
+# adminInterface return values:
+# ----------------------------
+# 0 - interface ran but nothing inserted
+# 1 - an error occurred running the interface
+# 2 - 1 or more insert statements to the database occurred
+#
+def determine_exit_code(db)
+  if db.insert_count > 0 then 2 else 0 end
+end
+
+#noinspection RubyResolve
 db = DatabaseProxy.open( @dbName )
 
 begin
@@ -52,10 +63,4 @@ print 'Modified tables'
 print db.modified_table_set.to_a().to_s
 
 
-# adminInterface return values:
-# ----------------------------
-# 0 - interface ran but nothing inserted
-# 1 - an error occurred running the interface
-# 2 - 1 or more insert statements to the database occurred
-#
-exit db.exit_code
+exit determine_exit_code(db)
