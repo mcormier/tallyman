@@ -3,7 +3,7 @@
 SCRIPTLOC=`dirname $0`
 cd $SCRIPTLOC
 
-# generatex xml data in the xslt directory
+# generates xml data in the xslt directory
 ${SCRIPTLOC}/extractDBDataToXMLFile
 
 WEB_ROOT=`${SCRIPTLOC}/getProperty webRoot`
