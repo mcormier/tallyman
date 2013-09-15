@@ -7,7 +7,7 @@
 load '../config/config.properties'
 
 begin
-  varName= "@"+ARGV[0]
-  print self.instance_variable_get(varName)
+  variable_name= '@'+ARGV[0]
+  print self.instance_variable_get(variable_name)
   STDOUT.flush
 end
