@@ -59,8 +59,7 @@ ensure
   db.close if db
 end
 
-print 'Modified tables'
-print db.modified_table_set.to_a().to_s
-
+generator = DeltaGenerator.new(db.modified_table_set)
+generator.generate('../data/delta.xml')
 
 exit determine_exit_code(db)
