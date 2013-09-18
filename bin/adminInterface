@@ -11,7 +11,7 @@ script_location = File.expand_path File.dirname(__FILE__)
 to_load = script_location + '/../config/config.properties'
 load to_load
 
-#noinspection RubyResolve
+
 def get_data(db)
   lift_rep_menu = PPCurses::RadioMenu.new( @lift_reps , nil )
   lift_type_menu = PPCurses::Menu.new( @lifts, nil )
@@ -47,7 +47,7 @@ def determine_exit_code(db)
   if db.insert_count > 0 then 2 else 0 end
 end
 
-#noinspection RubyResolve
+
 db = DatabaseProxy.open( @dbName )
 
 begin
