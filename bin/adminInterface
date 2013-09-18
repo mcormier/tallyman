@@ -7,7 +7,9 @@ require 'rubygems'
 
 require_relative '../lib/rb/tallyman'
 
-load '../config/config.properties'
+script_location = File.expand_path File.dirname(__FILE__)
+to_load = script_location + '/../config/config.properties'
+load to_load
 
 #noinspection RubyResolve
 def get_data(db)
