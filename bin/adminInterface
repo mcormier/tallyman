@@ -62,6 +62,6 @@ ensure
 end
 
 generator = DeltaGenerator.new(db.modified_table_set)
-generator.generate('../data/delta.xml')
+generator.generate(script_location + '/../data/delta.xml')
 
 exit determine_exit_code(db)
