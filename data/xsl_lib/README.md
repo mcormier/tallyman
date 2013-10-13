@@ -1,7 +1,7 @@
 
 **xsltproc** does not support XSLT 2.0. Actually there is quite a lack of free XSLT 2.0 tools, most of them are commercial.
 
-These libraries from EXSLT help bridge the xsl 1.0 to 2.0 gap. These libraries were downloaded and modifed slightly as their are some small errors in the libraries. (i.e. case sensitive namespace definition mistakes that probably won't occur in Windows but will under Unix)
+These libraries from EXSLT help bridge the xsl 1.0 to 2.0 gap. These libraries were downloaded and modified slightly as their are some small errors in the libraries. (i.e. case sensitive namespace definition mistakes that probably won't occur in Windows but will under Unix)
 
 # /str - EXSLT - STRINGS #
 
