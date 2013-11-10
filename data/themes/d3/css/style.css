@@ -7,6 +7,48 @@
       url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
 }
 
+
+   path { stroke: steelblue; stroke-width: 1; fill: none; }
+
+  .axis { shape-rendering: crispEdges; }
+
+  .x.axis line { stroke: lightgrey; }
+
+  .x.axis .minor { stroke-opacity: .5; }
+
+  .x.axis path { display: none; }
+
+  .y.axis line, .y.axis path { fill: none; stroke: #000; }
+
+  /* fill of none does not work well with mouse over */
+  .onePoints, .dPoints { fill:white; stroke: steelblue;}
+  .threePoints { fill:white; stroke: steelblue;}
+  .fivePoints { fill:white; stroke: steelblue;}
+
+  .oneLine { stroke-width: 4; }
+  .threeLine { stroke-width: 4; stroke: steelblue; stroke-dasharray:5,5; }
+  .fiveLine { stroke-width: 4; stroke: steelblue; stroke-dasharray:1,1}
+
+  .liftGraph { position:relative; top:-80px; left:0px; float:left; }
+
+
+div.pointInfo{
+  position: absolute;
+  text-align: center;
+  width: 60px; height: 28px;
+  padding-top: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  font: 10px sans-serif;
+  background: #ddd;
+  border: solid 1px #aaa;
+  border-radius: 8px;
+  pointer-events: none;
+}
+
+
+
+
 /* @group Octicon Font Stuff */
 .mini-icon:before, .mega-icon:before {
   font-family:normal normal 'Octicons Regular';
@@ -97,12 +139,13 @@ div.wrapper {margin:0 auto; width:850px; padding:10px 0 0 60px;}
 
 div.clear { clear: left; }
 
+/*
 .imageloader {background-image: url('../images/drawerBG.png'), 
                                 url('../images/stripes.png'),
                                 url('../images/annualWorkoutData.png');
   display:none;position:fixed;height:0;width:0;overflow:hidden;
   left:-1000px;top:-1000px;
-}
+}*/
 
 #liftOptionsSheet {display:none;}
 

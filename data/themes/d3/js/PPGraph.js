@@ -2,11 +2,12 @@
 //
 //
 //
-function PPRepGraph(divId, tsvFile, castFunc, gDim) {
+function PPRepGraph(divId, tsvFile, liftName, castFunc, gDim) {
 
   this.tsvFile = tsvFile;
   this.castFunc = castFunc;
   this.divId = divId;
+  this.liftName = liftName;
 
   this.d = {};
   this.d.m = [gDim.margin, gDim.margin, gDim.margin, gDim.margin];  
@@ -53,6 +54,7 @@ PPRepGraph.prototype.mouseout = function (d,i) {
 
 
 PPRepGraph.prototype.createGraph = function (error,data) {
+  if (error) { return; }
 
   var that = this;
 
@@ -66,18 +68,25 @@ PPRepGraph.prototype.createGraph = function (error,data) {
   var rm3Data = new Array();
   var rm5Data = new Array();
 
+  var liftData = new Array();
+
   for (var i=0; i <data.length;i++) {
-    if ( data[i].reps == 1) { rm1Data.push( data[i] ); }
-    if ( data[i].reps == 3) { rm3Data.push( data[i] ); }
-    if ( data[i].reps == 5) { rm5Data.push( data[i] ); }
+    if ( data[i].name === this.liftName) {
+      liftData.push(data[i]);
+    }
+  }
+  for (var i=0; i < liftData.length;i++) {
+      if ( liftData[i].reps == 1) { rm1Data.push( liftData[i] ); }
+      if ( liftData[i].reps == 3) { rm3Data.push( liftData[i] ); }
+      if ( liftData[i].reps == 5) { rm5Data.push( liftData[i] ); }
   }
 
   this.x = d3.time.scale()
-                  .domain([data[0].day, data[data.length-1].day]  )
+                  .domain([liftData[0].day, liftData[liftData.length-1].day]  )
                   .range([0, this.d.w]);
 
-  this.y = d3.scale.linear().domain([d3.min(data, minMaxFunc ),
-                                     d3.max(data, minMaxFunc ) ]).range([this.d.h, 0]);
+  this.y = d3.scale.linear().domain([d3.min(liftData, minMaxFunc ),
+                                     d3.max(liftData, minMaxFunc ) ]).range([this.d.h, 0]);
 
   var line = d3.svg.line().x( xFunc )
                           .y( yFunc )

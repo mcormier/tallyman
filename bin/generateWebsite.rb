@@ -6,11 +6,13 @@ load to_load
 
 xsl_loc=script_location+'/../data/themes/' + @theme + '/xsl/createHTML.xsl'
 
-cmd = 'xsltproc ' + xsl_loc + ' ' + script_location + '/' +@xmlDataFile + ' > ' + @outputHTMLFile
+dbScript_loc=script_location+'/../data/themes/' + @theme + '/dbScript'
+
+cmd = 'xsltproc ' + xsl_loc + ' ' + script_location + '/' + @xmlDataFile + ' > ' + @outputHTMLFile
 value = `#{cmd}`
 
 if @enableGraphs then
-  puts 'TODO -- create Graphs'
+  require dbScript_loc
 end
 
 puts value

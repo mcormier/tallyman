@@ -8,23 +8,16 @@
 
 <xsl:template match="/">
 
-
   <!-- Specifies an HTML 5 document -->
   <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html></xsl:text>
 
-  <html manifest="cache.manifest">
+  <html>
     <xsl:call-template name="htmlHeader">
       <xsl:with-param name="stylesheet">style.css</xsl:with-param> 
-      <xsl:with-param name="javascript">PPUtils,fastclick,main</xsl:with-param> 
+      <xsl:with-param name="javascript">d3.v3.min,PPUtils,PPGraph,fastclick,main</xsl:with-param> 
     </xsl:call-template>
 
-    <!--
-       Applying an empty ontouchstart fixes iOS from ignoring 
-       a:active style definitions.
-
-       Reference: http://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari
-    -->
-    <body ontouchstart="">
+    <body>
       <xsl:apply-templates/>
     </body>
   </html>
@@ -32,8 +25,7 @@
 
 <xsl:template match="data">
 
-  <div class="imageloader"/>
-
+ 
   <div id="contentContainer" class="no-flick">
 
     <div class="wrapper assortedData fadeIn">
@@ -67,18 +59,12 @@
     </div> <!-- end wrapper -->
   
     <div class="clear"/>
-    <xsl:copy-of select="document('drawers.xml')/." />
     <div class="wrapper liftData fadeIn">
        <div id="lifts" ><xsl:apply-templates select="lifts"/></div>
     </div>
 
      <div class="clear"/>
    </div>
-
-  <xsl:copy-of select="document('alertSheet.xml')/." />
-
-  <div id="drawer-overlay"/>
-  <div id="popover-overlay"/>
 
 </xsl:template>
 
@@ -87,23 +73,16 @@
   <xsl:variable name="leftArrow"><span class="mega-icon mega-icon-arr-left"/></xsl:variable>
   <xsl:variable name="rightArrow"><span class="mega-icon mega-icon-arr-right"/></xsl:variable>
 
+
   <xsl:for-each select="lift">
-  <div class="1RM3RM5RM flip-container">
+       <xsl:variable name ="liftName" select="svgname"/>
+
+  <div class="1RM3RM5RM ">
     <div class="divide-line"></div>
 
     <div  style="position:relative">
       <div class="liftName"><xsl:value-of select="name"/> </div>
-      <xsl:if test="$enableGraphs='true'">
-      <div class="toggler" onTouch="toggleFlip(this)" onClick="toggleFlip(this)" >
-        <span class="mini-icon mini-icon-graph" ></span>  
-      </div>
-      </xsl:if>
     </div>
-
-
-    <div class="flipper">
-
-    <div class="front"> 
 
 
     <div class="liftValue 1RM">
@@ -172,34 +151,15 @@
             </xsl:if>
  
 
-          </div>
 
-       </div>
-
-      <xsl:if test="$enableGraphs='true'">
-       <div class="back">
-          <div class="repLegend"> 
-            <div class="repLabel">1RM</div> 
-            <div class="repLabel">3RM</div> 
-            <div class="repLabel">5RM</div> 
-          </div>
-
-          <iframe width="250" height="260">
-            <xsl:attribute name="src">svg/<xsl:value-of select="svgname"/>1RM.svg</xsl:attribute>
-          </iframe>
-          <iframe width="250" height="260">
-            <xsl:attribute name="src">svg/<xsl:value-of select="svgname"/>3RM.svg</xsl:attribute>
-          </iframe>
-          <iframe width="250" height="260">
-            <xsl:attribute name="src">svg/<xsl:value-of select="svgname"/>5RM.svg</xsl:attribute>
-          </iframe>
-
-       </div>
-       </xsl:if>
 
        </div>
 
         </div>
+
+
+        <div class="clear"></div>
+        <div id="d3Graph{$liftName}" class="liftGraph" />
         <div class="clear"></div>
      </xsl:for-each>
  </xsl:template>
