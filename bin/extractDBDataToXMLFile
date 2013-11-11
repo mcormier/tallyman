@@ -8,6 +8,8 @@ script_location = File.expand_path File.dirname(__FILE__)
 to_load = script_location + '/../config/config.properties'
 load to_load
 
+# TODO - push all this logic to tallyman/lib
+
 def query_lift_data( db, query, lift_name, rep)
   return_value = '0'
 
@@ -55,7 +57,7 @@ begin
     end
 
     x.lifts {
-    @lifts.each do |lift|
+    @webLifts.each do |lift|
       begin
         
         x.lift {
