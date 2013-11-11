@@ -1,4 +1,3 @@
-puts "TODO create index.html"
 
 xsl_loc= @theme_root +'/_transform/xsl/createHTML.xsl'
 
