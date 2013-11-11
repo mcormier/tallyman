@@ -163,6 +163,10 @@ div.bottom {
   height:7px; 
 }
 
+li.display {
+    margin-top: 20px;
+}
+
 div.big_display {
   text-transform: uppercase;
   height:226px;
