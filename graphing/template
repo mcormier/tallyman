@@ -1,5 +1,0 @@
-.headers on 
-.mode csv
-.output data/#FILENAME.dat
-select name, weight, day, reps from lifts where name = '#LIFTNAME' and reps = #REPS order by day;
-
