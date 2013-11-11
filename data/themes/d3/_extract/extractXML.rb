@@ -1,5 +1,6 @@
 
+@data_file = @webRoot + "outFile.xml"
 
-generator = DataGenerator.new( @webRoot + "outFile.xml", @dbName,
+generator = DataGenerator.new( @data_file, @dbName,
                                @outputQueries, @webLifts, @liftQuery)
 generator.generate_xml()
