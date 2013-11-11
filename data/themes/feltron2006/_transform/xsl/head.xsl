@@ -4,8 +4,8 @@
                 xmlns:str="http://exslt.org/strings" 
                 extension-element-prefixes="str date"
 >
-<xsl:import href="../../../xsl_lib/date/date.xsl" />
-<xsl:import href="../../../xsl_lib/str/str.xsl" />
+<xsl:import href="../../../../xsl_lib/date/date.xsl" />
+<xsl:import href="../../../../xsl_lib/str/str.xsl" />
 
 <xsl:template name="htmlHeader">
   <xsl:param name="stylesheet"/>
