@@ -97,9 +97,6 @@
         <xsl:copy-of select="$rightArrow"/>
         <xsl:value-of select="round(onerm * 0.86 div 5) * 5"/> 
       </p>
-      <p class="volumeEstimate fadeIn">Volume: Warm up to and then do 
-        <strong>6 sets of 3 reps at 
-        <xsl:value-of select="round(onerm * 0.80 div 5) * 5"/></strong> with a 2 minute break in between each set.</p>
 
       <p class="oneToTenSpread fadeIn" >
         <span class="spreadValue"><strong><xsl:value-of select="onerm"/></strong><sup>1</sup></span>
