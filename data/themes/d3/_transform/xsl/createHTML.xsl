@@ -77,7 +77,7 @@
   <xsl:for-each select="lift">
        <xsl:variable name ="liftName" select="svgname"/>
 
-  <div class="1RM3RM5RM ">
+  <div class="_1RM3RM5RM ">
     <div class="divide-line"></div>
 
     <div  style="position:relative">
@@ -152,11 +152,12 @@
 
        </div>
 
+
+      <div id="d3Graph{$liftName}" class="liftGraph" />
+
         </div>
 
 
-        <div class="clear"></div>
-        <div id="d3Graph{$liftName}" class="liftGraph" />
         <div class="clear"></div>
      </xsl:for-each>
  </xsl:template>
