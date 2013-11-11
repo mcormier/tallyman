@@ -1,14 +1,37 @@
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:stylesheet version="1.0"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:date="http://exslt.org/dates-and-times"
+                extension-element-prefixes="date"
+        >
+
+<xsl:import href="../../../../xsl_lib/date/date.xsl" />
 
 <xsl:output method="html" indent="yes"/>
 
+<xsl:template match="/">
+
+  <html>
+  <head>
+
+    <!-- prints out a title in the form: "Updated 10 Jan 2013" -->
+    <title><xsl:value-of
+                select="concat('Updated: ',
+                date:format-date(date:date-time(), 'd MMM yyyy') )"/>
+    </title>
+
+    <Link rel="stylesheet" type="text/css" href="css/style.css"></Link>
+  </head>
+  <body>
+    <xsl:apply-templates/>
+  </body>
+
+  </html>
+
+</xsl:template>
+
+
  <xsl:template match="data">
-   <html>
-     <head>
-       <title></title>
-       <Link rel="stylesheet" type="text/css" href="css/style.css" title="stylin"></Link>
-     </head>
-     <body>
+
 
      <div class="wrapper">
 
@@ -48,16 +71,9 @@
      </xsl:for-each>
      </ul></div>
 
-     <!-- name, onerm, threerm, fiverm -->
-
-     <div id="lifts" >
-        <xsl:apply-templates select="lifts"/>
-     </div>
 
      </div>
 
-     </body>
-   </html>
  </xsl:template>
 
  <xsl:template match="lifts">
