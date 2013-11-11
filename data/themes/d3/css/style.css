@@ -139,13 +139,6 @@ div.wrapper {margin:0 auto; width:850px; padding:10px 0 0 60px;}
 
 div.clear { clear: left; }
 
-/*
-.imageloader {background-image: url('../images/drawerBG.png'), 
-                                url('../images/stripes.png'),
-                                url('../images/annualWorkoutData.png');
-  display:none;position:fixed;height:0;width:0;overflow:hidden;
-  left:-1000px;top:-1000px;
-}*/
 
 #liftOptionsSheet {display:none;}
 
@@ -228,7 +221,6 @@ div.clear { clear: left; }
 
 .inside-arrow.top {
     -webkit-transform: rotateZ(-45deg);
-    background-image:url('../images/drawerBG.png');
     width:30px;
     height:30px;
     position:relative;
@@ -240,47 +232,6 @@ div.clear { clear: left; }
     -webkit-animation : openfolder-arrowtop 1000ms linear; }
 /* @end */
 
-/* @group Keyboard Shortcuts Drawer */
-#shortcutsContent {
-  margin:10px auto 0; padding:20px 30px 0;
-  height:230px;width:790px;
-  border-radius:4px;
-  background:#EEE;
-}
-#shortcutsLink { position:absolute; top:0; right:0; height:40px; }
-
-#shortcutsContent div {text-transform:none; letter-spacing:0;}
-
-#shortcutsDrawer {
- background-image: url(../images/drawerBG.png); 
-}
-
-.column { float:left; margin-right:50px;}
-
-dl.keyboard-mappings dt {
-  display:inline-block;
-  margin:0;
-  padding:3px 6px;
-  min-width:15px;
-  text-align:center;
-  font:18px Monaco, "Liberation Mono", Courier, monospace;
-  background:#777; color: #EEE;
-  border-radius:2px;
-  text-shadow:2px 2px 0 #000;
-}
-
-dl.keyboard-mappings dd {
-  font-size:14px;
-  text-shadow:1px 1px 0 #DDD;
-  display:inline;
-  margin:0 0 0 5px;
-}
-
-#shortcutsContent h2 {font-size:16px; margin:0 0 0 -10px;
-  padding:0 10px 10px;}
-
-#showShortcuts {text-align:right; vertical-align:right; width:100%;}
-/* @end */
 
 /* @group Macro Contents */
 #macroShowDiv { height: 40px; }
@@ -291,9 +242,7 @@ dl.keyboard-mappings dd {
 background:#FFF;
 border-radius:4px; }
 
-#macroHistoryDrawer {
- background-image: url(../images/drawerBG.png);
-}
+
 /* @end */
 
 /* @group HTML 5 Transform/Transition classes 
@@ -471,7 +420,6 @@ div.big_display {text-transform: uppercase; height:200px; width:374px;}
   background-position:top;
   background-attachment:fixed;
   background-size: 320px 490px;
-  background-image: url(../images/stripes.png);
 }
 
 .PPActionSheet h2 {
@@ -598,7 +546,7 @@ ul.PPtableview, ul.PPtableview li a.cell,
 
 /* @group iPad Popover */
 @media
-/* iPad 1 and 2 in portait mode*/
+/* iPad 1 and 2 in portrait mode*/
 only screen  
   and (min-device-width: 768px)
   and (max-device-width: 1024px)
