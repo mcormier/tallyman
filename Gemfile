@@ -2,3 +2,6 @@
 source 'https://rubygems.org'
 
 gem 'ppcurses'
+gem 'sqlite3'
+gem 'builder'
+gem 'nokogiri'
