@@ -1,5 +1,5 @@
 
-require 'builder'
+require "builder"
 require "sqlite3"
 
 #
@@ -36,6 +36,7 @@ class DataGenerator
     @item_queries = item_queries
     @lifts = lifts
     @lift_query = lift_query
+    @xmlEncoding = "ASCII"
   end
 
 
@@ -92,10 +93,10 @@ class DataGenerator
   #    </lift>
   #  <lifts>
   def create_lifts(db, x)
+
     x.lifts {
       @lifts.each do |lift|
         begin
-
           x.lift {
             x.name lift
             x.svgname get_svg_lift_name(lift)
@@ -114,7 +115,7 @@ class DataGenerator
   def generate_xml
     x = Builder::XmlMarkup.new( :indent => 2 )
     db = SQLite3::Database.open @db
-    x.instruct! :xml, :encoding => @xmlEncoding
+    x.instruct! :xml, :encoding => @xmlEncoding 
 
     File.open( @out_file, 'w' ) do |out|
 

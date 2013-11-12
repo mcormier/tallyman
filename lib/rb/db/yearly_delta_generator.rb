@@ -5,6 +5,7 @@ class YearlyDeltaGenerator
     @db = db
     @out_file = out_file
     @lifts = lifts
+    @xmlEncoding = "ASCII"
   end
 
 
