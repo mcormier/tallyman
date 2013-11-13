@@ -4,7 +4,9 @@
 # so that the variable can be used in a bash shell script
 #
 
-load '../config/config.properties'
+script_location = File.expand_path File.dirname(__FILE__)
+to_load = script_location + '/../config/config.properties'
+load to_load
 
 begin
   variable_name= '@'+ARGV[0]
