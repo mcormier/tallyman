@@ -152,3 +152,72 @@ PPRepGraph.prototype.addPoints = function (data, cssClassInfo) {
 }
 
 
+function PPPieGraph(divId, tsvFile, gDim, totalFunc, forEachFunc, fillFunc, labelFunc) {
+  var that = this;
+
+  this.divId = divId;
+  this.tsvFile = tsvFile;
+  this.forEachFunc = forEachFunc;
+  this.fillDataFunc = fillFunc;
+  this.totalFunc = totalFunc;
+  this.labelFunc = labelFunc;
+
+
+  this.color = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
+  this.width = gDim.w; 
+  this.height = gDim.h;
+  this.radius = Math.min(this.width, this.height) / 2;
+
+  var initBinder = function() { that.init(); };
+  PPUtils.bind("load", window, initBinder );
+}
+
+PPPieGraph.prototype.init = function () {
+  var that = this;
+  var callbackBinder = function(error,data) { that.createGraph(error,data); }
+  d3.tsv( this.tsvFile,  this.castFunc, callbackBinder  );
+};
+
+PPPieGraph.prototype.createGraph = function (error,data) {
+
+  var that = this;
+
+  this.arc = d3.svg.arc()
+                 .outerRadius(this.radius - 10)
+                 .innerRadius(0);
+
+
+  this.pie = d3.layout.pie().sort(null).value(that.totalFunc);
+
+
+  this.svg = d3.select("#" + this.divId).append("svg")
+                             .attr("width", this.width)
+                             .attr("height", this.height)
+                             .append("g")
+                             .attr("transform", "translate(" + this.width / 2 + "," + this.height / 2 + ")");
+
+  var forEachInternal = function(d) { return that.forEachFunc(d); }
+  data.forEach( forEachInternal );
+
+  this.g = this.svg.selectAll(".arc")
+              .data(this.pie(data))
+              .enter().append("g")
+              .attr("class", "arc");
+
+  var fillFuncInternal = function(d) { return that.color(that.fillDataFunc(d)); };
+
+  this.g.append("path")
+    .attr("d", this.arc)
+    .style("fill", fillFuncInternal );
+
+
+  this.g.append("text")
+      .attr("transform", function(d) { return "translate(" + that.arc.centroid(d) + ")"; })
+      .attr("dy", ".35em")
+      .style("text-anchor", "middle")
+      .text( that.labelFunc );
+
+
+
+};
+
