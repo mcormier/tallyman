@@ -1,0 +1,5 @@
+.headers on
+.mode tabs
+select distinct digital, count(digital) as total 
+  from books group by digital;
+
