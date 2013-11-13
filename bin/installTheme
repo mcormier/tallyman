@@ -3,8 +3,8 @@
 SCRIPTLOC=`dirname $0`
 cd $SCRIPTLOC
 
-WEB_ROOT=`${SCRIPTLOC}/getProperty webRoot`
-THEME=`${SCRIPTLOC}/getProperty theme`
+WEB_ROOT=`./getProperty webRoot`
+THEME=`./getProperty theme`
 
 THEME_ROOT="../data/themes/"
 IMAGE_DIR="${THEME_ROOT}/${THEME}/images"
