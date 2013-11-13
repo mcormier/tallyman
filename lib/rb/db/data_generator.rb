@@ -74,6 +74,7 @@ class DataGenerator
         row = rs.next
         x.item{
           x.title queryInfo[0]
+          x.svgname get_svg_lift_name(queryInfo[0])
           x.value row.join "\s"
         }
       ensure
