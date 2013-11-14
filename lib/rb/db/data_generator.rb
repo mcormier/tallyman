@@ -12,6 +12,7 @@ require "sqlite3"
 #  <item>
 #    <title>Books Read</title>
 #    <value>8</value>
+#    <svgname>booksread</svgname>
 #  </item>
 #  <item>
 #    <title>Total Pages Read</title>
@@ -61,6 +62,7 @@ class DataGenerator
   #  <item>
   #    <title>Books Read</title>
   #    <value>8</value>
+  #    <svgname>booksread</svgname>
   #  </item>
   #  <item>
   #    <title>Total Pages Read</title>
@@ -74,8 +76,8 @@ class DataGenerator
         row = rs.next
         x.item{
           x.title queryInfo[0]
-          x.svgname get_svg_lift_name(queryInfo[0])
           x.value row.join "\s"
+          x.svgname get_svg_lift_name(queryInfo[0])
         }
       ensure
         stm.close
