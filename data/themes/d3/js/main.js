@@ -134,6 +134,7 @@ var pDim = { 'w': 150, 'h': 150 };
 
 var totalFunc = function(d) { return d.total };
 var forEachFunc = function(d) { d.total = +d.total; };
+
 var fillFunc_ = function(d) { return d.data.digital; };
 var labelFunc = function(d) {
   if ( d.data.digital === "0" ) { return "Analog"; }
@@ -143,4 +144,15 @@ var labelFunc = function(d) {
 
 
 new PPPieGraph("booksreadGraph", "books.tsv", pDim, totalFunc, forEachFunc, fillFunc_, labelFunc );
+
+var m_fillFunc_ = function(d) { return d.data.used; };
+var m_labelFunc = function(d) {
+  if ( d.data.used === "0" ) { return "New"; }
+  if ( d.data.used === "1" ) { return "Pre-owned"; }
+  return d.data.used;
+  };
+
+
+
+new PPPieGraph("albumspurchasedGraph", "music.tsv", pDim, totalFunc, forEachFunc, m_fillFunc_, m_labelFunc );
 

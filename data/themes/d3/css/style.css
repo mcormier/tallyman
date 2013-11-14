@@ -10,7 +10,8 @@
 
 /* D3 graph stuff */
 
-  div#booksreadGraph { position:relative; font: 8px sans-serif; margin-top: -140px; margin-left: 130px; }
+  div#booksreadGraph { position:relative; font: 8px sans-serif; margin-top: -140px; margin-left: 180px; }
+  div#albumspurchasedGraph{ position:relative; font: 8px sans-serif; margin-top: -140px; margin-left: 180px; }
 
   .arc path { stroke: #fff; }
 

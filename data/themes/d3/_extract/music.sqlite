@@ -1,0 +1,5 @@
+.headers on
+.mode tabs
+select distinct used, count(used) as total 
+  from music group by used;
+
