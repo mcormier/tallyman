@@ -166,6 +166,12 @@
    <div class="value"><span><xsl:apply-templates/></span></div>
  </xsl:template>
 
+ <xsl:template match="svgname">
+   <xsl:variable name ="idRoot" select="."/>
+   <div id="{$idRoot}Graph" class="Graph" />
+ </xsl:template>
+
+
  <xsl:template match="title">
    <div class="divide-line"></div>
    <h2><span><xsl:apply-templates/></span></h2>
