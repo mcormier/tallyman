@@ -2,10 +2,51 @@
 //
 //
 //
-function PPRepGraph(divId, tsvFile, liftName, castFunc, gDim) {
+
+function PPRepGraphOrchestrator(divIdArray, tsvFile, gDim) {
+
+  this.divIdArray = divIdArray;
+  this.tsvFile = tsvFile;
+  this.gDim = gDim;
+
+  var that = this;
+  var initBinder = function() { that.init(); };
+  PPUtils.bind("load", window, initBinder );
+}
+
+PPRepGraphOrchestrator.prototype.init = function () {
+
+  function type(d) {
+    d.weight = +d.weight;     // coerce to number
+    d.reps = +d.reps;         // coerce to number
+    d.day = new Date(d.day);
+    return d;
+  }
+
+  var that = this;
+  var callbackBinder = function(error,data) { that.createGraphs(error,data); };
+  d3.tsv( this.tsvFile,  type, callbackBinder  );
+};
+
+
+PPRepGraphOrchestrator.prototype.createGraphs = function (error,data) {
+  if (error) { return; }
+
+  for (var i=0; i < this.divIdArray.length ; i++ ) {
+
+    var svgName = "d3Graph" + this.divIdArray[i].toLowerCase();
+    svgName = svgName.replace(/ /g, ""); // Remove spaces from name
+    svgName = svgName.replace(/&/g, "and"); // Remove spaces from name
+
+    var graph = new PPRepGraph(svgName, this.tsvFile, this.divIdArray[i], this.gDim);
+    graph.createGraph(error,data);
+  }
+
+} ;
+
+function PPRepGraph(divId, tsvFile, liftName, gDim) {
 
   this.tsvFile = tsvFile;
-  this.castFunc = castFunc;
   this.divId = divId;
   this.liftName = liftName;
 
@@ -15,10 +56,6 @@ function PPRepGraph(divId, tsvFile, liftName, castFunc, gDim) {
   this.d.h = gDim.h - this.d.m[0] - this.d.m[2];
 
   this.formatter = new DateFmt("%n %d %y");
-
-  var that = this;
-  var initBinder = function() { that.init(); };
-  PPUtils.bind("load", window, initBinder );
 }
 
 // Global variable for all PPRepGraph classes
@@ -36,28 +73,22 @@ PPRepGraph.getToolTip = function() {
     return PPRepGraph.prototype.toolTip;
 };
 
-PPRepGraph.prototype.init = function () {
-  var that = this;
-  var callbackBinder = function(error,data) { that.createGraph(error,data); };
-  d3.tsv( this.tsvFile,  this.castFunc, callbackBinder  );
-};
 
 
 
-
-PPRepGraph.prototype.mousemove = function (d,i) {
+PPRepGraph.prototype.mouseMove = function (d) {
   PPRepGraph.getToolTip().text("Weight: " + d.weight + " " + this.formatter.format(d.day));
 
   PPRepGraph.getToolTip().style("left", (d3.event.pageX - 34) + "px")
                          .style("top", (d3.event.pageY - 62) + "px");
 };
 
-PPRepGraph.prototype.mouseover = function (d,i) {
+PPRepGraph.prototype.mouseOver = function () {
     PPRepGraph.getToolTip().transition().duration(250)
       .style("opacity", 0.8);
 };
 
-PPRepGraph.prototype.mouseout = function (d,i) {
+PPRepGraph.prototype.mouseOut = function () {
     PPRepGraph.getToolTip().transition().duration(500)
       .style("opacity", 0);
 };
@@ -68,13 +99,9 @@ PPRepGraph.prototype.createGraph = function (error,data) {
 
   var that = this;
 
-  PPRepGraph.getToolTip();
-
-  //this.createToolTip();
-
   var minMaxFunc= function(d) { return d.weight; };
-  var xFunc = function (d,i) { return that.x(d.day); };
-  var yFunc = function (d,i) { return that.y(d.weight); };
+  var xFunc = function (d) { return that.x(d.day); };
+  var yFunc = function (d) { return that.y(d.weight); };
 
   var rm1Data = [];
   var rm3Data = [];
@@ -146,17 +173,17 @@ PPRepGraph.prototype.addLine = function (line, cssClassInfo) {
 
 PPRepGraph.prototype.addPoints = function (data, cssClassInfo) {
   var that = this;
-  var overBinder = function(d,i) { that.mouseover(d,i); };
-  var moveBinder = function(d,i) { that.mousemove(d,i); };
-  var outBinder = function(d,i) { that.mouseout(d,i); };
+  var overBinder = function() { that.mouseOver(); };
+  var moveBinder = function(d) { that.mouseMove(d); };
+  var outBinder = function() { that.mouseOut(); };
 
   this.graph.selectAll(".point")
              .data(data)
            .enter().append("svg:circle")
               .attr("class", cssClassInfo )
-              .attr("cx", function(d, i) { return that.x(d.day) })
-              .attr("cy", function(d, i) { return that.y(d.weight) })
-              .attr("r", function(d, i) { return 6 })
+              .attr("cx", function(d) { return that.x(d.day) })
+              .attr("cy", function(d) { return that.y(d.weight) })
+              .attr("r", function() { return 6 })
               .on("mouseover", overBinder )
               .on("mousemove", moveBinder)
               .on("mouseout", outBinder);
@@ -186,7 +213,7 @@ function PPPieGraph(divId, tsvFile, gDim, totalFunc, forEachFunc, fillFunc, labe
 PPPieGraph.prototype.init = function () {
   var that = this;
   var callbackBinder = function(error,data) { that.createGraph(error,data); };
-  d3.tsv( this.tsvFile,  this.castFunc, callbackBinder  );
+  d3.tsv( this.tsvFile, callbackBinder  );
 };
 
 PPPieGraph.prototype.createGraph = function (error,data) {
