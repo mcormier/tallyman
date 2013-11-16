@@ -14,7 +14,7 @@
   <html>
     <xsl:call-template name="htmlHeader">
       <xsl:with-param name="stylesheet">style.css</xsl:with-param> 
-      <xsl:with-param name="javascript">d3.v3.min,PPUtils,PPGraph,main</xsl:with-param>
+      <xsl:with-param name="javascript">d3.v3.min,PPUtils,PPGraph,main,setupGraphs</xsl:with-param>
     </xsl:call-template>
 
     <body>

@@ -62,15 +62,6 @@ PPUtils.bind("load", window, init);
 PPUtils.bind("keypress", document, handleKeyEvent);
 
 
-
-var gDim = { 'w': 780, 'h': 300, 'margin': 80 };
-
-var liftsNames = ["Deadlift", "Shoulder Press", "Clean", "Front Squat", "Push Jerk",
-                  "Overhead Squat", "Snatch"];
-
-new PPRepGraphOrchestrator(liftsNames, "lifts.tsv",  gDim);
-
-
 var pDim = { 'w': 150, 'h': 150 };
 
 var totalFunc = function(d) { return d.total };
