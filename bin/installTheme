@@ -28,6 +28,7 @@ copyThemeDirToWebRoot "fonts"
 copyThemeDirToWebRoot "images"
 copyThemeDirToWebRoot "css"
 copyThemeDirToWebRoot "js"
+copyThemeDirToWebRoot "html"
 
 if [ -d "${THEME_ROOT}${THEME}/html" ] ; then
   cp ${THEME_ROOT}${THEME}/html/* ${WEB_ROOT}
