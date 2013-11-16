@@ -85,7 +85,7 @@ if (typeof Array.prototype.map !== "function") {
 
 function PPUtils() {}
 
-PPUtils.log = function ( output ) { if (window.console)  console.log(output); }
+PPUtils.log = function ( output ) { if (window.console)  console.log(output); };
 
 // useCapture (optional)
 PPUtils.bind = function(event, element, callback, useCapture) {
@@ -97,10 +97,10 @@ PPUtils.bind = function(event, element, callback, useCapture) {
   } else if ( typeof element.attachEvent != "undefined" ) { // Supports IE < 9
     element.attachEvent(event, callback);
   }
-}
+};
 
-PPUtils.isiPhone = function () { return navigator.userAgent.indexOf("iPhone") > -1 ; }
-PPUtils.isiPad = function () { return navigator.userAgent.indexOf("iPad") > -1 ; }
+PPUtils.isiPhone = function () { return navigator.userAgent.indexOf("iPhone") > -1 ; };
+PPUtils.isiPad = function () { return navigator.userAgent.indexOf("iPad") > -1 ; };
 
 PPUtils.bindOnTouchHold = function( element, callback, holdTimeReqMs ) {
   var timeout;
@@ -119,7 +119,7 @@ PPUtils.bindOnTouchHold = function( element, callback, holdTimeReqMs ) {
    function youLetGo(e) {shouldTrigger=false; clearTimeout(timeout);});
 
 
-}
+};
 
 PPUtils.getElementsByClassName=function(cn) {
   var allT=document.getElementsByTagName('*'), allCN=[], i=0, a;
@@ -127,7 +127,7 @@ PPUtils.getElementsByClassName=function(cn) {
     a.className==cn?allCN[allCN.length]=a:null;
   }
   return allCN
-}
+};
 // returns an array instead of a nodeSet
 function $classNameArray(className) { 
   var set = $className(className);
@@ -158,11 +158,11 @@ PPUtils.setCookie = function (name, value, days) {
   }
   document.cookie = encodeURIComponent(name)+"="+
                     encodeURIComponent(value)+expires+"; path=/";
-}
+};
 
 PPUtils.getCookie = function(name) {
   return PPUtils.getCookies()[name];
-}
+};
 
 PPUtils.getCookies = function() {
   var c = document.cookie, v = 0, cookies = {};
@@ -188,16 +188,16 @@ PPUtils.getCookies = function() {
         });
     }
     return cookies;
-}
+};
 
 function DateFmt(fstr) {
-  this.formatString = fstr
+  this.formatString = fstr;
 
   var mthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var dayNames = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
   var zeroPad = function(number) {
      return ("0"+number).substr(-2,2);
-  }
+  };
 
   var dateMarkers = {
     d:['getDate',function(v) { return zeroPad(v)}],
