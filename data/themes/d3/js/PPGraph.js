@@ -21,34 +21,44 @@ function PPRepGraph(divId, tsvFile, liftName, castFunc, gDim) {
   PPUtils.bind("load", window, initBinder );
 }
 
+// Global variable for all PPRepGraph classes
+PPRepGraph.prototype.toolTip = null;
+
+// Global method accessor
+PPRepGraph.getToolTip = function() {
+    if ( PPRepGraph.prototype.toolTip == null ) {
+        PPRepGraph.prototype.toolTip = d3.select("body")
+            .append("div")
+            .attr("class", "pointInfo")
+            .style("opacity", 1e-6);
+    }
+
+    return PPRepGraph.prototype.toolTip;
+};
+
 PPRepGraph.prototype.init = function () {
   var that = this;
-  var callbackBinder = function(error,data) { that.createGraph(error,data); }
+  var callbackBinder = function(error,data) { that.createGraph(error,data); };
   d3.tsv( this.tsvFile,  this.castFunc, callbackBinder  );
 };
 
 
-PPRepGraph.prototype.createToolTip = function () {
- this.tTip = d3.select("body")
-                .append("div")
-                .attr("class", "pointInfo")
-                .style("opacity", 1e-6);
-};
+
 
 PPRepGraph.prototype.mousemove = function (d,i) {
-  this.tTip.text("Weight: " + d.weight + " " + this.formatter.format(d.day));
+  PPRepGraph.getToolTip().text("Weight: " + d.weight + " " + this.formatter.format(d.day));
 
-  this.tTip.style("left", (d3.event.pageX - 34) + "px")
-           .style("top", (d3.event.pageY - 62) + "px");
+  PPRepGraph.getToolTip().style("left", (d3.event.pageX - 34) + "px")
+                         .style("top", (d3.event.pageY - 62) + "px");
 };
 
-PPRepGraph.prototype.mouseover = function (d,i) { 
-  this.tTip.transition().duration(250)
+PPRepGraph.prototype.mouseover = function (d,i) {
+    PPRepGraph.getToolTip().transition().duration(250)
       .style("opacity", 0.8);
 };
 
 PPRepGraph.prototype.mouseout = function (d,i) {
-  this.tTip.transition().duration(500)
+    PPRepGraph.getToolTip().transition().duration(500)
       .style("opacity", 0);
 };
 
@@ -58,7 +68,9 @@ PPRepGraph.prototype.createGraph = function (error,data) {
 
   var that = this;
 
-  this.createToolTip();
+  PPRepGraph.getToolTip();
+
+  //this.createToolTip();
 
   var minMaxFunc= function(d) { return d.weight; };
   var xFunc = function (d,i) { return that.x(d.day); };
@@ -173,11 +185,12 @@ function PPPieGraph(divId, tsvFile, gDim, totalFunc, forEachFunc, fillFunc, labe
 
 PPPieGraph.prototype.init = function () {
   var that = this;
-  var callbackBinder = function(error,data) { that.createGraph(error,data); }
+  var callbackBinder = function(error,data) { that.createGraph(error,data); };
   d3.tsv( this.tsvFile,  this.castFunc, callbackBinder  );
 };
 
 PPPieGraph.prototype.createGraph = function (error,data) {
+  if (error) { return; }
 
   var that = this;
 
@@ -195,7 +208,7 @@ PPPieGraph.prototype.createGraph = function (error,data) {
                              .append("g")
                              .attr("transform", "translate(" + this.width / 2 + "," + this.height / 2 + ")");
 
-  var forEachInternal = function(d) { return that.forEachFunc(d); }
+  var forEachInternal = function(d) { return that.forEachFunc(d); };
   data.forEach( forEachInternal );
 
   this.g = this.svg.selectAll(".arc")
