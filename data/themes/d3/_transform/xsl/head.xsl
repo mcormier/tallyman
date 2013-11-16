@@ -33,7 +33,14 @@
     <xsl:for-each select="str:tokenize($javascript,',')">
        <xsl:variable name ="filename" select="."/>
        <script src="js/{$filename}.js" type="text/javascript"></script>
-    </xsl:for-each> 
+    </xsl:for-each>
+
+    <!-- This will be picked up by all IE browsers until version 10.
+         Version 11 renders SVG tags okay.
+    -->
+    <xsl:comment><![CDATA[[if IE]>
+      <meta http-equiv="refresh" content="0;url=html/ieNotSupported.html"/>
+    <![endif]]]></xsl:comment>
 
   </head>
 </xsl:template>
