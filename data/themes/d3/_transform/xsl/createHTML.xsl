@@ -2,7 +2,7 @@
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 <xsl:import href="head.xsl" />
 
-<xsl:output method="html" indent="no"/>
+<xsl:output method="html" indent="yes"/>
 
 <xsl:variable name="enableGraphs" select="/data/settings/enableGraphs" />
 
