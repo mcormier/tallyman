@@ -21,7 +21,8 @@ puts 'Destination : ' + @webRoot
 
 def _globs(source, destination)
       Dir.chdir(source) do
-        dirs = Dir['*'].select { |x| File.directory?(x) }
+        # Monitor all directories except special _extract, _transform directories
+        dirs = Dir['*'].select { |x| File.directory?(x) && !x.start_with?('_') }
         dirs -= [destination, File.expand_path(destination), File.basename(destination)]
         dirs = dirs.map { |x| "#{x}/**/*" }
         dirs += ['*']
@@ -45,8 +46,8 @@ dw = DirectoryWatcher.new(@theme_root, :glob => _globs(@theme_root, @webRoot), :
 dw.interval = 1
 
 dw.add_observer do |*events|
-  t = Time.now.strftime("%Y-%m-%d %H:%M:%S")
-  puts "Copying: " + "#{events.size} files at #{t} "
+  t = Time.now.strftime('%Y-%m-%d %H:%M:%S')
+  puts "Copying: #{events.size} files at #{t} "
   events.each do |event|
     _handle_file_change(event)
   end
@@ -54,8 +55,8 @@ end
 
 dw.start
 
-trap("INT") do
-  puts "     Halting auto-copy."
+trap('INT') do
+  puts '     Halting auto-copy.'
   exit 0
 end
 
