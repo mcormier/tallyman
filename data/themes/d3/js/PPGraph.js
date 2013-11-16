@@ -66,7 +66,7 @@ PPRepGraph.getToolTip = function() {
     if ( PPRepGraph.prototype.toolTip == null ) {
         PPRepGraph.prototype.toolTip = d3.select("body")
             .append("div")
-            .attr("class", "pointInfo")
+            .attr("id", "PPRepGraphTooltip")
             .style("opacity", 1e-6);
     }
 
@@ -77,7 +77,7 @@ PPRepGraph.getToolTip = function() {
 
 
 PPRepGraph.prototype.mouseMove = function (d) {
-  PPRepGraph.getToolTip().text("Weight: " + d.weight + " " + this.formatter.format(d.day));
+  $("PPRepGraphTooltip").innerHTML = "Weight: <strong>" + d.weight + "</strong><BR>Date: <strong>" + this.formatter.format(d.day) + "</strong>";
 
   PPRepGraph.getToolTip().style("left", (d3.event.pageX - 34) + "px")
                          .style("top", (d3.event.pageY - 62) + "px");
