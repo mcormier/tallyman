@@ -19,7 +19,7 @@ function PPRepGraph(divId, tsvFile, liftName, castFunc, gDim) {
   var that = this;
   var initBinder = function() { that.init(); };
   PPUtils.bind("load", window, initBinder );
-};
+}
 
 PPRepGraph.prototype.init = function () {
   var that = this;
@@ -33,24 +33,24 @@ PPRepGraph.prototype.createToolTip = function () {
                 .append("div")
                 .attr("class", "pointInfo")
                 .style("opacity", 1e-6);
-}
+};
 
 PPRepGraph.prototype.mousemove = function (d,i) {
   this.tTip.text("Weight: " + d.weight + " " + this.formatter.format(d.day));
 
   this.tTip.style("left", (d3.event.pageX - 34) + "px")
            .style("top", (d3.event.pageY - 62) + "px");
-}
+};
 
 PPRepGraph.prototype.mouseover = function (d,i) { 
   this.tTip.transition().duration(250)
       .style("opacity", 0.8);
-}
+};
 
 PPRepGraph.prototype.mouseout = function (d,i) {
   this.tTip.transition().duration(500)
       .style("opacity", 0);
-}
+};
 
 
 PPRepGraph.prototype.createGraph = function (error,data) {
@@ -64,18 +64,17 @@ PPRepGraph.prototype.createGraph = function (error,data) {
   var xFunc = function (d,i) { return that.x(d.day); };
   var yFunc = function (d,i) { return that.y(d.weight); };
 
-  var rm1Data = new Array();
-  var rm3Data = new Array();
-  var rm5Data = new Array();
-
-  var liftData = new Array();
+  var rm1Data = [];
+  var rm3Data = [];
+  var rm5Data = [];
+  var liftData = [];
 
   for (var i=0; i <data.length;i++) {
     if ( data[i].name === this.liftName) {
       liftData.push(data[i]);
     }
   }
-  for (var i=0; i < liftData.length;i++) {
+  for ( i=0; i < liftData.length;i++) {
       if ( liftData[i].reps == 1) { rm1Data.push( liftData[i] ); }
       if ( liftData[i].reps == 3) { rm3Data.push( liftData[i] ); }
       if ( liftData[i].reps == 5) { rm5Data.push( liftData[i] ); }
@@ -124,14 +123,14 @@ PPRepGraph.prototype.createGraph = function (error,data) {
   this.addPoints( rm3Data, "threePoints");
   this.addPoints( rm5Data, "fivePoints");
 
-}
+};
 
 PPRepGraph.prototype.addLine = function (line, cssClassInfo) {
   this.graph.append("svg:g")
             .append("svg:path")
             .attr("d", line )
             .attr("class", cssClassInfo);
-}
+};
 
 PPRepGraph.prototype.addPoints = function (data, cssClassInfo) {
   var that = this;
@@ -149,7 +148,7 @@ PPRepGraph.prototype.addPoints = function (data, cssClassInfo) {
               .on("mouseover", overBinder )
               .on("mousemove", moveBinder)
               .on("mouseout", outBinder);
-}
+};
 
 
 function PPPieGraph(divId, tsvFile, gDim, totalFunc, forEachFunc, fillFunc, labelFunc) {
