@@ -1,17 +1,8 @@
 "use strict";
 
 var cookieName = "d3";
-var settings = new Object();
-settings.liftPanel = ''; 
-var doNothing = function doNothing() {}
-var closeDrawer = doNothing;
-var onTouchHold = false;
-var iPadPopover = null;
-var liftSheetIds = ["liftSheetestimatesOpt",
-                    "liftSheetoneToTenSpreadOpt",
-                    "liftSheetvolumeEstimateOpt", 
-                    "liftSheetnoneOpt"];
-var loadTime = null;
+var settings = {};
+settings.liftPanel = '';
 
 
 
@@ -31,35 +22,10 @@ function loadSettings() {
   }
 }
 
-function handleUpdateReady(e) {
-  var appCache = window.applicationCache;
-  appCache.swapCache();
-  var now = new Date();
-  var diffInMillSeconds = now.getTime() - loadTime.getTime();
 
-  // If the user is on a fast connection and the cache was 
-  // reloaded and swapped in less than a second then reload
-  // the page without asking.  If the connection/machine is
-  // is slower then ask if they want to reload the page.
-  if ( diffInMillSeconds < 1000 || 
-       confirm('New version available. Load?') ) {
-    window.location.reload();
-  }
-
-}
-
-function init() { 
-  loadTime = new Date();
-  //window.applicationCache.addEventListener('updateready', handleUpdateReady);
+function init() {
   loadSettings(); 
 }
-
-function bindIDArrayToClick( idArray, callback) {
-  for(var i=0; i < idArray.length; i++) {
-    PPUtils.bind("click", $(idArray[i]), callback);
-  }
-}
-
 
 
 
@@ -91,10 +57,8 @@ function bindIDArrayToClick( idArray, callback) {
    
   function handleKeyEvent(evt) {
     var keyCode = String.fromCharCode(evt.keyCode); 
-    if ( keyCode == 'e' ) { toggle('estimates'); } 
-    //if ( keyCode == 'v' ) { toggle('volumeEstimate'); } 
-    if ( keyCode == 's' ) { toggle('oneToTenSpread'); } 
-    //if ( keyCode == 'f' ) { toggleFullScreen(); } 
+    if ( keyCode == 'e' ) { toggle('estimates'); }
+    if ( keyCode == 's' ) { toggle('oneToTenSpread'); }
     saveSettings();
   }
 
