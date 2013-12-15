@@ -85,22 +85,28 @@ PPRepGraph.getToolTip = function() {
 
 PPRepGraph.prototype.toggleView = function () {
   var that = this;
+
+  var lastDay = this.liftData[this.liftData.length-1].day;
   var i = 0;
 
   if ( this.view == "full") {
-    // finds the first date in 2013
+    var yearBefore = new Date( lastDay.getFullYear(), lastDay.getMonth(),
+      lastDay.getDate() - 365 );
+
+    // find the first date a year from the last date
     for (i=0; i < this.liftData.length;i++) {
-      if ( this.liftData[i].day.getFullYear() == 2013 ) {
+      if ( this.liftData[i].day.getTime() >= yearBefore.getTime() ) {
         break;
       }
     }
     this.view= "year";
 
   } else if ( this.view == "year") {
-    var lastDay = this.liftData[this.liftData.length-1].day;
+
     var sixMosBefore = new Date( lastDay.getFullYear(), lastDay.getMonth(),
                                  lastDay.getDate() - 180 );
 
+    // find the first date six months from the last date
     for (i=0; i < this.liftData.length;i++) {
       if ( this.liftData[i].day.getTime() >= sixMosBefore.getTime() ) {
         break;
@@ -115,7 +121,7 @@ PPRepGraph.prototype.toggleView = function () {
 
 
   this.x = d3.time.scale()
-    .domain([this.liftData[i].day, this.liftData[this.liftData.length-1].day]  )
+    .domain([this.liftData[i].day, lastDay]  )
     .range([0, this.d.w]);
 
   // TODO -- number of ticks??
