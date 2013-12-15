@@ -126,9 +126,10 @@
                 <xsl:copy-of select="$rightArrow"/>
                 <xsl:value-of select="round(threerm div 0.9 * 0.86 div 5) * 5"/> 
               </p>
-            </xsl:if>
-          </div>
-          <div class="liftValue 5RM">
+      </xsl:if>
+    </div>
+
+    <div class="liftValue 5RM">
             <p class="value">
               <xsl:value-of select="fiverm"/>
             </p>
@@ -155,7 +156,9 @@
 
       <div id="d3Graph{$liftName}" class="liftGraph" />
 
-        </div>
+
+
+    </div>
 
 
         <div class="clear"></div>
