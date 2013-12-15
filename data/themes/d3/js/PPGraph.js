@@ -64,6 +64,8 @@ function PPRepGraph(divId, tsvFile, liftName, gDim) {
   this.d.h = gDim.h - this.d.m[0] - this.d.m[2];
 
   this.formatter = new DateFmt("%n %d %y");
+
+  this.view = "full";
 }
 
 // Global variable for all PPRepGraph classes
@@ -83,18 +85,52 @@ PPRepGraph.getToolTip = function() {
 
 PPRepGraph.prototype.toggleView = function () {
   var that = this;
-  // TODO - actually toggle and limit to current year as of current date.
-  console.log("Rep Graph toggle View");
+  var i = 0;
+
+  if ( this.view == "full") {
+    // finds the first date in 2013
+    for (i=0; i < this.liftData.length;i++) {
+      if ( this.liftData[i].day.getFullYear() == 2013 ) {
+        break;
+      }
+    }
+    this.view= "year";
+
+  } else if ( this.view == "year") {
+    var lastDay = this.liftData[this.liftData.length-1].day;
+    var sixMosBefore = new Date( lastDay.getFullYear(), lastDay.getMonth(),
+                                 lastDay.getDate() - 180 );
+
+    for (i=0; i < this.liftData.length;i++) {
+      if ( this.liftData[i].day.getTime() >= sixMosBefore.getTime() ) {
+        break;
+      }
+    }
+
+    this.view = "last6Mos";
+  } else {
+    this.view = "full";
+  }
+
+
 
   this.x = d3.time.scale()
-    .domain([this.liftData[6].day, this.liftData[this.liftData.length-1].day]  )
+    .domain([this.liftData[i].day, this.liftData[this.liftData.length-1].day]  )
     .range([0, this.d.w]);
 
+  // TODO -- number of ticks??
   var xAxis = d3.svg.axis().scale(this.x).ticks(20).tickSize(-this.d.h).tickSubdivide(true);
 
-
+  // TODO -- transition length??
   var t = this.graph.transition().duration(750);
-  t.select(".x.axis").call(xAxis);
+
+  t.select(".x.axis")
+    .attr("transform", "translate(0," + this.d.h + ")")
+    .call(xAxis)
+    .selectAll("text")
+    .attr("transform", "translate(20,25) rotate(55)");
+
+
   t.select(".oneLine").attr("d", this.line(this.rm1Data ) );
   t.select(".threeLine").attr("d", this.line(this.rm3Data ) );
   t.select(".fiveLine").attr("d", this.line(this.rm5Data ) );
@@ -123,6 +159,19 @@ PPRepGraph.prototype.mouseOut = function () {
 };
 
 
+PPRepGraph.prototype.buildRepArrays = function (j) {
+  this.rm1Data = [];
+  this.rm3Data = [];
+  this.rm5Data = [];
+
+  for ( i=j; i < this.liftData.length;i++) {
+    if ( this.liftData[i].reps == 1) { this.rm1Data.push( this.liftData[i] ); }
+    if ( this.liftData[i].reps == 3) { this.rm3Data.push( this.liftData[i] ); }
+    if ( this.liftData[i].reps == 5) { this.rm5Data.push( this.liftData[i] ); }
+  }
+
+};
+
 PPRepGraph.prototype.createGraph = function (error,data) {
   if (error) { return; }
 
@@ -132,9 +181,7 @@ PPRepGraph.prototype.createGraph = function (error,data) {
   var xFunc = function (d) { return that.x(d.day); };
   var yFunc = function (d) { return that.y(d.weight); };
 
-  this.rm1Data = [];
-  this.rm3Data = [];
-  this.rm5Data = [];
+
   this.liftData = [];
 
   for (var i=0; i <data.length;i++) {
@@ -142,11 +189,9 @@ PPRepGraph.prototype.createGraph = function (error,data) {
       this.liftData.push(data[i]);
     }
   }
-  for ( i=0; i < this.liftData.length;i++) {
-      if ( this.liftData[i].reps == 1) { this.rm1Data.push( this.liftData[i] ); }
-      if ( this.liftData[i].reps == 3) { this.rm3Data.push( this.liftData[i] ); }
-      if ( this.liftData[i].reps == 5) { this.rm5Data.push( this.liftData[i] ); }
-  }
+
+  this.buildRepArrays(0);
+
 
   this.x = d3.time.scale()
                   .domain([this.liftData[0].day, this.liftData[this.liftData.length-1].day]  )
