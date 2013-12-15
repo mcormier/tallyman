@@ -13,4 +13,4 @@ js_lift_array = js_lift_array[0...-1] + ']'  # Remove last comma
 
 `echo "var liftNames = #{js_lift_array};" >> #{@js_out_file}`
 
-`echo "new PPRepGraphOrchestrator(liftNames, 'lifts.tsv',  gDim);" >> #{@js_out_file}`
+`echo "var orchid = new PPRepGraphOrchestrator(liftNames, 'lifts.tsv',  gDim);" >> #{@js_out_file}`
