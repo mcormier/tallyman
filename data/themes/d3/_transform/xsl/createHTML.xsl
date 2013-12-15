@@ -153,8 +153,9 @@
 
        </div>
 
-
+    <button id="updateButton{$liftName}" onClick="orchid.toggleView('d3Graph{$liftName}');">Toggle</button>
       <div id="d3Graph{$liftName}" class="liftGraph" />
+
 
 
 
