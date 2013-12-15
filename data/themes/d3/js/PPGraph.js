@@ -8,6 +8,7 @@ function PPRepGraphOrchestrator(divIdArray, tsvFile, gDim) {
   this.divIdArray = divIdArray;
   this.tsvFile = tsvFile;
   this.gDim = gDim;
+  this.graphs = {};
 
   var that = this;
   var initBinder = function() { that.init(); };
@@ -40,9 +41,16 @@ PPRepGraphOrchestrator.prototype.createGraphs = function (error,data) {
 
     var graph = new PPRepGraph(svgName, this.tsvFile, this.divIdArray[i], this.gDim);
     graph.createGraph(error,data);
+    this.graphs[svgName] = graph;
   }
 
 } ;
+
+PPRepGraphOrchestrator.prototype.toggleView = function (graphName) {
+  var graph = this.graphs[graphName];
+  graph.toggleView();
+};
+
 
 function PPRepGraph(divId, tsvFile, liftName, gDim) {
 
@@ -73,7 +81,28 @@ PPRepGraph.getToolTip = function() {
     return PPRepGraph.prototype.toolTip;
 };
 
+PPRepGraph.prototype.toggleView = function () {
+  var that = this;
+  // TODO - actually toggle and limit to current year as of current date.
+  console.log("Rep Graph toggle View");
 
+  this.x = d3.time.scale()
+    .domain([this.liftData[6].day, this.liftData[this.liftData.length-1].day]  )
+    .range([0, this.d.w]);
+
+  var xAxis = d3.svg.axis().scale(this.x).ticks(20).tickSize(-this.d.h).tickSubdivide(true);
+
+
+  var t = this.graph.transition().duration(750);
+  t.select(".x.axis").call(xAxis);
+  t.select(".oneLine").attr("d", this.line(this.rm1Data ) );
+  t.select(".threeLine").attr("d", this.line(this.rm3Data ) );
+  t.select(".fiveLine").attr("d", this.line(this.rm5Data ) );
+
+  t.selectAll("circle").attr("cx", function(d) { return that.x(d.day); } );
+
+
+};
 
 
 PPRepGraph.prototype.mouseMove = function (d) {
@@ -103,30 +132,30 @@ PPRepGraph.prototype.createGraph = function (error,data) {
   var xFunc = function (d) { return that.x(d.day); };
   var yFunc = function (d) { return that.y(d.weight); };
 
-  var rm1Data = [];
-  var rm3Data = [];
-  var rm5Data = [];
-  var liftData = [];
+  this.rm1Data = [];
+  this.rm3Data = [];
+  this.rm5Data = [];
+  this.liftData = [];
 
   for (var i=0; i <data.length;i++) {
     if ( data[i].name === this.liftName) {
-      liftData.push(data[i]);
+      this.liftData.push(data[i]);
     }
   }
-  for ( i=0; i < liftData.length;i++) {
-      if ( liftData[i].reps == 1) { rm1Data.push( liftData[i] ); }
-      if ( liftData[i].reps == 3) { rm3Data.push( liftData[i] ); }
-      if ( liftData[i].reps == 5) { rm5Data.push( liftData[i] ); }
+  for ( i=0; i < this.liftData.length;i++) {
+      if ( this.liftData[i].reps == 1) { this.rm1Data.push( this.liftData[i] ); }
+      if ( this.liftData[i].reps == 3) { this.rm3Data.push( this.liftData[i] ); }
+      if ( this.liftData[i].reps == 5) { this.rm5Data.push( this.liftData[i] ); }
   }
 
   this.x = d3.time.scale()
-                  .domain([liftData[0].day, liftData[liftData.length-1].day]  )
+                  .domain([this.liftData[0].day, this.liftData[this.liftData.length-1].day]  )
                   .range([0, this.d.w]);
 
-  this.y = d3.scale.linear().domain([d3.min(liftData, minMaxFunc ),
-                                     d3.max(liftData, minMaxFunc ) ]).range([this.d.h, 0]);
+  this.y = d3.scale.linear().domain([d3.min(this.liftData, minMaxFunc ),
+                                     d3.max(this.liftData, minMaxFunc ) ]).range([this.d.h, 0]);
 
-  var line = d3.svg.line().x( xFunc )
+  this.line = d3.svg.line().x( xFunc )
                           .y( yFunc )
                           .interpolate("linear");
 
@@ -154,13 +183,13 @@ PPRepGraph.prototype.createGraph = function (error,data) {
        .attr("transform", "translate(-25,0)")
        .call(yAxisLeft);
 
-  this.addLine( line(rm1Data), "oneLine");
-  this.addLine( line(rm3Data), "threeLine");
-  this.addLine( line(rm5Data), "fiveLine");
+  this.addLine( this.line(this.rm1Data), "oneLine");
+  this.addLine( this.line(this.rm3Data), "threeLine");
+  this.addLine( this.line(this.rm5Data), "fiveLine");
 
-  this.addPoints( rm1Data, "onePoints");
-  this.addPoints( rm3Data, "threePoints");
-  this.addPoints( rm5Data, "fivePoints");
+  this.addPoints( this.rm1Data, "onePoints");
+  this.addPoints( this.rm3Data, "threePoints");
+  this.addPoints( this.rm5Data, "fivePoints");
 
 };
 
@@ -177,9 +206,9 @@ PPRepGraph.prototype.addPoints = function (data, cssClassInfo) {
   var moveBinder = function(d) { that.mouseMove(d); };
   var outBinder = function() { that.mouseOut(); };
 
-  this.graph.selectAll(".point")
-             .data(data)
-           .enter().append("svg:circle")
+  var points = this.graph.selectAll(".point").data(data);
+ 
+  points.enter().insert("svg:circle")
               .attr("class", cssClassInfo )
               .attr("cx", function(d) { return that.x(d.day) })
               .attr("cy", function(d) { return that.y(d.weight) })
