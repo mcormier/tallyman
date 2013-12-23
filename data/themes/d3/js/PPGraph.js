@@ -51,6 +51,99 @@ PPRepGraphOrchestrator.prototype.toggleView = function (graphName) {
   graph.toggleView();
 };
 
+// ====================================================================================
+
+function PPBarGraph(divId, dataFile, options ) {
+  var that = this;
+  this.dataFile = dataFile;
+  this.divId = divId;
+  this.typeFunc = options.typeFunc;
+
+
+  this.d = options.d;
+  this.options = options;
+
+  var initBinder = function() { that.init(); };
+  PPUtils.bind("load", window, initBinder );
+}
+
+PPBarGraph.prototype.init = function () {
+  var that = this;
+  var callbackBinder = function(error,data) { that.createGraph(error,data); };
+
+  if ( /csv$/.test(this.dataFile) ) {
+    d3.csv( this.dataFile, this.typeFunc, callbackBinder  );
+  } else {
+    d3.tsv( this.dataFile, this.typeFunc, callbackBinder  );
+  }
+};
+
+PPBarGraph.prototype.createGraph = function (error,data) {
+  if (error) { return; }
+  //var that = this;
+
+  this.saveData = data;
+
+  var height = this.d.h - this.d.margin * 2;
+  var width  = this.d.w - this.d.margin * 2;
+
+  var barWidth = width / data.length;
+
+
+  var x = this.options.getXScale(data).range([0, width]);
+  var y = this.options.getYScale(data).range([height, 0]);
+  var yFunc = this.options.yFunc;
+
+  this.graph = d3.select("#" + this.divId).append("svg:svg")
+    .attr("width", this.d.w)
+    .attr("height", this.d.h)
+    .append("svg:g")
+    .attr("transform", "translate(" + this.d.margin + "," + this.d.margin + ")");
+
+  var bar = this.graph.selectAll("g")
+    .data(data)
+    .enter().append("g")
+    .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; });
+
+  bar.append("rect")
+    .attr("y", function(d) { return y( yFunc(d) ) ; })
+    .attr("height", function (d) {  return height - y( yFunc(d) ); } )
+    .attr("width", barWidth - 1);
+
+  if (this.options.barTextValues ) {
+    // Displays value right on the bar graph.
+    bar.append("text")
+      .attr("class", "barData")
+      .attr("x", barWidth / 2)
+      .attr("y", function(d) { return y( yFunc(d) ) + 3; })
+      .attr("dy", ".75em")
+      .text(function(d) { return yFunc(d); });
+  }
+
+  if ( this.options.showXaxis ) {
+    var xAxis = d3.svg.axis().scale(x);
+
+    this.graph.append("svg:g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .selectAll("text")
+      .attr("transform", "translate(25,15) rotate(55)");
+  }
+
+
+  if ( this.options.showYaxis ) {
+    var yAxis = d3.svg.axis().scale(y).orient("left");
+
+    this.graph.append("svg:g")
+      .attr("class", "y axis")
+      .attr("transform",  "translate(-25,0)")
+      .call(yAxis);
+  }
+
+};
+
+// ====================================================================================
 
 function PPRepGraph(divId, tsvFile, liftName, gDim) {
 
@@ -269,6 +362,7 @@ PPRepGraph.prototype.addPoints = function (data, cssClassInfo) {
               .on("mouseout", outBinder);
 };
 
+// ====================================================================================
 
 function PPPieGraph(divId, tsvFile, gDim, totalFunc, forEachFunc, fillFunc, labelFunc) {
   var that = this;
