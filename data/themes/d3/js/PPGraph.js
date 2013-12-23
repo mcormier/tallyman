@@ -100,10 +100,18 @@ PPBarGraph.prototype.createGraph = function (error,data) {
     .append("svg:g")
     .attr("transform", "translate(" + this.d.margin + "," + this.d.margin + ")");
 
+  var clickBinder = function(d) {  };
+
+  if ( this.options.barClick != null ) {
+    clickBinder = function(d) { that.options.barClick(d); };
+  }
+
   var bar = this.graph.selectAll("g")
     .data(data)
     .enter().append("g")
-    .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; });
+    .attr("transform", function(d, i) { return "translate(" + i * barWidth + ",0)"; })
+    .on( "click", clickBinder );
+
 
   bar.append("rect")
     .attr("y", function(d) { return y( yFunc(d) ) ; })
