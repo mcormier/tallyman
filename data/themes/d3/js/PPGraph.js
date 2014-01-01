@@ -51,6 +51,21 @@ PPRepGraphOrchestrator.prototype.toggleView = function (graphName) {
   graph.toggleView();
 };
 
+PPRepGraphOrchestrator.prototype.setView = function (graphName, viewName, linkElem ) {
+  var graph = this.graphs[graphName];
+  if ( graph.view == viewName ) {
+    console.log("Nothing to do");
+    return false;
+  }
+
+
+  //graph.toggleView();
+
+  console.log("TODO - set view to " + viewName);
+  return false;
+};
+
+
 // ====================================================================================
 
 function PPBarGraph(divId, dataFile, options ) {
