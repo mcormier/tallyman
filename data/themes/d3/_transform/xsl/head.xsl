@@ -27,7 +27,7 @@
 
     <xsl:for-each select="str:tokenize($stylesheet,',')">
        <xsl:variable name ="filename" select="."/>
-       <Link rel="stylesheet" type="text/css" href="css/{$filename}"></Link>
+       <Link rel="stylesheet" type="text/css" href="css/{$filename}.css"></Link>
     </xsl:for-each> 
 
     <xsl:for-each select="str:tokenize($javascript,',')">
