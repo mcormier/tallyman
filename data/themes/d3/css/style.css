@@ -36,7 +36,10 @@
   .threeLine { stroke-width: 4; stroke: steelblue; stroke-dasharray:5,5; }
   .fiveLine { stroke-width: 4; stroke: steelblue; stroke-dasharray:1,1}
 
-  .liftGraph { position:relative; top:-70px; left:30px;  }
+  .liftGraph {
+      position:relative;
+      overflow-x: visible;
+      width:780px;}
 
 
 div#PPRepGraphTooltip {
@@ -60,9 +63,7 @@ div#PPRepGraphTooltip strong {
 }
 
 
-div._1RM3RM5RM {
-  height:440px;
-}
+div._1RM3RM5RM {}
 
 
 /* @group Octicon Font Stuff */
@@ -358,7 +359,10 @@ div.center h2 {font-size:0.7em; line-height:1.4em;
 
 
 
-
+.graphControl {
+  height:27px;
+  margin-bottom:10px;
+}
 
 /* vim: set foldmethod=marker:
  * vim: set foldmarker=@group,@end:

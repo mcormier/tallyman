@@ -51,17 +51,22 @@ PPRepGraphOrchestrator.prototype.toggleView = function (graphName) {
   graph.toggleView();
 };
 
-PPRepGraphOrchestrator.prototype.setView = function (graphName, viewName, linkElem ) {
+PPRepGraphOrchestrator.prototype.setView = function (liftName, graphName, viewName ) {
   var graph = this.graphs[graphName];
   if ( graph.view == viewName ) {
     console.log("Nothing to do");
     return false;
   }
 
+  var oldViewLiElem = $(graph.view+liftName);
+  oldViewLiElem.removeClass("selected");
 
-  //graph.toggleView();
+  var liElem = $(viewName+liftName);
 
-  console.log("TODO - set view to " + viewName);
+
+  liElem.addClass("selected");
+
+  graph.setView(viewName);
   return false;
 };
 
@@ -175,7 +180,7 @@ function PPRepGraph(divId, tsvFile, liftName, gDim) {
   this.liftName = liftName;
 
   this.d = {};
-  this.d.m = [gDim.margin, gDim.margin, gDim.margin, gDim.margin];  
+  this.d.m = [gDim.topMargin, gDim.leftMargin, gDim.bottomMargin, gDim.rightMargin];
   this.d.w = gDim.w - this.d.m[1] - this.d.m[3];
   this.d.h = gDim.h - this.d.m[0] - this.d.m[2];
 
@@ -199,13 +204,11 @@ PPRepGraph.getToolTip = function() {
     return PPRepGraph.prototype.toolTip;
 };
 
-PPRepGraph.prototype.toggleView = function () {
-  var that = this;
-
+PPRepGraph.prototype.setView = function (viewName) {
   var lastDay = this.liftData[this.liftData.length-1].day;
   var i = 0;
 
-  if ( this.view == "full") {
+  if ( viewName == "year") {
     var yearBefore = new Date( lastDay.getFullYear(), lastDay.getMonth(),
       lastDay.getDate() - 365 );
 
@@ -215,12 +218,12 @@ PPRepGraph.prototype.toggleView = function () {
         break;
       }
     }
-    this.view= "year";
 
-  } else if ( this.view == "year") {
+  }
 
+  if ( viewName == "last6Mos" ) {
     var sixMosBefore = new Date( lastDay.getFullYear(), lastDay.getMonth(),
-                                 lastDay.getDate() - 180 );
+      lastDay.getDate() - 180 );
 
     // find the first date six months from the last date
     for (i=0; i < this.liftData.length;i++) {
@@ -228,12 +231,27 @@ PPRepGraph.prototype.toggleView = function () {
         break;
       }
     }
-
-    this.view = "last6Mos";
-  } else {
-    this.view = "full";
   }
 
+
+  this.view = viewName;
+  this.refreshView(i, lastDay);
+};
+
+PPRepGraph.prototype.toggleView = function () {
+
+  if ( this.view == "full") {
+    this.setView("year");
+  } else if ( this.view == "year") {
+    this.setView("last6Mos");
+  } else {
+    this.setView("full");
+  }
+
+};
+
+PPRepGraph.prototype.refreshView = function (i, lastDay) {
+  var that = this;
 
 
   this.x = d3.time.scale()
@@ -258,10 +276,7 @@ PPRepGraph.prototype.toggleView = function () {
   t.select(".fiveLine").attr("d", this.line(this.rm5Data ) );
 
   t.selectAll("circle").attr("cx", function(d) { return that.x(d.day); } );
-
-
 };
-
 
 PPRepGraph.prototype.mouseMove = function (d) {
   $("PPRepGraphTooltip").innerHTML = "Weight: <strong>" + d.weight + "</strong><BR>Date: <strong>" + this.formatter.format(d.day) + "</strong>";

@@ -13,7 +13,7 @@
 
   <html>
     <xsl:call-template name="htmlHeader">
-      <xsl:with-param name="stylesheet">style.css</xsl:with-param> 
+      <xsl:with-param name="stylesheet">PPControl,style</xsl:with-param>
       <xsl:with-param name="javascript">d3.v3.min,PPUtils,PPGraph,main,setupGraphs</xsl:with-param>
     </xsl:call-template>
 
@@ -147,18 +147,32 @@
                 </span>
               </p>
             </xsl:if>
- 
+
 
 
 
        </div>
 
-    <button id="updateButton{$liftName}" onClick="orchid.toggleView('d3Graph{$liftName}');">Toggle</button>
-      <div id="d3Graph{$liftName}" class="liftGraph" />
+    <!--<button id="updateButton{$liftName}" onClick="orchid.toggleView('d3Graph{$liftName}');">Toggle New</button>-->
+    <div class="clear"></div>
 
+    <div id="d3Graph{$liftName}" class="liftGraph" />
 
+    <div class="graphControl">
+    <ul class="ppSegmented-control" id="segControl{$liftName}" >
+      <li id="full{$liftName}" class="selected">
+        <a href="#full{$liftName}"
+           onclick="return orchid.setView('{$liftName}','d3Graph{$liftName}', 'full');">Full</a></li>
 
+      <li id="year{$liftName}">
+        <a href="#year{$liftName}"
+           onclick="return orchid.setView('{$liftName}','d3Graph{$liftName}', 'year');">Year</a></li>
 
+      <li id="last6Mos{$liftName}">
+        <a href="#last6Mos{$liftName}"
+           onclick="return orchid.setView('{$liftName}','d3Graph{$liftName}', 'last6Mos');">6 Months</a></li>
+    </ul>
+    </div>
     </div>
 
 
