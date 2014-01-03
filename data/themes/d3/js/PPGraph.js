@@ -187,38 +187,57 @@ PPRepGraph.getToolTip = function() {
     return PPRepGraph.prototype.toolTip;
 };
 
+PPRepGraph.prototype.findFirstDateAfter = function (beforeDate) {
+
+  for (var i=0; i < this.liftData.length;i++) {
+    if ( this.liftData[i].day.getTime() >= beforeDate.getTime() ) {
+      return this.liftData[i].day;
+    }
+  }
+
+  return null;
+};
+
+PPRepGraph.prototype.containsDateBetween = function (startDate, endDate) {
+
+  for (var i=0; i < this.liftData.length;i++) {
+    if ( this.liftData[i].day.getTime() >= startDate.getTime()
+         &&
+      this.liftData[i].day.getTime() <= endDate.getTime() ) {
+      return true;
+    }
+  }
+
+  return false;
+};
+
+PPRepGraph.prototype.lastDay = function () {
+ return this.liftData[this.liftData.length-1].day;
+};
+
+PPRepGraph.prototype.daysBeforeLastDay = function (days) {
+  var lastDay = this.lastDay();
+  return new Date( lastDay.getFullYear(), lastDay.getMonth(), lastDay.getDate() - days );
+};
+
+
 PPRepGraph.prototype.setView = function (viewName) {
-  var lastDay = this.liftData[this.liftData.length-1].day;
-  var i = 0;
+  var lastDay = this.lastDay();
+  var firstDay = this.liftData[0].day;
 
   if ( viewName == "year") {
-    var yearBefore = new Date( lastDay.getFullYear(), lastDay.getMonth(),
-      lastDay.getDate() - 365 );
-
-    // find the first date a year from the last date
-    for (i=0; i < this.liftData.length;i++) {
-      if ( this.liftData[i].day.getTime() >= yearBefore.getTime() ) {
-        break;
-      }
-    }
-
+    var yearBefore = this.daysBeforeLastDay(365);
+    firstDay = this.findFirstDateAfter(yearBefore);
   }
 
   if ( viewName == "last6Mos" ) {
-    var sixMosBefore = new Date( lastDay.getFullYear(), lastDay.getMonth(),
-      lastDay.getDate() - 180 );
-
-    // find the first date six months from the last date
-    for (i=0; i < this.liftData.length;i++) {
-      if ( this.liftData[i].day.getTime() >= sixMosBefore.getTime() ) {
-        break;
-      }
-    }
+    var sixMosBefore = this.daysBeforeLastDay(182);
+    firstDay = this.findFirstDateAfter(sixMosBefore);
   }
 
 
   this.view = viewName;
-  this.refreshView(i, lastDay);
+  this.refreshView(firstDay, lastDay);
 };
 
 PPRepGraph.prototype.toggleView = function () {
@@ -233,12 +252,11 @@ PPRepGraph.prototype.toggleView = function () {
 
 };
 
-PPRepGraph.prototype.refreshView = function (i, lastDay) {
+PPRepGraph.prototype.refreshView = function (firstDay, lastDay) {
   var that = this;
 
-
   this.x = d3.time.scale()
-    .domain([this.liftData[i].day, lastDay]  )
+    .domain([firstDay, lastDay]  )
     .range([0, this.d.w]);
 
   // TODO -- number of ticks??
@@ -265,10 +283,7 @@ PPRepGraph.prototype.getTimeSpanInDays = function () {
   var start = this.liftData[0].day;
   var end = this.liftData[this.liftData.length-1].day;
 
-  var deltaInDays = ( end.getTime() - start.getTime())/86400000;
-  //console.log("Delta days: " + deltaInDays2 );
-
-  return deltaInDays;
+  return ( end.getTime() - start.getTime())/86400000;
 };
 
 PPRepGraph.prototype.createSegmentedControl = function () {
@@ -278,6 +293,17 @@ PPRepGraph.prototype.createSegmentedControl = function () {
 
   var segments = { labels: ["Full","Year","6 Months"],
                    idVals: ["full","year","last6Mos"] };
+
+  // Remove year if no dates between year mark and 6 month mark
+  var yearBefore = this.daysBeforeLastDay(365);
+  var sixMosBefore = this.daysBeforeLastDay(182);
+  if ( ! this.containsDateBetween(yearBefore, sixMosBefore)  ) {
+    segments.labels.splice(1,1);
+    segments.idVals.splice(1,1);
+  }
+
+  // TODO -- sometimes 6 months label is not appropriate.  It could be changed dynamically based on the position of
+  // the last date in the last 6 month window. i.e. 3 months, 4 months...
 
   this.segControl = new PPSegmentedControl(this.divId, this.liftName, segments, this);
   this.segControl.setSelectedByIndex(0);
