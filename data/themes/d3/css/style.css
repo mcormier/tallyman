@@ -41,6 +41,10 @@
       overflow-x: visible;
       width:780px;}
 
+.yAxisRect {
+    fill:white;
+}
+
 
 div#PPRepGraphTooltip {
   position: absolute;
@@ -97,7 +101,7 @@ div._1RM3RM5RM {}
 /* @group Global definitions */
 
 body {margin:0; font:1em Georgia, serif; color:#000;
-      text-transform:uppercase; letter-spacing:1px; background:#FFF;}
+      text-transform:uppercase; letter-spacing:1px; }
 
 div {display:block;
   -webkit-backface-visibility: hidden;  

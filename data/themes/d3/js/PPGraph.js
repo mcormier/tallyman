@@ -357,12 +357,6 @@ PPRepGraph.prototype.createGraph = function (error,data) {
 
   var yAxisLeft = d3.svg.axis().scale(this.y).ticks(8).orient("left");
 
-  // Add the y-axis to the left
-  this.graph.append("svg:g")
-       .attr("class", "y axis")
-       .attr("transform", "translate(-25,0)")
-       .call(yAxisLeft);
-
   this.addLine( this.line(this.rm1Data), "oneLine");
   this.addLine( this.line(this.rm3Data), "threeLine");
   this.addLine( this.line(this.rm5Data), "fiveLine");
@@ -371,6 +365,19 @@ PPRepGraph.prototype.createGraph = function (error,data) {
   this.addPoints( this.rm3Data, "threePoints");
   this.addPoints( this.rm5Data, "fivePoints");
 
+
+  // A masking rect for the y Axis
+  this.graph.append("svg:rect")
+    .attr("class", "yAxisRect")
+    .attr("transform", "translate(-80,-1)")
+    .attr("height", "220")
+    .attr("width", "60");
+
+  // Add the y-axis to the left and add it after the masking rect
+  this.graph.append("svg:g")
+    .attr("class", "y axis")
+    .attr("transform", "translate(-25,0)")
+    .call(yAxisLeft);
 };
 
 PPRepGraph.prototype.addLine = function (line, cssClassInfo) {
