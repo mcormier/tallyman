@@ -261,9 +261,20 @@ PPRepGraph.prototype.refreshView = function (i, lastDay) {
   t.selectAll("circle").attr("cx", function(d) { return that.x(d.day); } );
 };
 
+PPRepGraph.prototype.getTimeSpanInDays = function () {
+  var start = this.liftData[0].day;
+  var end = this.liftData[this.liftData.length-1].day;
+
+  var deltaInDays = ( end.getTime() - start.getTime())/86400000;
+  //console.log("Delta days: " + deltaInDays2 );
+
+  return deltaInDays;
+};
+
 PPRepGraph.prototype.createSegmentedControl = function () {
 
-  //console.log("TODO only create if there is enough data");
+  var deltaDays = this.getTimeSpanInDays();
+  if ( deltaDays < 365 ) { return; }
 
   var segments = { labels: ["Full","Year","6 Months"],
                    idVals: ["full","year","last6Mos"] };
