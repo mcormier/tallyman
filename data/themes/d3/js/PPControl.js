@@ -14,13 +14,14 @@ function PPSegmentedControl( parentGraphID, rootIDValue, segments, delegate ) {
 
   var unList = document.createElement('ul');
   unList.addClass("ppSegmented-control");
+  if ( segments.idVals.length == 2 ) {
+    unList.addClass("twoValues");
+  }
 
   for (var i =0; i < segments.labels.length; i++) {
     var listItem = this.addListItem(unList, segments.idVals[i], rootIDValue,  segments.labels[i] );
     this.listItems.push(listItem);
   }
-
-  // TODO - size style info should be based on amount of parameters, width, etc
 
   this.rootElem.appendChild(unList);
 
