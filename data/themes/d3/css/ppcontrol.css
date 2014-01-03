@@ -11,6 +11,10 @@
     -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;
 }
 
+.twoValues {
+    width: 141px;
+}
+
 .ppSegmented-control li {
     background-color: #FFF;
     float: left;
