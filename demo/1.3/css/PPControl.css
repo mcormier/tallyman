@@ -1,0 +1,73 @@
+.ppSegmented-control {
+    background-color: #007aff;
+    color: #007aff;
+    list-style-type: none;
+    width: 212px;
+    height: 25px;
+    padding: 1px;
+    margin: 0 auto;
+    font-family: HelveticaNeue, Helvetica, sans-serif;
+
+    -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px;
+}
+
+.twoValues {
+    width: 141px;
+}
+
+.ppSegmented-control li {
+    background-color: #FFF;
+    float: left;
+    margin-left: 1px;
+}
+
+.ppSegmented-control li:first-child {
+    margin-left: 0;
+
+    -webkit-border-top-left-radius: 3px;
+    -webkit-border-bottom-left-radius: 3px;
+    -moz-border-radius-topleft: 3px;
+    -moz-border-radius-bottomleft: 3px;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.ppSegmented-control li:last-child {
+    -webkit-border-top-right-radius: 3px;
+    -webkit-border-bottom-right-radius: 3px;
+    -moz-border-radius-topright: 3px;
+    -moz-border-radius-bottomright: 3px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.ppSegmented-control a {
+    font-size: 12px;
+    line-height: 24px;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    width: 70px;
+    height: 25px;
+}
+
+.ppSegmented-control a,
+.ppSegmented-control.alt li:target a {
+    color: #007aff;
+}
+
+.ppSegmented-control li:active a,
+.ppSegmented-control.alt li:active a {
+    position: relative;
+    top: 3px;
+}
+
+.ppSegmented-control li:target,
+.ppSegmented-control li.selected
+{ background-color: #007aff; }
+
+
+.ppSegmented-control li:target a,
+.ppSegmented-control li.selected a
+{color: #fff; }
+

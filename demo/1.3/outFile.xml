@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="ASCII"?>
+<data>
+  <item>
+    <title>Books Read</title>
+    <value>9</value>
+    <svgname>booksread</svgname>
+  </item>
+  <item>
+    <title>Total Pages Read</title>
+    <value>3063</value>
+    <svgname>totalpagesread</svgname>
+  </item>
+  <item>
+    <title>Skin Rips</title>
+    <value>5</value>
+    <svgname>skinrips</svgname>
+  </item>
+  <item>
+    <title>Albums Purchased</title>
+    <value>32</value>
+    <svgname>albumspurchased</svgname>
+  </item>
+  <lifts>
+    <lift>
+      <name>Deadlift</name>
+      <svgname>deadlift</svgname>
+      <onerm>330</onerm>
+      <threerm>310</threerm>
+      <fiverm>270</fiverm>
+    </lift>
+    <lift>
+      <name>Shoulder Press</name>
+      <svgname>shoulderpress</svgname>
+      <onerm>120</onerm>
+      <threerm>115</threerm>
+      <fiverm>105</fiverm>
+    </lift>
+    <lift>
+      <name>Clean</name>
+      <svgname>clean</svgname>
+      <onerm>180</onerm>
+      <threerm>170</threerm>
+      <fiverm>150</fiverm>
+    </lift>
+    <lift>
+      <name>Front Squat</name>
+      <svgname>frontsquat</svgname>
+      <onerm>175</onerm>
+      <threerm>180</threerm>
+      <fiverm>150</fiverm>
+    </lift>
+    <lift>
+      <name>Push Jerk</name>
+      <svgname>pushjerk</svgname>
+      <onerm>135</onerm>
+      <threerm>140</threerm>
+      <fiverm>140</fiverm>
+    </lift>
+    <lift>
+      <name>Overhead Squat</name>
+      <svgname>overheadsquat</svgname>
+      <onerm>110</onerm>
+      <threerm>100</threerm>
+      <fiverm>100</fiverm>
+    </lift>
+    <lift>
+      <name>Snatch</name>
+      <svgname>snatch</svgname>
+      <onerm>135</onerm>
+      <threerm>125</threerm>
+      <fiverm>100</fiverm>
+    </lift>
+  </lifts>
+</data>

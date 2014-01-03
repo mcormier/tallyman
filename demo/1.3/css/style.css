@@ -1,0 +1,374 @@
+@font-face {
+ font-family:'Octicons Regular';
+     src: url('../fonts/octicons-regular-webfont.eot');
+     src: url('../fonts/octicons-regular-webfont.eot#iefix') format("eot"), 
+          url('../fonts/octicons-regular-webfont.woff') format("woff"),  
+      url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
+      url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
+}
+
+
+/* D3 graph stuff */
+
+  div#booksreadGraph { position:relative; font: 8px sans-serif; margin-top: -140px; margin-left: 180px; }
+  div#albumspurchasedGraph{ position:relative; font: 8px sans-serif; margin-top: -140px; margin-left: 180px; }
+
+  .arc path { stroke: #fff; }
+
+   path { stroke: steelblue; stroke-width: 1; fill: none; }
+
+  .axis { shape-rendering: crispEdges; }
+
+  .x.axis line { stroke: lightgrey; }
+
+  .x.axis .minor { stroke-opacity: .5; }
+
+  .x.axis path { display: none; }
+
+  .y.axis line, .y.axis path { fill: none; stroke: #000; }
+
+  /* fill of none does not work well with mouse over */
+  .onePoints, .dPoints { fill:white; stroke: steelblue;}
+  .threePoints { fill:white; stroke: steelblue;}
+  .fivePoints { fill:white; stroke: steelblue;}
+
+  .oneLine { stroke-width: 4; }
+  .threeLine { stroke-width: 4; stroke: steelblue; stroke-dasharray:5,5; }
+  .fiveLine { stroke-width: 4; stroke: steelblue; stroke-dasharray:1,1}
+
+  .liftGraph {
+      position:relative;
+      overflow-x: visible;
+      width:780px;}
+
+.yAxisRect {
+    fill:white;
+}
+
+
+div#PPRepGraphTooltip {
+  position: absolute;
+  text-align: left;
+  width: 90px; height: 28px;
+  padding-top: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
+  font: 10px Arial, sans-serif;
+  background: #ddd;
+  border: solid 2px #aaa;
+  border-radius: 8px;
+  pointer-events: none;
+  text-transform:none;
+  letter-spacing:normal;
+}
+
+div#PPRepGraphTooltip strong {
+    color: #000;
+}
+
+
+div._1RM3RM5RM {}
+
+
+/* @group Octicon Font Stuff */
+.mini-icon:before, .mega-icon:before {
+  font-family:normal normal 'Octicons Regular';
+  display:inline-block;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+  text-decoration:none;
+  font-size:1em;
+  width:16px; height:16px
+}
+
+.mega-icon:before {font-size:1.2em;width:32px;height:32px;}
+.mega-icon {vertical-align:middle;font-size:1.2em;}
+
+/* Only define the icons begin used. 
+ * https://github.com/styleguide/css/7.0
+ */
+.mini-icon-keyboard:before{content:"\f00d"}
+.mega-icon-keyboard:before{content:"\f20d"; font-size:1.9em;}
+.mini-icon-history:before{content:"\f07e"}
+.mega-icon-history:before{content:"\f27e"; font-size:1.9em;}
+.mini-icon-arr-right:before{content:"\f03e"}
+.mega-icon-arr-right:before{content:"\f23e"}
+.mini-icon-arr-left:before{content:"\f040"}
+.mega-icon-arr-left:before{content:"\f240"}
+.mini-icon-graph:before{content:"\f043"}
+/* @end */
+
+/* @group Global definitions */
+
+body {margin:0; font:1em Georgia, serif; color:#000;
+      text-transform:uppercase; letter-spacing:1px; }
+
+div {display:block;
+  -webkit-backface-visibility: hidden;  
+  -webkit-transform:translate3d(0,0,0);
+  -webkit-perspective: 1000;
+}
+
+ul { list-style-type:none; 
+  -webkit-padding-start: 0;
+  -webkit-margin-before: 0;
+  -webkit-margin-after: 0;
+}
+
+h2, h3 {text-transform: uppercase;}
+h3 {font-size:1em;}
+
+a { text-decoration:none; color:#999; font-size:0.8em; text-transform:none; }
+a:hover {text-decoration:none;}
+
+strong {color:#333;} 
+
+.divide-line {
+  border-top:1px solid #808080;
+  border-bottom:1px solid #B0B0B0;
+  margin-bottom:0; padding: 1px;
+}
+
+.value {font:7em Helvetica, Arial, sans-serif; font-weight:bold;}
+/* @end */
+
+/* @group Main Sections */
+#drawers {position:relative; margin:0 auto;}
+  .featureRow {height:40px;}
+  .shadow {box-shadow:inset 0 0 10px #000;}
+  .fullWidthWrapper {width:100%;background:#b7b7b7;}
+
+div.wrapper {margin:0 auto; width:850px; padding:10px 0 0 60px;}
+  div.wrapper > div {float:left;}
+  div#right_col {clear:right;}
+
+#drawerButtons { margin:0 auto; width: 790px; position:relative}
+#macroShowDiv, #shortcutsToggle {width:395px; position:absolute;}
+#macroShowDiv {top:0;left:0;}
+#shortcutsToggle {top:0;right:0;}
+
+#macroHistoryLink , #showShortcuts {width:400px;height:30px;padding-left:0;
+  display:block; background-color:transparent; }
+
+#contentContainer { position:relative; }
+
+#drawer-overlay , #popover-overlay{ 
+  position:fixed; display:none;  
+  height:100%; width:100%;
+  top:0; left:0;
+}
+
+div.clear { clear: left; }
+
+
+#liftOptionsSheet {display:none;}
+
+/* @end */
+
+/* @group Flip Animation */
+  .flip-container { -webkit-perspective: 1000; }
+
+  .flip-container, .front, .back {
+    width: 789px;
+    height: 180px;
+    -webkit-transition: height 0.6s;
+  }
+
+  .flip {
+    height: 300px;
+  }
+ 
+  .flip .flipper {
+    -webkit-transform: rotateY(180deg);
+  }
+
+  iframe { border:0; }
+
+  .front, .back {
+    -webkit-backface-visibility: hidden;
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .flipper {-webkit-transition: 1.6s; 
+            position: relative; 
+            -webkit-transform-style: preserve-3d;}
+
+  .back { height: 300px; -webkit-transform: rotateY(180deg); }
+  .front { z-index: 2; }
+
+  .repLabel { font-size:36px; color:#CCC; float:left; width:250px;  text-align:center;  font-family:Helvetica, Arial, sans-serif; font-weight:bold; padding-left:9px;}
+  .back iframe { margin-top:-30px; }
+
+/* @end */
+
+
+
+
+/* @group Drawer Arrows */
+
+.featureRow .arrow.top {
+    width:15px;
+    height:15px;
+    -webkit-transform: rotateZ(45deg);
+    border: 2px solid rgba(255,255,255,0.0);
+    border-bottom: 0;
+    border-right: 0;
+    position:absolute;
+    margin:auto;
+    bottom:-10px;
+    left:36px;
+    -webkit-mask-image : 
+        -webkit-gradient(linear, left top, right bottom, 
+            from(#000000), 
+            color-stop(0.8,#000000), 
+            color-stop(0.8, transparent), 
+            to(transparent));
+    opacity:0;
+    overflow:hidden;
+}
+.inside-arrow.top:before {
+    -webkit-transform: rotateZ(45deg);
+    background:none;
+    top:17px;
+    left:6px;
+    width:17px;
+    height:17px;
+    position:relative;
+    box-shadow:3px 3px 3px rgba(0,0,0,0.8)inset; 
+    content:' ';
+    display:block;
+}
+
+.inside-arrow.top {
+    -webkit-transform: rotateZ(-45deg);
+    width:30px;
+    height:30px;
+    position:relative;
+    top:-15px;
+    left:-15px;
+}
+
+.arrow.top.down {
+    -webkit-animation : openfolder-arrowtop 1000ms linear; }
+/* @end */
+
+
+/* @group Macro Contents */
+#macroShowDiv { height: 40px; }
+
+#macroHistoryContent {margin: 10px auto; padding:10px; height:470px;
+  width: 790px;
+/*background:#b7b7b7;*/
+background:#FFF;
+border-radius:4px; }
+
+
+/* @end */
+
+/* @group HTML 5 Transform/Transition classes 
+   -ms-transition: works for IE 10 and up. */
+
+.drawer { 
+  height: 0;
+  overflow: hidden;
+  transition:           height 500ms ease-in-out;
+    -moz-transition:    height 500ms ease-in-out;
+    -ms-transition:     height 500ms ease-in-out; 
+    -o-transition:      height 500ms ease-in-out;
+    -webkit-transition: height 500ms;
+}
+
+.fadeIn {
+  transition:           opacity 250ms ease-in-out;
+    -moz-transition:    opacity 250ms ease-in-out;
+    -ms-transition:     opacity 250ms ease-in-out;
+    -o-transition:      opacity 250ms ease-in-out;
+    -webkit-transition: opacity 250ms ease-in-out;
+}
+
+.vertText {
+  transform:           rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    -moz-transform:    rotate(90deg);
+    -ms-transform:     rotate(90deg);
+    -o-transform:      rotate(90deg);
+}
+
+/* removes transformation flicker in safari */
+.no-flick{
+  -webkit-backface-visibility: hidden;  
+  -webkit-transform:translate3d(0,0,0);
+  -webkit-perspective: 1000;
+}
+
+#contentContainer {
+  transition:           transform        500ms;
+    -webkit-transition: -webkit-transform 500ms; 
+    -moz-transition:    -moz-transform    500ms;
+    -ms-transition:     -ms-transform     500ms; 
+    -o-transition:      -o-transform      500ms;
+}
+/* @end */
+
+/* @group Lifts Content */
+div.liftName {width:50%;font-weight:bold; margin-top: 10px; font-size:0.7em;}
+
+div.liftValue {position:relative; height:145px; width:263px; float:left;}
+
+  div.liftValue p {margin:0; color:#CCC; 
+                   position:absolute; font-weight:bold;
+                   font-family:Helvetica, Arial, sans-serif; }
+  div.liftValue p.vertText {
+    font-size:48px; top:55px; right:-50px; width:145px; height:50px; }
+
+  div.liftValue p.value {text-align:center;float:left;width:220px;color:#000;}
+  
+  div.liftValue p.fadeIn {opacity:0;} 
+
+  div.liftValue p.volumeEstimate, 
+  div.liftValue p.oneToTenSpread {
+    font-size:15px;
+    bottom:10px;
+    width:790px;
+    text-transform: none; 
+  }
+  div.liftValue p.oneToTenSpread span.spreadValue { 
+    display:block; 
+    float:left; height:20px; width:79px;}
+
+  div.liftValue p.estimates {font-size:1.2em; left:35px; bottom:0;}
+
+  .oneToTenSpread {left:20px;}
+
+  .toggler {position:absolute; top:0; right:0;}
+/* @end */
+
+/* @group Single Value Data */
+
+div#right_col ul li div.big_display div.center {margin:0 50px 0 50px;}
+
+div.big_display {text-transform: uppercase; height:200px; width:374px;}
+
+div.center {width:100%;}
+
+div.center h2 {font-size:0.7em; line-height:1.4em;
+                 color:#333; margin-top:5px;}
+
+  div.center div.value span {font-weight:bold;}
+/* @end */
+
+
+
+
+
+
+.graphControl {
+  height:27px;
+  margin-bottom:10px;
+}
+
+/* vim: set foldmethod=marker:
+ * vim: set foldmarker=@group,@end:
+ * vim: set foldlevel=1:
+ * vim: set nofoldenable: */
