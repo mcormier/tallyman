@@ -1,9 +1,9 @@
 "use strict";
 
 var cookieName = "feltron2006";
-var settings = new Object();
+var settings = {};
 settings.liftPanel = ''; 
-var doNothing = function doNothing() {}
+var doNothing = function doNothing() {};
 var closeDrawer = doNothing;
 var onTouchHold = false;
 var iPadPopover = null;

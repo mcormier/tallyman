@@ -42,6 +42,8 @@ PPRepGraphOrchestrator.prototype.createGraphs = function (error,data) {
     var graph = new PPRepGraph(svgName, this.tsvFile, this.divIdArray[i], this.gDim);
     graph.createGraph(error,data);
     this.graphs[svgName] = graph;
+
+    graph.createSegmentedControl();
   }
 
 } ;
@@ -49,25 +51,6 @@ PPRepGraphOrchestrator.prototype.createGraphs = function (error,data) {
 PPRepGraphOrchestrator.prototype.toggleView = function (graphName) {
   var graph = this.graphs[graphName];
   graph.toggleView();
-};
-
-PPRepGraphOrchestrator.prototype.setView = function (liftName, graphName, viewName ) {
-  var graph = this.graphs[graphName];
-  if ( graph.view == viewName ) {
-    console.log("Nothing to do");
-    return false;
-  }
-
-  var oldViewLiElem = $(graph.view+liftName);
-  oldViewLiElem.removeClass("selected");
-
-  var liElem = $(viewName+liftName);
-
-
-  liElem.addClass("selected");
-
-  graph.setView(viewName);
-  return false;
 };
 
 
@@ -276,6 +259,21 @@ PPRepGraph.prototype.refreshView = function (i, lastDay) {
   t.select(".fiveLine").attr("d", this.line(this.rm5Data ) );
 
   t.selectAll("circle").attr("cx", function(d) { return that.x(d.day); } );
+};
+
+PPRepGraph.prototype.createSegmentedControl = function () {
+
+  //console.log("TODO only create if there is enough data");
+
+  var segments = { labels: ["Full","Year","6 Months"],
+                   idVals: ["full","year","last6Mos"] };
+
+  this.segControl = new PPSegmentedControl(this.divId, this.liftName, segments, this);
+  this.segControl.setSelectedByIndex(0);
+};
+
+PPRepGraph.prototype.segmentChanged = function (viewName) {
+  this.setView(viewName);
 };
 
 PPRepGraph.prototype.mouseMove = function (d) {
