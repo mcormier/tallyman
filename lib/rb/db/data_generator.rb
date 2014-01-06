@@ -6,9 +6,6 @@ require "sqlite3"
 # Given a set of table names generates an XML delta file
 #
 # <data>
-#  <settings>
-#     <enableGraphs>true</enableGraphs>
-#  </settings>
 #  <item>
 #    <title>Books Read</title>
 #    <value>8</value>
@@ -123,9 +120,6 @@ class DataGenerator
     File.open( @out_file, 'w' ) do |out|
 
       out.puts x.data {
-        #x.settings {
-        #  x.enableGraphs @enableGraphs
-        #}
 
         create_items(db, x)
         create_lifts(db, x)
