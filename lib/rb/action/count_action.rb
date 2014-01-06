@@ -8,7 +8,7 @@ class CountAction < PPCurses::InsertSQLDataAction
 
     begin
       statement = @db.prepare('SELECT DISTINCT event FROM countTable ORDER BY event ASC')
-      rs = statement.execute()
+      rs = statement.execute
 
       menu_items = []
       rs.each do |row|
@@ -18,7 +18,7 @@ class CountAction < PPCurses::InsertSQLDataAction
       @count_menu = PPCurses::Menu.new( menu_items, nil )
       @count_menu.set_global_action(self)
     ensure
-      statement.close()
+      statement.close
     end
 
     @sql = 'INSERT into countTable(event) values (?)'
@@ -32,11 +32,11 @@ class CountAction < PPCurses::InsertSQLDataAction
   end
 
   def show
-    @count_menu.show()
+    @count_menu.show
   end
 
   def menu_selection
-    @count_menu.menu_selection()
+    @count_menu.menu_selection
   end
 
   def winHeight
@@ -44,18 +44,18 @@ class CountAction < PPCurses::InsertSQLDataAction
   end
  
   def count_name
-    @count_menu.selected_menu_name()
+    @count_menu.selected_menu_name
   end
 
 
   def after_actions
-    user_display_sql = @sql.sub('?', count_name() )
+    user_display_sql = @sql.sub('?', count_name)
     data_array = []
-    data_array.push(count_name())
+    data_array.push(count_name)
 
     new_data_added = self.prompt_to_change_data(user_display_sql, data_array)
 
-    if new_data_added then
+    if new_data_added
       @db.data_added_to('countTable')
     end
   end
