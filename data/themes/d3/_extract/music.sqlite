@@ -1,5 +1,7 @@
 .headers on
 .mode tabs
 select distinct used, count(used) as total 
-  from music group by used;
+  from music
+  where date(dayPurchased) > date (strftime('%Y','now') || '-12-31')
+  group by used;
 
