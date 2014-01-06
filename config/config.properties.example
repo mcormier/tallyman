@@ -4,26 +4,22 @@
 # Where bin/backupData will copy a backup file
 @backupDir = '/home/mcormier/Dropbox/backups/tallyman'
 
-# Specify whether SVG graph data should be generated
-# and included
-@enableGraphs = false
-
 # Where the generated index.html will go
 @webRoot= '/home/mcormier/sites/stats/'
 @outputHTMLFile = @webRoot + 'index.html'
 
 #  The theme to use.  See data/themes if you want
 # to create your own theme.
-@theme='feltron2006'
+@theme='d3'
 
 # Where the meta-data file will be put.  This file
 # is used to generate the HTML with XSL
 @xmlDataFile= "../data/data.xml"
 
 @outputQueries= [ 
-  [ "Books Read", "SELECT COUNT(*) FROM books"], 
-  [ "Total Pages Read", "SELECT SUM(pages) FROM books"], 
-  [ "Albums Purchased", "SELECT COUNT(*) FROM music"], 
+  [ "Books Read", "SELECT COUNT(*) FROM books where date(dateFinished) > date (strftime('%Y','now') || '-12-31')"],
+  [ "Total Pages Read", "SELECT SUM(pages) FROM books where date(dateFinished) > date (strftime('%Y','now') || '-12-31')"],
+  [ "Albums Purchased", "SELECT COUNT(*) FROM music where date(dayPurchased) > date (strftime('%Y','now') || '-12-31')"],
   [ "Skin Rips", "SELECT COUNT(*) FROM countTable WHERE event='Ripped Skin'"] 
 ]
 
@@ -34,9 +30,12 @@
          "Overhead Squat",
          "Snatch", "Squat Snatch", "Sots Press" ]
 
+# The lifts to display on the website
+@webLifts = [ "Deadlift", "Shoulder Press","Clean", "Front Squat", "Push Jerk", "Overhead Squat", "Snatch"  ]
+
 @lift_reps =  [ "1RM", "3RM", "5RM" ]
 
-@mainMenuValues = ["Add Lift", "Add Music", "Add Book", "Add Misc"]
+@mainMenuValues = ["Add Lift", "Add Music", "Add Book", "Add Misc", "Add Value"]
 
 @xmlEncoding = "ASCII"
 #
