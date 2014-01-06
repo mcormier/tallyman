@@ -29,7 +29,11 @@ create table music(media varchar(256),
                    albumTitle varchar(256), 
                    price smallint, 
                    used boolean default 0, 
-                   dayPurchased date default current_date ); 
+                   dayPurchased date default current_date );
+
+-- Same as CountTable but for counting events with a value associated with them
+-- i.e. 10 pushups ...
+create table valueTable(event varchar(256),value smallint, day date default current_date );
 
 .quit
 
