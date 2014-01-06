@@ -38,6 +38,7 @@ class YearlyDeltaGenerator
                 x.name lift
                 x.max2012 max_lift_for_year( db, lift, 2012)
                 x.max2013 max_lift_for_year( db, lift, 2013)
+                x.max2013 max_lift_for_year( db, lift, 2014)
               }
             ensure
               #stm.close
