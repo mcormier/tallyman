@@ -28,8 +28,11 @@ def get_data(db)
   count_action = CountAction.new(db)
   count_menu_action = PPCurses::ShowMenuAction.new(count_action.menu)
 
+  value_action = ValueAction.new(db)
+  value_menu_action = PPCurses::ShowMenuAction.new(value_action.menu)
+
   main_menu = PPCurses::Menu.new( @mainMenuValues ,
-                       [ lifts_action, music_action, book_action, count_menu_action] )
+                       [ lifts_action, music_action, book_action, count_menu_action, value_menu_action] )
 
   main_menu.show()
   main_menu.menu_selection()
