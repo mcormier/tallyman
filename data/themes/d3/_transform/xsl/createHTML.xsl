@@ -4,8 +4,6 @@
 
 <xsl:output method="html" indent="yes"/>
 
-<xsl:variable name="enableGraphs" select="/data/settings/enableGraphs" />
-
 <xsl:template match="/">
 
   <!-- Specifies an HTML 5 document -->
