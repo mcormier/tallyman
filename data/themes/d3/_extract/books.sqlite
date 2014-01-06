@@ -1,5 +1,7 @@
 .headers on
 .mode tabs
 select distinct digital, count(digital) as total 
-  from books group by digital;
+  from books
+  where date(dateFinished) > date (strftime('%Y','now') || '-12-31')
+  group by digital;
 
