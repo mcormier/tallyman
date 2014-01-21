@@ -17,9 +17,9 @@
 @xmlDataFile= "../data/data.xml"
 
 @outputQueries= [ 
-  [ "Books Read", "SELECT COUNT(*) FROM books where date(dateFinished) > date (strftime('%Y','now') || '-12-31')"],
-  [ "Total Pages Read", "SELECT SUM(pages) FROM books where date(dateFinished) > date (strftime('%Y','now') || '-12-31')"],
-  [ "Albums Purchased", "SELECT COUNT(*) FROM music where date(dayPurchased) > date (strftime('%Y','now') || '-12-31')"],
+  [ "Books Read", "SELECT COUNT(*) FROM books where date(dateFinished) >= date (strftime('%Y','now') || '-01-01')"],
+  [ "Total Pages Read", "SELECT SUM(pages) FROM books where date(dateFinished) >= date (strftime('%Y','now') || '-01-01')"],
+  [ "Albums Purchased", "SELECT COUNT(*) FROM music where date(dayPurchased) >= date (strftime('%Y','now') || '-01-01')"],
   [ "Skin Rips", "SELECT COUNT(*) FROM countTable WHERE event='Ripped Skin'"] 
 ]
 
