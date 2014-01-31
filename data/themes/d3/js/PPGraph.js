@@ -233,6 +233,9 @@ PPRepGraph.prototype.setView = function (viewName) {
   if ( viewName == "last6Mos" ) {
     var sixMosBefore = this.daysBeforeLastDay(182);
     firstDay = this.findFirstDateAfter(sixMosBefore);
+    // Only one thing was logged in the last six months.
+    // Max the range six months.
+    if ( firstDay == lastDay ) {firstDay = sixMosBefore; }
   }
 
 
@@ -297,6 +300,7 @@ PPRepGraph.prototype.createSegmentedControl = function () {
   // Remove year if no dates between year mark and 6 month mark
   var yearBefore = this.daysBeforeLastDay(365);
   var sixMosBefore = this.daysBeforeLastDay(182);
+
   if ( ! this.containsDateBetween(yearBefore, sixMosBefore)  ) {
     segments.labels.splice(1,1);
     segments.idVals.splice(1,1);
