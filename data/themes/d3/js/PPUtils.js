@@ -190,6 +190,27 @@ PPUtils.getCookies = function() {
     return cookies;
 };
 
+// Currently only supports monthly and weekly fuzzy logic labeling
+PPUtils.fuzzyDateRangeLabel = function(startDate, endDate) {
+  var daysBetween = (endDate-startDate)/(1000*60*60*24);
+
+  if ( daysBetween <= 10 )  { return "Week"; }
+  if ( daysBetween <= 17 )  { return "2 Weeks"; }
+  if ( daysBetween <= 45 )  { return "1 Month"; }
+  if ( daysBetween <= 75 )  { return "2 Months"; }
+  if ( daysBetween <= 105 ) { return "3 Months"; }
+  if ( daysBetween <= 135 ) { return "4 Months"; }
+  if ( daysBetween <= 165 ) { return "5 Months"; }
+  if ( daysBetween <= 195 ) { return "6 Months"; }
+  if ( daysBetween <= 225 ) { return "7 Months"; }
+  if ( daysBetween <= 255 ) { return "8 Months"; }
+  if ( daysBetween <= 285 ) { return "9 Months"; }
+  if ( daysBetween <= 315 ) { return "10 Months"; }
+  if ( daysBetween <= 345 ) { return "11 Months"; }
+
+  return "Year";
+};
+
 function DateFmt(fstr) {
   this.formatString = fstr;
 
@@ -213,9 +234,9 @@ function DateFmt(fstr) {
 
   this.format = function(date) {
     var dateTxt = this.formatString.replace(/%(.)/g, function(m, p) {
-      var rv = date[(dateMarkers[p])[0]]()
+      var rv = date[(dateMarkers[p])[0]]();
 
-      if ( dateMarkers[p][1] != null ) rv = dateMarkers[p][1](rv)
+      if ( dateMarkers[p][1] != null ) rv = dateMarkers[p][1](rv);
 
       return rv
 

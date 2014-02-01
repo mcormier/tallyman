@@ -221,23 +221,26 @@ PPRepGraph.prototype.daysBeforeLastDay = function (days) {
 };
 
 
-PPRepGraph.prototype.setView = function (viewName) {
+PPRepGraph.prototype.firstDayForView = function (viewName) {
   var lastDay = this.lastDay();
   var firstDay = this.liftData[0].day;
 
-  if ( viewName == "year") {
-    var yearBefore = this.daysBeforeLastDay(365);
-    firstDay = this.findFirstDateAfter(yearBefore);
+  if ( viewName == "year" ||  viewName == "last6Mos" ) {
+    var interval = viewName == "year" ? 365 : 182;
+
+    var before = this.daysBeforeLastDay(interval);
+    firstDay = this.findFirstDateAfter(before);
+    // Only one thing was logged in the interval
+    // Max the range.
+    if ( firstDay == lastDay ) {firstDay = before; }
   }
 
-  if ( viewName == "last6Mos" ) {
-    var sixMosBefore = this.daysBeforeLastDay(182);
-    firstDay = this.findFirstDateAfter(sixMosBefore);
-    // Only one thing was logged in the last six months.
-    // Max the range six months.
-    if ( firstDay == lastDay ) {firstDay = sixMosBefore; }
-  }
+  return firstDay;
+};
 
+PPRepGraph.prototype.setView = function (viewName) {
+  var lastDay = this.lastDay();
+  var firstDay = firstDay = this.firstDayForView(viewName);
 
   this.view = viewName;
   this.refreshView(firstDay, lastDay);
@@ -294,8 +297,12 @@ PPRepGraph.prototype.createSegmentedControl = function () {
   var deltaDays = this.getTimeSpanInDays();
   if ( deltaDays < 365 ) { return; }
 
-  var segments = { labels: ["Full","Year","6 Months"],
-                   idVals: ["full","year","last6Mos"] };
+  var lastDay = this.lastDay();
+  var firstDay = this.firstDayForView("last6Mos");
+  var fuzzyLabel = PPUtils.fuzzyDateRangeLabel(firstDay, lastDay);
+
+  var segments = { labels: ["Full","Year", fuzzyLabel],
+                   idVals: ["full","year", "last6Mos"] };
 
   // Remove year if no dates between year mark and 6 month mark
   var yearBefore = this.daysBeforeLastDay(365);
@@ -305,9 +312,6 @@ PPRepGraph.prototype.createSegmentedControl = function () {
     segments.labels.splice(1,1);
     segments.idVals.splice(1,1);
   }
-
-  // TODO -- sometimes 6 months label is not appropriate.  It could be changed dynamically based on the position of
-  // the last date in the last 6 month window. i.e. 3 months, 4 months...
 
   this.segControl = new PPSegmentedControl(this.divId, this.liftName, segments, this);
   this.segControl.setSelectedByIndex( segments.labels.length - 1 );
@@ -417,8 +421,8 @@ PPRepGraph.prototype.createYAxis = function () {
   // A masking rect for the y Axis
   this.graph.append("svg:rect")
       .attr("class", "yAxisRect")
-      .attr("transform", "translate(-80,-2)")
-      .attr("height", "220")
+      .attr("transform", "translate(-80,-10)")
+      .attr("height", "230")
       .attr("width", "60");
 
   // Add the y-axis to the left and add it after the masking rect
