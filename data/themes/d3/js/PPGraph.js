@@ -169,7 +169,7 @@ function PPRepGraph(divId, tsvFile, liftName, gDim) {
 
   this.formatter = new DateFmt("%n %d %y");
 
-  this.view = "full";
+  this.view = "last6Mos";
 }
 
 // Global variable for all PPRepGraph classes
@@ -310,7 +310,7 @@ PPRepGraph.prototype.createSegmentedControl = function () {
   // the last date in the last 6 month window. i.e. 3 months, 4 months...
 
   this.segControl = new PPSegmentedControl(this.divId, this.liftName, segments, this);
-  this.segControl.setSelectedByIndex(0);
+  this.segControl.setSelectedByIndex( segments.labels.length - 1 );
 };
 
 PPRepGraph.prototype.segmentChanged = function (viewName) {
@@ -386,39 +386,47 @@ PPRepGraph.prototype.createGraph = function (error,data) {
           .append("svg:g")
             .attr("transform", "translate(" + this.d.m[3] + "," + this.d.m[0] + ")");
 
-  var xAxis = d3.svg.axis().scale(this.x).ticks(20).tickSize(-this.d.h).tickSubdivide(true);
+  this.setView( this.view );
 
-   // Add the x-axis. to the graph
+  this.xAxis = d3.svg.axis().scale(this.x).ticks(20).tickSize(-this.d.h).tickSubdivide(true);
+//
+  // Add the x-axis. to the graph
   this.graph.append("svg:g")
     .attr("class", "x axis")
     .attr("transform", "translate(0," + this.d.h + ")")
-    .call(xAxis)
+    .call(this.xAxis)
     .selectAll("text")
     .attr("transform", "translate(20,25) rotate(55)");
 
+  this.addLine(this.line(this.rm1Data), "oneLine");
+  this.addLine(this.line(this.rm3Data), "threeLine");
+  this.addLine(this.line(this.rm5Data), "fiveLine");
+
+  this.addPoints(this.rm1Data, "onePoints");
+  this.addPoints(this.rm3Data, "threePoints");
+  this.addPoints(this.rm5Data, "fivePoints");
+
+  this.createYAxis();
+};
+
+
+PPRepGraph.prototype.createYAxis = function () {
+
   var yAxisLeft = d3.svg.axis().scale(this.y).ticks(8).orient("left");
-
-  this.addLine( this.line(this.rm1Data), "oneLine");
-  this.addLine( this.line(this.rm3Data), "threeLine");
-  this.addLine( this.line(this.rm5Data), "fiveLine");
-
-  this.addPoints( this.rm1Data, "onePoints");
-  this.addPoints( this.rm3Data, "threePoints");
-  this.addPoints( this.rm5Data, "fivePoints");
-
 
   // A masking rect for the y Axis
   this.graph.append("svg:rect")
-    .attr("class", "yAxisRect")
-    .attr("transform", "translate(-80,-1)")
-    .attr("height", "220")
-    .attr("width", "60");
+      .attr("class", "yAxisRect")
+      .attr("transform", "translate(-80,-1)")
+      .attr("height", "220")
+      .attr("width", "60");
 
   // Add the y-axis to the left and add it after the masking rect
   this.graph.append("svg:g")
-    .attr("class", "y axis")
-    .attr("transform", "translate(-25,0)")
-    .call(yAxisLeft);
+      .attr("class", "y axis")
+      .attr("transform", "translate(-25,0)")
+      .call(yAxisLeft);
+
 };
 
 PPRepGraph.prototype.addLine = function (line, cssClassInfo) {
@@ -435,7 +443,7 @@ PPRepGraph.prototype.addPoints = function (data, cssClassInfo) {
   var outBinder = function() { that.mouseOut(); };
 
   var points = this.graph.selectAll(".point").data(data);
- 
+
   points.enter().insert("svg:circle")
               .attr("class", cssClassInfo )
               .attr("cx", function(d) { return that.x(d.day) })
@@ -460,7 +468,7 @@ function PPPieGraph(divId, tsvFile, gDim, totalFunc, forEachFunc, fillFunc, labe
 
 
   this.color = d3.scale.ordinal().range(["#98abc5", "#8a89a6", "#7b6888", "#6b486b", "#a05d56", "#d0743c", "#ff8c00"]);
-  this.width = gDim.w; 
+  this.width = gDim.w;
   this.height = gDim.h;
   this.radius = Math.min(this.width, this.height) / 2;
 
