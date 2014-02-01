@@ -417,7 +417,7 @@ PPRepGraph.prototype.createYAxis = function () {
   // A masking rect for the y Axis
   this.graph.append("svg:rect")
       .attr("class", "yAxisRect")
-      .attr("transform", "translate(-80,-1)")
+      .attr("transform", "translate(-80,-2)")
       .attr("height", "220")
       .attr("width", "60");
 
