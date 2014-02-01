@@ -1,6 +1,6 @@
 .ppSegmented-control {
-    background-color: #007aff;
-    color: #007aff;
+    background-color: steelblue;
+    color: steelblue;
     list-style-type: none;
     width: 212px;
     height: 25px;
@@ -53,7 +53,7 @@
 
 .ppSegmented-control a,
 .ppSegmented-control.alt li:target a {
-    color: #007aff;
+    color: steelblue;
 }
 
 .ppSegmented-control li:active a,
@@ -64,7 +64,7 @@
 
 .ppSegmented-control li:target,
 .ppSegmented-control li.selected
-{ background-color: #007aff; }
+{ background-color: steelblue; }
 
 
 .ppSegmented-control li:target a,
