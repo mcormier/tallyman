@@ -34,10 +34,10 @@ def get_data(db)
   main_menu = PPCurses::Menu.new( @mainMenuValues ,
                        [ lifts_action, music_action, book_action, count_menu_action, value_menu_action] )
 
-  main_menu.show()
-  main_menu.menu_selection()
+  main_menu.show
+  main_menu.menu_selection
   
-  main_menu.close()
+  main_menu.close
 end
 
 # adminInterface return values:
@@ -55,7 +55,7 @@ db = DatabaseProxy.open( @dbName )
 
 begin
 
-  screen = PPCurses::Screen.new()
+  screen = PPCurses::Screen.new
   screen.run { get_data(db) }
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
