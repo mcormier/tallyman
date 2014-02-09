@@ -23,6 +23,15 @@ module Tallyman
       @enabled_domains.delete(domain_name)
     end
 
+    def domain_enabled?(domain_name)
+      if @enabled_domains.nil?
+        return false
+      end
+
+      @enabled_domains.member?(domain_name)
+
+    end
+
   end
 
 end

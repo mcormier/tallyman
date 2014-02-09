@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'ppcurses'
+require 'pry'
 
 require_relative '../lib/rb/tallyman'
 
@@ -13,10 +14,16 @@ script_location = File.expand_path File.dirname(__FILE__)
 
 def display_modules
 
+  config_loader = Tallyman::ConfigLoader.new
+  config = config_loader.load
+
   module_list = []
   @domain_manager.domains.each do |domain|
     item = PPCurses::MenuItem.new(domain.module_name )
     item.selectable=true
+    if config.domain_enabled?(domain.module_name)
+      item.state=PPCurses::PP_ON_STATE
+    end
     module_list.push( item )
   end
 
@@ -26,6 +33,7 @@ def display_modules
 
   module_menu.close
 end
+
 
 
 
