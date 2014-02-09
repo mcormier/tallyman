@@ -13,3 +13,8 @@ require_relative 'subscriber/delta_notifier'
 
 require_relative 'domain/domain_manager'
 require_relative 'domain/domain'
+
+module Tallyman
+  require_relative 'config/config_loader'
+  require_relative 'config/config'
+end
