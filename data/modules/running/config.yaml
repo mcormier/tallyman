@@ -1,0 +1,5 @@
+--- !ruby/object:Domain
+module_name: "Running"
+table_name: "runLog"
+description: "Log your running data"
+

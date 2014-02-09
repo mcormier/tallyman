@@ -1,0 +1,4 @@
+
+- is module running? enabled on admin interface
+- install module (does the required table exist)
+-  Display setting - Metric versus Imperial
