@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+require 'ppcurses'
+
+require_relative '../lib/rb/tallyman'
+
+script_location = File.expand_path File.dirname(__FILE__)
+@domain_root = script_location + '/../data/modules/'
+
+
+@domain_manager = DomainManager.new(@domain_root)
+
+
+def display_modules
+
+  module_list = []
+  @domain_manager.domains.each do |domain|
+    item = PPCurses::MenuItem.new(domain.module_name )
+    item.selectable=true
+    module_list.push( item )
+  end
+
+  module_menu = PPCurses::Menu.new( module_list, nil )
+  module_menu.show
+  module_menu.menu_selection
+
+  module_menu.close
+end
+
+
+
+#screen = PPCurses::Screen.new
+#screen.run { display_modules }
+
+config_loader = Tallyman::ConfigLoader.new
+config = config_loader.load
+
+config.disable_domain( 'Running' )
+
+config_loader.save(config)
+
