@@ -1,12 +1,13 @@
 require 'ppcurses'
 
+
 class LiftAction < PPCurses::InsertSQLDataAction
 
   def initialize(name_menu, rep_menu, db)
     @name_menu = name_menu
     @rep_menu = rep_menu
     @db = db
-    
+
     @prompt  = PPCurses::GetIntegerAction.new('Weight (pounds) : ')
     super( [ @prompt ], 'INSERT into LIFTS(name, weight, reps) values (?, ?, ?)', @db )
 
@@ -25,7 +26,7 @@ class LiftAction < PPCurses::InsertSQLDataAction
   end
   
   def reps_integer
-    Integer(reps_name().chars.first).to_s
+    Integer(reps_name.chars.first).to_s
   end
 
   def before_actions
