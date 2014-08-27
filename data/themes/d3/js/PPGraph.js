@@ -169,7 +169,7 @@ function PPRepGraph(divId, tsvFile, liftName, gDim) {
 
   this.formatter = new DateFmt("%n %d %y");
 
-  this.view = "last6Mos";
+  this.view = "full";
 }
 
 // Global variable for all PPRepGraph classes
@@ -314,7 +314,7 @@ PPRepGraph.prototype.createSegmentedControl = function () {
   }
 
   this.segControl = new PPSegmentedControl(this.divId, this.liftName, segments, this);
-  this.segControl.setSelectedByIndex( segments.labels.length - 1 );
+  this.segControl.setSelectedByIndex( 0 );
 };
 
 PPRepGraph.prototype.segmentChanged = function (viewName) {
