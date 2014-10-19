@@ -27,8 +27,13 @@ def get_data(db)
   @domain_manager.domains.each do |domain|
 
     if @config.domain_enabled?(domain.module_name)
-      main_menu_labels.push( domain.main_menu_label )
-      actions.push( domain.create_action(db) )
+
+      # TODO - reverse logic and create the table if it is missing.
+      if db.table_exists?(domain.table_name)
+        main_menu_labels.push( domain.main_menu_label )
+        actions.push( domain.create_action(db) )
+      end
+
     end
 
   end
