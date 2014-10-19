@@ -1,4 +1,5 @@
---- !ruby/object:Domain
+--- !ruby/object:MusicDomain
 module_name: "Music"
 table_name: "music"
+main_menu_label: "Add Music"
 description: "Log the music you buy"
