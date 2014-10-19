@@ -1,0 +1,3 @@
+class CyclingDomain < Domain
+
+end
