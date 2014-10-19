@@ -13,6 +13,7 @@ class Domain
   end
 
   def create_action( db )
+    PPCurses::NulAction.new
   end
 
 end
