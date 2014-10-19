@@ -28,11 +28,16 @@ def get_data(db)
 
     if @config.domain_enabled?(domain.module_name)
 
-      # TODO - reverse logic and create the table if it is missing.
-      if db.table_exists?(domain.table_name)
-        main_menu_labels.push( domain.main_menu_label )
-        actions.push( domain.create_action(db) )
+      # Create the table if it is missing.  Must be the first time the
+      # domain was used.
+      unless db.table_exists?(domain.table_name)
+        prep_statement = db.prepare(domain.create_table_statement)
+        prep_statement.execute
+        prep_statement.close
       end
+
+      main_menu_labels.push( domain.main_menu_label )
+      actions.push( domain.create_action(db) )
 
     end
 
