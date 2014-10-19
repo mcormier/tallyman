@@ -1,5 +1,6 @@
 --- !ruby/object:Domain
 module_name: "Cycling"
 table_name: "cycleLog"
+main_menu_label: "Log bike ride"
 description: "Log your cycling data"
 
