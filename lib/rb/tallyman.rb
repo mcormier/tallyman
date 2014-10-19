@@ -14,6 +14,7 @@ require_relative 'subscriber/delta_notifier'
 require_relative 'domain/domain_manager'
 require_relative 'domain/domain'
 require_relative 'domain/reading_domain'
+require_relative 'domain/lifting_domain'
 
 module Tallyman
   require_relative 'config/config_loader'

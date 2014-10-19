@@ -1,4 +1,5 @@
---- !ruby/object:Domain
+--- !ruby/object:LiftingDomain
 module_name: "Crossfit"
 table_name: "lifts"
+main_menu_label: "Add Lift"
 description: "Logs your 1RM 3RM 5RM data"
