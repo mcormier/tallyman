@@ -1,0 +1,5 @@
+--- !ruby/object:ValueDomain
+module_name: "Value"
+table_name: "values"
+main_menu_label: "Add Value"
+description: "Logs miscellaneous things that have a value.  (i.e. Today's weight)"
