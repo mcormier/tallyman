@@ -1,0 +1,5 @@
+--- !ruby/object:MiscDomain
+module_name: "Misc"
+table_name: "countTable"
+main_menu_label: "Add Misc"
+description: "Logs miscellaneous things"

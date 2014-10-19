@@ -16,6 +16,7 @@ require_relative 'domain/domain'
 require_relative 'domain/reading_domain'
 require_relative 'domain/lifting_domain'
 require_relative 'domain/music_domain'
+require_relative 'domain/misc_domain'
 
 module Tallyman
   require_relative 'config/config_loader'
