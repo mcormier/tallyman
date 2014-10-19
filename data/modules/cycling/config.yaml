@@ -1,6 +1,7 @@
---- !ruby/object:Domain
+--- !ruby/object:CyclingDomain
 module_name: "Cycling"
 table_name: "cycleLog"
+table_columns: "(distance_km smallint, duration smallint, day date default current_date ); "
 main_menu_label: "Log bike ride"
 description: "Log your cycling data"
 
