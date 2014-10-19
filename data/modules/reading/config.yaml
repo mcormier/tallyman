@@ -1,4 +1,5 @@
---- !ruby/object:Domain
+--- !ruby/object:ReadingDomain
 module_name: "Reading"
 table_name: "books"
+main_menu_label: "Add Book"
 description: "Log what you read"
