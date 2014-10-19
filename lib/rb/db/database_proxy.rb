@@ -22,7 +22,7 @@ class DatabaseProxy  < SQLite3::Database
   def initialize ( database_name )
     super(database_name)
     @insert_count = 0
-    @modified_table_set = Set.new()
+    @modified_table_set = Set.new
   end
 
 
@@ -41,9 +41,22 @@ class DatabaseProxy  < SQLite3::Database
     stmt
   end
 
+
+  def table_exists?( table_name )
+    info = table_info(table_name)
+
+    if info.length == 0
+      return false
+    end
+
+    true
+  end
+
+
   def increment_insert
     @insert_count = @insert_count + 1
   end
+
 
   def data_added_to(table_name)
     @modified_table_set.add(table_name)
