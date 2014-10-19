@@ -1,0 +1,4 @@
+--- !ruby/object:Domain
+module_name: "Crossfit"
+table_name: "lifts"
+description: "Logs your 1RM 3RM 5RM data"

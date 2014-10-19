@@ -1,0 +1,4 @@
+--- !ruby/object:Domain
+module_name: "Reading"
+table_name: "books"
+description: "Log what you read"

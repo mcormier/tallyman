@@ -1,0 +1,4 @@
+--- !ruby/object:Domain
+module_name: "Music"
+table_name: "music"
+description: "Log the music you buy"
