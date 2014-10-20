@@ -1,5 +1,6 @@
 --- !ruby/object:MiscDomain
 module_name: "Misc"
 table_name: "countTable"
+table_columns: "(event varchar(256), day date default current_date )"
 main_menu_label: "Add Misc"
-description: "Logs miscellaneous things"
+description: "Use for logging miscellaneous things that don't happen often. i.e. stubbed toe. "
