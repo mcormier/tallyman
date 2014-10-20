@@ -1,5 +1,6 @@
 --- !ruby/object:LiftingDomain
 module_name: "Crossfit"
 table_name: "lifts"
+table_columns: "(name varchar(256), weight smallint, reps smallint default 1, day date default current_date )"
 main_menu_label: "Add Lift"
 description: "Logs your 1RM 3RM 5RM data"
