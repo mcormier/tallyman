@@ -5,12 +5,7 @@ create table books(title varchar(256),
                    pages smallint, 
                    dateFinished date default current_date );
 
--- Lifts
--- =====
--- Used for tracking 1RM, 3RM and 5RM  olympic lifts
---
-create table lifts(name varchar(256), weight smallint, 
-                   reps smallint default 1, day date default current_date );
+
 
 -- CountTable
 -- ==========
