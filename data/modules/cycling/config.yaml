@@ -1,4 +1,4 @@
---- !ruby/object:CyclingDomain
+--- !ruby/object:DistanceDomain
 module_name: "Cycling"
 table_name: "cycleLog"
 table_columns: "(distance_km smallint, duration smallint, day date default current_date ); "
