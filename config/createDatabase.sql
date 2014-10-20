@@ -1,11 +1,4 @@
 
-create table books(title varchar(256), 
-                   author varchar(256), 
-                   digital boolean default 0,
-                   pages smallint, 
-                   dateFinished date default current_date );
-
-
 
 -- CountTable
 -- ==========
