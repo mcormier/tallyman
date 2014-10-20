@@ -1,3 +1,4 @@
+require 'ppcurses'
 
 #
 # Use for tracking an exercise that has time and distance.
