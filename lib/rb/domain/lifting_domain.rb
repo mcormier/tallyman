@@ -30,8 +30,6 @@ class LiftingDomain < Domain
     end
 
     config_menu = PPCurses::Menu.new( lift_menu_items, nil )
-    #config_menu.show
-    #config_menu.menu_selection
     PPCurses::ShowMenuAction.new(config_menu)
   end
 
