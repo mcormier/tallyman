@@ -71,11 +71,15 @@ class DataGenerator
         stm = db.prepare queryInfo[1]
         rs = stm.execute
         row = rs.next
-        x.item{
-          x.title queryInfo[0]
-          x.value row.join "\s"
-          x.svgname get_svg_lift_name(queryInfo[0])
-        }
+
+        unless row.nil? then
+          x.item {
+            x.title queryInfo[0]
+            x.value row.join "\s"
+            x.svgname get_svg_lift_name(queryInfo[0])
+          }
+        end
+
       ensure
         stm.close
       end
