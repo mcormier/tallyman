@@ -17,6 +17,11 @@ class Domain
     PPCurses::NulAction.new
   end
 
+  def config_action( config )
+    PPCurses::NulAction.new
+  end
+
+
   def create_table_statement
     'create table ' + table_name + ' ' + table_columns + ';'
   end
