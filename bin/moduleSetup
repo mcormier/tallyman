@@ -31,7 +31,10 @@ end
 
 
 def display_modules
+
   module_list = []
+  actions = []
+
   @domain_manager.domains.each do |domain|
     item = PPCurses::MenuItem.new(domain.module_name )
     item.selectable=true
@@ -41,14 +44,17 @@ def display_modules
     item.target=method(:receive_message)
 
     module_list.push( item )
+    actions.push( domain.config_action(@config) )
   end
 
-  module_menu = PPCurses::Menu.new( module_list, nil )
+  module_menu = PPCurses::Menu.new( module_list, actions )
   module_menu.show
   module_menu.menu_selection
 
   module_menu.close
 end
+
+# TODO -- add enable modules title on screen
 
 screen = PPCurses::Screen.new
 screen.run { display_modules }
