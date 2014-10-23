@@ -6,6 +6,7 @@ module Tallyman
   class Config
 
     attr_accessor :enabled_domains
+    attr_accessor :domain_configs
 
     def enable_domain( domain_name )
       if @enabled_domains.nil?
@@ -31,6 +32,25 @@ module Tallyman
       @enabled_domains.member?(domain_name)
 
     end
+
+
+    def get_domain_config(key)
+      if @domain_configs.nil?
+        @domain_configs = Hash.new
+      end
+
+      @domain_configs[key]
+    end
+
+    def set_domain_config(config_obj, key)
+      if @domain_configs.nil?
+        @domain_configs = Hash.new
+      end
+
+      @domain_configs[key] = config_obj
+    end
+
+
 
   end
 
