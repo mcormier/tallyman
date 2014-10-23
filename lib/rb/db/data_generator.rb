@@ -1,6 +1,6 @@
 
-require "builder"
-require "sqlite3"
+require 'builder'
+require 'sqlite3'
 
 #
 # Given a set of table names generates an XML delta file
