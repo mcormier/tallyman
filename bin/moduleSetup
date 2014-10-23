@@ -14,8 +14,31 @@ script_location = File.expand_path File.dirname(__FILE__)
 
 @config_loader = Tallyman::ConfigLoader.new
 @config = @config_loader.load
-
 @data_changed=false
+
+class ConfigMenuItem < PPCurses::MenuItem
+
+  attr_accessor :enter_action
+
+  def handle_key(key)
+
+    if key == ' ' and @selectable
+      toggle_on_off_state
+      call_target
+      return true
+    end
+
+    if key == PPCurses::ENTER
+      @enter_action.execute
+      return true
+    end
+
+    false
+  end
+
+end
+
+
 def receive_message(menu_item)
   @data_changed=true
 
@@ -33,21 +56,20 @@ end
 def display_modules
 
   module_list = []
-  actions = []
 
   @domain_manager.domains.each do |domain|
-    item = PPCurses::MenuItem.new(domain.module_name )
+    item = ConfigMenuItem.new(domain.module_name )
     item.selectable=true
     if @config.domain_enabled?(domain.module_name)
       item.state=PPCurses::PP_ON_STATE
     end
     item.target=method(:receive_message)
-
+    item.enter_action = domain.config_action(@config)
     module_list.push( item )
-    actions.push( domain.config_action(@config) )
+
   end
 
-  module_menu = PPCurses::Menu.new( module_list, actions )
+  module_menu = PPCurses::Menu.new( module_list, nil )
   module_menu.show
   module_menu.menu_selection
 
