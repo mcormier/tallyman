@@ -16,7 +16,7 @@ class DeltaGenerator
   end
 
   def generate( filename = nil)
-    delta_array = @delta_set.to_a()
+    delta_array = @delta_set.to_a
 
     if filename.nil? then
       out = STDOUT
