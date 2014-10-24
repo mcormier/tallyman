@@ -4,7 +4,7 @@ class LiftingDomain < Domain
 
   def create_action( db, config )
 
-    # TODO -- load config
+    load_config(config)
 
     # TODO -- Push 1/3/5 RM selection inside menu
     lift_rep_menu = PPCurses::RadioMenu.new( %w(1RM 3RM 5RM), nil )
@@ -17,6 +17,14 @@ class LiftingDomain < Domain
     PPCurses::ShowMenuAction.new(lifts_menu)
   end
 
+
+  def load_config( config )
+    @lifting_config = config.get_domain_config('lifting')
+
+    if @lifting_config.nil?
+      @lifting_config = LiftingConfig.new
+    end
+  end
 
   def receive_message(menu_item)
 
@@ -34,11 +42,7 @@ class LiftingDomain < Domain
   # Displays a selectable list of lifts.
   def config_action( config )
 
-    @lifting_config = config.get_domain_config('lifting')
-
-    if @lifting_config.nil?
-      @lifting_config = LiftingConfig.new
-    end
+    load_config(config)
 
     lift_menu_items = []
 
@@ -67,18 +71,18 @@ end
 
 class LiftingConfig
 
-  attr_accessor :enabled_lifts
+  attr_accessor :disabled_lifts
 
   def initialize
-    @enabled_lifts = Set.new
+    @disabled_lifts = Set.new
   end
 
   def lift_enabled?(lift_name)
-    if enabled_lifts.nil?
-      return false
+    if @disabled_lifts.nil?
+      return true
     end
 
-    enabled_lifts.member?(lift_name)
+    @disabled_lifts.member?(lift_name)
 
   end
 
