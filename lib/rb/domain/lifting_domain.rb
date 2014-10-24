@@ -30,10 +30,10 @@ class LiftingDomain < Domain
 
     title = menu_item.title
 
-    if menu_item.state == PPCurses::PP_ON_STATE
-      @lifting_config.enabled_lifts.add(title)
+    if menu_item.state == PPCurses::PP_OFF_STATE
+      @lifting_config.disabled_lifts.add(title)
     else
-      @lifting_config.enabled_lifts.delete(title)
+      @lifting_config.disabled_lifts.delete(title)
     end
   end
 
@@ -50,7 +50,7 @@ class LiftingDomain < Domain
       item = PPCurses::MenuItem.new(lift_name )
       item.selectable=true
 
-      if @lifting_config.lift_enabled?(lift_name)
+      unless @lifting_config.lift_enabled?(lift_name)
         item.state=PPCurses::PP_ON_STATE
       end
 
