@@ -2,13 +2,21 @@ class LiftingDomain < Domain
 
   @@lift_list =  ['Deadlift', 'Shoulder Press', 'Clean', 'Front Squat', 'Push Jerk', 'Overhead Squat', 'Snatch']
 
+  def enabled_lifts_list
+    @lifting_config.disabled_lifts
+
+    lift_set = @@lift_list.to_set
+
+    lift_set.subtract( @lifting_config.disabled_lifts).to_a
+  end
+
   def create_action( db, config )
 
     load_config(config)
 
     # TODO -- Push 1/3/5 RM selection inside menu
     lift_rep_menu = PPCurses::RadioMenu.new( %w(1RM 3RM 5RM), nil )
-    lift_type_menu = PPCurses::Menu.new( @@lift_list , nil )
+    lift_type_menu = PPCurses::Menu.new( enabled_lifts_list , nil )
     lifts_menu = PPCurses::CompositeMenu.new( lift_type_menu, lift_rep_menu )
     add_lift_action = LiftAction.new( lift_type_menu, lift_rep_menu, db )
 
