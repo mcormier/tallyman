@@ -2,7 +2,9 @@ class LiftingDomain < Domain
 
   @@lift_list =  ['Deadlift', 'Shoulder Press', 'Clean', 'Front Squat', 'Push Jerk', 'Overhead Squat', 'Snatch']
 
-  def create_action( db )
+  def create_action( db, config )
+
+    # TODO -- load config
 
     # TODO -- Push 1/3/5 RM selection inside menu
     lift_rep_menu = PPCurses::RadioMenu.new( %w(1RM 3RM 5RM), nil )

@@ -2,7 +2,10 @@
 
 #noinspection RubyResolve
 require 'sqlite3'
+
+gem 'ppcurses', '=0.0.25'
 require 'ppcurses'
+
 require 'rubygems'
 
 require_relative '../lib/rb/tallyman'
@@ -37,7 +40,7 @@ def get_data(db)
       end
 
       main_menu_labels.push( domain.main_menu_label )
-      actions.push( domain.create_action(db) )
+      actions.push( domain.create_action(db, @config) )
 
     end
 
