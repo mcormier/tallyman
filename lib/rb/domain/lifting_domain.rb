@@ -4,7 +4,6 @@ class LiftingDomain < Domain
 
   def create_action( db )
 
-    # TODO -- make configurable
     # TODO -- Push 1/3/5 RM selection inside menu
     lift_rep_menu = PPCurses::RadioMenu.new( %w(1RM 3RM 5RM), nil )
     lift_type_menu = PPCurses::Menu.new( @@lift_list , nil )
