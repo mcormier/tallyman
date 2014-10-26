@@ -24,6 +24,8 @@ load to_load
 
 def get_data(db)
 
+  Curses.ESCDELAY=0  # TODO -- remove when ppcurses upgraded.
+
   main_menu_labels = []
   actions = []
 
