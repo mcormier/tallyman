@@ -3,7 +3,7 @@
 #noinspection RubyResolve
 require 'sqlite3'
 
-gem 'ppcurses', '=0.0.25'
+gem 'ppcurses', '=0.1.0'
 require 'ppcurses'
 
 require 'rubygems'
@@ -23,8 +23,6 @@ load to_load
 
 
 def get_data(db)
-
-  Curses.ESCDELAY=0  # TODO -- remove when ppcurses upgraded.
 
   main_menu_labels = []
   actions = []
