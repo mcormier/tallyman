@@ -2,7 +2,10 @@
 
 #noinspection RubyResolve
 require 'sqlite3'
+
+gem 'ppcurses', '=0.0.25'
 require 'ppcurses'
+
 require 'rubygems'
 
 require_relative '../lib/rb/tallyman'
