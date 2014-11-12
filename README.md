@@ -9,21 +9,11 @@ To generate the page you use a simple curses based interface to a database which
 
 ![Admin Interface => Database => Website] (http://mcormier.github.com/tallyman/images/tallymanArch.jpg )
 
-## Original Motivation ##
+## Motivation ##
 
-I used to use [wodHub](http://wodhub.com/profiles/6534) to track my exercise data.  It's a free site and has expanded as a product sold to people running gyms. It helped me track my gym benchmarks and kept me motivated to workout, and for that I am thankful. But like many free web applications it has a subtle issue.  You don't own your data. The person that is paying to run that site and letting you use it owns your data.  It's free to use but the hidden cost is that you lose ownership of your data.  If the individual who is running wodHub goes bankrupt tomorrow and the server gets shut down then all the data that you've input over time disappears.
+**If you care about your data you should own it.** Many sites provide a free service where your data is the product.  Once you input the data into such a site you forgo some of your rights to that data, and a method to extract that data is rarely provided.
 
-This concern was compounded by the fact that some of the main bench mark names changed unexpectedly.  A benchmark workout called Cindy was unexplicably renamed to "Cindy with a twist", and the "Max Deadlift" benchmark got renamed to "Deadlift Couplet".  The deadlift data also got reinterpreted as a timed workout instead of a max load workout so my data no longer made any sense. 
-
-![Cindy with a twist] (http://mcormier.github.com/tallyman/images/cindy.gif )
-
-I sent an email to the owner of the site which eventually got the deadlift data fixed, but never bothered to get the name of Cindy fixed.
-
-![Cindy with a twist] (http://mcormier.github.com/tallyman/images/Cindy2.gif )
-
-But this begged the question as to how the data got changed in the first place?  Obviously the change was not intentional.  Most likely it was a side effect of giving paying users higher admin privileges to edit workout names which unintentionally allowed someone to modify a globally defined workout.  Worst case is that someone found a bug in the web application and maliciously changed the data through a security hole.
-
-The issue of not being able to export your data is an intentional design to retain users and create lock-in. Theoretically you have access to all your data as you can copy it manually, however, the more data you've input into a site, the more monumental a task this becomes. The web was not always a place where companies creating walled gardens was so common and accepted.
+Not being able to export your data is an intentional design to retain users and create lock-in. Theoretically you have access to all your data as you can copy it manually, however, the more data you've input into a site, the more monumental a task this becomes. The web was not always a place where companies creating walled gardens was so common and accepted.
 
 > "In the early part of this century, if you made a service that let users create or share content, the expectation was that they could easily download a full-fidelity copy of their data, or import that data into other competitive services, with no restrictions. Vendors spent years working on interoperability around data exchange purely for the benefit of their users, despite theoretically lowering the barrier to entry for competitors."
 > - [Anil Dash - The Web We Lost](http://dashes.com/anil/2012/12/the-web-we-lost.html)
