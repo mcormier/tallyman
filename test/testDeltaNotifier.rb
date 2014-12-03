@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/rb/subscriber/delta_notifier'
+require_relative '../lib/rb/tallyman'
 
 
 generator = DeltaNotifier.new('./data/delta_lifts.xml')
