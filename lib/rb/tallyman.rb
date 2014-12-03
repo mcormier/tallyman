@@ -1,4 +1,19 @@
 
+# Required by delta_generator, ... ?
+
+begin
+  require 'builder'
+rescue LoadError
+  puts 'Missing builder gem'
+  puts 'Try: gem install builder'
+  exit
+end
+
+# Required by DeltaNotifier
+require 'nokogiri'
+
+# Required by domainManager
+require 'psych'
 
 require_relative 'action/book_action'
 require_relative 'action/music_action'
