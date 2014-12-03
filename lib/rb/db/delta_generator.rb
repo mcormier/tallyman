@@ -1,5 +1,4 @@
 #noinspection RubyResolve
-require 'builder'
 
 #
 # Given a set of table names generates an XML delta file
