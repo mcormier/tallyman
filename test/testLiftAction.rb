@@ -1,19 +1,16 @@
 #!/usr/bin/env ruby
 
-require 'rubygems'
+gem 'ppcurses', '=0.0.25'
 require 'ppcurses'
-require_relative '../bin/lift_action.rb'
 
-begin
-  require 'sqlite3'
-rescue LoadError => e
-  abort 'Missing dependency! Run: gem install sqlite3'
-end
+require_relative '../lib/rb/tallyman'
+
+
 
 
 def doAction(action)
-  action.show()
-  action.execute()
+  action.show
+  action.execute
 end
 
 
@@ -22,13 +19,13 @@ db.execute <<-SQL
   create table lifts (name varchar(30), weight int, reps int);
 SQL
 
-screen = PPCurses::Screen.new()
+screen = PPCurses::Screen.new
 
 
 
 screen.run {
-  liftRepMenu = PPCurses::RadioMenu.new( [ "1RM", "3RM", "5RM" ] , nil )
-  liftTypeMenu = PPCurses::Menu.new( [ "Deadlift", "Shoulder Press", "Back Squat"], nil )
+  liftRepMenu = PPCurses::RadioMenu.new( %w(1RM 3RM 5RM), nil )
+  liftTypeMenu = PPCurses::Menu.new( [ 'Deadlift', 'Shoulder Press', 'Back Squat'], nil )
 
 
   liftAction = LiftAction.new( liftTypeMenu, liftRepMenu, db)
