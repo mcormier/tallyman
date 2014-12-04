@@ -5,7 +5,6 @@ require 'ppcurses'
 
 require_relative '../lib/rb/tallyman'
 
-load '../config/config.properties'
 
 def get_data(db)
   count_action = CountAction.new(db)
@@ -15,7 +14,14 @@ end
 
 begin
 
-  db = DatabaseProxy.open @dbName
+  db = SQLite3::Database.open 'test.db'
+  db.execute <<-SQL
+    create table countTable(event varchar(256), day date default current_date );
+  SQL
+
+  db.execute <<-SQL
+    insert into countTable (event) values ('Smoked Cigarette');
+  SQL
 
   screen = PPCurses::Screen.new
   screen.run { get_data(db) }
@@ -25,4 +31,5 @@ rescue SystemExit, Interrupt
   # a stack trace when CTRL-C is used
 ensure
   db.close if db
+  File.delete('test.db')
 end
