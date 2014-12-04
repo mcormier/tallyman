@@ -1,5 +1,5 @@
 
-# Required by delta_generator, ... ?
+# Required by delta_generator, data_generator ... ?
 
 begin
   require 'builder'
@@ -12,8 +12,22 @@ end
 # Required by DeltaNotifier
 require 'nokogiri'
 
-# Required by domainManager
+# Required by domainManager, ConfigLoader
 require 'psych'
+
+# Required by DatabaseProxy, data_generator
+require 'sqlite3'
+
+# Required by DatabaseProxy, Config
+require 'set'
+
+# Required by ConfigLoader
+require 'fileutils'
+
+# Required by MuiscAction, LiftAction, ExerciseDistanceAction, CountAction, BookAction
+require 'ppcurses'
+
+#---------------------------------------------------------------------------------
 
 require_relative 'action/book_action'
 require_relative 'action/music_action'

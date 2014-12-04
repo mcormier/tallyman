@@ -1,6 +1,3 @@
-require 'fileutils'
-require 'psych'
-
 module Tallyman
 
   class ConfigLoader

@@ -1,5 +1,3 @@
-require 'ppcurses'
-
 class MusicAction_10
 
 

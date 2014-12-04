@@ -1,5 +1,3 @@
-require "ppcurses"
-
 class CountAction < PPCurses::InsertSQLDataAction
 
   def initialize(db)

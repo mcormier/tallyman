@@ -1,5 +1,3 @@
-require 'ppcurses'
-
 class BookAction < PPCurses::InsertSQLDataAction
 
   def initialize(db)

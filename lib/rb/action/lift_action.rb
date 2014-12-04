@@ -1,6 +1,3 @@
-require 'ppcurses'
-
-
 class LiftAction < PPCurses::InsertSQLDataAction
 
   def initialize(name_menu, rep_menu, db)

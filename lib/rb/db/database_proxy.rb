@@ -1,6 +1,4 @@
 #noinspection RubyResolve
-require 'sqlite3'
-require 'set'
 require_relative 'statement_wrapper'
 
 # References
