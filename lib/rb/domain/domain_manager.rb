@@ -1,5 +1,3 @@
-require 'psych'
-
 class DomainManager
 
   attr_reader :domains
