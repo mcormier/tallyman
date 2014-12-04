@@ -16,8 +16,11 @@ require 'nokogiri'
 require 'psych'
 
 # Required by DatabaseProxy, data_generator
-require 'sqlite3'
-
+begin
+  require 'sqlite3'
+rescue LoadError => e
+  abort 'Missing dependency! Run: gem install sqlite3'
+end
 # Required by DatabaseProxy, Config
 require 'set'
 
