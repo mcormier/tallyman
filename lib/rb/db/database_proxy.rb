@@ -3,9 +3,9 @@ require_relative 'statement_wrapper'
 
 # References
 #
-# http://sqlite-ruby.rubyforge.org/sqlite3/classes/SQLite3/Statement.html
+# http://www.rubydoc.info/gems/sqlite3/1.3.10/SQLite3/Statement
 #
-# http://sqlite-ruby.rubyforge.org/sqlite3/classes/SQLite3/Database.html
+# http://www.rubydoc.info/gems/sqlite3/1.3.10/SQLite3/Database
 
 #
 # A wrapper that counts the number of SQL statements executed
