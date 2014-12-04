@@ -53,7 +53,7 @@ class CountAction < PPCurses::InsertSQLDataAction
 
     new_data_added = self.prompt_to_change_data(user_display_sql, data_array)
 
-    if new_data_added
+    if new_data_added and @db.respond_to?(:data_added_to)
       @db.data_added_to('countTable')
     end
   end
