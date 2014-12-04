@@ -37,7 +37,8 @@ class LiftAction < PPCurses::InsertSQLDataAction
 
     new_data_added = self.prompt_to_change_data(prepared_sql, [lift_name, @prompt.data, reps_integer ])
 
-    if new_data_added then
+    # @db could be a proxy or just a regular old Database
+    if new_data_added and @db.respond_to?(:data_added_to) then
       @db.data_added_to('lifts')
     end
 
