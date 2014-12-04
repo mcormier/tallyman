@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 
+gem 'ppcurses', '=0.0.25'
 require 'ppcurses'
-require 'rubygems'
-require "sqlite3"
-require_relative '../lib/rb/count_action'
+
+require_relative '../lib/rb/tallyman'
 
 load '../config/config.properties'
 
