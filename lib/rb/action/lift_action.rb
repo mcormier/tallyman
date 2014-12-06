@@ -1,3 +1,32 @@
+class LiftAction_10
+
+  def initialize
+    @win = Window.new(9,60,0,0)
+    @win.keypad(true)
+    @win.box('|', '-')
+    @form = PPCurses::Form.new(@win)
+
+    reps = PPCurses::RadioButtonGroup.new('  Reps', %w(1RM 3RM 5RM) )
+    weight = PPCurses::InputElement.new(' Weight', 5)
+
+    @form.add(reps)
+    @form.add(weight)
+
+  end
+
+
+  def execute
+    @form.handle_input
+
+    @win.clear
+    @win.refresh
+  end
+
+
+end
+
+
+
 class LiftAction < PPCurses::InsertSQLDataAction
 
   def initialize(name_menu, rep_menu, db)
