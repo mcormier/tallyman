@@ -9,11 +9,11 @@ class MusicAction_10
     @win.box('|', '-')
     @form = PPCurses::Form.new(@win)
 
-    media = PPCurses::RadioButtonGroup.new('      Media Type', %w(CD Vinyl MP3) )
-    artist = PPCurses::InputElement.new('Artist', 20)
-    title = PPCurses::InputElement.new(' Album Title', 10)
-    price = PPCurses::InputElement.new(' Price', 10)
-    used = PPCurses::RadioButtonGroup.new('  ', %w(Used New) )
+    media = PPCurses::RadioButtonGroup.new(' Media Type', %w(CD Vinyl MP3) )
+    artist = PPCurses::InputElement.new('      Artist', 20)
+    title = PPCurses::InputElement.new(' Album Title', 20)
+    price = PPCurses::InputElement.new('       Price', 10)
+    used = PPCurses::RadioButtonGroup.new('           ', %w(Used New) )
 
     @form.add(media)
     @form.add(artist)
@@ -32,11 +32,6 @@ class MusicAction_10
 
   # TODO duplicate logic
   def after_actions
-    new_data_added = super
-
-    if new_data_added then
-      @db.data_added_to('music')
-    end
 
   end
 
