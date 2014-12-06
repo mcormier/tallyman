@@ -37,6 +37,7 @@ class MusicAction_10
 
 end
 
+# @deprecated.  Remove in Tallyman 1.4.
 class MusicAction < PPCurses::InsertSQLDataAction
 
   def initialize(db)

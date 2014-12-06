@@ -26,7 +26,7 @@ class LiftAction_10
 end
 
 
-
+# @deprecated.  Remove in Tallyman 1.4.
 class LiftAction < PPCurses::InsertSQLDataAction
 
   def initialize(name_menu, rep_menu, db)
