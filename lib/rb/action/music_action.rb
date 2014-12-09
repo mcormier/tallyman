@@ -4,7 +4,7 @@ class MusicAction_10
   def initialize(db)
     @db = db
 
-    @win = Window.new(9,60,0,0)
+    @win = PPCurses::Window.new(9,60,0,0)
     @win.keypad(true)
     @win.box('|', '-')
     @form = PPCurses::Form.new(@win)
@@ -12,7 +12,7 @@ class MusicAction_10
     media = PPCurses::RadioButtonGroup.new(' Media Type', %w(CD Vinyl MP3) )
     artist = PPCurses::InputElement.new('      Artist', 20)
     title = PPCurses::InputElement.new(' Album Title', 20)
-    price = PPCurses::InputElement.new('       Price', 10)
+    price = PPCurses::InputElement.new_integer_only('       Price', 10)
     used = PPCurses::RadioButtonGroup.new('           ', %w(Used New) )
 
     @form.add(media)
