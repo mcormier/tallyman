@@ -21,12 +21,47 @@ be run to extract the data manually, massage that data and generate a report man
 
 # Music Data #
 
-## CDS and Vinyl Bought ##
+## Purchases ##
 
-## Money spent on music in a year ##
+All forms of media
+
+    SELECT Count(*) FROM music
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31');
+
+Total number of records bought
+
+    SELECT Count(*) FROM music
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31')
+     AND media = 'Vinyl';
+
+Total number of CDs bought
+
+    SELECT Count(*) FROM music
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31')
+     AND media = 'CD';
+
+
+## Cost ##
+
+Amount spent in a year
 
     SELECT SUM(price) FROM music
      WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31');
+
+Amount spent in a year on Vinyl only
+
+    SELECT SUM(price) FROM music
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31')
+       AND media = 'Vinyl';
+
+Amount spent in a year on CDs only
+
+    SELECT SUM(price) FROM music
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31')
+       AND media = 'CD';
+
+## Used vs New Purchases ##
+
 
 
 # Books Data #
