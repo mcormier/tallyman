@@ -26,18 +26,18 @@ be run to extract the data manually, massage that data and generate a report man
 All forms of media
 
     SELECT Count(*) FROM music
-     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31');
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2014-12-31');
 
 Total number of records bought
 
     SELECT Count(*) FROM music
-     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31')
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2014-12-31')
      AND media = 'Vinyl';
 
 Total number of CDs bought
 
     SELECT Count(*) FROM music
-     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31')
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2014-12-31')
      AND media = 'CD';
 
 
@@ -46,18 +46,18 @@ Total number of CDs bought
 Amount spent in a year
 
     SELECT SUM(price) FROM music
-     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31');
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2014-12-31');
 
 Amount spent in a year on Vinyl only
 
     SELECT SUM(price) FROM music
-     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31')
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2014-12-31')
        AND media = 'Vinyl';
 
 Amount spent in a year on CDs only
 
     SELECT SUM(price) FROM music
-     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2015-12-31')
+     WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2014-12-31')
        AND media = 'CD';
 
 ## Used vs New Purchases ##
