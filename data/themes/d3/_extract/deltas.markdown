@@ -103,3 +103,9 @@ Number of books read in a year
     SELECT count(*)
       FROM books
      WHERE date(dateFinished) > date('2013-12-31') AND date(dateFinished) < date('2014-12-31');
+
+Number of pages read in a year
+
+   SELECT SUM(pages)
+      FROM books
+     WHERE date(dateFinished) > date('2013-12-31') AND date(dateFinished) < date('2014-12-31');
