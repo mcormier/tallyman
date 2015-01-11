@@ -62,6 +62,14 @@ Amount spent in a year on CDs only
 
 ## Used vs New Purchases ##
 
+All time
 
+    SELECT ( SELECT CASE WHEN used = 0 THEN 'New' ELSE 'Pre Loved' END ) as Condition
+          ,total
+      FROM (
+             SELECT used, count(*) as total
+               FROM music
+           GROUP BY used
+           );
 
 # Books Data #
