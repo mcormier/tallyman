@@ -72,4 +72,16 @@ All time
            GROUP BY used
            );
 
+For a specific year
+
+   SELECT ( SELECT CASE WHEN used = 0 THEN 'New' ELSE 'Pre Loved' END ) as Condition
+          ,total
+      FROM (
+             SELECT used, count(*) as total
+               FROM music
+              WHERE date(dayPurchased) > date('2013-12-31') and date(dayPurchased) < date('2014-12-31')
+           GROUP BY used
+           );
+
+
 # Books Data #
