@@ -83,5 +83,17 @@ For a specific year
            GROUP BY used
            );
 
+For a specific year and a specific media format
+
+  SELECT ( SELECT CASE WHEN used = 0 THEN 'New' ELSE 'Pre Loved' END ) as Condition
+          ,total
+      FROM (
+             SELECT used, count(*) as total
+               FROM music
+              WHERE date(dayPurchased) > date('2013-12-31') AND date(dayPurchased) < date('2014-12-31')
+                AND media = 'Vinyl'
+           GROUP BY used
+           );
+
 
 # Books Data #
