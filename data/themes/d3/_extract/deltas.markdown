@@ -97,3 +97,9 @@ For a specific year and a specific media format
 
 
 # Books Data #
+
+Number of books read in a year
+
+    SELECT count(*)
+      FROM books
+     WHERE date(dateFinished) > date('2013-12-31') AND date(dateFinished) < date('2014-12-31');
