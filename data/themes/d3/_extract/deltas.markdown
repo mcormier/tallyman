@@ -19,6 +19,15 @@ be run to extract the data manually, massage that data and generate a report man
        and date(day) > date('2013-12-31') and date(day) < date('2015-12-31');
 
 
+## Print all Maximums achieved in a year ##
+
+   SELECT name, reps, MAX(WEIGHT)
+               FROM lifts
+              WHERE date(day) > date('2013-12-31') AND date(day) < date('2014-12-31')
+           GROUP BY name, reps;
+
+
+
 # Music Data #
 
 ## Purchases ##
