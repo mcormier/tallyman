@@ -12,13 +12,6 @@ be run to extract the data manually, massage that data and generate a report man
     SELECT MAX(weight), day  FROM lifts WHERE name='Deadlift' and reps=1;
 
 
-## Finding a Maximum lift value for a specific year ##
-
-    SELECT MAX(weight), day  FROM lifts
-     WHERE name='Deadlift' and reps=1
-       and date(day) > date('2013-12-31') and date(day) < date('2015-12-31');
-
-
 ## Print all Maximums achieved in a year ##
 
    SELECT name, reps, MAX(WEIGHT)
