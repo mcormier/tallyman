@@ -1,0 +1,2 @@
+class GasDomain < Domain
+end

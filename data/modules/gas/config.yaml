@@ -1,0 +1,6 @@
+--- !ruby/object:GasDomain
+module_name: "Gas"
+table_name: "gasoline"
+table_columns: "(unit_price smallint, cost smallint, purchase_date date default current_date )"
+main_menu_label: "Add Gas Tracker"
+description: "A module for tracking automobile gasoline expenditures "
