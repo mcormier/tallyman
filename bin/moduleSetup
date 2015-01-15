@@ -1,5 +1,6 @@
 #!/usr/bin/env ruby
 
+gem 'ppcurses', '=0.1.0'
 require 'ppcurses'
 
 
@@ -81,9 +82,10 @@ end
 screen = PPCurses::Screen.new
 screen.run { display_modules }
 
-if @data_changed
+# TODO -- ???
+#if @data_changed
   @config_loader.save(@config)
-end
+#end
 
 
 puts 'TODO -- push this as a config option in main interface.'
