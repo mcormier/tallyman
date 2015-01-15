@@ -52,6 +52,7 @@ require_relative 'domain/music_domain'
 require_relative 'domain/misc_domain'
 require_relative 'domain/value_domain'
 require_relative 'domain/distance_domain'
+require_relative 'domain/gas_domain'
 
 module Tallyman
   require_relative 'config/config_loader'
