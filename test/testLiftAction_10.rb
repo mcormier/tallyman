@@ -6,14 +6,12 @@ require 'ppcurses'
 require_relative '../lib/rb/tallyman'
 
 
-screen = PPCurses::Screen.new
-
-screen.run {
-  music_action = LiftAction_10.new
-  music_action.execute
-}
 
 
+@app = PPCurses::Application.new
 
+music_action = LiftAction_10.new
 
+@app.content_view = music_action.form
 
+@app.launch
