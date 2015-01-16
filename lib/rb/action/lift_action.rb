@@ -1,10 +1,12 @@
 class LiftAction_10
 
+  attr_accessor :form
+
   def initialize
     @win = PPCurses::Window.new(9,60,0,0)
     @win.keypad(true)
     @win.box('|', '-')
-    @form = PPCurses::Form.new(@win)
+    @form = PPCurses::Form.new
 
     reps = PPCurses::RadioButtonGroup.new('  Reps', %w(1RM 3RM 5RM) )
     weight = PPCurses::InputElement.new_integer_only(' Weight', 5)
@@ -12,14 +14,6 @@ class LiftAction_10
     @form.add(reps)
     @form.add(weight)
 
-  end
-
-
-  def execute
-    @form.handle_input
-
-    @win.clear
-    @win.refresh
   end
 
 
