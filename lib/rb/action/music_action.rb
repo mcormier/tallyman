@@ -1,13 +1,11 @@
 class MusicAction_10
 
+  attr_accessor :form
 
   def initialize(db)
     @db = db
 
-    @win = PPCurses::Window.new(9,60,0,0)
-    @win.keypad(true)
-    @win.box('|', '-')
-    @form = PPCurses::Form.new(@win)
+    @form = PPCurses::Form.new
 
     media = PPCurses::RadioButtonGroup.new(' Media Type', %w(CD Vinyl MP3) )
     artist = PPCurses::InputElement.new('      Artist', 20)
@@ -23,12 +21,6 @@ class MusicAction_10
 
   end
 
-  def execute
-    @form.handle_input
-
-    @win.clear
-    @win.refresh
-  end
 
   # TODO duplicate logic
   def after_actions
