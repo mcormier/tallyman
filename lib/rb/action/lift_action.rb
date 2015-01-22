@@ -3,9 +3,6 @@ class LiftAction_10
   attr_accessor :form
 
   def initialize
-    @win = PPCurses::Window.new(9,60,0,0)
-    @win.keypad(true)
-    @win.box('|', '-')
     @form = PPCurses::Form.new
 
     reps = PPCurses::RadioButtonGroup.new('  Reps', %w(1RM 3RM 5RM) )
