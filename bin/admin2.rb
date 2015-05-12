@@ -1,7 +1,13 @@
 #!/usr/bin/env ruby
 
 #noinspection RubyResolve
-require 'sqlite3'
+begin
+  require 'sqlite3'
+rescue LoadError
+  puts 'Missing sqlite3 gem'
+  puts 'Try: gem install sqlite3'
+  exit
+end
 
 gem 'ppcurses', '=0.1.0'
 require 'ppcurses'
@@ -65,20 +71,30 @@ def determine_exit_code(db)
 end
 
 
-db = DatabaseProxy.open( @dbName )
+#db = DatabaseProxy.open( @dbName )
 
-begin
-
-  screen = PPCurses::Screen.new
-  screen.run { get_data(db) }
-rescue SystemExit, Interrupt
+#begin
+#
+#  screen = PPCurses::Screen.new
+#  screen.run { get_data(db) }
+#rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
   # a stack trace when CTRL-C is used
-ensure
-  db.close if db
-end
+#ensure
+#  db.close if db
+#end
 
-generator = DeltaGenerator.new(db.modified_table_set)
-generator.generate(script_location + '/../data/delta.xml')
+#generator = DeltaGenerator.new(db.modified_table_set)
+#generator.generate(script_location + '/../data/delta.xml')
 
-exit determine_exit_code(db)
+#exit determine_exit_code(db)
+
+@app = PPCurses::Application.new
+@form = PPCurses::Form.new
+
+@app.content_view = @form
+
+#@app.launch
+
+puts "Status of domains:"
+@domain_manager.print_domains(@config)
