@@ -18,5 +18,22 @@ class DomainManager
 
   end
 
+  # Convenience method that prints all the loaded domains
+  # to standard output. If a configuration is passed int
+  def print_domains( config=nil )
+      
+    @domains.each do |domain|
+      module_name = domain.module_name   
+      
+      if config!= nil and config.domain_enabled?(module_name)
+        puts "✓ #{module_name}"
+      else
+        puts "  #{module_name}"
+      end
+    end
+      
+      
+  end
+
 
 end
