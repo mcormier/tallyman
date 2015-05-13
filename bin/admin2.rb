@@ -1,18 +1,7 @@
 #!/usr/bin/env ruby
 
-#noinspection RubyResolve
-begin
-  require 'sqlite3'
-rescue LoadError
-  puts 'Missing sqlite3 gem'
-  puts 'Try: gem install sqlite3'
-  exit
-end
-
-gem 'ppcurses', '=0.1.0'
+gem 'ppcurses', '=0.1.1'
 require 'ppcurses'
-
-require 'rubygems'
 
 require_relative '../lib/rb/tallyman'
 
@@ -52,22 +41,6 @@ def get_data(db)
 
   end
 
-  main_menu = PPCurses::Menu.new( main_menu_labels, actions )
-
-  main_menu.show
-  main_menu.menu_selection
-
-  main_menu.close
-end
-
-# adminInterface return values:
-# ----------------------------
-# 0 - interface ran but nothing inserted
-# 1 - an error occurred running the interface
-# 2 - 1 or more insert statements to the database occurred
-#
-def determine_exit_code(db)
-  if db.insert_count > 0 then 2 else 0 end
 end
 
 
@@ -87,14 +60,21 @@ end
 #generator = DeltaGenerator.new(db.modified_table_set)
 #generator.generate(script_location + '/../data/delta.xml')
 
-#exit determine_exit_code(db)
+
 
 @app = PPCurses::Application.new
-@form = PPCurses::Form.new
 
-@app.content_view = @form
+# Domains are a set.  Create a sorted array so values
+# appear in alphabetical order.
+domains = @config.enabled_domains.to_a().sort
+data_source = PPCurses::SingleColumnDataSource.new( domains )
+table_view = PPCurses::TableView.new
+table_view.data_source=data_source
 
-#@app.launch
+@app.content_view = table_view
 
-puts "Status of domains:"
-@domain_manager.print_domains(@config)
+@app.launch
+
+# Displays all domains, enabled or disabled.
+#puts "Status of domains:"
+#@domain_manager.print_domains(@config)
