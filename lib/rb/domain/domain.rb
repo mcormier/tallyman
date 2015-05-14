@@ -27,7 +27,7 @@ class Domain
     'create table ' + table_name + ' ' + table_columns + ';'
   end
 
-  def insert_statement( values )
+  def insert_statement
     "insert into #{table_name} #{table_columns} values  #{insert_values}" 
   end
 
