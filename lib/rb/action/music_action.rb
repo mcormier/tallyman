@@ -7,11 +7,11 @@ class MusicAction_10
 
     @form = PPCurses::Form.new
 
-    media = PPCurses::RadioButtonGroup.new(' Media Type', %w(CD Vinyl MP3) )
+    media =  PPCurses::RadioButtonGroup.new(' Media Type', %w(CD Vinyl MP3) )
     artist = PPCurses::InputElement.new('      Artist', 20)
-    title = PPCurses::InputElement.new(' Album Title', 20)
-    price = PPCurses::InputElement.new_integer_only('       Price', 10)
-    used = PPCurses::RadioButtonGroup.new('           ', %w(Used New) )
+    title =  PPCurses::InputElement.new(' Album Title', 20)
+    price =  PPCurses::InputElement.new_integer_only('       Price', 10)
+    used =   PPCurses::RadioButtonGroup.new('  Condition', %w(Used New) )
 
     buttons = PPCurses::ButtonPair.new('Submit', 'Cancel')
     
@@ -21,6 +21,8 @@ class MusicAction_10
     @form.add(price)
     @form.add(used)
     @form.add(buttons)
+    
+    @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
     
   end
 
