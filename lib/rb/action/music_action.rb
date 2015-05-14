@@ -13,12 +13,15 @@ class MusicAction_10
     price = PPCurses::InputElement.new_integer_only('       Price', 10)
     used = PPCurses::RadioButtonGroup.new('           ', %w(Used New) )
 
+    buttons = PPCurses::ButtonPair.new('Submit', 'Cancel')
+    
     @form.add(media)
     @form.add(artist)
     @form.add(title)
     @form.add(price)
     @form.add(used)
-
+    @form.add(buttons)
+    
   end
 
 
