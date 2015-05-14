@@ -18,6 +18,37 @@ class DomainManager
 
   end
 
+
+
+  def get_menu_actions(config, db)
+    
+    actions = []
+    
+      @domains.each do |domain|
+    
+        if config.domain_enabled?(domain.module_name)
+    
+          # Create the table if it is missing.  Must be the first time the
+          # domain was used.
+          unless db.table_exists?(domain.table_name)
+            prep_statement = db.prepare(domain.create_table_statement)
+            prep_statement.execute
+            prep_statement.close
+          end
+          
+          notary = PPCurses::NotificationCentre.default_centre
+          action = domain.create_action(db, config)
+          
+          actions.push( action )
+     
+    
+        end
+    
+      end
+    
+      actions
+  end
+
   # Convenience method that prints all the loaded domains
   # to standard output. If a configuration is passed int
   def print_domains( config=nil )

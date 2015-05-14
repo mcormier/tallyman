@@ -44,36 +44,11 @@ def form_submitted
 end
 
 # ----------------------------------------------------------------------
-def get_menu_actions(db)
-
-  actions = []
-
-  @domain_manager.domains.each do |domain|
-
-    if @config.domain_enabled?(domain.module_name)
-
-      # Create the table if it is missing.  Must be the first time the
-      # domain was used.
-      unless db.table_exists?(domain.table_name)
-        prep_statement = db.prepare(domain.create_table_statement)
-        prep_statement.execute
-        prep_statement.close
-      end
-      
-      notary = PPCurses::NotificationCentre.default_centre
-      action = domain.create_action(db, @config)
-      action.btn_submit.action = method(:form_submitted)
-      action.btn_cancel.action = method(:form_cancelled)
-      
-      actions.push( action )
- 
-
-    end
-
+def bind_actions( actions )
+  actions.each do |action|
+    action.btn_submit.action = method(:form_submitted)
+    action.btn_cancel.action = method(:form_cancelled)
   end
-
-  actions
-
 end
 
 # ----------------------------------------------------------------------
@@ -137,7 +112,8 @@ end
 
 
 begin
-  @actions = get_menu_actions(@db)
+  @actions = @domain_manager.get_menu_actions(@config, @db)
+  bind_actions( @actions )
   @app.launch
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
