@@ -16,7 +16,7 @@ load to_load
 @config = @config_loader.load
 
 
-
+# ----------------------------------------------------------------------
 def get_menu_actions(db)
 
   actions = []
@@ -42,11 +42,14 @@ def get_menu_actions(db)
 
 end
 
+# ----------------------------------------------------------------------
+#  Moving from
+#  TableView --> Input form
+#
 def item_chosen ( notification )
 
-  if notification.object.selected_row == 0
-    @app.content_view = @actions[0].form
-  end
+  sel = notification.object.selected_row 
+  @app.content_view = @actions[sel].form
   
 end
 
