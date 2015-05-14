@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-gem 'ppcurses', '=0.1.1'
+gem 'ppcurses', '=0.1.2'
 require 'ppcurses'
 
 require 'getoptlong'
@@ -39,7 +39,6 @@ def form_submitted
   sql = domain.insert_statement  
   prep_statement = @db.prepare(sql)
   
-  # TODO get array of values from action.
   data = action.data_array
   prep_statement.bind_params(data)
   prep_statement.execute
