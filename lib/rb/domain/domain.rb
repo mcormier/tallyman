@@ -8,6 +8,7 @@ class Domain
   attr_accessor :module_name
   attr_accessor :table_name
   attr_accessor :table_columns
+  attr_accessor :insert_values
   attr_accessor :main_menu_label
 
   def initialize
@@ -24,6 +25,10 @@ class Domain
 
   def create_table_statement
     'create table ' + table_name + ' ' + table_columns + ';'
+  end
+
+  def insert_statement( values )
+    "insert into #{table_name} #{table_columns} values  #{insert_values}" 
   end
 
 end

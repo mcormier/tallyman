@@ -26,6 +26,20 @@ end
 
 # ----------------------------------------------------------------------
 def form_submitted
+
+   #TODO -- insert into the database.
+  
+  form = @app.content_view
+   # Get values from form and input into domain
+   # to create insert statement
+   # send insert to database.
+  
+  # prep_statement = @db.prepare(@sql)
+  # prep_statement.bind_params(data_array)
+  # prep_statement.execute
+  # prep_statement.close
+  
+  
   @app.content_view = @table_view
 end
 
@@ -113,21 +127,23 @@ data_source = PPCurses::SingleColumnDataSource.new( domains )
 notary = PPCurses::NotificationCentre.default_centre
 notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
 
+
 if @test_mode then
-  puts "here"
-  db = DatabaseProxy.open( script_location + '/../test.db' )
+  @db = DatabaseProxy.open( script_location + '/../test.db' )
 else
-  db = DatabaseProxy.open( @dbName )
+  @db = DatabaseProxy.open( @dbName )
 end
 
+
+
 begin
-  @actions = get_menu_actions(db)
+  @actions = get_menu_actions(@db)
   @app.launch
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
   # a stack trace when CTRL-C is used
 ensure
-  db.close if db
+  @db.close if @db
 end
 
 # Displays all domains, enabled or disabled.
