@@ -17,9 +17,8 @@ load to_load
 
 
 
-def get_data(db)
+def get_menu_actions(db)
 
-  main_menu_labels = []
   actions = []
 
   @domain_manager.domains.each do |domain|
@@ -33,32 +32,23 @@ def get_data(db)
         prep_statement.execute
         prep_statement.close
       end
-
-      main_menu_labels.push( domain.main_menu_label )
       actions.push( domain.create_action(db, @config) )
 
     end
 
   end
 
+  actions
+
 end
 
-
-#db = DatabaseProxy.open( @dbName )
-
-#begin
-#
-#  screen = PPCurses::Screen.new
-#  screen.run { get_data(db) }
-#rescue SystemExit, Interrupt
-  # Empty Catch block so ruby doesn't puke out
-  # a stack trace when CTRL-C is used
-#ensure
-#  db.close if db
-#end
-
-#generator = DeltaGenerator.new(db.modified_table_set)
-#generator.generate(script_location + '/../data/delta.xml')
+def item_chosen ( notification )
+    
+  if notification.object.selected_row == 0
+    @app.content_view = @music_form
+  end
+  
+end
 
 
 
@@ -73,7 +63,19 @@ table_view.data_source=data_source
 
 @app.content_view = table_view
 
-@app.launch
+notary = PPCurses::NotificationCentre.default_centre
+notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
+
+db = DatabaseProxy.open( @dbName )
+
+begin
+  @app.launch
+rescue SystemExit, Interrupt
+  # Empty Catch block so ruby doesn't puke out
+  # a stack trace when CTRL-C is used
+ensure
+  db.close if db
+end
 
 # Displays all domains, enabled or disabled.
 #puts "Status of domains:"
