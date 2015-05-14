@@ -3,6 +3,8 @@
 gem 'ppcurses', '=0.1.1'
 require 'ppcurses'
 
+require 'getoptlong'
+
 require_relative '../lib/rb/tallyman'
 
 script_location = File.expand_path File.dirname(__FILE__)
@@ -14,6 +16,8 @@ load to_load
 
 @config_loader = Tallyman::ConfigLoader.new
 @config = @config_loader.load
+
+@test_mode = false
 
 # ----------------------------------------------------------------------
 def form_cancelled
@@ -69,6 +73,30 @@ def item_chosen ( notification )
   
 end
 
+# ----------------------------------------------------------------------
+
+def usage
+  warn "usage: #{__FILE__} (option)"
+  warn "   -h, --help  : print this help message"
+  warn "   -t, --test  : run in test mode "
+  exit 1
+end
+
+# ----------------------------------------------------------------------
+ 
+begin
+  GetoptLong.new(['-h', '--help', GetoptLong::NO_ARGUMENT],
+                 ['-t', '--test', GetoptLong::NO_ARGUMENT]).
+  each do |opt, arg|
+    case opt
+      when '-t'; @test_mode = true
+      when '-h'; usage
+    end
+  end
+    
+rescue
+  usage
+end
 
 
 @app = PPCurses::Application.new
@@ -85,7 +113,12 @@ data_source = PPCurses::SingleColumnDataSource.new( domains )
 notary = PPCurses::NotificationCentre.default_centre
 notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
 
-db = DatabaseProxy.open( @dbName )
+if @test_mode then
+  puts "here"
+  db = DatabaseProxy.open( script_location + '/../test.db' )
+else
+  db = DatabaseProxy.open( @dbName )
+end
 
 begin
   @actions = get_menu_actions(db)
