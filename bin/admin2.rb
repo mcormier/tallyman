@@ -15,6 +15,15 @@ load to_load
 @config_loader = Tallyman::ConfigLoader.new
 @config = @config_loader.load
 
+# ----------------------------------------------------------------------
+def form_cancelled
+  @app.content_view = @table_view
+end
+
+# ----------------------------------------------------------------------
+def form_submitted
+  @app.content_view = @table_view
+end
 
 # ----------------------------------------------------------------------
 def get_menu_actions(db)
@@ -32,7 +41,14 @@ def get_menu_actions(db)
         prep_statement.execute
         prep_statement.close
       end
-      actions.push( domain.create_action(db, @config) )
+      
+      notary = PPCurses::NotificationCentre.default_centre
+      action = domain.create_action(db, @config)
+      action.btn_submit.action = method(:form_submitted)
+      action.btn_cancel.action = method(:form_cancelled)
+      
+      actions.push( action )
+ 
 
     end
 
