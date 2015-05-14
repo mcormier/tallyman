@@ -11,8 +11,8 @@ class MusicAction_10
     @media =  PPCurses::RadioButtonGroup.new(' Media Type', %w(CD Vinyl MP3) )
     @artist = PPCurses::InputElement.new('      Artist', 20)
     @title =  PPCurses::InputElement.new(' Album Title', 20)
-    price =  PPCurses::InputElement.new_integer_only('       Price', 10)
-    used =   PPCurses::RadioButtonGroup.new('  Condition', %w(Used New) )
+    @price =  PPCurses::InputElement.new_integer_only('       Price', 10)
+    @used =   PPCurses::RadioButtonGroup.new('  Condition', %w(Used New) )
     date_picker = PPCurses::DatePicker.new( '        Date')
 
     buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
@@ -22,8 +22,8 @@ class MusicAction_10
     @form.add(@media)
     @form.add(@artist)
     @form.add(@title)
-    @form.add(price)
-    @form.add(used)
+    @form.add(@price)
+    @form.add(@used)
     @form.add(date_picker)
     @form.add(buttons)
     
@@ -34,6 +34,7 @@ class MusicAction_10
 
   def data_array
     data = []
+    
     case @media.current_option
       when 0
         data.push('CD')
@@ -45,7 +46,15 @@ class MusicAction_10
   
     data.push( @artist.value )
     data.push( @title.value )
-   
+    data.push( @price.value )
+    
+    case @used.current_option
+      when 0
+        data.push(1)
+      when 1 
+        data.push(0)
+    end
+    
     data
   end
 
