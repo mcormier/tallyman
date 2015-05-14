@@ -43,9 +43,9 @@ def get_menu_actions(db)
 end
 
 def item_chosen ( notification )
-    
+
   if notification.object.selected_row == 0
-    @app.content_view = @music_form
+    @app.content_view = @actions[0].form
   end
   
 end
@@ -58,10 +58,10 @@ end
 # appear in alphabetical order.
 domains = @config.enabled_domains.to_a().sort
 data_source = PPCurses::SingleColumnDataSource.new( domains )
-table_view = PPCurses::TableView.new
-table_view.data_source=data_source
+@table_view = PPCurses::TableView.new
+@table_view.data_source=data_source
 
-@app.content_view = table_view
+@app.content_view = @table_view
 
 notary = PPCurses::NotificationCentre.default_centre
 notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
@@ -69,6 +69,7 @@ notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotifica
 db = DatabaseProxy.open( @dbName )
 
 begin
+  @actions = get_menu_actions(db)
   @app.launch
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
