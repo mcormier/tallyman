@@ -1,6 +1,7 @@
 class MusicAction_10
 
   attr_accessor :form
+  attr_accessor :btn_submit, :btn_cancel
 
   def initialize(db)
     @db = db
@@ -13,7 +14,9 @@ class MusicAction_10
     price =  PPCurses::InputElement.new_integer_only('       Price', 10)
     used =   PPCurses::RadioButtonGroup.new('  Condition', %w(Used New) )
 
-    buttons = PPCurses::ButtonPair.new('Submit', 'Cancel')
+    buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
+    @btn_cancel = buttons.button1
+    @btn_submit = buttons.button2
     
     @form.add(media)
     @form.add(artist)
