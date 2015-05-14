@@ -39,9 +39,11 @@ def form_submitted
   sql = domain.insert_statement  
   prep_statement = @db.prepare(sql)
   
-  # prep_statement.bind_params(data_array)
-  # prep_statement.execute
-  # prep_statement.close
+  # TODO get array of values from action.
+  data = action.data_array
+  prep_statement.bind_params(data)
+  prep_statement.execute
+  prep_statement.close
   
   
   @app.content_view = @table_view
