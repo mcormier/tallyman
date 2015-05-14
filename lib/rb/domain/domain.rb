@@ -8,7 +8,7 @@ class Domain
   attr_accessor :module_name
   attr_accessor :table_name
   attr_accessor :table_columns
-  attr_accessor :insert_values
+  attr_accessor :insert_tail
   attr_accessor :main_menu_label
 
   def initialize
@@ -28,7 +28,7 @@ class Domain
   end
 
   def insert_statement
-    "insert into #{table_name} #{table_columns} values  #{insert_values}" 
+    "insert into #{table_name} #{insert_tail}" 
   end
 
 end

@@ -33,8 +33,12 @@ def form_submitted
    # Get values from form and input into domain
    # to create insert statement
    # send insert to database.
+  domain = @enabled_domains[@sel_index]
+  action = @actions[@sel_index]
   
-  # prep_statement = @db.prepare(@sql)
+  sql = domain.insert_statement  
+  prep_statement = @db.prepare(sql)
+  
   # prep_statement.bind_params(data_array)
   # prep_statement.execute
   # prep_statement.close
