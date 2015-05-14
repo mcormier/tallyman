@@ -1,6 +1,7 @@
 class DomainManager
 
   attr_reader :domains
+  
 
   def initialize(domain_root)
     @domain_root = domain_root
@@ -20,9 +21,10 @@ class DomainManager
 
 
 
-  def get_menu_actions(config, db)
+  def enabled_domains_actions(config, db)
     
     actions = []
+    enabled_domains = []
     
       @domains.each do |domain|
     
@@ -40,13 +42,13 @@ class DomainManager
           action = domain.create_action(db, config)
           
           actions.push( action )
-     
+          enabled_domains.push( domain) 
     
         end
     
       end
     
-      actions
+      return enabled_domains, actions 
   end
 
   # Convenience method that prints all the loaded domains

@@ -57,8 +57,13 @@ end
 #
 def item_chosen ( notification )
 
-  sel = notification.object.selected_row 
-  @app.content_view = @actions[sel].form
+  @sel_index = notification.object.selected_row 
+
+  # TODO -- ask the domain manager for the appropriate action
+
+  @app.content_view = @actions[@sel_index].form
+  
+  
   
 end
 
@@ -92,8 +97,8 @@ end
 
 # Domains are a set.  Create a sorted array so values
 # appear in alphabetical order.
-domains = @config.enabled_domains.to_a().sort
-data_source = PPCurses::SingleColumnDataSource.new( domains )
+domain_labels = @config.enabled_domains.to_a().sort
+data_source = PPCurses::SingleColumnDataSource.new( domain_labels )
 @table_view = PPCurses::TableView.new
 @table_view.data_source=data_source
 
@@ -112,7 +117,7 @@ end
 
 
 begin
-  @actions = @domain_manager.get_menu_actions(@config, @db)
+  @enabled_domains, @actions= @domain_manager.enabled_domains_actions(@config, @db)
   bind_actions( @actions )
   @app.launch
 rescue SystemExit, Interrupt
