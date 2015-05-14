@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-gem 'ppcurses', '=0.1.0'
+gem 'ppcurses', '=0.1.1'
 require 'ppcurses'
 
 require_relative '../lib/rb/tallyman'
