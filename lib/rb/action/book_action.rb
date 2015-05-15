@@ -33,11 +33,22 @@ class ReadingAction
  def data_array
     data = []
     
-    data.push( @title.value)
-    # author
+    data.push( @title.value )
+    data.push( @author.value )
     # digital
-    # pages
-    # datefinished
+    case @format.current_option
+      when 0
+        data.push(1)
+      when 1 
+        data.push(0)
+    end
+        
+    data.push(@pages)
+    
+    date = @finished_date.date
+    data.push(date.strftime('%Y-%m-%d') )
+    
+    
     data
     
  end
