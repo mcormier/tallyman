@@ -7,12 +7,12 @@ class MusicAction_10
 
     @form = PPCurses::Form.new
 
-    @media =  PPCurses::RadioButtonGroup.new(' Media Type', %w(CD Vinyl MP3) )
-    @artist = PPCurses::InputElement.new('      Artist', 20)
-    @title =  PPCurses::InputElement.new(' Album Title', 20)
-    @price =  PPCurses::InputElement.new_integer_only('       Price', 10)
-    @used =   PPCurses::RadioButtonGroup.new('  Condition', %w(Used New) )
-    @date_picker = PPCurses::DatePicker.new( '        Date')
+    @media =  PPCurses::RadioButtonGroup.new('  Media Type', %w(CD Vinyl MP3) )
+    @artist = PPCurses::InputElement.new('       Artist', 20)
+    @title =  PPCurses::InputElement.new('  Album Title', 20)
+    @price =  PPCurses::InputElement.new_integer_only('        Price', 10)
+    @used =   PPCurses::RadioButtonGroup.new('   Condition', %w(Used New) )
+    @purchase_date = PPCurses::DatePicker.new( 'Purchase Date')
 
     buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
     @btn_cancel = buttons.button1
@@ -23,7 +23,7 @@ class MusicAction_10
     @form.add(@title)
     @form.add(@price)
     @form.add(@used)
-    @form.add(@date_picker)
+    @form.add(@purchase_date)
     @form.add(buttons)
     
     @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
@@ -57,7 +57,7 @@ class MusicAction_10
         data.push(0)
     end
     
-    date = @date_picker.date
+    date = @purchase_date.date
     data.push(date.strftime('%Y-%m-%d') )
      
     data
