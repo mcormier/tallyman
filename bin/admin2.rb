@@ -48,6 +48,10 @@ def form_submitted
   action.clear
 end
 
+
+
+
+
 # ----------------------------------------------------------------------
 def bind_actions( actions )
   actions.each do |action|
@@ -56,6 +60,10 @@ def bind_actions( actions )
   end
 end
 
+
+
+
+
 # ----------------------------------------------------------------------
 #  Moving from
 #  TableView --> Input form
@@ -63,14 +71,12 @@ end
 def item_chosen ( notification )
 
   @sel_index = notification.object.selected_row 
-
-  # TODO -- ask the domain manager for the appropriate action
-
   @app.content_view = @actions[@sel_index].form
-  
-  
-  
+ 
 end
+
+
+
 
 # ----------------------------------------------------------------------
 
@@ -81,8 +87,10 @@ def usage
   exit 1
 end
 
+
+
 # ----------------------------------------------------------------------
- 
+# ----------------  Process arguments 
 begin
   GetoptLong.new(['-h', '--help', GetoptLong::NO_ARGUMENT],
                  ['-t', '--test', GetoptLong::NO_ARGUMENT]).
@@ -100,18 +108,6 @@ end
 
 @app = PPCurses::Application.new
 
-# Domains are a set.  Create a sorted array so values
-# appear in alphabetical order.
-domain_labels = @config.enabled_domains.to_a().sort
-data_source = PPCurses::SingleColumnDataSource.new( domain_labels )
-@table_view = PPCurses::TableView.new
-@table_view.data_source=data_source
-
-@app.content_view = @table_view
-
-notary = PPCurses::NotificationCentre.default_centre
-notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
-
 
 if @test_mode then
   @db = DatabaseProxy.open( script_location + '/../test.db' )
@@ -122,8 +118,25 @@ end
 
 
 begin
-  @enabled_domains, @actions= @domain_manager.enabled_domains_actions(@config, @db)
+  @enabled_domains, @actions = @domain_manager.enabled_domains_actions(@config, @db)
   bind_actions( @actions )
+  
+  domain_labels = []
+  @enabled_domains.each do |domain|
+    domain_labels.push( domain.main_menu_label)
+  end
+  
+  data_source = PPCurses::SingleColumnDataSource.new( domain_labels )
+  @table_view = PPCurses::TableView.new
+  @table_view.data_source=data_source
+
+  @app.content_view = @table_view
+
+  notary = PPCurses::NotificationCentre.default_centre
+  notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
+
+  
+  
   @app.launch
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
