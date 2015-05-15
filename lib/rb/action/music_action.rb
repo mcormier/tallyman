@@ -3,8 +3,7 @@ class MusicAction_10
   attr_accessor :form
   attr_accessor :btn_submit, :btn_cancel
 
-  def initialize(db)
-    @db = db
+  def initialize
 
     @form = PPCurses::Form.new
 

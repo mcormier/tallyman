@@ -1,7 +1,7 @@
 class ReadingDomain < Domain
 
   def create_action( db, config )
-    BookAction.new(db)
+    ReadingAction.new
   end
 
 end
