@@ -2,6 +2,6 @@
 module_name: "Reading"
 table_name: "books"
 table_columns: "(title varchar(256), author varchar(256),  digital boolean default 0,  pages smallint, dateFinished date default current_date )"
-insert_tail: "(title, author, digital, pages, dateFinished) values (?, ?, ?, ?, ?, ?)"
+insert_tail: "(title, author, digital, pages, dateFinished) values (?, ?, ?, ?, ? )"
 main_menu_label: "Add Book"
 description: "Log what you read"
