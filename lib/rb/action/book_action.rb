@@ -43,7 +43,7 @@ class ReadingAction
         data.push(0)
     end
         
-    data.push(@pages)
+    data.push( @pages.value )
     
     date = @finished_date.date
     data.push(date.strftime('%Y-%m-%d') )
