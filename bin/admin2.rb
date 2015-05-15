@@ -49,9 +49,21 @@ def form_submitted
     prep_statement.bind_params(data)
     prep_statement.execute
     prep_statement.close
-  rescue SQLite3::Exception => e
-    error_msg = e.message
-    raise e
+  rescue Exception => e
+    @logger.error(e.message)    
+    #
+    # Raise the exception so that execution stops immediately.
+    # A not too subtle signal to check the logs cause the SQL
+    # has a bug in it.
+    #
+    raise e    
+    # Ideally the error could be displayed to the user.  
+    #
+    # On exit, the following message may also be displayed as
+    # closing the database will not be successful if the database is 
+    # locked.  So if a BusyException occurs, take a look at the log file.
+    # --------------------------------------------------------------------------------------------------------
+    # in `close': unable to close due to unfinalized statements or unfinished backups (SQLite3::BusyException)
   end
   
   @app.content_view = @table_view
@@ -156,16 +168,7 @@ rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
   # a stack trace when CTRL-C is used
 ensure
-  if @error_msg != nil then
-    puts @error_msg
-  end
   @db.close if @db
   @logger.debug("Database closed successfully ")
   @logger.debug("    -----------------     ")
 end
-
-
-
-# TODO -- add verbose option for greater error reporting
-# TODO -- add intentional error on bind_param, missing value
-# TODO -- make sure error is reported correctly, etc.
