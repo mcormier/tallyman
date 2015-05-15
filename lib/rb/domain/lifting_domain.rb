@@ -11,18 +11,18 @@ class LiftingDomain < Domain
   end
 
   def create_action( db, config )
+    LiftAction_10.new
 
-    load_config(config)
+    #load_config(config)
 
-    # TODO -- Push 1/3/5 RM selection inside menu
-    lift_rep_menu = PPCurses::RadioMenu.new( %w(1RM 3RM 5RM), nil )
-    lift_type_menu = PPCurses::Menu.new( enabled_lifts_list , nil )
-    lifts_menu = PPCurses::CompositeMenu.new( lift_type_menu, lift_rep_menu )
-    add_lift_action = LiftAction.new( lift_type_menu, lift_rep_menu, db )
+    #lift_rep_menu = PPCurses::RadioMenu.new( %w(1RM 3RM 5RM) )
+    #lift_type_menu = PPCurses::Menu.new( enabled_lifts_list , nil )
+    #lifts_menu = PPCurses::CompositeMenu.new( lift_type_menu, lift_rep_menu )
+    #add_lift_action = LiftAction.new( lift_type_menu, lift_rep_menu, db )
 
-    lift_type_menu.set_global_action(add_lift_action)
+    #lift_type_menu.set_global_action(add_lift_action)
 
-    PPCurses::ShowMenuAction.new(lifts_menu)
+    #PPCurses::ShowMenuAction.new(lifts_menu)
   end
 
 
