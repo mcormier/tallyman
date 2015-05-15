@@ -21,16 +21,13 @@ load to_load
 
 # ----------------------------------------------------------------------
 def form_cancelled
-  form = @app.content_view
+  action = @actions[@sel_index]
   @app.content_view = @table_view
-  form.clear
+  action.clear
 end
 
 # ----------------------------------------------------------------------
-def form_submitted
-
-   #TODO -- insert into the database.
-  
+def form_submitted  
   form = @app.content_view
    # Get values from form and input into domain
    # to create insert statement
@@ -48,7 +45,7 @@ def form_submitted
   
   
   @app.content_view = @table_view
-  form.clear
+  action.clear
 end
 
 # ----------------------------------------------------------------------
