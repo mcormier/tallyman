@@ -3,6 +3,7 @@
 gem 'ppcurses', '=0.1.2'
 require 'ppcurses'
 
+require 'logger'
 require 'getoptlong'
 
 require_relative '../lib/rb/tallyman'
@@ -27,22 +28,31 @@ def form_cancelled
 end
 
 # ----------------------------------------------------------------------
+
+@error_msg = nil
+
 def form_submitted  
   form = @app.content_view
    # Get values from form and input into domain
    # to create insert statement
    # send insert to database.
   domain = @enabled_domains[@sel_index]
+  @logger.debug("Adding data for #{domain.table_name}" )
   action = @actions[@sel_index]
   
-  sql = domain.insert_statement  
-  prep_statement = @db.prepare(sql)
-  
-  data = action.data_array
-  prep_statement.bind_params(data)
-  prep_statement.execute
-  prep_statement.close
-  
+  sql = domain.insert_statement
+  @logger.debug("Building insert statement:  #{sql}")  
+  begin
+    prep_statement = @db.prepare(sql)  
+    data = action.data_array
+    @logger.debug("Binding parameter data: #{data}")
+    prep_statement.bind_params(data)
+    prep_statement.execute
+    prep_statement.close
+  rescue SQLite3::Exception => e
+    error_msg = e.message
+    raise e
+  end
   
   @app.content_view = @table_view
   action.clear
@@ -106,13 +116,16 @@ rescue
 end
 
 
-@app = PPCurses::Application.new
+
+@logger = Logger.new(@config_loader.config_dir + 'tallyman.log', 'monthly')
 
 
 if @test_mode then
   @db = DatabaseProxy.open( script_location + '/../test.db' )
+  @logger.debug("Opened database #{script_location}/../test.db")
 else
   @db = DatabaseProxy.open( @dbName )
+  @logger.debug("Opened database #{ @dbName}")
 end
 
 
@@ -126,25 +139,33 @@ begin
     domain_labels.push( domain.main_menu_label)
   end
   
+  
   data_source = PPCurses::SingleColumnDataSource.new( domain_labels )
   @table_view = PPCurses::TableView.new
   @table_view.data_source=data_source
 
-  @app.content_view = @table_view
-
   notary = PPCurses::NotificationCentre.default_centre
   notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
 
-  
-  
+  @app = PPCurses::Application.new
+  @app.content_view = @table_view 
   @app.launch
+  
+
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
   # a stack trace when CTRL-C is used
 ensure
+  if @error_msg != nil then
+    puts @error_msg
+  end
   @db.close if @db
+  @logger.debug("Database closed successfully ")
+  @logger.debug("    -----------------     ")
 end
 
-# Displays all domains, enabled or disabled.
-#puts "Status of domains:"
-#@domain_manager.print_domains(@config)
+
+
+# TODO -- add verbose option for greater error reporting
+# TODO -- add intentional error on bind_param, missing value
+# TODO -- make sure error is reported correctly, etc.
