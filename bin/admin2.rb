@@ -21,7 +21,9 @@ load to_load
 
 # ----------------------------------------------------------------------
 def form_cancelled
+  form = @app.content_view
   @app.content_view = @table_view
+  form.clear
 end
 
 # ----------------------------------------------------------------------
@@ -46,6 +48,7 @@ def form_submitted
   
   
   @app.content_view = @table_view
+  form.clear
 end
 
 # ----------------------------------------------------------------------

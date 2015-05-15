@@ -31,6 +31,9 @@ class MusicAction_10
     
   end
 
+  def clear
+    @form.clear    
+  end
 
   def data_array
     data = []
@@ -61,10 +64,7 @@ class MusicAction_10
     data
   end
 
-  # TODO duplicate logic
-  def after_actions
 
-  end
 
 end
 
