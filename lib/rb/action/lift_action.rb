@@ -1,6 +1,7 @@
 class LiftAction_10
 
   attr_accessor :form
+  attr_accessor :btn_submit, :btn_cancel
 
   def initialize
     @form = PPCurses::Form.new
@@ -8,9 +9,15 @@ class LiftAction_10
     reps = PPCurses::RadioButtonGroup.new('  Reps', %w(1RM 3RM 5RM) )
     weight = PPCurses::InputElement.new_integer_only(' Weight', 5)
 
+    buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
+    @btn_cancel = buttons.button1
+    @btn_submit = buttons.button2
+
     @form.add(reps)
     @form.add(weight)
-
+    @form.add(buttons)
+    
+    @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
   end
 
 
