@@ -10,7 +10,8 @@ class ReadingAction
     @author =  PPCurses::InputElement.new('  Author', 30)
     @pages =  PPCurses::InputElement.new_integer_only('   Pages', 10)
     @format =   PPCurses::RadioButtonGroup.new(' Format', %w(Digital Analog) )
-     
+    @finished_date = PPCurses::DatePicker.new( 'Finished')
+      
     buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
     @btn_cancel = buttons.button1
     @btn_submit = buttons.button2
@@ -19,6 +20,7 @@ class ReadingAction
     @form.add(@author)
     @form.add(@pages)
     @form.add(@format)
+    @form.add(@finished_date)
     @form.add(buttons)
     
     @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
@@ -27,6 +29,19 @@ class ReadingAction
   def clear
     @form.clear    
   end
+
+ def data_array
+    data = []
+    
+    data.push( @title.value)
+    # author
+    # digital
+    # pages
+    # datefinished
+    data
+    
+ end
+ 
 
 end
 
