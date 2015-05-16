@@ -31,28 +31,20 @@ class ExerciseDistanceAction
     @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
   end
 
-end
-
-
-class ExerciseDistanceAction_old < PPCurses::InsertSQLDataAction
-
-  def initialize(db, table_name)
-    @db = db
-    @table_name = table_name
-
-    super( [PPCurses::GetIntegerAction.new('Distance: '),
-            PPCurses::GetIntegerAction.new('Duration: '), ],
-           "INSERT into #{@table_name}(distance_km, duration ) values (?, ?)", db )
+  def clear
+    @form.clear    
   end
 
-
-  def after_actions
-    new_data_added = super
-
-    if new_data_added then
-      @db.data_added_to( @table_name )
-    end
-
+  def data_array
+    data = []
+    
+    data.push(@distance.value)
+    data.push(@duration.value)
+        
+    date = @day.date
+    data.push(date.strftime('%Y-%m-%d') )
+    
+    data
   end
 
 end
