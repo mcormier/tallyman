@@ -11,7 +11,7 @@ class ExerciseDistanceAction
   attr_accessor :form
   attr_accessor :btn_submit, :btn_cancel
   
-  def initialize ( table_name )
+  def initialize
     @form = PPCurses::Form.new
     
     @distance = PPCurses::InputElement.new_integer_only(' Distance', 10)
