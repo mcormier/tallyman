@@ -21,15 +21,17 @@ class ValueAction_10
   
     @form = PPCurses::Form.new
     
-    @event = PPCurses::ComboBox.new('   Event', event_types)
+    @event = PPCurses::ComboBox.new(' Event', event_types)
     @value = PPCurses::InputElement.new_integer_only(' Value', 5)
-    
+    @day = PPCurses::DatePicker.new( '   Day')
+      
     buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
     @btn_cancel = buttons.button1
     @btn_submit = buttons.button2
     
     @form.add(@event)
     @form.add(@value)
+    @form.add(@day)
     @form.add(buttons)
     
     @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
@@ -45,6 +47,9 @@ class ValueAction_10
     
     data.push(@event.object_value_of_selected_item)
     data.push(@value.value)
+    
+    date = @day.date
+    data.push(date.strftime('%Y-%m-%d') )
     
     data
   end
