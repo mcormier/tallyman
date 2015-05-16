@@ -36,6 +36,21 @@ class CountAction
 
   end
 
+  def clear
+    @form.clear    
+  end
+
+
+  def data_array
+    data = []
+    
+    data.push(@event.object_value_of_selected_item)
+    
+    date = @day.date
+    data.push(date.strftime('%Y-%m-%d') )
+    
+    data
+  end
 
 end
 
