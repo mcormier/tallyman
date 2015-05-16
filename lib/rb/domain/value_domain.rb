@@ -1,8 +1,7 @@
 class ValueDomain < Domain
 
   def create_action ( db, config )
-    value_action = ValueAction.new(db)
-    PPCurses::ShowMenuAction.new(value_action.menu)
+    value_action = ValueAction_10.new(db)    
   end
 
 end

@@ -1,3 +1,44 @@
+class ValueAction_10
+  
+  attr_accessor :form
+  attr_accessor :btn_submit, :btn_cancel
+  
+  def initialize(db)
+  
+   begin
+      statement = db.prepare('SELECT DISTINCT event FROM valueTable ORDER BY event ASC')
+      rs = statement.execute
+
+      event_types = []
+      rs.each do |row|
+        event_types.push(row[0])
+      end
+      
+    ensure
+      statement.close
+    end
+  
+  
+    @form = PPCurses::Form.new
+    
+    @lift = PPCurses::ComboBox.new('   Event', event_types)
+    @value = PPCurses::InputElement.new_integer_only(' Value', 5)
+    
+    buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
+    @btn_cancel = buttons.button1
+    @btn_submit = buttons.button2
+    
+    @form.add(@lift)
+    @form.add(@value)
+    @form.add(buttons)
+    
+    @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
+  end
+
+end
+
+
+# TODO -- remove in Tallyman 1.4
 class ValueAction  < PPCurses::InsertSQLDataAction
   def initialize(db)
     @db = db;
@@ -6,12 +47,12 @@ class ValueAction  < PPCurses::InsertSQLDataAction
       statement = @db.prepare('SELECT DISTINCT event FROM valueTable ORDER BY event ASC')
       rs = statement.execute
 
-      menu_items = []
+      event_types = []
       rs.each do |row|
-        menu_items.push(row[0])
+        event_types.push(row[0])
       end
 
-      @value_menu = PPCurses::Menu.new( menu_items, nil )
+      @value_menu = PPCurses::Menu.new( event_types, nil )
       @value_menu.set_global_action(self)
     ensure
       statement.close
