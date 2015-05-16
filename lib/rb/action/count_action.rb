@@ -1,4 +1,45 @@
-class CountAction < PPCurses::InsertSQLDataAction
+class CountAction
+
+  attr_accessor :form
+  attr_accessor :btn_submit, :btn_cancel
+
+  def initialize(db)
+  
+    begin
+      statement = db.prepare('SELECT DISTINCT event FROM countTable ORDER BY event ASC')
+      rs = statement.execute
+
+      count_types = []
+      rs.each do |row|
+        count_types.push(row[0])
+      end
+
+    ensure
+      statement.close
+    end
+    
+    
+    @form = PPCurses::Form.new
+    
+    @event = PPCurses::ComboBox.new(' Event', count_types)
+    @day = PPCurses::DatePicker.new( '   Day')
+
+    buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
+    @btn_cancel = buttons.button1
+    @btn_submit = buttons.button2
+
+    @form.add(@event)
+    @form.add(@day)
+    @form.add(buttons)
+    
+    @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
+
+  end
+
+
+end
+
+class CountAction_old < PPCurses::InsertSQLDataAction
 
   def initialize(db)
 
@@ -8,18 +49,14 @@ class CountAction < PPCurses::InsertSQLDataAction
       statement = @db.prepare('SELECT DISTINCT event FROM countTable ORDER BY event ASC')
       rs = statement.execute
 
-      menu_items = []
+      count_types = []
       rs.each do |row|
-        menu_items.push(row[0])
+        count_types.push(row[0])
       end
 
-      @count_menu = PPCurses::Menu.new( menu_items, nil )
-      @count_menu.set_global_action(self)
     ensure
       statement.close
     end
-
-    @sql = 'INSERT into countTable(event) values (?)'
 
     super( [ ], @sql, db )
   end
