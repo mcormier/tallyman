@@ -4,13 +4,13 @@ class GasAction
   
   def initialize
     
-	@form = PPCurses::Form.new
+	  @form = PPCurses::Form.new
 	
-	@unit_price = PPCurses::InputElement.new_integer_only(' Unit Price', 10)
+	  @unit_price = PPCurses::InputElement.new_integer_only(' Unit Price', 10)
     @cost = PPCurses::InputElement.new_integer_only('       Cost', 10)
     @day = PPCurses::DatePicker.new( '   Day')
 	
-	buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
+	  buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
     @btn_cancel = buttons.button1
     @btn_submit = buttons.button2
 	    
@@ -22,6 +22,20 @@ class GasAction
     @form.setFrameOrigin( PPCurses::Point.new(1, 2) )
   end
   
+  def clear
+    @form.clear    
+  end
   
+  def data_array
+    data = []
+    
+    data.push(@unit_price.value)
+    data.push(@cost.value)
+    
+    date = @day.date
+    data.push(date.strftime('%Y-%m-%d') )
+    
+    data
+  end
   
 end
