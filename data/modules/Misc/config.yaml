@@ -2,5 +2,6 @@
 module_name: "Misc"
 table_name: "countTable"
 table_columns: "(event varchar(256), day date default current_date )"
+insert_tail: "(event, day) values (?, ?)"
 main_menu_label: "Add Misc"
 description: "Use for logging miscellaneous things that don't happen often. i.e. stubbed toe. "
