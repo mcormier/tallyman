@@ -2,5 +2,5 @@
 module_name: "Gas"
 table_name: "gasoline"
 table_columns: "(unit_price smallint, cost smallint, purchase_date date default current_date )"
-main_menu_label: "Add Gas Tracker"
+main_menu_label: "Log Gas Expense"
 description: "A module for tracking automobile gasoline expenditures "
