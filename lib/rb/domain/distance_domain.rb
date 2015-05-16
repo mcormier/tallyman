@@ -1,7 +1,8 @@
 class DistanceDomain < Domain
 
   def create_action( db, config )
-    ExerciseDistanceAction.new(db, table_name)
+    # TODO send in table_name
+    ExerciseDistanceAction.new
   end
 
 end
