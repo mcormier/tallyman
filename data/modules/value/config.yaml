@@ -1,6 +1,7 @@
 --- !ruby/object:ValueDomain
 module_name: "Value"
 table_name: "valueTable"
-table_columns: "(event varchar(256),value smallint, day date default current_date )"
+table_columns: "(event varchar(256), value smallint, day date default current_date )"
+insert_tail: "(event, value, day) values (?, ?, ?)"
 main_menu_label: "Add Value"
 description: "Logs miscellaneous things that have a value.  (i.e. Today's weight)"
