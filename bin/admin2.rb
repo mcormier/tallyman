@@ -110,6 +110,10 @@ def usage
 end
 
 
+# ----------------------------------------------------------------------
+def configure
+  # TODO -- implement configuration screens
+end
 
 # ----------------------------------------------------------------------
 # ----------------  Process arguments 
@@ -160,6 +164,12 @@ begin
   notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
 
   @app = PPCurses::Application.new
+  
+  menubar = @app.main_menu
+  config_item = PPCurses::MenuBarItem.new('c', 'Config')
+  config_item.action = method(:configure)
+  menubar.add_menu_item(config_item)
+  
   @app.content_view = @table_view 
   @app.launch
   
