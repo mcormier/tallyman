@@ -118,6 +118,8 @@ def back_to_main
    menubar.remove_menu_item(@back_item)
    
    menubar.add_menu_item(@config_item)
+   
+   @app.content_view = @table_view
 end
 
 # ----------------------------------------------------------------------
@@ -126,6 +128,24 @@ def configure
    menubar = @app.main_menu
    menubar.remove_menu_item(@config_item)
   
+  # Lazy init the configuration table
+  if @config_table_view == nil then
+  
+   domains = []
+  
+   @domain_manager.domains.each do |domain|
+     domains.push( domain.module_name)               
+   end
+   
+   data_source = PPCurses::SingleColumnDataSource.new( domains )
+   @config_table_view = PPCurses::TableView.new
+   @config_table_view.data_source=data_source
+  
+   col_a = PPCurses::TableColumn.new('Domains', 15)
+   @config_table_view.add_table_column(col_a)
+   	
+  end
+  
   # Lazy init the menu item
   if @back_item == nil then 
     @back_item = PPCurses::MenuBarItem.new('b', 'Back')
@@ -133,6 +153,8 @@ def configure
   end
   
   menubar.add_menu_item(@back_item)
+  
+  @app.content_view = @config_table_view
 end
 
 # ----------------------------------------------------------------------
