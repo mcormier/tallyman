@@ -159,6 +159,9 @@ begin
   data_source = PPCurses::SingleColumnDataSource.new( domain_labels )
   @table_view = PPCurses::TableView.new
   @table_view.data_source=data_source
+  col_a = PPCurses::TableColumn.new('Category', 15)
+  @table_view.add_table_column(col_a)	
+
 
   notary = PPCurses::NotificationCentre.default_centre
   notary.add_observer(self, method(:item_chosen),  PPTableViewEnterPressedNotification, @table_view )
