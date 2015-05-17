@@ -110,9 +110,29 @@ def usage
 end
 
 
+#
+#  Navigation from configuration screen back to main screen
+#
+def back_to_main
+   menubar = @app.main_menu
+   menubar.remove_menu_item(@back_item)
+   
+   menubar.add_menu_item(@config_item)
+end
+
 # ----------------------------------------------------------------------
 def configure
   # TODO -- implement configuration screens
+   menubar = @app.main_menu
+   menubar.remove_menu_item(@config_item)
+  
+  # Lazy init the menu item
+  if @back_item == nil then 
+    @back_item = PPCurses::MenuBarItem.new('b', 'Back')
+    @back_item.action = method(:back_to_main)
+  end
+  
+  menubar.add_menu_item(@back_item)
 end
 
 # ----------------------------------------------------------------------
@@ -169,9 +189,9 @@ begin
   @app = PPCurses::Application.new
   
   menubar = @app.main_menu
-  config_item = PPCurses::MenuBarItem.new('c', 'Config')
-  config_item.action = method(:configure)
-  menubar.add_menu_item(config_item)
+  @config_item = PPCurses::MenuBarItem.new('c', 'Config')
+  @config_item.action = method(:configure)
+  menubar.add_menu_item(@config_item)
   
   @app.content_view = @table_view 
   @app.launch
