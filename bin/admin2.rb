@@ -132,7 +132,7 @@ def configure
   if @config_table_view == nil then
   
    ds = DomainDataSource.new(@domain_manager.domains, @config)
-   @config_table_view = ConfigTable.new
+   @config_table_view = ConfigTable.new(@config)
    @config_table_view.data_source=ds
   
    col_a = PPCurses::TableColumn.new(' ', 3)
