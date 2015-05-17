@@ -131,18 +131,14 @@ def configure
   # Lazy init the configuration table
   if @config_table_view == nil then
   
-   domains = []
+   ds = DomainDataSource.new(@domain_manager.domains, @config)
+   @config_table_view = ConfigTable.new
+   @config_table_view.data_source=ds
   
-   @domain_manager.domains.each do |domain|
-     domains.push( domain.module_name)               
-   end
-   
-   data_source = PPCurses::SingleColumnDataSource.new( domains )
-   @config_table_view = PPCurses::TableView.new
-   @config_table_view.data_source=data_source
-  
-   col_a = PPCurses::TableColumn.new('Domains', 15)
+   col_a = PPCurses::TableColumn.new(' ', 3)
    @config_table_view.add_table_column(col_a)
+   col_b = PPCurses::TableColumn.new(' Enable Modules', 25)
+   @config_table_view.add_table_column(col_b)
    	
   end
   
