@@ -1,7 +1,7 @@
 --- !ruby/object:DistanceDomain
 module_name: "Cycling"
 table_name: "cycleLog"
-table_columns: "(distance_km smallint, duration smallint, day date default current_date ); "
+table_columns: "(distance_km decimal(5,2), duration varchar(256), day date default current_date ); "
 insert_tail: "(distance_km, duration, day) values (?, ?, ?)"
 main_menu_label: "Log bike ride"
 description: "Log your cycling data"
