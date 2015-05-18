@@ -22,6 +22,10 @@ class ConfigTable < PPCurses::TableView
 	  
 	  end
     
+    if key == PPCurses::ENTER
+    
+    end
+    
   end
 
 
