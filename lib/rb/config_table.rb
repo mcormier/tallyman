@@ -10,19 +10,20 @@ class ConfigTable < PPCurses::TableView
   def key_down( key )
     super(key)
 	
-	# TODO -- space toggles domain.
-	if key == SPACE_BAR
+
+  	if key == SPACE_BAR
 	  
-	  title = @data_source.object_value_for(self,1,@selected_row)
-	  if @config.domain_enabled?(title)
-	    @config.disable_domain(title)
+	    title = @data_source.object_value_for(self,1,@selected_row)
+	    if @config.domain_enabled?(title)
+	      @config.disable_domain(title)
       else
-	    @config.enable_domain(title)
-	  end
+	      @config.enable_domain(title)
+	    end
 	  
-	end
-  
+	  end
+    
   end
+
 
 end
 
