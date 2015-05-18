@@ -6,8 +6,8 @@ class GasAction
     
 	  @form = PPCurses::Form.new
 	
-	  @unit_price = PPCurses::InputElement.new_integer_only(' Unit Price', 10)
-    @cost = PPCurses::InputElement.new_integer_only('       Cost', 10)
+	  @unit_price = PPCurses::InputElement.new_decimal_only(' Unit Price', 10)
+    @cost = PPCurses::InputElement.new_decimal_only('       Cost', 10)
     @day = PPCurses::DatePicker.new( '   Day')
 	
 	  buttons = PPCurses::ButtonPair.new('Cancel', 'Submit')
