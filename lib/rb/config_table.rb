@@ -4,7 +4,7 @@ class ConfigTable < PPCurses::TableView
 
   def initialize(config) 
     super()
-	@config = config
+	  @config = config
   end
 
   def key_down( key )
