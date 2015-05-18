@@ -1,7 +1,7 @@
 --- !ruby/object:MusicDomain
 module_name: "Music"
 table_name: "music"
-table_columns: "(media varchar(256), artist varchar(256), albumTitle varchar(256), price smallint, used boolean default 0, dayPurchased date default current_date )"
+table_columns: "(media varchar(256), artist varchar(256), albumTitle varchar(256), price decimal(5,2), used boolean default 0, dayPurchased date default current_date )"
 insert_tail: "(media, artist, albumTitle, price, used, dayPurchased) values (?, ?, ?, ?, ?, ?)"
 main_menu_label: "Add Music"
 description: "Log the music you buy"
