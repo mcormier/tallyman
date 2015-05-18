@@ -196,11 +196,13 @@ begin
   end
   
   
-  data_source = PPCurses::SingleColumnDataSource.new( domain_labels )
-  @table_view = PPCurses::TableView.new
-  @table_view.data_source=data_source
+  
+  @table_view = PPCurses::TableView.new  
   col_a = PPCurses::TableColumn.new('Category', 15)
   @table_view.add_table_column(col_a)	
+
+  data_source = PPCurses::SingleColumnDataSource.new( domain_labels )
+  @table_view.data_source=data_source
 
 
   notary = PPCurses::NotificationCentre.default_centre
@@ -225,3 +227,8 @@ ensure
   @logger.debug("Database closed successfully ")
   @logger.debug("    -----------------     ")
 end
+
+#
+#  Configuration changes currently require an application restart.
+#
+@config_loader.save(@config)
