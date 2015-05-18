@@ -124,8 +124,7 @@ def back_to_main
 end
 
 # ----------------------------------------------------------------------
-def configure
-  # TODO -- implement configuration screens
+def configure    
    menubar = @app.main_menu
    menubar.remove_menu_item(@config_item)
   

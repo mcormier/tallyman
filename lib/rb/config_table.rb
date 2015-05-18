@@ -23,7 +23,9 @@ class ConfigTable < PPCurses::TableView
 	  end
     
     if key == PPCurses::ENTER
-    
+      domain = @data_source.values[@selected_row]
+      action = domain.config_action(@config)
+      action.execute
     end
     
   end
@@ -37,27 +39,29 @@ class DomainDataSource < PPCurses::MultipleColumnDataSource
 
   def initialize( domains, config )
     @values = domains		
-	@config = config
+	  @config = config
   end
 
   def object_value_for(aTableview, column, row_index)
     
-	# TODO if column == 0 then convert boolean to checkmark	
-	domain = @values[row_index]
-	if column == 0 then
+	  # if column == 0 then convert boolean to checkmark	
+	  domain = @values[row_index]
+	  if column == 0 then
 	  
-	  if @config.domain_enabled?(domain.module_name) 
-	    return '✓'
-	  else
-	    return ' '
+	    if @config.domain_enabled?(domain.module_name) 
+	      return '✓'
+	    else
+	      return ' '
+	    end
+	
 	  end
 	
-	end
-	
-	if column == 1 then
-	  return domain.module_name
-	end
+	  if column == 1 then
+	    return domain.module_name
+	  end
 	
   end
+  
+  
 
 end
