@@ -120,6 +120,7 @@ def back_to_main
    menubar.add_menu_item(@config_item)
    
    @app.content_view = @table_view
+   menubar.selected = false
 end
 
 # ----------------------------------------------------------------------
@@ -150,7 +151,8 @@ def configure
   
   menubar.add_menu_item(@back_item)
   
-  @app.content_view = @config_table_view
+  @app.content_view = @config_table_view  
+  menubar.selected = false
 end
 
 # ----------------------------------------------------------------------
