@@ -15,7 +15,7 @@ class ExerciseDistanceAction
     @form = PPCurses::Form.new
     
     @distance = PPCurses::InputElement.new_decimal_only(' Distance', 10)
-    @duration = PPCurses::InputElement.new(' Duration', 10)
+    @duration = PPCurses::InputElement.new_time_only(' Duration', 10)
     @day = PPCurses::DatePicker.new( '   Day')
 
     
