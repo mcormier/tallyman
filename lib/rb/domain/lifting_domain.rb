@@ -2,17 +2,19 @@ class LiftingDomain < Domain
 
   @@lift_list =  ['Deadlift', 'Shoulder Press', 'Clean', 'Front Squat', 'Push Jerk', 'Overhead Squat', 'Snatch']
 
+
+  def create_action( db, config )
+    load_config(config)      
+    LiftAction.new(enabled_lifts_list)    
+  end
+
+
   def enabled_lifts_list
     @lifting_config.disabled_lifts
 
     lift_set = @@lift_list.to_set
 
     lift_set.subtract( @lifting_config.disabled_lifts).to_a
-  end
-
-  def create_action( db, config )
-    load_config(config)      
-    LiftAction_10.new(enabled_lifts_list)    
   end
 
 
@@ -24,6 +26,7 @@ class LiftingDomain < Domain
     end
   end
 
+
   def receive_message(menu_item)
 
     title = menu_item.title
@@ -34,7 +37,6 @@ class LiftingDomain < Domain
       @lifting_config.disabled_lifts.delete(title)
     end
   end
-
 
 
   # Displays a selectable list of lifts.

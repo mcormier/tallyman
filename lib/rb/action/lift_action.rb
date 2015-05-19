@@ -1,4 +1,4 @@
-class LiftAction_10
+class LiftAction
 
   attr_accessor :form
   attr_accessor :btn_submit, :btn_cancel
