@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'set'
 require_relative '../lib/rb/tallyman'
 
 @modified_table_set = Set.new
