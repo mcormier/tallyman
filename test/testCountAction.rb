@@ -1,16 +1,10 @@
 #!/usr/bin/env ruby
 
-gem 'ppcurses', '=0.0.25'
+gem 'ppcurses', '=0.1.2'
 require 'ppcurses'
 
 require_relative '../lib/rb/tallyman'
 
-
-def get_data(db)
-  count_action = CountAction.new(db)
-  count_action.show
-  count_action.menu_selection
-end
 
 begin
 
@@ -23,8 +17,13 @@ begin
     insert into countTable (event) values ('Smoked Cigarette');
   SQL
 
-  screen = PPCurses::Screen.new
-  screen.run { get_data(db) }
+  count_action = CountAction.new(db)
+
+  @app = PPCurses::Application.new
+  
+  @app.content_view = count_action.form
+ 
+  @app.launch
 
 rescue SystemExit, Interrupt
   # Empty Catch block so ruby doesn't puke out
