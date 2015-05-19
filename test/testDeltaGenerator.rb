@@ -11,4 +11,3 @@ generator.generate
 
 generator = DeltaGenerator.new(@modified_table_set)
 generator.generate
-#generator.generate('delta.xml')
