@@ -8,8 +8,8 @@ class MusicAction_10
     @form = PPCurses::Form.new
 
     @media =  PPCurses::RadioButtonGroup.new('  Media Type', %w(CD Vinyl MP3) )
-    @artist = PPCurses::InputElement.new('       Artist', 20)
-    @title =  PPCurses::InputElement.new('  Album Title', 20)
+    @artist = PPCurses::InputElement.new('       Artist', 40)
+    @title =  PPCurses::InputElement.new('  Album Title', 40)
     @price =  PPCurses::InputElement.new_decimal_only('        Price', 10)
     @used =   PPCurses::RadioButtonGroup.new('   Condition', %w(Used New) )
     @purchase_date = PPCurses::DatePicker.new( 'Purchase Date')
