@@ -10,9 +10,11 @@ rescue LoadError
 end
 
 # Required by DeltaNotifier
+gem 'nokogiri', '=1.6.4.1'
 require 'nokogiri'
 
 # Required by domainManager, ConfigLoader
+gem 'psych', '=2.0.5'
 require 'psych'
 
 # Required by DatabaseProxy, data_generator
