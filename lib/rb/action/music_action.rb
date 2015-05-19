@@ -1,4 +1,4 @@
-class MusicAction_10
+class MusicAction
 
   attr_accessor :form
   attr_accessor :btn_submit, :btn_cancel

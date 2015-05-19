@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-gem 'ppcurses', '=0.1.1'
+gem 'ppcurses', '=0.1.2'
 require 'ppcurses'
 
 require_relative '../lib/rb/tallyman'
@@ -8,7 +8,7 @@ require_relative '../lib/rb/tallyman'
 
 @app = PPCurses::Application.new
 
-music_action = MusicAction_10.new( nil )
+music_action = MusicAction.new
 
 @app.content_view = music_action.form
 
