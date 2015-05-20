@@ -1,4 +1,4 @@
-class ValueAction_10
+class ValueAction
   
   attr_accessor :form
   attr_accessor :btn_submit, :btn_cancel
