@@ -1,9 +1,6 @@
 # An absolute path to the database file is required
 @dbName = '/home/mcormier/Dropbox/TallyMan/tallyMan2013.db'
 
-# Where bin/backupData will copy a backup file
-@backupDir = '/home/mcormier/Dropbox/backups/tallyman'
-
 # Where the generated index.html will go
 @webRoot= '/home/mcormier/sites/stats/'
 @outputHTMLFile = @webRoot + 'index.html'
