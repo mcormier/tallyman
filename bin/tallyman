@@ -7,7 +7,7 @@ SCRIPT_LOCATION=`dirname $0`
 cd ${SCRIPT_LOCATION}
 
 # get user input
-${SCRIPT_LOCATION}/adminInterface
+${SCRIPT_LOCATION}/adminInterface $*
 RETURN_CODE=$?
 
 # adminInterface return values:
