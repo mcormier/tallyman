@@ -16,6 +16,8 @@ load to_load
 @config = @config_loader.load
 
 @test_mode = false
+@error_occurred = false
+@insert_count = 0
 
 # ----------------------------------------------------------------------
 def form_cancelled
@@ -46,7 +48,9 @@ def form_submitted
     prep_statement.bind_params(data)
     prep_statement.execute
     prep_statement.close
+    @insert_count += 1
   rescue Exception => e
+    @error_occurred = true
     @logger.error(e.message)    
     #
     # Raise the exception so that execution stops immediately.
@@ -151,6 +155,18 @@ def configure
   menubar.selected = false
 end
 
+# adminInterface return values:
+# ----------------------------
+# 0 - interface ran but nothing inserted
+# 1 - an error occurred running the interface
+# 2 - 1 or more insert statements to the database occurred
+#
+def determine_exit_code
+  if @error_occurred then return 1 end
+  
+  if @insert_count > 0 then 2 else 0 end
+end
+
 # ----------------------------------------------------------------------
 # ----------------  Process arguments 
 begin
@@ -228,3 +244,6 @@ end
 #  Configuration changes currently require an application restart.
 #
 @config_loader.save(@config)
+
+exit determine_exit_code
+
