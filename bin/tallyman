@@ -20,3 +20,5 @@ if [[ $RETURN_CODE -gt 1 ]] ; then
   # regenerate website
   ${SCRIPT_LOCATION}/generateWebsite
 fi
+
+exit $RETURN_CODE
