@@ -12,7 +12,7 @@
   <html>
     <xsl:call-template name="htmlHeader">
       <xsl:with-param name="stylesheet">PPControl,style</xsl:with-param>
-      <xsl:with-param name="javascript">d3.v3.min,PPUtils,PPControl,PPGraph,main,setupGraphs</xsl:with-param>
+      <xsl:with-param name="javascript">d3.v3.min,PPControl,PPGraph,main,setupGraphs</xsl:with-param>
     </xsl:call-template>
 
     <body>

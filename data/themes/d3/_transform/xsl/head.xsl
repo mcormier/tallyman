@@ -14,17 +14,19 @@
   <xsl:variable name="vDoc" select="/"/>
 
   <head>
-
     <!-- prints out a title in the form: "Updated 10 Jan 2013" -->
     <title><xsl:value-of 
                 select="concat('Updated: ', 
                 date:format-date(date:date-time(), 'd MMM yyyy') )"/>
     </title>
 
+
     <xsl:for-each select="str:tokenize($stylesheet,',')">
        <xsl:variable name ="filename" select="."/>
        <Link rel="stylesheet" type="text/css" href="css/{$filename}.css"></Link>
     </xsl:for-each> 
+
+    <script type="text/javascript" src="http://mcormier.github.io/js/PPUtils-1.0.1.js"></script>
 
     <xsl:for-each select="str:tokenize($javascript,',')">
        <xsl:variable name ="filename" select="."/>
