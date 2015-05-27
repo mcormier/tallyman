@@ -27,6 +27,8 @@
     </xsl:for-each> 
 
     <script type="text/javascript" src="http://mcormier.github.io/js/PPUtils-1.0.1.js"></script>
+    <script type="text/javascript" src="http://mcormier.github.io/js/PPZoom-1.0.1.js"></script>
+
 
     <xsl:for-each select="str:tokenize($javascript,',')">
        <xsl:variable name ="filename" select="."/>
@@ -40,6 +42,7 @@
       <meta http-equiv="refresh" content="0;url=html/ieNotSupported.html"/>
     <![endif]]]></xsl:comment>
 
+    <script> var zoomer = new PPZoomer("contentContainer", "detail")</script> 
   </head>
 </xsl:template>
 

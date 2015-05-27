@@ -1,0 +1,25 @@
+div#contentContainer.section, .section { position: absolute; top: 0px; left: 0px; }
+
+.section { position: absolute; top: 0px; left: 0px; }
+
+.past { opacity: 0; visibility: hidden; 
+       -webkit-transform: scale(16);
+       -webkit-transition: 0.8s ease; }
+       
+.present { -webkit-transition: 0.8s ease; }
+          
+.future { opacity: 0; visibility: hidden; -webkit-transform: scale(0.2);
+                     -webkit-transition: 0.8s ease; }
+
+.liftDetail { position:fixed; margin: 30px 0 0 30px; }
+
+.liftDetailInner { margin:50px 0 0 50px; }
+
+a.back { color:#000; }
+
+div.lift_display { position:relative; }
+
+detail { position:absolute; top: 5px; right: 90px; color:#AAA;  }
+
+span.mega-icon.mega-icon-arr-left, 
+span.mega-icon.mega-icon-arr-right { margin: 0 -5px 0 5px; }

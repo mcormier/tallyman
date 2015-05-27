@@ -1,10 +1,9 @@
 @font-face {
- font-family:'Octicons Regular';
-     src: url('../fonts/octicons-regular-webfont.eot');
-     src: url('../fonts/octicons-regular-webfont.eot#iefix') format("eot"), 
-          url('../fonts/octicons-regular-webfont.woff') format("woff"),  
-      url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
-      url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
+ font-family:'octicons';
+     src: url('../fonts/octicons.eot?#iefix') format("embedded-opentype"), 
+          url('../fonts/octicons.woff') format("woff"),  
+      url('../fonts/octicons.ttf') format("truetype"), 
+      url('../fonts/octicons.svg#octicons') format("svg"); 
 }
 
 
@@ -72,7 +71,7 @@ div._1RM3RM5RM {}
 
 /* @group Octicon Font Stuff */
 .mini-icon:before, .mega-icon:before {
-  font-family:normal normal 'Octicons Regular';
+  font-family:normal normal 'octicons';
   display:inline-block;
   line-height:1;
   -webkit-font-smoothing:antialiased;
@@ -91,11 +90,20 @@ div._1RM3RM5RM {}
 .mega-icon-keyboard:before{content:"\f20d"; font-size:1.9em;}
 .mini-icon-history:before{content:"\f07e"}
 .mega-icon-history:before{content:"\f27e"; font-size:1.9em;}
-.mini-icon-arr-right:before{content:"\f03e"}
-.mega-icon-arr-right:before{content:"\f23e"}
-.mini-icon-arr-left:before{content:"\f040"}
-.mega-icon-arr-left:before{content:"\f240"}
+
+.mini-icon-arr-right:before{content:"\f071"}
+.mega-icon-arr-right:before{content:"\f03e"}
+
+.mini-icon-arr-left:before{content:"\f0a1"}
+.mega-icon-arr-left:before{content:"\f040"}
+
 .mini-icon-graph:before{content:"\f043"}
+
+.mini-icon-chevron:before{content:"\f0a4"}
+.mega-icon-chevron:before{content:"\f0a4"; font-size:4.9em;}
+
+.mini-icon-eye:before{content:"\f04e"}
+.mega-icon-eye:before{content:"\f04e"; font-size:1.9em;}
 /* @end */
 
 /* @group Global definitions */
@@ -103,10 +111,12 @@ div._1RM3RM5RM {}
 body {margin:0; font:1em Georgia, serif; color:#000;
       text-transform:uppercase; letter-spacing:1px; }
 
-div {display:block;
-  -webkit-backface-visibility: hidden;  
+div {
+
+   display:block;
+ /* -webkit-backface-visibility: hidden;  
   -webkit-transform:translate3d(0,0,0);
-  -webkit-perspective: 1000;
+  -webkit-perspective: 1000; */
 }
 
 ul { list-style-type:none; 
@@ -138,7 +148,7 @@ strong {color:#333;}
   .shadow {box-shadow:inset 0 0 10px #000;}
   .fullWidthWrapper {width:100%;background:#b7b7b7;}
 
-div.wrapper {margin:0 auto; width:850px; padding:10px 0 0 60px;}
+div.wrapper {margin:0 auto; width:1300px; padding:10px 0 0 60px;}
   div.wrapper > div {float:left;}
   div#right_col {clear:right;}
 
@@ -165,93 +175,6 @@ div.clear { clear: left; }
 
 /* @end */
 
-/* @group Flip Animation */
-  .flip-container { -webkit-perspective: 1000; }
-
-  .flip-container, .front, .back {
-    width: 789px;
-    height: 180px;
-    -webkit-transition: height 0.6s;
-  }
-
-  .flip {
-    height: 300px;
-  }
- 
-  .flip .flipper {
-    -webkit-transform: rotateY(180deg);
-  }
-
-  iframe { border:0; }
-
-  .front, .back {
-    -webkit-backface-visibility: hidden;
-    position: absolute;
-    top: 0; left: 0;
-  }
-
-  .flipper {-webkit-transition: 1.6s; 
-            position: relative; 
-            -webkit-transform-style: preserve-3d;}
-
-  .back { height: 300px; -webkit-transform: rotateY(180deg); }
-  .front { z-index: 2; }
-
-  .repLabel { font-size:36px; color:#CCC; float:left; width:250px;  text-align:center;  font-family:Helvetica, Arial, sans-serif; font-weight:bold; padding-left:9px;}
-  .back iframe { margin-top:-30px; }
-
-/* @end */
-
-
-
-
-/* @group Drawer Arrows */
-
-.featureRow .arrow.top {
-    width:15px;
-    height:15px;
-    -webkit-transform: rotateZ(45deg);
-    border: 2px solid rgba(255,255,255,0.0);
-    border-bottom: 0;
-    border-right: 0;
-    position:absolute;
-    margin:auto;
-    bottom:-10px;
-    left:36px;
-    -webkit-mask-image : 
-        -webkit-gradient(linear, left top, right bottom, 
-            from(#000000), 
-            color-stop(0.8,#000000), 
-            color-stop(0.8, transparent), 
-            to(transparent));
-    opacity:0;
-    overflow:hidden;
-}
-.inside-arrow.top:before {
-    -webkit-transform: rotateZ(45deg);
-    background:none;
-    top:17px;
-    left:6px;
-    width:17px;
-    height:17px;
-    position:relative;
-    box-shadow:3px 3px 3px rgba(0,0,0,0.8)inset; 
-    content:' ';
-    display:block;
-}
-
-.inside-arrow.top {
-    -webkit-transform: rotateZ(-45deg);
-    width:30px;
-    height:30px;
-    position:relative;
-    top:-15px;
-    left:-15px;
-}
-
-.arrow.top.down {
-    -webkit-animation : openfolder-arrowtop 1000ms linear; }
-/* @end */
 
 
 /* @group Macro Contents */
@@ -268,16 +191,6 @@ border-radius:4px; }
 
 /* @group HTML 5 Transform/Transition classes 
    -ms-transition: works for IE 10 and up. */
-
-.drawer { 
-  height: 0;
-  overflow: hidden;
-  transition:           height 500ms ease-in-out;
-    -moz-transition:    height 500ms ease-in-out;
-    -ms-transition:     height 500ms ease-in-out; 
-    -o-transition:      height 500ms ease-in-out;
-    -webkit-transition: height 500ms;
-}
 
 .fadeIn {
   transition:           opacity 250ms ease-in-out;
@@ -297,17 +210,17 @@ border-radius:4px; }
 
 /* removes transformation flicker in safari */
 .no-flick{
-  -webkit-backface-visibility: hidden;  
+/*  -webkit-backface-visibility: hidden;  
   -webkit-transform:translate3d(0,0,0);
-  -webkit-perspective: 1000;
+  -webkit-perspective: 1000; */
 }
 
 #contentContainer {
-  transition:           transform        500ms;
+/*  transition:           transform        500ms;
     -webkit-transition: -webkit-transform 500ms; 
     -moz-transition:    -moz-transform    500ms;
     -ms-transition:     -ms-transform     500ms; 
-    -o-transition:      -o-transform      500ms;
+    -o-transition:      -o-transform      500ms; */
 }
 /* @end */
 
@@ -347,15 +260,20 @@ div.liftValue {position:relative; height:145px; width:263px; float:left;}
 /* @group Single Value Data */
 
 div#right_col ul li div.big_display div.center {margin:0 50px 0 50px;}
+div#right_col_lifts ul li div.big_display div.center {margin:0 50px 0 50px;}
+
+div#middle_col ul li div.big_display div.center {margin:0 25px 0 25px;}
 
 div.big_display {text-transform: uppercase; height:200px; width:374px;}
+
+div.lift_display {text-transform: uppercase; height:200px; width:289px;}
 
 div.center {width:100%;}
 
 div.center h2 {font-size:0.7em; line-height:1.4em;
                  color:#333; margin-top:5px;}
 
-  div.center div.value span {font-weight:bold;}
+div.center div.value span {font-weight:bold;}
 /* @end */
 
 

@@ -24,7 +24,7 @@ function loadSettings() {
 
 function init() { loadSettings(); }
 
-  function toggleVisibility(elements, visible) {
+function toggleVisibility(elements, visible) {
     if ( elements.length == 0 ) return;
     var opacity = visible == true ? 1 : 0;
 
@@ -32,9 +32,9 @@ function init() { loadSettings(); }
        elements[i].style.opacity = opacity
     }
 
-  }
+}
 
-  function toggle(clazz) {
+function toggle(clazz) {
 
     var panel = $className(clazz);
 
@@ -48,14 +48,14 @@ function init() { loadSettings(); }
       settings.liftPanel = clazz; 
       toggleVisibility(panel, true);
     }
-  }
+}
    
-  function handleKeyEvent(evt) {
+function handleKeyEvent(evt) {
     var keyCode = String.fromCharCode(evt.keyCode); 
     if ( keyCode == 'e' ) { toggle('estimates'); }
     if ( keyCode == 's' ) { toggle('oneToTenSpread'); }
     saveSettings();
-  }
+}
 
 
 PPUtils.bind("load", window, init);
