@@ -80,15 +80,13 @@
 
            <li class="display">
              <div class="lift_display">
-               <div class="center">
-                 <div class="divide-line"></div>
-                 <h2><span> <xsl:value-of select="name"/></span> </h2>
-
-                 <div class="value"><span><xsl:value-of select="onerm"/></span></div>
-                 <detail next_section="{$liftName}Detail"> 
-                    <span class="mega-icon mega-icon-eye"></span>
-                 </detail>
-               </div>
+               <detail next_section="{$liftName}Detail"> 
+                 <div class="center">
+                   <div class="divide-line"></div>
+                   <h2><span> <xsl:value-of select="name"/></span> </h2>
+                   <div class="value"><span><xsl:value-of select="onerm"/></span></div>
+                 </div>
+               </detail>
              </div>
            </li>
            </xsl:for-each>
@@ -101,34 +99,32 @@
              <xsl:variable name ="liftName" select="svgname"/>
            <li class="display">
              <div class="lift_display">
-               <div class="center">
-                 <div class="divide-line"></div>
-                 <h2><span> <xsl:value-of select="name"/></span></h2>
-                 <div class="value"><span><xsl:value-of select="onerm"/></span></div>
-                 <detail next_section="{$liftName}Detail"> 
-                 <span class="mega-icon mega-icon-eye"></span>
-                 </detail>
-               </div>
+               <detail next_section="{$liftName}Detail"> 
+                 <div class="center">
+                   <div class="divide-line"></div>
+                   <h2><span> <xsl:value-of select="name"/></span></h2>
+                   <div class="value"><span><xsl:value-of select="onerm"/></span></div>
+                 </div>
+               </detail>
              </div>
            </li>
            </xsl:for-each>
          </ul>
       </div>
 
-       <div id="col__three_lifts">
+       <div id="col_three_lifts">
          <ul id="col_three_data_lifts">
            <xsl:for-each select="lifts/lift[position() mod 4 = 3] ">
              <xsl:variable name ="liftName" select="svgname"/>
            <li class="display">
              <div class="lift_display">
-               <div class="center">
-                 <div class="divide-line"></div>
-                 <h2><span> <xsl:value-of select="name"/></span></h2>
-                 <div class="value"><span><xsl:value-of select="onerm"/></span></div>
-                 <detail next_section="{$liftName}Detail"> 
-                 <span class="mega-icon mega-icon-eye"></span>
-                 </detail>
-               </div>
+               <detail next_section="{$liftName}Detail"> 
+                 <div class="center">
+                   <div class="divide-line"></div>
+                   <h2><span> <xsl:value-of select="name"/></span></h2>
+                   <div class="value"><span><xsl:value-of select="onerm"/></span></div>
+                 </div>
+               </detail>
              </div>
            </li>
            </xsl:for-each>
@@ -143,14 +139,13 @@
              <xsl:variable name ="liftName" select="svgname"/>
            <li class="display">
              <div class="lift_display">
-               <div class="center">
-                 <div class="divide-line"></div>
-                 <h2><span> <xsl:value-of select="name"/></span></h2>
-                 <div class="value"><span><xsl:value-of select="onerm"/></span></div>
-                 <detail next_section="{$liftName}Detail"> 
-                 <span class="mega-icon mega-icon-eye"></span>
-                 </detail>
-               </div>
+               <detail next_section="{$liftName}Detail"> 
+                 <div class="center">
+                   <div class="divide-line"></div>
+                   <h2><span> <xsl:value-of select="name"/></span></h2>
+                   <div class="value"><span><xsl:value-of select="onerm"/></span></div>
+                 </div>
+               </detail>
              </div>
            </li>
            </xsl:for-each>
