@@ -6,8 +6,8 @@ class ReadingAction
   def initialize
     @form = PPCurses::Form.new
      
-    @title =  PPCurses::InputElement.new('   Title', 30)
-    @author =  PPCurses::InputElement.new('  Author', 30)
+    @title =  PPCurses::InputElement.new('   Title', 50)
+    @author =  PPCurses::InputElement.new('  Author', 50)
     @pages =  PPCurses::InputElement.new_integer_only('   Pages', 10)
     @format =   PPCurses::RadioButtonGroup.new(' Format', %w(Digital Analog) )
     @finished_date = PPCurses::DatePicker.new( 'Finished')
