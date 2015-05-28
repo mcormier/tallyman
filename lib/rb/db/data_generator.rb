@@ -61,6 +61,7 @@ class DataGenerator
   #  <item>
   #    <title>Total Pages Read</title>
   #    <value>2586</value>
+  #    <svgname>totalpagesread</svgname>
   #  </item>
   def create_items(db, x)
     @item_queries.each do |queryInfo|
