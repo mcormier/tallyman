@@ -10,6 +10,7 @@
 #  <item>
 #    <title>Total Pages Read</title>
 #    <value>2586</value>
+#    <svgname>totalpagesread</svgname>
 #  </item>
 #  <lifts>
 #    <lift>
