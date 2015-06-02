@@ -1,0 +1,4 @@
+.headers on
+.mode tabs
+select name, weight, day, reps from lifts
+   order by day, reps;

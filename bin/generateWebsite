@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+require 'logger'
+require_relative '../lib/rb/tallyman'
+
+script_location = File.expand_path File.dirname(__FILE__)
+to_load = script_location + '/../config/config.properties'
+load to_load
+
+@theme_root = script_location + '/../data/themes/' + @theme
+
+@config_loader = Tallyman::ConfigLoader.new
+@logger = Logger.new(@config_loader.config_dir + 'tallyman.log', 'monthly')
+
+#----------------------------
+# Extract phase
+#----------------------------
+extract_root= @theme_root + '/_extract/'
+
+@logger.debug("----- Extraction Phase ----" )
+
+# Process all rb files in the theme _extract directory
+Dir.glob(extract_root + '*.rb') do |rb_file|
+  @logger.debug("Executing #{rb_file}" )
+  require rb_file
+end
+
+
+
+#----------------------------
+# Transform phase
+#----------------------------
+@logger.debug("----- Transformation Phase ----" )
+transform_root= @theme_root +'/_transform/'
+
+# Process all rb files in the theme _extract directory
+Dir.glob(transform_root + '*.rb') do |rb_file|
+  @logger.debug("Executing #{rb_file}" )
+  require rb_file
+end
+

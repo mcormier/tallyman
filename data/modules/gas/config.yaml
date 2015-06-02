@@ -1,0 +1,7 @@
+--- !ruby/object:GasDomain
+module_name: "Gas"
+table_name: "gasoline"
+table_columns: "(unit_price decimal(5,3), cost decimal(5,2), purchase_date date default current_date )"
+insert_tail: "(unit_price, cost, purchase_date) values (?, ?, ?)"
+main_menu_label: "Log Gas Expense"
+description: "A module for tracking automobile gasoline expenditures "

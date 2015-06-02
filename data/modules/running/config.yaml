@@ -1,0 +1,8 @@
+--- !ruby/object:DistanceDomain
+module_name: "Running"
+table_name: "runLog"
+table_columns: "(distance_km decimal(5,2), duration varchar(256), day date default current_date ); "
+insert_tail: "(distance_km, duration, day) values (?, ?, ?)"
+main_menu_label: "Log a run"
+description: "Log your running data"
+

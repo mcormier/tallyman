@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Get the path that this script is located
+SCRIPT_LOCATION=`dirname $0`
+# Move to the directory of this script so
+# that path relative configuration works
+cd ${SCRIPT_LOCATION}
+
+# get user input
+${SCRIPT_LOCATION}/adminInterface $*
+RETURN_CODE=$?
+
+# adminInterface return values:
+# ----------------------------
+# 0 - interface ran but nothing inserted
+# 1 - an error occurred running the interface
+# 2 - 1 or more insert statements to the database occurred
+#
+if [[ $RETURN_CODE -gt 1 ]] ; then
+  # regenerate website
+  ${SCRIPT_LOCATION}/generateWebsite
+fi
+
+exit $RETURN_CODE

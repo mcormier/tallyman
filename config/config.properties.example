@@ -1,0 +1,41 @@
+# An absolute path to the database file is required
+@dbName = '/home/mcormier/Dropbox/TallyMan/tallyMan2013.db'
+
+# Where the generated index.html will go
+@webRoot= '/home/mcormier/sites/stats/'
+@outputHTMLFile = @webRoot + 'index.html'
+
+#  The theme to use.  See data/themes if you want
+# to create your own theme.
+@theme='d3'
+
+# Where the meta-data file will be put.  This file
+# is used to generate the HTML with XSL
+@xmlDataFile= "../data/data.xml"
+
+@outputQueries= [ 
+  [ "Books Read", "SELECT COUNT(*) FROM books where date(dateFinished) >= date (strftime('%Y','now') || '-01-01')"],
+  [ "Total Pages Read", "SELECT SUM(pages) FROM books where date(dateFinished) >= date (strftime('%Y','now') || '-01-01')"],
+  [ "Albums Purchased", "SELECT COUNT(*) FROM music where date(dayPurchased) >= date (strftime('%Y','now') || '-01-01')"],
+  [ "Skin Rips", "SELECT COUNT(*) FROM countTable WHERE event='Ripped Skin'"] 
+]
+
+@liftQuery = "SELECT MAX(weight) FROM lifts WHERE name=? and reps=? "
+
+@lifts = [ "Deadlift", "Back Squat","Clean", "Front Squat", "Clean & Jerk", "Squat Clean",
+         "Push Jerk", "Push Press", "Shoulder Press",
+         "Overhead Squat",
+         "Snatch", "Squat Snatch", "Sots Press" ]
+
+# The lifts to display on the website
+@webLifts = [ "Deadlift", "Shoulder Press","Clean", "Front Squat", "Push Jerk", "Overhead Squat", "Snatch"  ]
+
+@lift_reps =  [ "1RM", "3RM", "5RM" ]
+
+@mainMenuValues = ["Add Lift", "Add Music", "Add Book", "Add Misc", "Add Value"]
+
+@xmlEncoding = "ASCII"
+#
+# Sets up proper syntax highlighting in vim
+# vim: set syntax=ruby:
+#
