@@ -25,12 +25,13 @@
 
 class DataGenerator
 
-  def initialize(out_file, db, item_queries, lifts, lift_query)
+  def initialize(out_file, db, item_queries, lifts, lift_query, logger=nil)
     @db = db
     @out_file = out_file
     @item_queries = item_queries
     @lifts = lifts
     @lift_query = lift_query
+    @logger = logger
     @xmlEncoding = "ASCII"
   end
 
@@ -64,9 +65,12 @@ class DataGenerator
   #    <svgname>totalpagesread</svgname>
   #  </item>
   def create_items(db, x)
-    @item_queries.each do |queryInfo|
+    @item_queries.each do |queryInfo|    
       begin
         stm = db.prepare queryInfo[1]
+        unless @logger.nil? then
+          @logger.debug( queryInfo[1] )
+        end
         rs = stm.execute
         row = rs.next
 
