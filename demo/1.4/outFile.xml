@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ASCII"?>
+<data>
+  <item>
+    <title>Books Read</title>
+    <value>4</value>
+    <svgname>booksread</svgname>
+  </item>
+  <item>
+    <title>Total Pages Read</title>
+    <value>1640</value>
+    <svgname>totalpagesread</svgname>
+  </item>
+  <item>
+    <title>Litres of Gasoline Consumed</title>
+    <value>357.6</value>
+    <svgname>litresofgasolineconsumed</svgname>
+  </item>
+  <item>
+    <title>Albums Purchased</title>
+    <value>17</value>
+    <svgname>albumspurchased</svgname>
+  </item>
+  <item>
+    <title>Weight (lbs)</title>
+    <value>202</value>
+    <svgname>weight(lbs)</svgname>
+  </item>
+  <item>
+    <title>Last Cigarette (days)</title>
+    <value>297</value>
+    <svgname>lastcigarette(days)</svgname>
+  </item>
+  <lifts>
+    <lift>
+      <name>Deadlift</name>
+      <svgname>deadlift</svgname>
+      <onerm>330</onerm>
+      <threerm>310</threerm>
+      <fiverm>270</fiverm>
+    </lift>
+    <lift>
+      <name>Shoulder Press</name>
+      <svgname>shoulderpress</svgname>
+      <onerm>120</onerm>
+      <threerm>115</threerm>
+      <fiverm>105</fiverm>
+    </lift>
+    <lift>
+      <name>Clean</name>
+      <svgname>clean</svgname>
+      <onerm>190</onerm>
+      <threerm>170</threerm>
+      <fiverm>150</fiverm>
+    </lift>
+    <lift>
+      <name>Front Squat</name>
+      <svgname>frontsquat</svgname>
+      <onerm>190</onerm>
+      <threerm>180</threerm>
+      <fiverm>155</fiverm>
+    </lift>
+    <lift>
+      <name>Push Jerk</name>
+      <svgname>pushjerk</svgname>
+      <onerm>165</onerm>
+      <threerm>140</threerm>
+      <fiverm>140</fiverm>
+    </lift>
+    <lift>
+      <name>Overhead Squat</name>
+      <svgname>overheadsquat</svgname>
+      <onerm>125</onerm>
+      <threerm>110</threerm>
+      <fiverm>105</fiverm>
+    </lift>
+    <lift>
+      <name>Snatch</name>
+      <svgname>snatch</svgname>
+      <onerm>135</onerm>
+      <threerm>125</threerm>
+      <fiverm>105</fiverm>
+    </lift>
+    <lift>
+      <name>Back Squat</name>
+      <svgname>backsquat</svgname>
+      <onerm>205</onerm>
+      <threerm>190</threerm>
+      <fiverm>165</fiverm>
+    </lift>
+  </lifts>
+</data>

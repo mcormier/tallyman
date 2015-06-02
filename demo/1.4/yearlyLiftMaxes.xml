@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="ASCII"?>
+<data>
+  <lifts>
+    <lift>
+      <name>Deadlift</name>
+      <max2012>315</max2012>
+      <max2013>330</max2013>
+      <max2014>330</max2014>
+    </lift>
+    <lift>
+      <name>Shoulder Press</name>
+      <max2012>120</max2012>
+      <max2013>120</max2013>
+      <max2014>120</max2014>
+    </lift>
+    <lift>
+      <name>Back Squat</name>
+      <max2012>205</max2012>
+      <max2013>205</max2013>
+      <max2014>205</max2014>
+    </lift>
+    <lift>
+      <name>Clean</name>
+      <max2012>180</max2012>
+      <max2013>180</max2013>
+      <max2014>180</max2014>
+    </lift>
+    <lift>
+      <name>Front Squat</name>
+      <max2012>175</max2012>
+      <max2013>175</max2013>
+      <max2014>190</max2014>
+    </lift>
+    <lift>
+      <name>Clean &amp; Jerk</name>
+      <max2012>155</max2012>
+      <max2013>170</max2013>
+      <max2014>170</max2014>
+    </lift>
+    <lift>
+      <name>Squat Clean</name>
+      <max2012>115</max2012>
+      <max2013>115</max2013>
+      <max2014>115</max2014>
+    </lift>
+    <lift>
+      <name>Push Jerk</name>
+      <max2012>135</max2012>
+      <max2013>135</max2013>
+      <max2014>165</max2014>
+    </lift>
+    <lift>
+      <name>Push Press</name>
+      <max2012>130</max2012>
+      <max2013>130</max2013>
+      <max2014>130</max2014>
+    </lift>
+    <lift>
+      <name>Overhead Squat</name>
+      <max2012>110</max2012>
+      <max2013>110</max2013>
+      <max2014>125</max2014>
+    </lift>
+    <lift>
+      <name>Snatch</name>
+      <max2012>115</max2012>
+      <max2013>135</max2013>
+      <max2014>135</max2014>
+    </lift>
+    <lift>
+      <name>Squat Snatch</name>
+      <max2012>75</max2012>
+      <max2013>75</max2013>
+      <max2014>75</max2014>
+    </lift>
+    <lift>
+      <name>Sots Press</name>
+      <max2012>15</max2012>
+      <max2013>30</max2013>
+      <max2014>30</max2014>
+    </lift>
+  </lifts>
+</data>

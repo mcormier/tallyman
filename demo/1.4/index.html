@@ -1,0 +1,286 @@
+<!DOCTYPE html><html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Updated: 1 Jun 2015</title>
+<Link rel="stylesheet" type="text/css" href="css/PPControl.css">
+<Link rel="stylesheet" type="text/css" href="css/style.css">
+<Link rel="stylesheet" type="text/css" href="css/zoom.css">
+<script type="text/javascript" src="http://mcormier.github.io/js/PPUtils-1.0.1.js"></script><script type="text/javascript" src="http://mcormier.github.io/js/PPZoom-1.0.1.js"></script><script src="js/d3.v3.min.js" type="text/javascript"></script><script src="js/PPControl.js" type="text/javascript"></script><script src="js/PPGraph.js" type="text/javascript"></script><script src="js/main.js" type="text/javascript"></script><script src="js/setupGraphs.js" type="text/javascript"></script><!--[if IE]>
+      <meta http-equiv="refresh" content="0;url=html/ieNotSupported.html"/>
+    <![endif]--><script> var zoomer = new PPZoomer("contentContainer", "detail")</script>
+</head>
+<body>
+<div id="contentContainer" class="section present">
+<div class="wrapper assortedData">
+<div id="left_col"><ul id="left_data">
+<li class="display"><div class="big_display"><div class="center">
+    <div class="divide-line"></div>
+<h2><span>Books Read</span></h2>
+    <div class="value"><span>4</span></div>
+    <div id="booksreadGraph" class="Graph"></div>
+  </div></div></li>
+<li class="display"><div class="big_display"><div class="center">
+    <div class="divide-line"></div>
+<h2><span>Albums Purchased</span></h2>
+    <div class="value"><span>17</span></div>
+    <div id="albumspurchasedGraph" class="Graph"></div>
+  </div></div></li>
+</ul></div>
+<div id="middle_col"><ul id="middle_data">
+<li class="display"><div class="big_display"><div class="center">
+    <div class="divide-line"></div>
+<h2><span>Total Pages Read</span></h2>
+    <div class="value"><span>1640</span></div>
+    <div id="totalpagesreadGraph" class="Graph"></div>
+  </div></div></li>
+<li class="display"><div class="big_display"><div class="center">
+    <div class="divide-line"></div>
+<h2><span>Weight (lbs)</span></h2>
+    <div class="value"><span>202</span></div>
+    <div id="weight(lbs)Graph" class="Graph"></div>
+  </div></div></li>
+</ul></div>
+<div id="right_col"><ul id="right_data">
+<li class="display"><div class="big_display"><div class="center">
+    <div class="divide-line"></div>
+<h2><span>Litres of Gasoline Consumed</span></h2>
+    <div class="value"><span>357.6</span></div>
+    <div id="litresofgasolineconsumedGraph" class="Graph"></div>
+  </div></div></li>
+<li class="display"><div class="big_display"><div class="center">
+    <div class="divide-line"></div>
+<h2><span>Last Cigarette (days)</span></h2>
+    <div class="value"><span>297</span></div>
+    <div id="lastcigarette(days)Graph" class="Graph"></div>
+  </div></div></li>
+</ul></div>
+</div>
+<div class="wrapper assortedData">
+<div id="col_one_lifts"><ul id="col_one_data_lifts">
+<li class="display"><div class="lift_display"><detail next_section="deadliftDetail"><div class="center">
+<div class="divide-line"></div>
+<h2><span>Deadlift</span></h2>
+<div class="value"><span>330</span></div>
+</div></detail></div></li>
+<li class="display"><div class="lift_display"><detail next_section="pushjerkDetail"><div class="center">
+<div class="divide-line"></div>
+<h2><span>Push Jerk</span></h2>
+<div class="value"><span>165</span></div>
+</div></detail></div></li>
+</ul></div>
+<div id="col_two_lifts"><ul id="col_two_data_lifts">
+<li class="display"><div class="lift_display"><detail next_section="shoulderpressDetail"><div class="center">
+<div class="divide-line"></div>
+<h2><span>Shoulder Press</span></h2>
+<div class="value"><span>120</span></div>
+</div></detail></div></li>
+<li class="display"><div class="lift_display"><detail next_section="overheadsquatDetail"><div class="center">
+<div class="divide-line"></div>
+<h2><span>Overhead Squat</span></h2>
+<div class="value"><span>125</span></div>
+</div></detail></div></li>
+</ul></div>
+<div id="col_three_lifts"><ul id="col_three_data_lifts">
+<li class="display"><div class="lift_display"><detail next_section="cleanDetail"><div class="center">
+<div class="divide-line"></div>
+<h2><span>Clean</span></h2>
+<div class="value"><span>190</span></div>
+</div></detail></div></li>
+<li class="display"><div class="lift_display"><detail next_section="snatchDetail"><div class="center">
+<div class="divide-line"></div>
+<h2><span>Snatch</span></h2>
+<div class="value"><span>135</span></div>
+</div></detail></div></li>
+</ul></div>
+<div id="col_four_lifts"><ul id="col_four_data_lifts">
+<li class="display"><div class="lift_display"><detail next_section="frontsquatDetail"><div class="center">
+<div class="divide-line"></div>
+<h2><span>Front Squat</span></h2>
+<div class="value"><span>190</span></div>
+</div></detail></div></li>
+<li class="display"><div class="lift_display"><detail next_section="backsquatDetail"><div class="center">
+<div class="divide-line"></div>
+<h2><span>Back Squat</span></h2>
+<div class="value"><span>205</span></div>
+</div></detail></div></li>
+</ul></div>
+</div>
+</div>
+<div id="deadliftDetail" class="section future liftDetail">
+<a onclick="zoomer.goBackInTime();return false" class="back"><span class="mega-icon mega-icon-chevron"></span></a><div class="liftDetailInner">
+<div style="position:relative"><div class="liftName">Deadlift</div></div>
+<div class="liftValue 1RM">
+<p class="value">330</p>
+<p class="vertText">1RM</p>
+<p class="estimates fadeIn"><span class="actual"><strong>330</strong></span><span class="mega-icon mega-icon-arr-right"></span>295<span class="mega-icon mega-icon-arr-right"></span>285</p>
+<p class="oneToTenSpread fadeIn"><span class="spreadValue"><strong>330</strong><sup>1</sup></span><span class="spreadValue">315<sup>2</sup></span><span class="spreadValue">295<sup>3</sup></span><span class="spreadValue">290<sup>4</sup></span><span class="spreadValue">285<sup>5</sup></span><span class="spreadValue">275<sup>6</sup></span><span class="spreadValue">265<sup>7</sup></span><span class="spreadValue">255<sup>8</sup></span><span class="spreadValue">250<sup>9</sup></span><span class="spreadValue">250<sup>10</sup></span></p>
+</div>
+<div class="liftValue 3RM">
+<p class="value">310</p>
+<p class="vertText">3RM</p>
+<p class="estimates fadeIn">345<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>310</strong></span><span class="mega-icon mega-icon-arr-right"></span>295</p>
+</div>
+<div class="liftValue 5RM">
+<p class="value">270</p>
+<p class="vertText">5RM</p>
+<p class="estimates fadeIn">315<span class="mega-icon mega-icon-arr-left"></span>285<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>270</strong></span></p>
+</div>
+<div id="d3Graphdeadlift" class="liftGraph"></div>
+</div>
+</div>
+<div id="shoulderpressDetail" class="section future liftDetail">
+<a onclick="zoomer.goBackInTime();return false" class="back"><span class="mega-icon mega-icon-chevron"></span></a><div class="liftDetailInner">
+<div style="position:relative"><div class="liftName">Shoulder Press</div></div>
+<div class="liftValue 1RM">
+<p class="value">120</p>
+<p class="vertText">1RM</p>
+<p class="estimates fadeIn"><span class="actual"><strong>120</strong></span><span class="mega-icon mega-icon-arr-right"></span>110<span class="mega-icon mega-icon-arr-right"></span>105</p>
+<p class="oneToTenSpread fadeIn"><span class="spreadValue"><strong>120</strong><sup>1</sup></span><span class="spreadValue">115<sup>2</sup></span><span class="spreadValue">110<sup>3</sup></span><span class="spreadValue">105<sup>4</sup></span><span class="spreadValue">105<sup>5</sup></span><span class="spreadValue">100<sup>6</sup></span><span class="spreadValue">95<sup>7</sup></span><span class="spreadValue">95<sup>8</sup></span><span class="spreadValue">90<sup>9</sup></span><span class="spreadValue">90<sup>10</sup></span></p>
+</div>
+<div class="liftValue 3RM">
+<p class="value">115</p>
+<p class="vertText">3RM</p>
+<p class="estimates fadeIn">130<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>115</strong></span><span class="mega-icon mega-icon-arr-right"></span>110</p>
+</div>
+<div class="liftValue 5RM">
+<p class="value">105</p>
+<p class="vertText">5RM</p>
+<p class="estimates fadeIn">120<span class="mega-icon mega-icon-arr-left"></span>110<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>105</strong></span></p>
+</div>
+<div id="d3Graphshoulderpress" class="liftGraph"></div>
+</div>
+</div>
+<div id="cleanDetail" class="section future liftDetail">
+<a onclick="zoomer.goBackInTime();return false" class="back"><span class="mega-icon mega-icon-chevron"></span></a><div class="liftDetailInner">
+<div style="position:relative"><div class="liftName">Clean</div></div>
+<div class="liftValue 1RM">
+<p class="value">190</p>
+<p class="vertText">1RM</p>
+<p class="estimates fadeIn"><span class="actual"><strong>190</strong></span><span class="mega-icon mega-icon-arr-right"></span>170<span class="mega-icon mega-icon-arr-right"></span>165</p>
+<p class="oneToTenSpread fadeIn"><span class="spreadValue"><strong>190</strong><sup>1</sup></span><span class="spreadValue">180<sup>2</sup></span><span class="spreadValue">170<sup>3</sup></span><span class="spreadValue">165<sup>4</sup></span><span class="spreadValue">165<sup>5</sup></span><span class="spreadValue">160<sup>6</sup></span><span class="spreadValue">150<sup>7</sup></span><span class="spreadValue">150<sup>8</sup></span><span class="spreadValue">145<sup>9</sup></span><span class="spreadValue">145<sup>10</sup></span></p>
+</div>
+<div class="liftValue 3RM">
+<p class="value">170</p>
+<p class="vertText">3RM</p>
+<p class="estimates fadeIn">190<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>170</strong></span><span class="mega-icon mega-icon-arr-right"></span>160</p>
+</div>
+<div class="liftValue 5RM">
+<p class="value">150</p>
+<p class="vertText">5RM</p>
+<p class="estimates fadeIn">175<span class="mega-icon mega-icon-arr-left"></span>155<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>150</strong></span></p>
+</div>
+<div id="d3Graphclean" class="liftGraph"></div>
+</div>
+</div>
+<div id="frontsquatDetail" class="section future liftDetail">
+<a onclick="zoomer.goBackInTime();return false" class="back"><span class="mega-icon mega-icon-chevron"></span></a><div class="liftDetailInner">
+<div style="position:relative"><div class="liftName">Front Squat</div></div>
+<div class="liftValue 1RM">
+<p class="value">190</p>
+<p class="vertText">1RM</p>
+<p class="estimates fadeIn"><span class="actual"><strong>190</strong></span><span class="mega-icon mega-icon-arr-right"></span>170<span class="mega-icon mega-icon-arr-right"></span>165</p>
+<p class="oneToTenSpread fadeIn"><span class="spreadValue"><strong>190</strong><sup>1</sup></span><span class="spreadValue">180<sup>2</sup></span><span class="spreadValue">170<sup>3</sup></span><span class="spreadValue">165<sup>4</sup></span><span class="spreadValue">165<sup>5</sup></span><span class="spreadValue">160<sup>6</sup></span><span class="spreadValue">150<sup>7</sup></span><span class="spreadValue">150<sup>8</sup></span><span class="spreadValue">145<sup>9</sup></span><span class="spreadValue">145<sup>10</sup></span></p>
+</div>
+<div class="liftValue 3RM">
+<p class="value">180</p>
+<p class="vertText">3RM</p>
+<p class="estimates fadeIn">200<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>180</strong></span><span class="mega-icon mega-icon-arr-right"></span>170</p>
+</div>
+<div class="liftValue 5RM">
+<p class="value">155</p>
+<p class="vertText">5RM</p>
+<p class="estimates fadeIn">180<span class="mega-icon mega-icon-arr-left"></span>160<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>155</strong></span></p>
+</div>
+<div id="d3Graphfrontsquat" class="liftGraph"></div>
+</div>
+</div>
+<div id="pushjerkDetail" class="section future liftDetail">
+<a onclick="zoomer.goBackInTime();return false" class="back"><span class="mega-icon mega-icon-chevron"></span></a><div class="liftDetailInner">
+<div style="position:relative"><div class="liftName">Push Jerk</div></div>
+<div class="liftValue 1RM">
+<p class="value">165</p>
+<p class="vertText">1RM</p>
+<p class="estimates fadeIn"><span class="actual"><strong>165</strong></span><span class="mega-icon mega-icon-arr-right"></span>150<span class="mega-icon mega-icon-arr-right"></span>140</p>
+<p class="oneToTenSpread fadeIn"><span class="spreadValue"><strong>165</strong><sup>1</sup></span><span class="spreadValue">155<sup>2</sup></span><span class="spreadValue">150<sup>3</sup></span><span class="spreadValue">145<sup>4</sup></span><span class="spreadValue">140<sup>5</sup></span><span class="spreadValue">135<sup>6</sup></span><span class="spreadValue">130<sup>7</sup></span><span class="spreadValue">130<sup>8</sup></span><span class="spreadValue">125<sup>9</sup></span><span class="spreadValue">125<sup>10</sup></span></p>
+</div>
+<div class="liftValue 3RM">
+<p class="value">140</p>
+<p class="vertText">3RM</p>
+<p class="estimates fadeIn">155<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>140</strong></span><span class="mega-icon mega-icon-arr-right"></span>135</p>
+</div>
+<div class="liftValue 5RM">
+<p class="value">140</p>
+<p class="vertText">5RM</p>
+<p class="estimates fadeIn">165<span class="mega-icon mega-icon-arr-left"></span>145<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>140</strong></span></p>
+</div>
+<div id="d3Graphpushjerk" class="liftGraph"></div>
+</div>
+</div>
+<div id="overheadsquatDetail" class="section future liftDetail">
+<a onclick="zoomer.goBackInTime();return false" class="back"><span class="mega-icon mega-icon-chevron"></span></a><div class="liftDetailInner">
+<div style="position:relative"><div class="liftName">Overhead Squat</div></div>
+<div class="liftValue 1RM">
+<p class="value">125</p>
+<p class="vertText">1RM</p>
+<p class="estimates fadeIn"><span class="actual"><strong>125</strong></span><span class="mega-icon mega-icon-arr-right"></span>115<span class="mega-icon mega-icon-arr-right"></span>110</p>
+<p class="oneToTenSpread fadeIn"><span class="spreadValue"><strong>125</strong><sup>1</sup></span><span class="spreadValue">120<sup>2</sup></span><span class="spreadValue">115<sup>3</sup></span><span class="spreadValue">110<sup>4</sup></span><span class="spreadValue">110<sup>5</sup></span><span class="spreadValue">105<sup>6</sup></span><span class="spreadValue">100<sup>7</sup></span><span class="spreadValue">100<sup>8</sup></span><span class="spreadValue">95<sup>9</sup></span><span class="spreadValue">95<sup>10</sup></span></p>
+</div>
+<div class="liftValue 3RM">
+<p class="value">110</p>
+<p class="vertText">3RM</p>
+<p class="estimates fadeIn">120<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>110</strong></span><span class="mega-icon mega-icon-arr-right"></span>105</p>
+</div>
+<div class="liftValue 5RM">
+<p class="value">105</p>
+<p class="vertText">5RM</p>
+<p class="estimates fadeIn">120<span class="mega-icon mega-icon-arr-left"></span>110<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>105</strong></span></p>
+</div>
+<div id="d3Graphoverheadsquat" class="liftGraph"></div>
+</div>
+</div>
+<div id="snatchDetail" class="section future liftDetail">
+<a onclick="zoomer.goBackInTime();return false" class="back"><span class="mega-icon mega-icon-chevron"></span></a><div class="liftDetailInner">
+<div style="position:relative"><div class="liftName">Snatch</div></div>
+<div class="liftValue 1RM">
+<p class="value">135</p>
+<p class="vertText">1RM</p>
+<p class="estimates fadeIn"><span class="actual"><strong>135</strong></span><span class="mega-icon mega-icon-arr-right"></span>120<span class="mega-icon mega-icon-arr-right"></span>115</p>
+<p class="oneToTenSpread fadeIn"><span class="spreadValue"><strong>135</strong><sup>1</sup></span><span class="spreadValue">130<sup>2</sup></span><span class="spreadValue">120<sup>3</sup></span><span class="spreadValue">120<sup>4</sup></span><span class="spreadValue">115<sup>5</sup></span><span class="spreadValue">110<sup>6</sup></span><span class="spreadValue">110<sup>7</sup></span><span class="spreadValue">105<sup>8</sup></span><span class="spreadValue">105<sup>9</sup></span><span class="spreadValue">100<sup>10</sup></span></p>
+</div>
+<div class="liftValue 3RM">
+<p class="value">125</p>
+<p class="vertText">3RM</p>
+<p class="estimates fadeIn">140<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>125</strong></span><span class="mega-icon mega-icon-arr-right"></span>120</p>
+</div>
+<div class="liftValue 5RM">
+<p class="value">105</p>
+<p class="vertText">5RM</p>
+<p class="estimates fadeIn">120<span class="mega-icon mega-icon-arr-left"></span>110<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>105</strong></span></p>
+</div>
+<div id="d3Graphsnatch" class="liftGraph"></div>
+</div>
+</div>
+<div id="backsquatDetail" class="section future liftDetail">
+<a onclick="zoomer.goBackInTime();return false" class="back"><span class="mega-icon mega-icon-chevron"></span></a><div class="liftDetailInner">
+<div style="position:relative"><div class="liftName">Back Squat</div></div>
+<div class="liftValue 1RM">
+<p class="value">205</p>
+<p class="vertText">1RM</p>
+<p class="estimates fadeIn"><span class="actual"><strong>205</strong></span><span class="mega-icon mega-icon-arr-right"></span>185<span class="mega-icon mega-icon-arr-right"></span>175</p>
+<p class="oneToTenSpread fadeIn"><span class="spreadValue"><strong>205</strong><sup>1</sup></span><span class="spreadValue">195<sup>2</sup></span><span class="spreadValue">185<sup>3</sup></span><span class="spreadValue">180<sup>4</sup></span><span class="spreadValue">175<sup>5</sup></span><span class="spreadValue">170<sup>6</sup></span><span class="spreadValue">165<sup>7</sup></span><span class="spreadValue">160<sup>8</sup></span><span class="spreadValue">155<sup>9</sup></span><span class="spreadValue">155<sup>10</sup></span></p>
+</div>
+<div class="liftValue 3RM">
+<p class="value">190</p>
+<p class="vertText">3RM</p>
+<p class="estimates fadeIn">210<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>190</strong></span><span class="mega-icon mega-icon-arr-right"></span>180</p>
+</div>
+<div class="liftValue 5RM">
+<p class="value">165</p>
+<p class="vertText">5RM</p>
+<p class="estimates fadeIn">190<span class="mega-icon mega-icon-arr-left"></span>175<span class="mega-icon mega-icon-arr-left"></span><span class="actual"><strong>165</strong></span></p>
+</div>
+<div id="d3Graphbacksquat" class="liftGraph"></div>
+</div>
+</div>
+</body>
+</html>
