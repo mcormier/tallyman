@@ -48,6 +48,22 @@ class DataGenerator
   end
 
 
+  # Convenience methods that hide that fact that the logger is optionally set.
+  # -----------------------------------------------------------------------------
+  def debug_msg( message ) 
+      unless @logger.nil? then
+          @logger.debug( message)
+      end
+  end
+
+  def error_msg( message ) 
+      unless @logger.nil? then
+          @logger.error( message)
+      end
+  end
+
+
+
   def get_svg_lift_name( name )
     lower = name.downcase
     replace_ampersand = lower.gsub(/&/, 'and')
@@ -67,10 +83,8 @@ class DataGenerator
   def create_items(db, x)
     @item_queries.each do |queryInfo|    
       begin
+        debug_msg ("Executing statement: #{queryInfo[1]}")
         stm = db.prepare queryInfo[1]
-        unless @logger.nil? then
-          @logger.debug( queryInfo[1] )
-        end
         rs = stm.execute
         row = rs.next
 
@@ -81,7 +95,8 @@ class DataGenerator
             x.svgname get_svg_lift_name(queryInfo[0])
           }
         end
-
+      rescue Exception => e
+        error_msg(e.message)
       ensure
         stm.close
       end
