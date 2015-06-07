@@ -30,7 +30,7 @@ require 'set'
 require 'fileutils'
 
 # Required by MuiscAction, LiftAction, ExerciseDistanceAction, CountAction, BookAction
-gem 'ppcurses', '=0.1.2'
+gem 'ppcurses', '=0.1.3'
 require 'ppcurses'
 
 #---------------------------------------------------------------------------------
