@@ -46,11 +46,8 @@ div#lifts div div.liftValue {
 }
 
 div#lifts div div.liftValue p {
-  margin-top:20px;
-  margin-bottom:0px;
   font-size:48px;
   width: 100px;
-  float:right;
   color: #dedede;
   text-align:left;
   z-index:10;
@@ -70,19 +67,6 @@ div#lifts div div.liftValue p.value {
 
 .vertText {
   writing-mode:tb-rl;
-  -webkit-transform:rotate(90deg);
-  -moz-transform: rotate(90deg);
-  -ms-transform: rotate(90deg);
-  -o-transform: rotate(90deg);
-  transform: rotate(90deg);
-
-
-  -webkit-transform-origin: 50% 50%;
-  -moz-transform-origin: 50% 50%;
-  -ms-transform-origin: 50% 50%;
-  -o-transform-origin: 50% 50%;
-  transform-origin: 50% 50%;
-
 }
 
 div#lifts table tr td {
