@@ -1,15 +1,12 @@
 @font-face {
  font-family:'Octicons Regular';
-     src: url('../fonts/octicons-regular-webfont.eot');
-     src: url('../fonts/octicons-regular-webfont.eot#iefix') format("eot"), 
-          url('../fonts/octicons-regular-webfont.woff') format("woff"),  
-      url('../fonts/octicons-regular-webfont.ttf') format("truetype"), 
-      url('../fonts/octicons-regular-webfont.svg#newFontRegular') format("svg"); 
+          url('octicons-regular-webfont.woff') format("woff");
+
 }
 
 /* @group Octicon Font Stuff */
 .mini-icon:before, .mega-icon:before {
-  font-family:normal normal 'Octicons Regular';
+  font-family:'Octicons Regular';
   display:inline-block;
   line-height:1;
   -webkit-font-smoothing:antialiased;
@@ -24,10 +21,7 @@
 /* Only define the icons begin used. 
  * https://github.com/styleguide/css/7.0
  */
-.mini-icon-keyboard:before{content:"\f00d"}
-.mega-icon-keyboard:before{content:"\f20d"; font-size:1.9em;}
-.mini-icon-history:before{content:"\f07e"}
-.mega-icon-history:before{content:"\f27e"; font-size:1.9em;}
+
 .mini-icon-arr-right:before{content:"\f03e"}
 .mega-icon-arr-right:before{content:"\f23e"}
 .mini-icon-arr-left:before{content:"\f040"}
