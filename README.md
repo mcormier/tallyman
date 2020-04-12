@@ -75,6 +75,16 @@ The final implementation is smoking fast.
 5. Run *bin/tallyman* 
 
 
+## Developing Locally ##
+
+Some of the demos will generate Cross-Origin Request Blocked errors when doing
+local development.  To see how the page will render when deployed on a server do the
+following in Firefox. 
+
+1.  view --> about:config
+
+2.  set privacy.file\_unique\_origin  to false
+
 --------------------------------------------------------------------
 The feltron theme was heavily influenced, pretty much a direct copy of, Nicholas Feltron's [2006 annual report](http://feltron.com/ar06_01.html).
 
