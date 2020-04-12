@@ -314,7 +314,8 @@ border-radius:4px; }
 /* @group Lifts Content */
 div.liftName {width:50%;font-weight:bold; margin-top: 10px; font-size:0.7em;}
 
-div.liftValue {position:relative; height:145px; width:263px; float:left;}
+div.liftValue {position:relative; height:145px; width:263px; float:left;
+}
 
   div.liftValue p {margin:0; color:#CCC; 
                    position:absolute; font-weight:bold;
@@ -322,7 +323,8 @@ div.liftValue {position:relative; height:145px; width:263px; float:left;}
   div.liftValue p.vertText {
     font-size:48px; top:55px; right:-50px; width:145px; height:50px; }
 
-  div.liftValue p.value {text-align:center;float:left;width:220px;color:#000;}
+  div.liftValue p.value {text-align:center;float:left;width:220px;color:#000;
+  bottom: 16px;}
   
   div.liftValue p.fadeIn {opacity:0;} 
 
